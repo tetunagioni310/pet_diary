@@ -1,8 +1,21 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  before_action :configure_sign_in_params, only: [:create]
+  before_action :ensure_normal_customer, only: [:destroy]
 
+  def ensure_normal_customer
+    if current_customer.email == 'guest@example.com'
+      redirect_to root_path, notice: 'Guest user cannot be deleted.'
+    end
+  end
+  
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to root_path, notice: 'I logged in as a guest user.'
+  end
+  
   # GET /resource/sign_in
   # def new
   #   super
@@ -21,7 +34,7 @@ class Public::SessionsController < Devise::SessionsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
+  def configure_sign_in_params
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+  end
 end

@@ -1,26 +1,60 @@
-<h2>Log in</h2>
-
-<%= form_with model: @customer, url: customer_session_path, method: :post do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="mb-5">ログイン</h2>
+      <%= form_with model: @customer, url: customer_session_path, method: :post do |f| %>
+      <h4 class="mb-3">会員の方はこちらからログイン</h4>
+      <table class="customer_info customer_form">
+        <thead>
+          <th></th>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr></tr>
+          <tr></tr>
+          <tr>
+            <td><%= f.label :email, "メールアドレス" %></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %></td>
+            <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <% if devise_mapping.rememberable? %>
+                <div class="field">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                </div>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.submit "Log in", class: "btn btn-success" %></td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+      
+      <div class="pt-5">
+        <h4 class="mb-3">登録がお済みでない方</h4>
+        <p><%= link_to "こちら", new_customer_registration_path, class: "underline" %>から新規登録を行なってください。</p>
+      </div>
+      
+      <div class="pt-5">
+        <h4 class="mb-3">管理者ログイン</h4>
+        <p><%= link_to "こちら", new_admin_session_path, class: "underline" %>　へ</p>
+      </div>
+      
+      <div class="pt-5">
+        <h4>ゲストログイン（閲覧用）</h4>
+        <p><%= link_to 'こちら', public_guest_sign_in_path, method: :post, class: "underline" %>　へ</p>
+        
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>
