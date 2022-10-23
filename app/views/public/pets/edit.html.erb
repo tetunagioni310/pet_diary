@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2 class="mb-5">ペット新規登録</h2>
-
-      <%= form_with model: @pet, url: public_pets_path, method: :post do |f| %>
+      <br>
+      <h2>ペット情報編集</h2>
+      <br>
+       <%= form_with model: @pet, url: public_pet_path, method: :patch do |f| %>
         <%= render "public/shared/error_messages", resource: @pet %>
 
         <div class="row">
@@ -20,7 +21,7 @@
 
             <div class="form-group row">
               <%= f.label :gender, "性別", class: "col-4 col-form-label" %>
-              <%= f.select :gender, options_for_select(Pet.genders.map { |key, value| [key.humanize, key] }), {prompt: "選択してください"}, class: "col-7 form-control" %>
+              <%= f.select :gender, { "♂": 1, "♀": 2}, { include_blank: '選択してください'}, { class: 'col-7 form-control' , required: true } %>
             </div>
 
             <div class="form-group row">
@@ -51,10 +52,10 @@
 
         <div class="row col-6">
           <div class="col-4"></div>
-          <div class="col-8 p-0"><%= f.submit "新規登録", class: "btn btn-warning" %></div>
+          <div class="col-8 p-0"><%= f.submit "編集を保存", class: "btn btn-warning" %></div>
         </div>
       <% end %>
     </div>
   </div>
-  <%= link_to "戻る", public_pets_path, class: "color" %>
+  <%= link_to "戻る", public_pet_path(@pet.id), class: "color" %>
 </div>

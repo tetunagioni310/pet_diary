@@ -10,6 +10,7 @@ class Public::PetsController < ApplicationController
 
   def new
     @pet = Pet.new
+    @gender_array = [1, 2]
   end
 
   def create
@@ -18,6 +19,19 @@ class Public::PetsController < ApplicationController
       redirect_to public_pets_path
     else
       render "new"
+    end
+  end
+  
+  def edit
+    @pet = Pet.find(params[:id])
+  end
+  
+  def update
+    @pet = Pet.find(params[:id])
+    if @pet.update(pet_params)
+      redirect_to public_pet_path(@pet.id)
+    else
+      render 'edit'
     end
   end
 

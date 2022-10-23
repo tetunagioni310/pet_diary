@@ -1,0 +1,6 @@
+ ja:
+    enums:
+      pet:
+        gender:
+          male: "♂"
+          female: "♀"

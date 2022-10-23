@@ -1,6 +1,7 @@
 class Pet < ApplicationRecord
   belongs_to :customer
   belongs_to :group
+  has_many :posts
   
   validates :pet_name, presence: true
   validates :pet_introduction, presence: true
@@ -9,5 +10,5 @@ class Pet < ApplicationRecord
   
   has_one_attached :pet_image
   
-  enum gender: { ♂: 0, ♀: 1 }
+  enum gender: { ♂: 1, ♀: 2 }
 end

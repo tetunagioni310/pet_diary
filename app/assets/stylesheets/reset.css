@@ -67,7 +67,10 @@ a {
 }
 
 /*css*/
-
+.color {
+  text-decoration: none;
+  color: #fff;
+}
 .underline {
   text-decoration-line: underline;
   text-decoration-color: #333;

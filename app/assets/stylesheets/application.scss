@@ -151,7 +151,7 @@ div.pet-index {
     text-align: center;
     margin-bottom: 30px;
   }
-  
+
   div.pet-list {
     display: flex;
     div.pet-link {
@@ -173,6 +173,28 @@ div.pet-index {
   }
   }
 }
+}
+
+// pet-show
+div.pet-show{
+  width: 100%;
+  background-color: #FFF2CC;
+  border-radius: 20px;
+  div.introduction-field {
+    font-size: 24px;
+    margin: 20px 0;
+    td {
+      text-align: center;
+    }
+  }
+
+  div.pet-profile {
+    text-align: center;
+    margin: 50px 0;
+    img {
+      border-radius: 20px;
+    }
+  }
 }
 
 // admin
