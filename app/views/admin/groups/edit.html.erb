@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @group, url: admin_group_path(@group.id), method: :patch do |f| %>
+        <div class="col row form-group">
+          <div><%= f.label :group_name, "グループ名", class: "col-form-label" %></div>
+          <div><%= f.text_field :group_name, class: "form-control" %></div>
+          <div><%= f.submit "変更を保存", class: "btn btn-success" %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

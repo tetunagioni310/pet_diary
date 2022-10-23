@@ -55,14 +55,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-body {
-  font-family: "ヒラギノ角ゴ ProN","Hiragino Kaku Gothic Pro",Meiryo,"ＭＳ Ｐゴシック","MS PGothic",sans-serif;
-  font-size: 14px;
-  line-height: 1;
-  letter-spacing: 0;
-  background: #fff;
-  color: #333;
-}
 
 p,div,td,th,h1,h2,h3,ul {
   font-weight: normal;

@@ -4,7 +4,7 @@
       <h2 class="mb-5">新規登録</h2>
 
       <%= form_with model: @customer, url: customer_registration_path, method: :post do |f| %>
-        <%= render "public/shared/error_messages", resource: resource %>
+        <%= render "public/shared/error_messages", resource: @customer %>
 
         <table class="customer_info customer_form">
           <thead>

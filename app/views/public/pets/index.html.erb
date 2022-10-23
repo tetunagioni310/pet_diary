@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col pet-index">
+        <h2><%= current_customer.nick_name %>さんのペット一覧</h2>
+       
+        <%= link_to "新規登録", new_public_pet_path, class: "btn btn-success"%>
+        
+        <div class="pet-list">
+          <% @pets.each do |pet| %>
+          <div class="pet-link">
+            <%= image_tag pet.pet_image, size: "200x200" %><br>
+            <%= link_to  pet.pet_name, public_pet_path(pet.id), class: "pet-name" %>
+          </div>
+          <% end %>
+        </div>
+          
+      
+    </div>
+  </div>
+</div>
+

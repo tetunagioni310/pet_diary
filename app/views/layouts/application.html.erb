@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <header class="bg-light">
+    <header>
       <nav class="navbar navbar-expand-lg navbar-light">
         <%= link_to "PetDiary", root_path, class: "navbar-brand" %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,15 +27,15 @@
                 </div>
               </li>
              <li>
-               <%= link_to "マイページ", public_customer_path(current_customer.id), class: "nav-link" %>
+               <%= link_to "マイページ", member_info_public_customers_path, class: "nav-link" %>
              </li>
              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   メニュー
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">ペット一覧</a>
-                  <a class="dropdown-item" href="#">投稿一覧</a>
+                  <%= link_to "ペット一覧", public_pets_path, class: "dropdown-item" %>
+                  <%= link_to "投稿一覧", public_posts_path, class: "dropdown-item" %>
                   <a class="dropdown-item" href="#">タスク一覧</a>
                   <a class="dropdown-item" href="#">スケジュール</a>
                   <a class="dropdown-item" href="#">消耗品</a>
@@ -49,6 +49,9 @@
             <% elsif admin_signed_in? %>
               <li>
                 <%= link_to "グループ",  admin_groups_path, class: "nav-link" %>
+              </li>
+              <li>
+                <%= link_to "会員一覧", admin_customers_path, class: "nav-link" %>
               </li>
               <li>
                 <%= link_to "ログアウト",  destroy_customer_session_path, method: :delete, class: "nav-link" %>
@@ -80,7 +83,7 @@
       <%= yield %>
     </main>
     
-    <footer class="bg-light">
+    <footer>
       <p>Copyright © Infratop Inc. All Rights Reserved.</p>
     </footer>
   </body>

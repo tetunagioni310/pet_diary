@@ -5,11 +5,23 @@ Rails.application.routes.draw do
   namespace :public do
     get 'homes/top'
     get 'homes/about'
-    resources :customers, only: [:show,:edit,:update]
+    
+    resources :posts
+    resources :pets
+    resources :customers, only: [:show,:edit,:update] do
+    collection do
+      get 'member_info'
+      get 'member_info_edit'
+      patch 'member_info_update'
+      get 'quit'
+      patch 'withdrawal'
+      end
+    end
   end
   
   namespace :admin do
-    resources :groups, only: [:index,:create,:edit,:destroty]
+    resources :groups, only: [:index,:create,:edit,:update,:destroy]
+    resources :customers, only: [:index]
   end
   
   # 顧客用

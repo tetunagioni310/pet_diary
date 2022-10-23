@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col align-items-end my-3">
+      <div>
+      <h2 class="mb-5">マイページ</h2>
+        <table class="mypage_info">
+            <tr>
+              <td>名前</td>
+              <td><%= current_customer.name %></td>
+            </tr>
+            <tr>
+              <td>メールアドレス</td>
+              <td><%= current_customer.email%></td>
+            </tr>
+            <tr>
+              <td>ニックネーム</td>
+              <td><%= current_customer.nick_name%></td>
+            </tr>
+        </table>
+      </div>
+      <div class="mt-5">
+        <%= link_to "編集", member_info_edit_public_customers_path, class: "btn btn-success" %>
+        <%= link_to "プロフィールページ", public_customer_path(current_customer.id), class: "btn btn-primary" %>
+      </div>
+
+    </div>
+  </div>
+</div>

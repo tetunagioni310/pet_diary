@@ -3,41 +3,42 @@
     <div class="col">
       <h2 class="mb-5">ログイン</h2>
       <%= form_with model: @customer, url: customer_session_path, method: :post do |f| %>
-      <h4 class="mb-3">会員の方はこちらからログイン</h4>
-      <table class="customer_info customer_form">
-        <thead>
-          <th></th>
-          <th></th>
-          <th></th>
-        </thead>
-        <tbody>
-          <tr></tr>
-          <tr></tr>
-          <tr>
-            <td><%= f.label :email, "メールアドレス" %></td>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %></td>
-            <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-              <% if devise_mapping.rememberable? %>
-                <div class="field">
-                  <%= f.check_box :remember_me %>
-                  <%= f.label :remember_me %>
-                </div>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><%= f.submit "Log in", class: "btn btn-success" %></td>
-          </tr>
-        </tbody>
-      </table>
+
+        <h4 class="mb-3">会員の方はこちらからログイン</h4>
+          <table class="customer_info customer_form">
+            <thead>
+              <th></th>
+              <th></th>
+              <th></th>
+            </thead>
+            <tbody>
+              <tr></tr>
+              <tr></tr>
+              <tr>
+                <td><%= f.label :email, "メールアドレス" %></td>
+                <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+              </tr>
+              <tr>
+                <td><%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %></td>
+                <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <% if devise_mapping.rememberable? %>
+                    <div class="field">
+                      <%= f.check_box :remember_me %>
+                      <%= f.label :remember_me %>
+                    </div>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><%= f.submit "Log in", class: "btn btn-success" %></td>
+              </tr>
+            </tbody>
+          </table>
       <% end %>
       
       <div class="pt-5">
