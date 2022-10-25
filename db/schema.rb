@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 2022_10_23_005718) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name", default: "", null: false
     t.string "nick_name", default: "", null: false
     t.string "introduction", default: "よろしくお願いします！", null: false
     t.boolean "is_deleted", default: false, null: false
@@ -87,7 +86,9 @@ ActiveRecord::Schema.define(version: 2022_10_23_005718) do
   end
 
   create_table "posts", force: :cascade do |t|
+    t.integer "customer_id", null: false
     t.integer "pet_id", null: false
+    t.string "pet_name", default: "", null: false
     t.string "post_title", default: "", null: false
     t.string "post_content", default: "", null: false
     t.datetime "created_at", precision: 6, null: false

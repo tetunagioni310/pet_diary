@@ -1,29 +1,29 @@
 <div class="container">
   <h2 class="my-5"><%= @pet.pet_name %>くんの詳細ページ</h2>
   <div class="pet-show row">
-      
+
       <div class="introduction-field col-lg-6">
         <table>
           <tr>
-            <th></th>
-            <td><%= @pet.group.group_name %></td>
+            <th class="col-3"></th>
+            <td class="col-9"><%= @pet.group.group_name %></td>
           </tr>
-          
+
           <tr>
             <th>名前</th>
             <td><%= @pet.pet_name %></td>
           </tr>
-          
+
           <tr>
             <th>誕生日</th>
             <td><%= @pet.birthday %></td>
           </tr>
-          
+
           <tr>
             <th>年齢</th>
             <td><%= @pet.age %>歳</td>
           </tr>
-          
+
           <tr>
             <th>性別</th>
             <td><%= @pet.gender %></td>
@@ -32,25 +32,23 @@
             <th>紹介</th>
             <td><%= @pet.pet_introduction%></td>
           </tr>
-          
+
           <tr>
             <th></th>
             <td>
               <% if @pet.customer_id == current_customer.id %>
                 <%= link_to "編集", edit_public_pet_path(@pet.id), class: "btn btn-secondary btn-block" %>
+                <%= link_to "削除", public_pet_path(@pet.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-block"%>
               <% end %>
             </td>
           </tr>
         </table>
       </div>
-      
+
       <div class="pet-profile col-lg-6">
-        <%= image_tag @pet.pet_image, size: "350x350" %>
+        <%= image_tag @pet.pet_image, width: "90%",height: "90%" %>
       </div>
-      
+
   </div>
-  <div class="my-5">
-    <%= link_to "戻る", public_pets_path(@pet.id), class: "color" %>
-  </div>
-  
+
 </div>

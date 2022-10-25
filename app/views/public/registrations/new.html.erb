@@ -4,7 +4,7 @@
       <h2 class="mb-5">新規登録</h2>
 
       <%= form_with model: @customer, url: customer_registration_path, method: :post do |f| %>
-        <%= render "public/shared/error_messages", resource: @customer %>
+      <%= render "public/shared/error_messages", resource: @customer %>
 
         <table class="customer_info customer_form">
           <thead>
@@ -14,11 +14,6 @@
           </thead>
 
           <tbody>
-
-            <tr>
-              <td><%= f.label :name, "名前", class: "customer_name" %></td>
-              <td><%= f.text_field :name, autofocus: true, :placeholder =>"山田太郎" %></td>
-            </tr>
 
             <tr>
               <td><%= f.label :nick_name, "ニックネーム" %></td>

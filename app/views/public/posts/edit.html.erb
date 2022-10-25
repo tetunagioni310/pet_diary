@@ -1,0 +1,40 @@
+<div class="container">
+  <h2>投稿編集</h2>
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f| %>
+      <%= render "public/shared/error_messages", resource: @post %>
+
+      <table class="col-md-8">
+
+        <tr>
+          <td><%= f.label :pet_id, "ペット名", class: "col-form-label" %></td>
+          <td><%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name) %></td>
+        </tr>
+
+        <tr>
+          <td><%= f.label :post_image, "画像", class: "col-form-label" %></td>
+          <td><%= f.file_field :post_image, accept: "image/*", class: "p-0" %></td>
+        </tr>
+
+        <tr>
+          <td><%= f.label :post_title, "投稿名", class: "col-form-label" %></td>
+          <td><%= f.text_field :post_title, class: "form-control" %></td>
+        </tr>
+
+        <tr>
+          <td><%= f.label :post_content, "投稿内容", class: "col-form-label" %></td>
+          <td><%= f.text_area :post_content, rows: 10, class: "form-control" %></td>
+        </tr>
+
+        <%= f.hidden_field :customer_id, :value => current_customer.id %>
+
+        <tr>
+          <td></td>
+          <td><%= f.submit "編集を保存", class: "btn btn-success btn-block" %></td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

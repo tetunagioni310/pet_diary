@@ -1,7 +1,8 @@
 class Public::PetsController < ApplicationController
 
   def index
-    @pets = Pet.where(customer_id: current_customer.id)
+    @customer = Customer.find_by(id: current_customer.id)
+    @pets = Pet.where(customer_id: @customer.id)
   end
 
   def show
@@ -21,11 +22,11 @@ class Public::PetsController < ApplicationController
       render "new"
     end
   end
-  
+
   def edit
     @pet = Pet.find(params[:id])
   end
-  
+
   def update
     @pet = Pet.find(params[:id])
     if @pet.update(pet_params)
@@ -33,6 +34,12 @@ class Public::PetsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @pet = Pet.find(params[:id])
+    @pet.destroy
+    redirect_to public_pets_path
   end
 
   private

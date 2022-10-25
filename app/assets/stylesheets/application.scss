@@ -17,6 +17,7 @@
 #error_explanation {
   color: red;
   padding-bottom: 20px;
+  width: 100%;
   h2 {
     font-size: 20px;
     font-weight: bold;
@@ -27,7 +28,7 @@
   }
 }
 .field_with_errors {
-  display: inline-block;
+  display: contents;
   input,
   textarea {
     border: 1px solid red;
@@ -67,7 +68,7 @@ header {
 main {
   padding: 100px 0;
   background-color: #EA6B66;
-  min-height: 90vh;
+  min-height: 100vh;
 }
 footer {
   padding: 15px 0;
@@ -177,14 +178,21 @@ div.pet-index {
 
 // pet-show
 div.pet-show{
+  margin: 0;
   width: 100%;
   background-color: #FFF2CC;
   border-radius: 20px;
   div.introduction-field {
     font-size: 24px;
     margin: 20px 0;
+
+    th {
+      color: #EA6B66;
+    }
+
     td {
       text-align: center;
+      color: #EA6B66;
     }
   }
 
@@ -196,6 +204,60 @@ div.pet-show{
     }
   }
 }
+
+// post
+
+  div.post-index {
+    background-color: #FFF2CC;
+    border-radius: 10px;
+    th {
+      color: #EA6B66;
+    }
+
+    td {
+      text-decoration: none;
+      color: #EA6B66;
+      a {
+        color: #EA6B66;
+      }
+    }
+  }
+
+  div.post-show {
+    padding: 0;
+    margin: 0 auto;
+    height: 100%;
+    div.content {
+      background-color: #FFF2CC;
+      border-radius: 10px;
+      margin: 0 10px;
+      padding: 10px;
+      div.post-image {
+        margin: 0 auto;
+        img {
+        width: 100%;
+        height: 100%;
+        margin: 60px auto;
+        display: block;
+        border-radius: 10px;
+      }
+      }
+    }
+
+    div.post-text {
+      margin: 0 auto;
+      text-align: center;
+      h3 {
+        margin: 10px 0;
+      }
+      p {
+        font-size: 21px;
+      }
+      div {
+          text-align: end;
+      }
+    }
+  }
 
 // admin
 

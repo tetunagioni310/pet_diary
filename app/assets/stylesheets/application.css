@@ -15,7 +15,8 @@
 */
 #error_explanation {
   color: red;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  width: 100%; }
   #error_explanation h2 {
     font-size: 20px;
     font-weight: bold; }
@@ -24,7 +25,7 @@
     list-style: circle; }
 
 .field_with_errors {
-  display: inline-block; }
+  display: contents; }
   .field_with_errors input,
   .field_with_errors textarea {
     border: 1px solid red; }
@@ -60,7 +61,7 @@ header {
 main {
   padding: 100px 0;
   background-color: #EA6B66;
-  min-height: 90vh; }
+  min-height: 100vh; }
 
 footer {
   padding: 15px 0;
@@ -143,19 +144,61 @@ div.pet-index div.pet-list {
       display: inline-block; }
 
 div.pet-show {
+  margin: 0;
   width: 100%;
   background-color: #FFF2CC;
   border-radius: 20px; }
   div.pet-show div.introduction-field {
     font-size: 24px;
     margin: 20px 0; }
+    div.pet-show div.introduction-field th {
+      color: #EA6B66; }
     div.pet-show div.introduction-field td {
-      text-align: center; }
+      text-align: center;
+      color: #EA6B66; }
   div.pet-show div.pet-profile {
     text-align: center;
     margin: 50px 0; }
     div.pet-show div.pet-profile img {
       border-radius: 20px; }
+
+div.post-index {
+  background-color: #FFF2CC;
+  border-radius: 10px; }
+  div.post-index th {
+    color: #EA6B66; }
+  div.post-index td {
+    text-decoration: none;
+    color: #EA6B66; }
+    div.post-index td a {
+      color: #EA6B66; }
+
+div.post-show {
+  padding: 0;
+  margin: 0 auto;
+  height: 100%; }
+  div.post-show div.content {
+    background-color: #FFF2CC;
+    border-radius: 10px;
+    margin: 0 10px;
+    padding: 10px; }
+    div.post-show div.content div.post-image {
+      margin: 0 auto; }
+      div.post-show div.content div.post-image img {
+        width: 100%;
+        height: 100%;
+        margin: 60px auto;
+        display: block;
+        border-radius: 10px; }
+  div.post-show div.post-text {
+    margin: 0 auto;
+    text-align: center; }
+    div.post-show div.post-text h3 {
+      margin: 10px 0; }
+    div.post-show div.post-text p {
+      font-size: 21px; }
+    div.post-show div.post-text div {
+      text-align: end; }
 
 table.admin-table {
   margin-top: 50px; }

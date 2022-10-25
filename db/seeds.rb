@@ -11,9 +11,7 @@ Admin.create!(
 )
 
 Customer.create!(
-   
    {
-   name: '山田太郎',
    email: 'test@test.com',
    password: 'testtest',
    nick_name: 'ymd',

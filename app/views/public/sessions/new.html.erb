@@ -3,6 +3,8 @@
     <div class="col">
       <h2 class="mb-5">ログイン</h2>
       <%= form_with model: @customer, url: customer_session_path, method: :post do |f| %>
+      <%= render "public/shared/error_messages", resource: @customer %>
+
 
         <h4 class="mb-3">会員の方はこちらからログイン</h4>
           <table class="customer_info customer_form">
