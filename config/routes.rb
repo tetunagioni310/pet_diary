@@ -6,15 +6,23 @@ Rails.application.routes.draw do
     get 'homes/top'
     get 'homes/about'
     
-    resources :posts
+    resources :posts do
+      collection do
+        get 'search'
+      end
+      
+      resources :likes, only: [:create,:destroy]
+      resources :comments, only: [:create,:destroy]
+    end
+    
     resources :pets
     resources :customers, only: [:show,:edit,:update] do
-    collection do
-      get 'member_info'
-      get 'member_info_edit'
-      patch 'member_info_update'
-      get 'quit'
-      patch 'withdrawal'
+      collection do
+        get 'member_info'
+        get 'member_info_edit'
+        patch 'member_info_update'
+        get 'quit'
+        patch 'withdrawal'
       end
     end
   end

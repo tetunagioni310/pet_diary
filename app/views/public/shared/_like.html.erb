@@ -1,0 +1,11 @@
+<% if current_customer.already_liked?(post) %>
+  <%= link_to public_post_like_path(post), class: "mx-3", method: :delete do %>
+    <i class="fas fa-heart"></i>
+    <%= post.likes.count %>
+  <% end %>
+<% else %>
+  <%= link_to public_post_likes_path(post), class: "mx-3", method: :post do  %>
+    <i class="far fa-heart"></i>
+    <%= post.likes.count %>
+  <% end %>
+<% end %>

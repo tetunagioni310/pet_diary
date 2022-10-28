@@ -147,9 +147,6 @@ div.pet-index {
   h2 {
     width: 400px;
     line-height: 50px;
-    background-color: yellow;
-    border-radius: 5px;
-    text-align: center;
     margin-bottom: 30px;
   }
 
@@ -162,15 +159,6 @@ div.pet-index {
   img {
     border-radius: 100%;
     margin: 20px;
-  }
-  .pet-name {
-    padding: 0 20px;
-    font-size: 24px;
-    color: #000;
-    text-decoration: none;
-    background-color: yellow;
-    border-radius: 5px;
-    display: inline-block;
   }
   }
 }
@@ -212,6 +200,7 @@ div.pet-show{
     border-radius: 10px;
     th {
       color: #EA6B66;
+      font-weight: bold;
     }
 
     td {
@@ -230,8 +219,6 @@ div.pet-show{
     div.content {
       background-color: #FFF2CC;
       border-radius: 10px;
-      margin: 0 10px;
-      padding: 10px;
       div.post-image {
         margin: 0 auto;
         img {
@@ -255,6 +242,12 @@ div.pet-show{
       }
       div {
           text-align: end;
+      }
+    }
+
+    div.comment {
+      textarea {
+        margin: 20px auto 0;
       }
     }
   }

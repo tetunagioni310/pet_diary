@@ -8,8 +8,8 @@
         <div class="pet-list">
           <% @pets.each do |pet| %>
           <div class="pet-link">
-            <%= image_tag pet.pet_image, size: "200x200" %><br>
-            <%= link_to  pet.pet_name, public_pet_path(pet.id), class: "pet-name" %>
+            <%= image_tag pet.get_pet_image(200,200) %><br>
+            <%= link_to  pet.pet_name, public_pet_path(pet.id), class: "btn btn-outline-warning" %>
           </div>
           <% end %>
         </div>

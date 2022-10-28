@@ -6,6 +6,9 @@ class Customer < ApplicationRecord
          
   has_many :pets, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
+  has_many :comments
   
   validates :email, presence: true
   validates :nick_name, presence: true
@@ -17,5 +20,10 @@ class Customer < ApplicationRecord
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
       customer.nick_name = "ゲスト"
     end
+  end
+  
+  # ユーザーがいいねしたかを判別する
+  def already_liked?(post)
+    self.likes.exists?(post_id: post.id)
   end
 end

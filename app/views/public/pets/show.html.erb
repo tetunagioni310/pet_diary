@@ -46,7 +46,7 @@
       </div>
 
       <div class="pet-profile col-lg-6">
-        <%= image_tag @pet.pet_image, width: "90%",height: "90%" %>
+        <%= image_tag @pet.get_pet_image(400,400) %>
       </div>
 
   </div>

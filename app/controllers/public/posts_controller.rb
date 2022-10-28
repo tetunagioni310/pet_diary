@@ -7,6 +7,9 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
+    @comment = current_customer.comments.new
+    @like = Like.new
   end
 
   def new
@@ -40,7 +43,13 @@ class Public::PostsController < ApplicationController
     @post.destroy
     redirect_to public_posts_path
   end
-
+  
+  def search
+    @posts = Post.search(params[:keyword])
+    @keyword = params[:keyword]
+    render "index"
+  end
+  
   private
 
   def post_params

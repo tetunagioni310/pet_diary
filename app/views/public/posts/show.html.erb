@@ -1,12 +1,10 @@
 <div class="container">
-  <div class="d-flex">
-    <h2>記事詳細</h2>
-  </div>
+  <h2 class="my-5"><%= @post.pet.pet_name %>の記事詳細ページ</h2>
   <div class="post-show row">
-    <div class="content col">
-      <div class="post-image col-md-6">
+    <div class="content col-md-8 m-auto px-0">
+      <div class="post-image col-6">
         <% if @post.post_image.attached? %>
-          <%= image_tag @post.post_image %>
+          <%= image_tag @post.get_post_image(500,500) %>
         <% end %>
       </div>
 
@@ -16,7 +14,35 @@
         <p>
           <%= @post.post_content %><br>
         </p>
-        <div class="h6"><%= @post.created_at.strftime("%Y年%m月%d日")%>  <span><%= @post.pet.pet_name %><%= @post.pet.gender == "♂" ? "くん" : "ちゃん" %></span>の投稿</div>
+
+        <div class="h6 row justify-content-end">
+          <%= @post.created_at.strftime("%Y年%m月%d日") %>&emsp;<%= link_to @post.pet.pet_name, public_pet_path(@post.pet_id) %><%= @post.pet.gender == "♂" ? "くん" : "ちゃん" %>の投稿
+          <%= render "public/shared/like", post: @post %>
+        </div>
+
+      </div>
+
+      <div class="comment col border-top">
+        <%= form_with model: [@post,@comment],url: public_post_comments_path(@post.id), method: :post do |f| %>
+          <div class="col-md-7 m-auto">
+            <%= f.text_area :comment_content, rows: "2", class: "form-control" %>
+            <%= f.hidden_field :post_id, value: @post.id %>
+            <%= f.submit "コメントをする", class: "btn btn-success btn-sm my-3" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="comment-list border-top m-auto">
+        <table>
+          <% @comments.each do |comment| %>
+            <tr>
+              <th class="col-2"><%= comment.customer.nick_name %></th>
+              <td class="col-6"><%= comment.comment_content %></td>
+              <td class="col-4"><%= comment.created_at.strftime("%Y年%m月%d日") %></td>
+            </tr>
+          <% end %>
+        </table>
+        
       </div>
 
     </div>
