@@ -1,14 +1,22 @@
 <div class="container">
   <div class="row">
-    <h2><%= current_customer.nick_name %>さんの投稿一覧</h2>
-
-    <%= link_to new_public_post_path, class: "color" do %>
-      <i class="fas fa-2x fa-solid fa-plus ml-5"></i>
-    <% end %>
+    <h2>
+      <% if !@keyword %>
+        <h2>
+          <%= current_customer.nick_name %>さんの投稿一覧
+        </h2>
+        <%= link_to new_public_post_path, class: "color" do %>
+          <i class="fas fa-2x fa-solid fa-plus ml-5"></i>
+        <% end %>
+      <% else %>
+        <h2>
+          検索結果：　<%= @keyword %>
+        </h2>
+      <% end %>
   </div>
 
   <div class="my-5">
-    <div class="col-5">
+    <div class="col-sm-5">
       <%= form_with url: search_public_posts_path, method: :get, local: true do |f| %>
         <div class="d-flex">
           <%= f.text_field :keyword, value: @keyword, class: "form-control m-0" %>
@@ -36,12 +44,14 @@
               <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
               <td><%= post.updated_at.strftime("%Y/%m/%d") %></td>
               <td class="row">
-                <%= button_to edit_public_post_path(post.id), method: :get do %>
-                  <i class="fas fa-solid fa-pen"></i>
-                <% end %>
-                &emsp;
-                <%= button_to public_post_path(post.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
-                  <i class="fas fa-solid fa-trash"></i>
+                <% if post.customer_id == current_customer.id%>
+                  <%= button_to edit_public_post_path(post.id), method: :get do %>
+                    <i class="fas fa-solid fa-pen"></i>
+                  <% end %>
+                  &emsp;
+                  <%= button_to public_post_path(post.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                    <i class="fas fa-solid fa-trash"></i>
+                  <% end %>
                 <% end %>
               </td>
             </tr>

@@ -43,13 +43,13 @@ class Public::PostsController < ApplicationController
     @post.destroy
     redirect_to public_posts_path
   end
-  
+
   def search
     @posts = Post.search(params[:keyword])
     @keyword = params[:keyword]
     render "index"
   end
-  
+
   private
 
   def post_params

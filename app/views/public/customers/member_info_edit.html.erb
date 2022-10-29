@@ -5,19 +5,24 @@
       <%= form_with model: @customer, url: member_info_update_public_customers_path, method: :patch do |f| %>
         
         <table>
-          
           <tr>
-            <td><%= f.label :email, "メールアドレス", class: "col-form-label" %></td>
+            <td><%= f.label :email, "MAIL", class: "col-form-label" %></td>
             <td><%= f.text_field :email, class: "form-control" %></td>
           </tr>
           <tr>
-            <td><%= f.label :nick_name, "ニックネーム", class: "col-form-label" %></td>
+            <td><%= f.label :nick_name, "HN", class: "col-form-label" %></td>
             <td><%= f.text_field :nick_name, class: "form-control" %></td>
           </tr>
           <tr>
+            <td><%= f.label :customer_image, "画像", class: "col-form-label" %></td>
+            <td><%= f.file_field :nick_name, class: "pl-0" %></td>
+          </tr>
+          <tr>
             <td></td>
-            <td><%= f.submit "変更を保存", class: "btn btn-success" %></td>
-            <td><%= link_to "退会", quit_public_customers_path, class: "btn btn-danger" %></td>
+            <td>
+              <%= f.submit "変更を保存", class: "btn btn-success mr-5" %>
+              <%= link_to "退会", quit_public_customers_path, class: "btn btn-danger ml-5" %>
+            </td>
           </tr>
           
         </table>

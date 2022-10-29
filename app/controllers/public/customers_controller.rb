@@ -1,6 +1,7 @@
 class Public::CustomersController < ApplicationController
   
   def member_info
+    @posts = Post.where(customer_id: current_customer.id)
   end
   
   def member_info_edit
@@ -46,6 +47,6 @@ class Public::CustomersController < ApplicationController
   private
   
   def customer_params
-    params.require(:customer).permit(:name,:email,:nick_name,:introduction)
+    params.require(:customer).permit(:email,:nick_name,:introduction,:customer_image)
   end
 end

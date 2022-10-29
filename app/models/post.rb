@@ -21,8 +21,8 @@ class Post < ApplicationRecord
     end
     post_image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def self.search(keyword)
-    where(["post_title like? OR post_content like?", "%#{keyword}%", "%#{keyword}%"])
+    Post.where(["post_title like? OR post_content like? ", "%#{keyword}%", "%#{keyword}%"])
   end
 end
