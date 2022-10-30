@@ -1,20 +1,21 @@
 <div class="row">
-
-  <div class="col-md-3 my-5">
-    <div>
-      <table class="col-8 m-auto">
+  <div class="col-lg-3">
+    <div class="col-10 mx-auto profile-field">
+      <table class="col-10 mx-auto">
         <tr>
           <td colspan="2">
-            <%= image_tag current_customer.get_customer_image(150,150), class: "col mx-auto" %>
+            <%= image_tag current_customer.get_customer_image(200,200), class: "customer-image" %>
           </td>
         </tr>
         <tr>
-          <td>MAIL</td>
-          <td class="text-center"><%= current_customer.email%></td>
+          <td colspan="2" class="text-center bold"><%= current_customer.email %></td>
         </tr>
         <tr>
-          <td>HN</td>
-          <td class="text-center"><%= current_customer.nick_name%></td>
+          <td colspan="2" class="text-center bold"><%= current_customer.nick_name %></td>
+        </tr>
+        <tr>
+          <td class="text-center"><%= current_customer.followers.count %><%= link_to "フォロー", public_customer_followings_path(current_customer.id) %></td>
+          <td class="text-center"><%= current_customer.followings.count %><%= link_to "フォロワー", public_customer_followers_path(current_customer.id) %></td>
         </tr>
         <tr>
           <td colspan="2">
@@ -25,14 +26,13 @@
         </tr>
         <tr>
           <td colspan="2">
-            <%= link_to "プロフィール", public_customer_path(current_customer.id), class: "btn btn-primary btn-block" %>
+            <%= link_to "プロフィール", public_customer_path(current_customer.id), class: "btn btn-outline-secondary btn-block" %>
           </td>
         </tr>
       </table>
     </div>
   </div>
-
-  <div class="col-md-9">
+  <div class="col-lg-8">
   <h2 class="m-5">投稿一覧</h2>
   <div class="post-index col-11 m-auto">
     <table class="col">

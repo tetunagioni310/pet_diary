@@ -3,6 +3,7 @@
     <div class="col">
       <h2 class="my-5">会員情報編集</h2>
       <%= form_with model: @customer, url: member_info_update_public_customers_path, method: :patch do |f| %>
+      <%= render "public/shared/error_messages", resource: @customer %>
         
         <table>
           <tr>
@@ -15,7 +16,7 @@
           </tr>
           <tr>
             <td><%= f.label :customer_image, "画像", class: "col-form-label" %></td>
-            <td><%= f.file_field :nick_name, class: "pl-0" %></td>
+            <td><%= f.file_field :customer_image, class: "pl-0" %></td>
           </tr>
           <tr>
             <td></td>

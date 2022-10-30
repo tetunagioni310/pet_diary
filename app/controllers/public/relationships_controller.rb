@@ -3,8 +3,13 @@ class Public::RelationshipsController < ApplicationController
   
   # フォローするとき
   def create
-    current_customer.follow(params[:customer_id])
-    redirect_to request.referer
+    @customer = Customer.find(params[:customer_id])
+    if @customer.id != current_customer.id
+      current_customer.follow(params[:customer_id])
+      redirect_to request.referer
+    else
+      redirect_to request.referer
+    end
   end
   # フォロー外すとき
   def destroy

@@ -1,5 +1,11 @@
 <div class="container">
-  <h2 class="my-5"><%= @pet.pet_name %>くんの詳細ページ</h2>
+  <div class="row">
+    <h2 class="mr-3"><%= @pet.pet_name %>くんの詳細ページ</h2>
+    <%= link_to public_customer_path(@pet.customer_id), class: "user-icon" do %>
+      <i class="fas fa-2x fa-solid fa-user ml-1"></i>
+    <% end %>
+  </div>
+
   <div class="pet-show row">
 
       <div class="introduction-field col-lg-6">
@@ -34,12 +40,15 @@
           </tr>
 
           <tr>
-            <th></th>
-            <td>
+            <td colspan="2">
               <% if @pet.customer_id == current_customer.id %>
-                <%= link_to "編集", edit_public_pet_path(@pet.id), class: "btn btn-secondary btn-block" %>
-                <%= link_to "削除", public_pet_path(@pet.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-block"%>
+              <div class="pet-nav">
+                <%= link_to "編集", edit_public_pet_path(@pet.id), class: "btn" %>
+                <%= link_to "消耗品", public_pet_expendables_path(@pet.id), class: "btn" %>
+                <%= link_to "作業", public_pet_works_path(@pet.id), class: "btn" %>
+                <%= link_to "削除", public_pet_path(@pet.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn" %>
               <% end %>
+              </div>
             </td>
           </tr>
         </table>

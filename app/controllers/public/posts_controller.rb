@@ -45,7 +45,7 @@ class Public::PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:keyword])
+    @posts = Post.search(params[:keyword], current_customer)
     @keyword = params[:keyword]
     render "index"
   end

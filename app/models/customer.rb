@@ -21,7 +21,7 @@ class Customer < ApplicationRecord
   has_one_attached :customer_image
   
   validates :email, presence: true
-  validates :nick_name, presence: true
+  validates :nick_name, presence: true, length: { maximum: 8}
   
   def get_customer_image(width, height)
     unless customer_image.attached?

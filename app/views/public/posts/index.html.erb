@@ -33,16 +33,14 @@
           <th>ペット</th>
           <th>タイトル</th>
           <th>投稿日</th>
-          <th>更新日</th>
         </thead>
 
         <tbody>
           <% @posts.each do |post| %>
             <tr>
               <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id) %></td>
-              <td><%= link_to post.post_title, public_post_path(post.id) %></td>
+              <td class="col-4"><%= link_to post.post_title, public_post_path(post.id) %></td>
               <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
-              <td><%= post.updated_at.strftime("%Y/%m/%d") %></td>
               <td class="row">
                 <% if post.customer_id == current_customer.id%>
                   <%= button_to edit_public_post_path(post.id), method: :get do %>

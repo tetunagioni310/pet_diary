@@ -1,2 +1,31 @@
-<h1>Public::Relationships#followings</h1>
-<p>Find me in app/views/public/relationships/followings.html.erb</p>
+<div class="container">
+  <table>
+    <tr>
+      <th>
+        <%= link_to member_info_public_customers_path, class: "color" do %>
+          <i class="fas fa-solid fa-reply"></i>
+        <% end %>
+      </th>
+      <th>
+        フォロー
+      </th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <% @customers.each do |customer| %>
+          <div class="row">
+            <%= link_to customer.nick_name, public_customer_path(customer.id) %>
+            <div class="ml-3">
+                <% if current_customer.following?(customer) %>
+                  <%= link_to "フォロー解除", public_customer_relationships_path(customer.id), class: "btn btn-sm btn-outline-light", method: :delete %>
+                <% else %>
+                  <%= link_to "+フォロー", public_customer_relationships_path(customer.id), class: "btn btn-sm btn-outline-light", method: :post %>
+                <% end %>
+            </div>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>

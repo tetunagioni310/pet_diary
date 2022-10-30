@@ -22,7 +22,7 @@ class Post < ApplicationRecord
     post_image.variant(resize_to_limit: [width, height]).processed
   end
 
-  def self.search(keyword)
-    Post.where(["post_title like? OR post_content like? ", "%#{keyword}%", "%#{keyword}%"])
+  def self.search(keyword, current_customer)
+    Post.joins(:pet).where("pet_name LIKE ? ", "%#{keyword}%").where(customer_id: current_customer.id)
   end
 end

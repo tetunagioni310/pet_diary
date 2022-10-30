@@ -5,18 +5,22 @@ class Public::CustomersController < ApplicationController
   end
   
   def member_info_edit
-    @customer = Customer.find_by(id: current_customer.id)
+     @customer = Customer.find_by(id: current_customer.id)
   end
   
   def member_info_update
     @customer = Customer.find_by(id: current_customer.id)
-    @customer.update(customer_params)
-    @customer.save
-    redirect_to member_info_public_customers_path
+    if @customer.update(customer_params)
+      @customer.save
+      redirect_to member_info_public_customers_path
+    else
+      render 'member_info_edit'
+    end
   end
   
   def show
     @customer = Customer.find(params[:id])
+    
   end
   
   def edit

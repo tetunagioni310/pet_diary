@@ -67,10 +67,22 @@ a {
 }
 
 /*css*/
+.user-icon {
+  background-color: #fff;
+  border-radius: 100px;
+  width: 38px;
+  height: 38px;
+}
+
 .color {
   text-decoration: none;
   color: #fff;
 }
+.color2 {
+  text-decoration: none;
+  color: #000;
+} 
+
 .underline {
   text-decoration-line: underline;
   text-decoration-color: #333;

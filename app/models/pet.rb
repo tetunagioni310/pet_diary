@@ -2,6 +2,8 @@ class Pet < ApplicationRecord
   belongs_to :customer
   belongs_to :group
   has_many :posts, dependent: :destroy
+  has_many :works, dependent: :destroy
+  has_many :expendables, dependent: :destroy
 
   validates :pet_name, presence: true
   validates :pet_introduction, presence: true

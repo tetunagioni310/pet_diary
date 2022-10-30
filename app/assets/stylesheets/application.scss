@@ -129,6 +129,30 @@ div.outer {
   }
 }
 
+// マイページ
+  div.profile-field {
+    background-color: #FFF2CC;
+    border-radius: 10px;
+    padding: 50px 0;
+    table {
+      td {
+        color: #EA6B66;
+
+        img.customer-image {
+          width: 100%;
+          border-radius: 100%;
+          display: block;
+          margin: 0 auto;
+        }
+
+        a {
+          color: #EA6B66;
+          border-color: #EA6B66;
+        }
+      }
+    }
+  }
+
 //プロフィールページ
 div.self-introduction {
   background-color: #fff;
@@ -145,21 +169,21 @@ div.self-introduction {
 // pet-index
 div.pet-index {
   h2 {
-    width: 400px;
     line-height: 50px;
     margin-bottom: 30px;
   }
 
   div.pet-list {
     display: flex;
+    // overflow: scroll;
     div.pet-link {
-  width: 250px;
-  height: 250px;
-  text-align: center;
-  img {
-    border-radius: 100%;
-    margin: 20px;
-  }
+      width: 250px;
+      height: 250px;
+      text-align: center;
+    img {
+      border-radius: 100%;
+      margin: 20px;
+    }
   }
 }
 }
@@ -181,6 +205,21 @@ div.pet-show{
     td {
       text-align: center;
       color: #EA6B66;
+
+      div.pet-nav {
+        background-color: #EA6B66;
+        margin: 30px 0;
+        padding: 10px 0;
+        border-radius: 10px;
+        a {
+          color: #FFF2CC;
+          font-weight: bold;
+        }
+        a:hover {
+          background-color: #FFF2CC;
+          color: #EA6B66;
+        }
+      }
     }
   }
 
@@ -251,6 +290,12 @@ div.pet-show{
       }
     }
   }
+
+// expendables
+div.expendables-list {
+  background-color: #FFF2CC;
+  border-radius: 10px;
+}
 
 // admin
 

@@ -108,6 +108,21 @@ div.outer {
     div.outer div.inner h2 {
       margin: 50px 0; }
 
+div.profile-field {
+  background-color: #FFF2CC;
+  border-radius: 10px;
+  padding: 50px 0; }
+  div.profile-field table td {
+    color: #EA6B66; }
+    div.profile-field table td img.customer-image {
+      width: 100%;
+      border-radius: 100%;
+      display: block;
+      margin: 0 auto; }
+    div.profile-field table td a {
+      color: #EA6B66;
+      border-color: #EA6B66; }
+
 div.self-introduction {
   background-color: #fff;
   height: 200px;
@@ -119,7 +134,6 @@ div.self-introduction {
     font-weight: bold; }
 
 div.pet-index h2 {
-  width: 400px;
   line-height: 50px;
   margin-bottom: 30px; }
 div.pet-index div.pet-list {
@@ -145,6 +159,17 @@ div.pet-show {
     div.pet-show div.introduction-field td {
       text-align: center;
       color: #EA6B66; }
+      div.pet-show div.introduction-field td div.pet-nav {
+        background-color: #EA6B66;
+        margin: 30px 0;
+        padding: 10px 0;
+        border-radius: 10px; }
+        div.pet-show div.introduction-field td div.pet-nav a {
+          color: #FFF2CC;
+          font-weight: bold; }
+        div.pet-show div.introduction-field td div.pet-nav a:hover {
+          background-color: #FFF2CC;
+          color: #EA6B66; }
   div.pet-show div.pet-profile {
     text-align: center;
     margin: 50px 0; }
@@ -189,6 +214,10 @@ div.post-show {
       text-align: end; }
   div.post-show div.comment textarea {
     margin: 20px auto 0; }
+
+div.expendables-list {
+  background-color: #FFF2CC;
+  border-radius: 10px; }
 
 table.admin-table {
   margin-top: 50px; }

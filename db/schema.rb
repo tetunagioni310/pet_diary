@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_29_082837) do
+ActiveRecord::Schema.define(version: 2022_10_30_121106) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(version: 2022_10_29_082837) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "expendables", force: :cascade do |t|
+    t.integer "pet_id", null: false
+    t.string "expendable_name", default: "", null: false
+    t.integer "amount", null: false
+    t.integer "capacity", null: false
+    t.integer "total_capacity", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string "group_name", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -108,7 +118,6 @@ ActiveRecord::Schema.define(version: 2022_10_29_082837) do
   create_table "posts", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "pet_id", null: false
-    t.string "pet_name", default: "", null: false
     t.string "post_title", default: "", null: false
     t.string "post_content", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -118,6 +127,15 @@ ActiveRecord::Schema.define(version: 2022_10_29_082837) do
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "works", force: :cascade do |t|
+    t.integer "expendable_id", null: false
+    t.integer "pet_id", null: false
+    t.string "work_name", default: "", null: false
+    t.integer "consumption", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -17,7 +17,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <% if customer_signed_in? %>
@@ -26,10 +26,10 @@
                   ようこそ、<%= current_customer.nick_name %> さん！
                 </div>
               </li>
-             <li>
+              <li>
                <%= link_to "マイページ", member_info_public_customers_path, class: "nav-link" %>
-             </li>
-             <li class="nav-item dropdown">
+              </li>
+              <li class="nav-items dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   メニュー
                 </a>
@@ -60,17 +60,17 @@
               <li class="nav-item">
                 <%= link_to "about", public_homes_about_path, class: "nav-link" %>
               </li>
-              
+
               <li class="nav-item">
                 <%= link_to "新規登録", new_customer_registration_path, class: "nav-link" %>
               </li>
-              
+
               <li class="nav-item">
                 <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
               </li>
             <% end %>
           </ul>
-          
+
           <!--<form class="form-inline my-2 my-lg-0">-->
           <!--  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
           <!--  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
@@ -78,12 +78,12 @@
         </div>
       </nav>
     </header>
-    
+
     <main>
       <p id="notice"><%= notice %></p>
       <%= yield %>
     </main>
-    
+
     <footer>
       <p>Copyright © Infratop Inc. All Rights Reserved.</p>
     </footer>

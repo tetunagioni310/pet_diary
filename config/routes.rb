@@ -1,21 +1,25 @@
 Rails.application.routes.draw do
-  
+
   root to: "public/homes#top"
-  
+
   namespace :public do
     get 'homes/top'
     get 'homes/about'
-    
+
     resources :posts do
       collection do
         get 'search'
       end
-      
+
       resources :likes, only: [:create,:destroy]
       resources :comments, only: [:create,:destroy]
     end
-    
-    resources :pets
+
+    resources :pets do
+      resources :expendables, only: [:index,:show,:create,:edit,:update,:destroy]
+      resources :works, only: [:index,:show,:create,:edit,:update,:destroy]
+    end
+
     resources :customers, only: [:show,:edit,:update] do
       collection do
         get 'member_info'
@@ -24,25 +28,26 @@ Rails.application.routes.draw do
         get 'quit'
         patch 'withdrawal'
       end
-      
+
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
+
     end
   end
-  
+
   namespace :admin do
     resources :groups, only: [:index,:create,:edit,:update,:destroy]
     resources :customers, only: [:index]
   end
-  
+
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers ,skip: [:password], controllers: {
     registrations: 'public/registrations',
     sessions: 'public/sessions',
   }
-  
+
   devise_scope :customer do
     post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
@@ -52,5 +57,5 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
-  
+
 end
