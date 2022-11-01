@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_30_121106) do
+ActiveRecord::Schema.define(version: 2022_11_01_134312) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -77,18 +77,18 @@ ActiveRecord::Schema.define(version: 2022_10_30_121106) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
-  create_table "expendables", force: :cascade do |t|
-    t.integer "pet_id", null: false
-    t.string "expendable_name", default: "", null: false
-    t.integer "amount", null: false
-    t.integer "capacity", null: false
-    t.integer "total_capacity", null: false
+  create_table "groups", force: :cascade do |t|
+    t.string "group_name", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "groups", force: :cascade do |t|
-    t.string "group_name", default: "", null: false
+  create_table "items", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "item_name", default: "", null: false
+    t.integer "amount", null: false
+    t.integer "capacity"
+    t.integer "total_capacity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -131,8 +131,16 @@ ActiveRecord::Schema.define(version: 2022_10_30_121106) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "use_items", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "item_id", null: false
+    t.integer "amount_used"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "works", force: :cascade do |t|
-    t.integer "expendable_id", null: false
+    t.integer "item_id", null: false
     t.integer "pet_id", null: false
     t.string "work_name", default: "", null: false
     t.integer "consumption", null: false

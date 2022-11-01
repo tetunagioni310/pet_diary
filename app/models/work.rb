@@ -1,4 +1,4 @@
 class Work < ApplicationRecord
-  belongs_to :pet
-  belongs_to :expendable
+  # belongs_to :pet
+  # belongs_to :item
 end

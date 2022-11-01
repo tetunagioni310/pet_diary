@@ -1,5 +1,6 @@
+<div class="container">
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-4">
       <div class="col-10 mx-auto profile-field">
         <table class="col-10 mx-auto">
           <tr>
@@ -32,7 +33,7 @@
         </table>
     </div>
     </div>
-    <div class="col-lg-9 pet-index">
+    <div class="col-lg-8 pet-index">
         <h2><%= current_customer.nick_name %>さんのペット一覧</h2>
         <% if @customer.id == current_customer.id %>
           <%= link_to "新規登録", new_public_pet_path, class: "btn btn-success"%>
@@ -46,7 +47,7 @@
           </div>
           <% end %>
         </div>
-
-
+        
     </div>
   </div>
+</div>

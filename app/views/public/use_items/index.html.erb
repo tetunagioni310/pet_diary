@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <table class="table">
+        <thead>
+            <th>アイテム名</th>
+            <th>使用量</th>
+        </thead>
+        <tbody>
+          <% @use_items.each do |use_item| %>
+            <tr>
+              <td><%= use_item.item.item_name %></td>
+              <td><%= use_item.amount_used %>g</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

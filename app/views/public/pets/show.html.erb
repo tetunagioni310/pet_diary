@@ -44,8 +44,8 @@
               <% if @pet.customer_id == current_customer.id %>
               <div class="pet-nav">
                 <%= link_to "編集", edit_public_pet_path(@pet.id), class: "btn" %>
-                <%= link_to "消耗品", public_pet_expendables_path(@pet.id), class: "btn" %>
-                <%= link_to "作業", public_pet_works_path(@pet.id), class: "btn" %>
+                <%= link_to "消耗品", public_items_path, class: "btn" %>
+                <%= link_to "作業", "#", class: "btn" %>
                 <%= link_to "削除", public_pet_path(@pet.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn" %>
               <% end %>
               </div>

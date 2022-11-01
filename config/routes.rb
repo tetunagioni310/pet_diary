@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'use_items/index'
+  end
   root to: "public/homes#top"
 
   namespace :public do
@@ -14,11 +17,12 @@ Rails.application.routes.draw do
       resources :likes, only: [:create,:destroy]
       resources :comments, only: [:create,:destroy]
     end
-
-    resources :pets do
-      resources :expendables, only: [:index,:show,:create,:edit,:update,:destroy]
-      resources :works, only: [:index,:show,:create,:edit,:update,:destroy]
-    end
+    
+   
+    resources :pets
+    resources :items, only: [:index,:show,:create,:update,:destroy]
+    resources :use_items, only: [:index,:create,:update,:destroy]
+    resources :works, only: [:index,:show,:create,:edit,:update,:destroy]
 
     resources :customers, only: [:show,:edit,:update] do
       collection do
