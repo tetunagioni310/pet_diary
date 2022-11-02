@@ -1,20 +1,32 @@
 <div class="container">
   <div class="row">
-    <div class="col-5">
+    <div class="col-md-8 m-auto">
+      <h2>使用アイテム</h2>
       <table class="table">
-        <thead>
-            <th>アイテム名</th>
-            <th>使用量</th>
-        </thead>
-        <tbody>
+            <tr>
+              <th>商品名</th>
+              <th>使用量</th>
+              <th></th>
+            </tr>
+
           <% @use_items.each do |use_item| %>
             <tr>
-              <td><%= use_item.item.item_name %></td>
-              <td><%= use_item.amount_used %>g</td>
+              <td class="col-5"><%= use_item.item.item_name %></td>
+              <td class="col-3">
+                <%= form_with model: use_item, url: public_use_item_path(use_item.id), method: :patch do |f| %>
+                  <div class="row">
+                    <%= f.number_field :amount_used, class: "form-control-sm col-6" %>
+                    <%= f.hidden_field :customer_id, :value => current_customer.id %>
+                    <%= f.hidden_field :item_id, :value => use_item.item_id%>
+                    <%= f.submit "変更", class: "btn btn-sm" %>
+                  </div>
+                <% end %>
+              </td>
+              <td class="col-1 px-0 text-center"><%= link_to "削除", public_use_item_path(use_item.id), method: :delete, class: "btn btn-sm btn-danger" %></td>
             </tr>
           <% end %>
-        </tbody>
       </table>
+      <%= link_to "戻る", public_items_path %>
     </div>
   </div>
 </div>

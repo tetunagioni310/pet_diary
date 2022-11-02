@@ -2,46 +2,36 @@
   <div class="row">
     <div class="col">
       <div class="item-show col-md-10">
-        <table>
+        <table class="col">
           <tr>
             <th>商品名</th>
             <td class="col-6"><%= @item.item_name %></td>
-            <td></td>
           </tr>
           <tr>
             <th>在庫数</th>
-            <td><%= @item.amount %>袋</td>
+            <td><%= @item.amount %>袋(<%= @item.capacity %>g)</td>
           </tr>
-          <% if @item.capacity %>
-          <tr>
-            <th>内容量/g</th>
-            <td><%= @item.capacity %>g</td>
-            <td></td>
-          </tr>
+          
           <tr>
             <th>在庫合計</th>
             <td><%= @item.total_capacity %>g</td>
-            <td></td>
           </tr>
-          <% end %>
-          
+
           <%= form_with model: @use_item, url: public_use_items_path, method: :post do |f| %>
           <tr>
-            <th>使用アイテム</th>
-            <td>
-              <%= f.hidden_field :customer_id, :value => current_customer.id %>
-              <%= f.hidden_field :item_id, :value => @item.id %>
-              <%= f.number_field :amount_used, :value => "", class: "form-control" %>
+            <th class="form-th">使用量</th>
+            <td class="d-flex">
+                <%= f.hidden_field :customer_id, :value => current_customer.id %>
+                <%= f.hidden_field :item_id, :value => @item.id %>
+                <%= f.number_field :amount_used, :value => "", class: "form-control ml-3" %>g
             </td>
-            <td>g</td>
           </tr>
-          <tr>
-            <th></th>
-            <td><%= f.submit "追加", class: "btn btn-success btn-block" %></td>
+          <tr class="submit">
             <td></td>
+            <td><%= f.submit "追加", class: "btn btn-success btn-block" %></td>
           </tr>
           <% end %>
-          
+
         </table>
       </div>
     </div>

@@ -320,19 +320,54 @@ div.item-record {
 div.item-show {
   background-color: #FFF2CC;
   color: #EA6B66;
-  border-radius: 10px;
-  height: 500px;
+  border-radius: 20px;
+  height: 320px;
   margin: 0 auto;
-  padding-top: 100px;
+  padding-top: 10px;
   table {
     margin: 0 auto;
     font-size: 26px;
-    tr {
-      td {
-      text-align: center;
+        tr:first-child {
+          th {
+            border-radius: 20px 0 0 0;
+          }
+
+          td {
+            font-size: 15px;
+          }
+        }
+
+        tr:nth-last-child(2) {
+          th {
+            border-radius: 0 0 0 20px;
+          }
+        }
+
+        tr {
+          text-align: center;
+
+          th {
+            border-bottom: 3px solid #FFF2CC;
+            background-color: #EA6B66;
+            color: #FFF2CC;
+            font-weight: bold;
+             }
+           }
+
+        tr:nth-last-child(n+3) {
+          td {
+            border-bottom: 3px solid #EA6B66;
+          }
+
+        }
       }
-    }
-    
+  }
+  
+// use_item
+
+div.container {
+  h2 {
+    margin: 50px 0;
   }
 }
 

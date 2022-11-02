@@ -1,6 +1,6 @@
-
+<div class="container">
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-4">
       <div class="col-10 mx-auto profile-field">
         <table class="col-10 mx-auto">
           <tr>
@@ -34,7 +34,7 @@
     </div>
     </div>
 
-    <div class="col-lg-9 align-items-end my-3">
+    <div class="col-lg-8 align-items-end my-3">
       <div class="row my-5 mx-auto">
         <h3><%= @customer.nick_name %>さんのプロフィール</h3>
         <div class="ml-3">
@@ -52,6 +52,6 @@
           <%= link_to "コメントを編集", edit_public_customer_path(current_customer.id), class: "btn btn-light" %>
         <% end %>
       </div>
-
     </div>
   </div>
+</div>
