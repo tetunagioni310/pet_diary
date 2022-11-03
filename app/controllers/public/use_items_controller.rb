@@ -1,6 +1,7 @@
 class Public::UseItemsController < ApplicationController
   def index
     @use_items = UseItem.where(customer_id: current_customer.id)
+    @work = Work.new
   end
 
   def create

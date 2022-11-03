@@ -134,9 +134,10 @@ div.self-introduction {
     font-size: 21px;
     font-weight: bold; }
 
-div.pet-index h2 {
+div.pet-index div.pet-title {
   line-height: 50px;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  display: flex; }
 div.pet-index div.pet-list {
   display: flex; }
   div.pet-index div.pet-list div.pet-link {
@@ -180,9 +181,11 @@ div.pet-show {
 div.post-index {
   background-color: #FFF2CC;
   border-radius: 10px; }
-  div.post-index th {
-    color: #EA6B66;
-    font-weight: bold; }
+  div.post-index thead {
+    border-bottom: 1px solid #EA6B66; }
+    div.post-index thead th {
+      color: #EA6B66;
+      font-weight: bold; }
   div.post-index td {
     text-decoration: none;
     color: #EA6B66; }
@@ -224,6 +227,11 @@ div.items-list {
   div.items-list table tr td a.item-link {
     text-decoration: none;
     color: #EA6B66; }
+  div.items-list div.not-items-list p {
+    color: #EA6B66;
+    min-height: 300px;
+    line-height: 300px;
+    text-align: center; }
 
 div.item-record {
   margin: 30px 0; }
@@ -232,7 +240,7 @@ div.item-show {
   background-color: #FFF2CC;
   color: #EA6B66;
   border-radius: 20px;
-  height: 320px;
+  height: 330px;
   margin: 0 auto;
   padding-top: 10px; }
   div.item-show table {
@@ -251,11 +259,32 @@ div.item-show {
         background-color: #EA6B66;
         color: #FFF2CC;
         font-weight: bold; }
+    div.item-show table tr.submit td {
+      font-size: 16px; }
     div.item-show table tr:nth-last-child(n+3) td {
       border-bottom: 3px solid #EA6B66; }
 
-div.container h2 {
-  margin: 50px 0; }
+div.use-item-index h2 {
+  margin: 30px 0; }
+div.use-item-index div.use_item_list {
+  background-color: #FFF2CC;
+  border-radius: 20px;
+  padding: 20px;
+  color: #EA6B66; }
+  div.use-item-index div.use_item_list th {
+    font-weight: bold; }
+  div.use-item-index div.use_item_list div.not-use-items {
+    min-height: 300px;
+    line-height: 300px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center; }
+
+div.items-link {
+  margin-top: 30px; }
+  div.items-link a {
+    text-decoration: none;
+    color: #FFF2CC; }
 
 table.admin-table {
   margin-top: 50px; }

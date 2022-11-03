@@ -1,32 +1,36 @@
 <div class="container">
-  <div class="row">
-      <% if !@keyword %>
+  <div class="col">
+    
+    <% if !@keyword %>
+      <div class="row col-sm-8">
         <h2>
           <%= current_customer.nick_name %>さんの投稿一覧
         </h2>
-        <%= link_to new_public_post_path, class: "color" do %>
-          <i class="fas fa-2x fa-solid fa-plus ml-5"></i>
+        <%= link_to new_public_post_path, class: "text-dark ml-3" do %>
+          <i class="fas fa-2x fa-solid fa-plus"></i>
         <% end %>
-      <% else %>
-        <h2>
-          検索結果：　<%= @keyword %>
-        </h2>
-      <% end %>
-  </div>
-
-  <div class="my-5">
-    <div class="col-sm-5">
-      <%= form_with url: search_public_posts_path, method: :get, local: true do |f| %>
-        <div class="d-flex">
-          <%= f.text_field :keyword, value: @keyword, class: "form-control m-0" %>
-          <%= f.submit "検索", class: "btn btn-success ml-3" %>
-        </div>
-      <% end %>
+      </div>
+    <% else %>
+      <h2>
+        検索結果：　<%= @keyword %>
+      </h2>
+    <% end %>
+    
+    <div class="my-5">
+      <div class="col-sm-5">
+        <%= form_with url: search_public_posts_path, method: :get, local: true do |f| %>
+          <div class="d-flex">
+            <%= f.text_field :keyword, value: @keyword, class: "form-control m-0" %>
+            <%= f.submit "検索", class: "btn btn-success ml-3" %>
+          </div>
+        <% end %>
+      </div>
     </div>
+    
   </div>
 
   <div class="row">
-    <div class="col post-index">
+    <div class="col m-auto post-index">
       <table class="col">
         <thead>
           <th>ペット</th>
@@ -35,23 +39,29 @@
         </thead>
 
         <tbody>
-          <% @posts.each do |post| %>
-            <tr>
-              <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id) %></td>
-              <td class="col-4"><%= link_to post.post_title, public_post_path(post.id) %></td>
-              <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
-              <td class="row">
-                <% if post.customer_id == current_customer.id%>
-                  <%= button_to edit_public_post_path(post.id), method: :get do %>
-                    <i class="fas fa-solid fa-pen"></i>
+          <% if @posts.count >= 1 %>
+            <% @posts.each do |post| %>
+              <tr>
+                <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id) %></td>
+                <td class="col-4"><%= link_to post.post_title, public_post_path(post.id) %></td>
+                <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
+                <td class="row">
+                  <% if post.customer_id == current_customer.id%>
+                    <%= button_to edit_public_post_path(post.id), method: :get do %>
+                      <i class="fas fa-solid fa-pen"></i>
+                    <% end %>
+                    &emsp;
+                    <%= button_to public_post_path(post.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                      <i class="fas fa-solid fa-trash"></i>
+                    <% end %>
                   <% end %>
-                  &emsp;
-                  <%= button_to public_post_path(post.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
-                    <i class="fas fa-solid fa-trash"></i>
-                  <% end %>
-                <% end %>
-              </td>
-            </tr>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+             <tr>
+               <td colspan="3" class="col text-center">投稿はありません</td>
+             </tr>
           <% end %>
         </tbody>
       </table>

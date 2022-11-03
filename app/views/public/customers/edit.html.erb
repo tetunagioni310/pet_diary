@@ -1,23 +1,23 @@
 <div class="container">
   <div class="row">
-    
+
     <div class="col-sm-8 m-auto">
-      
+
       <h2>コメント編集</h2>
       <%= form_with model: @customer, url: public_customer_path, method: :patch do |f| %>
-        
+
         <table class="col">
           <tr>
             <td><%= f.text_area :introduction, class: "form-control", rows: "8" %></td>
           </tr>
           <tr>
             <td>
-              <%= f.submit "変更を保存", class: "btn btn-success" %>
+              <%= f.submit "変更を保存", class: "btn-revers" %>
             </td>
           </tr>
         </table>
       <% end %>
     </div>
-    
+
   </div>
 </div>

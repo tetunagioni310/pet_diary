@@ -1,0 +1,33 @@
+<div class="col-lg-4">
+      <div class="col-10 mx-auto profile-field">
+        <table class="col-10 mx-auto">
+          <tr>
+            <td colspan="2">
+              <%= image_tag customer.get_customer_image(200,200), class: "customer-image" %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-center bold"><%= customer.email %></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-center bold"><%= customer.nick_name %></td>
+          </tr>
+          <tr>
+            <td class="text-center"><%= customer.followers.count %><%= link_to "フォロー", public_customer_followings_path(customer.id) %></td>
+            <td class="text-center"><%= customer.followings.count %><%= link_to "フォロワー", public_customer_followers_path(customer.id) %></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <%= link_to  member_info_edit_public_customers_path, class: "btn-revers btn-block text-center" do %>
+                <i class="fas fa-user-cog"></i>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <%= link_to "プロフィール", public_customer_path(customer.id), class: "btn-revers btn-block text-center" %>
+            </td>
+          </tr>
+        </table>
+    </div>
+    </div>

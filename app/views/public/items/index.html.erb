@@ -3,32 +3,42 @@
     <div class="col-md-6">
       <h2>消耗品在庫一覧</h2>
       <div class="items-list">
-        <table class="col">
-          <% @items.each do |item| %>
-          <tr>
-            <td class="bold"><%= link_to item.item_name, public_item_path(item.id), class: "item-link" %></td>
-            <td><%= item.amount %>袋</td>
-            <td>
-              <%= item.total_capacity %>
-              <% if item.total_capacity %>g<% end %>
-            </td>
-          </tr>
-
-          <tr>
-            <%= form_with model: item, url: public_item_path(item.id), method: :patch do |f|  %>
-            <td>
-              <%= f.number_field :amount, value: "",required:true, class: "form-control" %>
-              <%= f.hidden_field :item_name, :value => item.item_name %>
-              <%= f.hidden_field :customer_id, :value => current_customer.id %>
-            </td>
-            <td><%= f.submit "追加", class: "btn btn-sm btn-success" %></td>
+        <% if @items.count >= 1 %>
+          <table class="col">
+            <% @items.each do |item| %>
+            <tr>
+              <td class="bold"><%= link_to item.item_name, public_item_path(item.id), class: "item-link" %></td>
+              <td><%= item.amount %>袋</td>
+              <td>
+                <%= item.total_capacity %>
+                <% if item.total_capacity %>g<% end %>
+              </td>
+            </tr>
+  
+            <tr>
+              <%= form_with model: item, url: public_item_path(item.id), method: :patch do |f|  %>
+              <td>
+                <%= f.number_field :amount, value: "",required:true, class: "form-control" %>
+                <%= f.hidden_field :item_name, :value => item.item_name %>
+                <%= f.hidden_field :customer_id, :value => current_customer.id %>
+              </td>
+              <td><%= f.submit "追加", class: "btn-change btn-sm" %></td>
+              <% end %>
+              <td>
+                <%= button_to public_item_path(item.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                      <i class="fas fa-solid fa-trash"></i>
+                <% end %>
+              </td>
+            </tr>
             <% end %>
-            <td>
-              <%= link_to "削除", public_item_path(item.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-sm btn-danger" %>
-            </td>
-          </tr>
-          <% end %>
-        </table>
+          </table>
+        <% else %>
+          <div class="not-items-list col">
+            <p>
+            消耗品は登録されていません
+            </p>
+          </div>
+        <% end %>
       </div>
     </div>
 
@@ -61,7 +71,7 @@
           <tr>
             <td class="row mt-3">
               <div class="col-form-label col-4"></div>
-              <div class="col-8 p-0"><%= f.submit "登録", class: "btn btn-success btn-block" %></div>
+              <div class="col-8 p-0"><%= f.submit "登録", class: "btn-change btn-block" %></div>
             </td>
           </tr>
         <% end %>

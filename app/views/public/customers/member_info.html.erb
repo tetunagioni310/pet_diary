@@ -1,38 +1,8 @@
 <div class="container">
 <div class="row">
-  <div class="col-lg-4">
-    <div class="col-10 mx-auto profile-field">
-      <table class="col-10 mx-auto">
-        <tr>
-          <td colspan="2">
-            <%= image_tag current_customer.get_customer_image(200,200), class: "customer-image" %>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" class="text-center bold"><%= current_customer.email %></td>
-        </tr>
-        <tr>
-          <td colspan="2" class="text-center bold"><%= current_customer.nick_name %></td>
-        </tr>
-        <tr>
-          <td class="text-center"><%= current_customer.followers.count %><%= link_to "フォロー", public_customer_followings_path(current_customer.id) %></td>
-          <td class="text-center"><%= current_customer.followings.count %><%= link_to "フォロワー", public_customer_followers_path(current_customer.id) %></td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <%= link_to  member_info_edit_public_customers_path, class: "btn btn-outline-secondary btn-block" do %>
-              <i class="fas fa-user-cog"></i>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <%= link_to "プロフィール", public_customer_path(current_customer.id), class: "btn btn-outline-secondary btn-block" %>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
+  
+  <%= render "public/shared/sidebar_profile", customer: current_customer %>
+  
   <div class="col-lg-8">
   <h2 class="m-5">投稿一覧</h2>
   <div class="post-index col-11 m-auto">
@@ -44,22 +14,28 @@
         </thead>
 
         <tbody>
-          <% @posts.each do |post| %>
+          <% if @posts.count >= 1 %>
+            <% @posts.each do |post| %>
+              <tr>
+                <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id) %></td>
+                <td class="col-4"><%= link_to post.post_title, public_post_path(post.id), class: "post-title" %></td>
+                <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
+                <td class="row">
+                  <% if post.customer_id == current_customer.id%>
+                    <%= button_to edit_public_post_path(post.id), method: :get do %>
+                      <i class="fas fa-solid fa-pen"></i>
+                    <% end %>
+                    &emsp;
+                    <%= button_to public_post_path(post.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                      <i class="fas fa-solid fa-trash"></i>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
             <tr>
-              <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id) %></td>
-              <td class="col-4"><%= link_to post.post_title, public_post_path(post.id), class: "post-title" %></td>
-              <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
-              <td class="row">
-                <% if post.customer_id == current_customer.id%>
-                  <%= button_to edit_public_post_path(post.id), method: :get do %>
-                    <i class="fas fa-solid fa-pen"></i>
-                  <% end %>
-                  &emsp;
-                  <%= button_to public_post_path(post.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
-                    <i class="fas fa-solid fa-trash"></i>
-                  <% end %>
-                <% end %>
-              </td>
+              <td colspan="3" class="text-center">投稿はありません</td>
             </tr>
           <% end %>
         </tbody>

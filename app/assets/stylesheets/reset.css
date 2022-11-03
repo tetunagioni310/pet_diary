@@ -67,12 +67,6 @@ a {
 }
 
 /*css*/
-.user-icon {
-  background-color: #fff;
-  border-radius: 100px;
-  width: 38px;
-  height: 38px;
-}
 
 .color {
   text-decoration: none;
@@ -81,7 +75,39 @@ a {
 .color2 {
   text-decoration: none;
   color: #000;
-} 
+}
+.btn-change {
+    background-color: #EA6B66;
+    color: #FFF2CC;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    }
+
+.btn-change:hover {
+    color: #EA6B66;
+    background-color: #FFF2CC;
+    text-decoration: none;
+    border: 2px solid #EA6B66;
+}
+
+.btn-revers {
+    background-color: #FFF2CC;
+    color: #EA6B66;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #EA6B66;
+    }
+
+.btn-revers:hover {
+    color: #FFF2CC;
+    background-color: #EA6B66;
+    text-decoration: none;
+    border: 2px solid #FFF2CC;
+}
 
 .underline {
   text-decoration-line: underline;
