@@ -135,6 +135,7 @@ div.outer {
     background-color: #FFF2CC;
     border-radius: 10px;
     padding: 50px 0;
+    box-shadow: 5px 5px 5px gray;
     table {
       td {
         color: #EA6B66;
@@ -161,27 +162,48 @@ div.self-introduction {
   border-radius: 30px;
   text-align: center;
   padding-top: 50px;
+  margin: 0 auto;
   p {
     font-size: 21px;
     font-weight: bold;
   }
 }
 
+div.customer-pet-index {
+  padding: 0;
+
+  h3 {
+    margin: 48px 0;
+  }
+
+    div.customer-pet-list {
+    // overflow: scroll;
+    div.customer-pet-link {
+      height: 250px;
+      text-align: center;
+      margin-bottom: 30px;
+    img {
+      border-radius: 100%;
+      margin: 20px;
+    }
+  }
+}
+}
+
 // pet-index
 div.pet-index {
   div.pet-title {
     line-height: 50px;
-    margin-bottom: 30px;
+    margin: 30px 10px;
     display: flex;
   }
 
   div.pet-list {
-    display: flex;
     // overflow: scroll;
     div.pet-link {
-      width: 250px;
       height: 250px;
       text-align: center;
+      margin-bottom: 30px;
     img {
       border-radius: 100%;
       margin: 20px;
@@ -196,6 +218,8 @@ div.pet-show{
   width: 100%;
   background-color: #FFF2CC;
   border-radius: 20px;
+  box-shadow: 5px 5px 5px gray;
+
   div.introduction-field {
     font-size: 24px;
     margin: 20px 0;
@@ -239,6 +263,7 @@ div.pet-show{
   div.post-index {
     background-color: #FFF2CC;
     border-radius: 10px;
+    box-shadow: 5px 5px 5px gray;
     thead {
       border-bottom: 1px solid #EA6B66;
 
@@ -264,6 +289,7 @@ div.pet-show{
     div.content {
       background-color: #FFF2CC;
       border-radius: 10px;
+      box-shadow: 5px 5px 5px gray;
       div.post-image {
         margin: 0 auto;
         img {
@@ -299,8 +325,6 @@ div.pet-show{
 
 // items
 div.items-list {
-  background-color: #FFF2CC;
-  border-radius: 10px;
   padding: 10px;
   margin: 30px 0;
 
@@ -332,12 +356,12 @@ div.item-record {
 // item-show
 
 div.item-show {
-  background-color: #FFF2CC;
-  color: #EA6B66;
-  border-radius: 20px;
   height: 330px;
   margin: 0 auto;
   padding-top: 10px;
+  padding-left: 10px;
+  border-radius: 30px;
+
   table {
     margin: 0 auto;
     font-size: 26px;
@@ -367,17 +391,11 @@ div.item-show {
             font-weight: bold;
              }
            }
+
         tr.submit {
           td {
             font-size: 16px;
           }
-        }
-
-        tr:nth-last-child(n+3) {
-          td {
-            border-bottom: 3px solid #EA6B66;
-          }
-
         }
       }
   }
@@ -386,23 +404,16 @@ div.item-show {
 
 div.use-item-index {
 
-  h2 {
-    margin: 30px 0;
-  }
-
   div.use_item_list {
-    background-color: #FFF2CC;
-    border-radius: 20px;
-    padding: 20px;
-    color: #EA6B66;
+    margin-top: 30px;
 
     th {
       font-weight: bold;
     }
 
     div.not-use-items {
-      min-height: 300px;
-      line-height: 300px;
+      min-height: 250px;
+      line-height: 250px;
       font-weight: bold;
       font-size: 16px;
       text-align: center;
@@ -410,14 +421,48 @@ div.use-item-index {
   }
 }
 
-div.items-link {
-    margin-top: 30px;
+div.work-create {
 
-    a {
-      text-decoration:none;
-      color: #FFF2CC;
+  div.pet-select {
+    margin-top: 0;
+    height: 230px;
+      th {
+      font-weight: bold;
     }
   }
+}
+
+div.items-link {
+  margin-top: 30px;
+  a {
+    text-decoration:none;
+    color: #FFF2CC;
+  }
+}
+
+// works_log
+
+div.work-create {
+  margin: 30px auto;
+  div.pet-select {
+    height: 300px;
+  }
+}
+
+// work-index
+
+div.work-index {
+
+  div.work-list {
+    table {
+      thead {
+        th {
+        font-weight: bold;
+        }
+      }
+    }
+  }
+}
 
 // admin
 

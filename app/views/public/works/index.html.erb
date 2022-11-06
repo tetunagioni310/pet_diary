@@ -1,20 +1,43 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <% form_with model: @work, url: public_works_path, method: :post do |f| %>
-        
-      <% end %>
-    </div>
-    
-    <div class="col">
-      <div>
-        <table>
-          
-          <tr>
-            <th></th>
-            <td></td>
-          </tr>
-          
+
+    <div class="work-index col">
+      <h2>作業一覧</h2>
+      <div class="work-list text-field">
+        <table class="col">
+          <thead>
+            <th>日付</th>
+            <th>ペット名</th>
+            <th>作業名</th>
+            <th>アイテム一覧</th>
+          </thead>
+
+          <tboby>
+            <% if @works.count >= 1 %>
+              <% @works.each do |work| %>
+              <tr>
+                <td class="col-3"><%= work.created_at.strftime("%Y/%m/%d")%></td>
+                <td class="col-2"><%= work.pet.pet_name%></td>
+                <td class="col-3"><%= work.work_name %></td>
+                <td class="col-4">
+                    <!--消費アイテム取得-->
+                    <% work_details = WorkDetail.where(work_id: work.id)%>
+                    <% work_details.each do |work_detail| %>
+                      <%= work_detail.item.item_name %>(<%= work_detail.amount_used %>g)<br>
+                    <% end %>
+                </td>
+                
+              </tr>
+              <% end %>
+              
+            <% else %>
+              <tr>
+                <td colspan="4" class="text-center">
+                  作業は登録されていません
+                </td>
+              </tr>
+            <% end %>
+          </tboby>
         </table>
       </div>
     </div>

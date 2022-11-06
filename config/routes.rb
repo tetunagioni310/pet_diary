@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'favorite_works/index'
+  end
   root to: "public/homes#top"
 
   namespace :public do
@@ -18,13 +21,20 @@ Rails.application.routes.draw do
 
     resources :pets
     resources :items, only: [:index,:show,:create,:update,:destroy]
-    resources :use_items, only: [:index,:create,:update,:destroy]
+    resources :use_items, only: [:index,:create,:update,:destroy] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
+
     resources :works, only: [:index,:show,:new,:create] do
      collection do
        get 'log'
      end
     end
-
+    
+    resources :favorite_items, only: [:new,:index,:edit,:create,:update,:destroy]
+    
     resources :customers, only: [:show,:edit,:update] do
       collection do
         get 'member_info'

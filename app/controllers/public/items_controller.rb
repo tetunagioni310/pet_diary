@@ -1,4 +1,5 @@
 class Public::ItemsController < ApplicationController
+  before_action :authenticate_customer!
 
   def index
     @item = Item.new
@@ -30,7 +31,7 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     item = Item.new(item_params)
     @item.amount += item.amount
-    @item.total_capacity = @item.capacity * @item.amount
+    @item.total_capacity += @item.capacity * item.amount
     @item.save
     redirect_to public_items_path
   end

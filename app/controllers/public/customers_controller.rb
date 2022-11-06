@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
   
   def member_info
     @posts = Post.where(customer_id: current_customer.id)
@@ -20,7 +21,7 @@ class Public::CustomersController < ApplicationController
   
   def show
     @customer = Customer.find(params[:id])
-    
+    @pets = Pet.where(customer_id: @customer.id)
   end
   
   def edit

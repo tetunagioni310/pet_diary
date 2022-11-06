@@ -5,7 +5,6 @@ class CreateUseItems < ActiveRecord::Migration[6.1]
       t.integer :item_id, null: false, default: ""
       t.integer :amount_used, default: ""
 
-
       t.timestamps
     end
   end

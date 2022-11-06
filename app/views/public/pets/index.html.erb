@@ -4,18 +4,19 @@
     <%= render "public/shared/sidebar_profile", customer: @customer %>
 
     <div class="col-lg-8 pet-index">
-      <div class="pet-title">
-        <h2><%= current_customer.nick_name %>さんのペット一覧</h2>
+      <div class="pet-title col-sm-11">
+        <h2 class="col-sm-10"><%= current_customer.nick_name %>さんのペット一覧
         <% if @customer.id == current_customer.id %>
-          <%= link_to new_public_pet_path, class: "text-dark ml-3" do %>
-            <i class="fas fa-2x fa-solid fa-plus"></i>
+          <%= link_to new_public_pet_path, class: "text-dark col-1 p-0" do %>
+            <i class="fas fa-solid fa-plus"></i>
           <% end %>
         <% end %>
+        </h2>
       </div>
 
-        <div class="pet-list">
+        <div class="pet-list row">
           <% @pets.each do |pet| %>
-          <div class="pet-link">
+          <div class="pet-link col-md-4">
             <%= image_tag pet.get_pet_image(200,200) %><br>
             <%= link_to  pet.pet_name, public_pet_path(pet.id), class: "btn-revers" %>
           </div>

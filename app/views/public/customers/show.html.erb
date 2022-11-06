@@ -15,11 +15,23 @@
         </div>
       </div>
 
-      <div class="col-11 self-introduction">
+      <div class="col-10 self-introduction">
         <p><%= @customer.introduction %></p>
         <% if @customer.id == current_customer.id %>
           <%= link_to "コメントを編集", edit_public_customer_path(current_customer.id), class: "btn btn-light" %>
         <% end %>
+      </div>
+
+      <div class="customer-pet-index col">
+        <h3>ペット一覧</h3>
+        <div class="customer-pet-list row">
+          <% @pets.each do |pet| %>
+          <div class="customer-pet-link col-md-4">
+            <%= image_tag pet.get_pet_image(200,200) %><br>
+            <%= link_to  pet.pet_name, public_pet_path(pet.id), class: "btn-revers" %>
+          </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

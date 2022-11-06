@@ -20,4 +20,9 @@ class Pet < ApplicationRecord
     end
   pet_image.variant(resize_to_limit: [width, height]).processed
   end
+  
+  def pet_gender
+    gender == "♂" ? "くん" : "ちゃん"
+  end
+  
 end

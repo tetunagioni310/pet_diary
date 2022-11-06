@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="item-show col-md-10">
+      <div class="item-show text-field col-md-10">
         <table class="col">
           <tr>
             <th>商品名</th>
@@ -23,13 +23,13 @@
             <td class="d-flex">
                 <%= f.hidden_field :customer_id, :value => current_customer.id %>
                 <%= f.hidden_field :item_id, :value => @item.id %>
-                <%= f.number_field :amount_used, :value => "", class: "form-control ml-3" %>g
+                <%= f.number_field :amount_used, class: "form-control ml-3" %>g
             </td>
           </tr>
           <tr class="submit">
             <td></td>
             <td>
-                <%= f.submit "追加", class: "btn-change btn-block" %>
+                <%= f.submit "使用アイテム追加", class: "btn-change btn-block" %>
             </td>
           </tr>
           <% end %>

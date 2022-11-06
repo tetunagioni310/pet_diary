@@ -68,6 +68,15 @@ a {
 
 /*css*/
 
+.text-field {
+  color: #EA6B66;
+  background-color: #FFF2CC;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 50px;
+  box-shadow: 5px 5px 5px gray;
+}
+
 .color {
   text-decoration: none;
   color: #fff;
@@ -83,6 +92,8 @@ a {
     font-weight: bold;
     padding: 10px 20px;
     border-radius: 5px;
+    box-shadow: 5px 5px 5px gray;
+
     }
 
 .btn-change:hover {
@@ -90,6 +101,8 @@ a {
     background-color: #FFF2CC;
     text-decoration: none;
     border: 2px solid #EA6B66;
+    box-shadow: none;
+
 }
 
 .btn-revers {
@@ -100,6 +113,8 @@ a {
     padding: 10px 20px;
     border-radius: 5px;
     border: 1px solid #EA6B66;
+    box-shadow: 5px 5px 5px gray;
+
     }
 
 .btn-revers:hover {
@@ -107,6 +122,8 @@ a {
     background-color: #EA6B66;
     text-decoration: none;
     border: 2px solid #FFF2CC;
+    box-shadow: none;
+
 }
 
 .underline {
