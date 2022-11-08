@@ -1,6 +1,6 @@
 class Public::UseItemsController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def index
     @use_items = UseItem.where(customer_id: current_customer.id)
     @work = Work.new
@@ -31,7 +31,7 @@ class Public::UseItemsController < ApplicationController
     @use_item.destroy
     redirect_to public_use_items_path
   end
-  
+
   def destroy_all
     current_customer.use_items.destroy_all
     redirect_to public_use_items_path

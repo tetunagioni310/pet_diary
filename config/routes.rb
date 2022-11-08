@@ -28,13 +28,17 @@ Rails.application.routes.draw do
     end
 
     resources :works, only: [:index,:show,:new,:create] do
-     collection do
-       get 'log'
-     end
+      collection do
+        get 'log'
+      end
     end
+
+    resources :favorite_items, only: [:index,:edit,:create,:update,:destroy] 
     
-    resources :favorite_items, only: [:new,:index,:edit,:create,:update,:destroy]
-    
+    namespace :favorite_items do
+      resources :use_items, only: [:create]
+    end
+
     resources :customers, only: [:show,:edit,:update] do
       collection do
         get 'member_info'

@@ -5,7 +5,7 @@ class Public::ItemsController < ApplicationController
     @item = Item.new
     @items = Item.where(customer_id: current_customer.id)
   end
-  
+
   def show
     @item = Item.find(params[:id])
     @use_item = UseItem.new
@@ -13,17 +13,26 @@ class Public::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    
-    if @item.capacity != nil
-      @item.total_capacity = @item.capacity * @item.amount
-    end
-    
-    if @item.save
-      flash[:notice] = "Item has been registered.."
+    if current_customer.items.find_by(item_name: @item.item_name, capacity: @item.capacity)
+      item = current_customer.items.find_by(item_name: @item.item_name, capacity: @item.capacity)
+      item.amount += @item.amount
+      item.total_capacity += ( @item.amount * @item.capacity )
+      item.save
       redirect_to public_items_path
     else
-      @items = Item.where(customer_id: current_customer.id)
-      render 'index'
+      if @item.capacity != nil or @item.amount != nil
+        @item.total_capacity = @item.capacity * @item.amount
+        if @item.save
+          flash[:notice] = "Item has been registered.."
+          redirect_to public_items_path
+        else
+          @items = Item.where(customer_id: current_customer.id)
+          render 'index'
+        end
+      else
+        @items = Item.where(customer_id: current_customer.id)
+        render 'index'
+      end
     end
   end
 
@@ -35,7 +44,7 @@ class Public::ItemsController < ApplicationController
     @item.save
     redirect_to public_items_path
   end
-  
+
   def destroy
     @item = Item.find(params[:id])
     @item.destroy

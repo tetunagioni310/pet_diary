@@ -6,4 +6,6 @@ class Item < ApplicationRecord
 
   validates :item_name, presence: true
   validates :amount, presence: true
+  validates :capacity, presence: true
+  validates :total_capacity, presence: true
 end

@@ -1,3 +1,5 @@
+
+
 <div class="container">
   <h2>使用アイテム</h2>
   <div class="row">
@@ -37,18 +39,46 @@
             <% end %>
             <tr>
               <td></td>
-              <%= form_with model: @favorite_item, url: public_favorite_items_path, method: :post do |f| %>
-              <%= render "public/shared/error_messages", resource: @favorite_item %>
+
                 <td colspan="2" class="col-2">
-                  <%= f.hidden_field :customer_id, :value => current_customer.id %>
-                  <%= f.submit "お気に入り登録", class: "btn-change"%>
+                  
+                  <!--お気に入り追加 確認ダイアログ-->
+                  <script>
+                    function check_form() {
+                      if(window.confirm('使用アイテムをお気に入りに登録しますか？')) {
+                        return true;
+                      } else {
+                        return false;
+                      }
+                    }
+                  </script>
+                  
+                  <%= form_with model: @favorite_item, url: public_favorite_items_path, method: :post do |f| %>
+                    <%= f.hidden_field :customer_id, :value => current_customer.id %>
+                    <%= f.submit "お気に入り登録", class: "btn-change", :onclick => "return check_form()" %>
+                  <% end %>
                 </td>
-              <% end %>
             </tr>
         </table>
 
         <% else %>
+        
+        <!--お気に入り呼び出し 確認ダイアログ-->
+        <script>
+          function beforeSubmit() {
+            if(window.confirm('お気に入りおよび出しますか？')) {
+              return true;
+            } else {
+              return false;
+            }
+          }
+        </script>
+        
         <div class="not-use-items col mx-auto">使用アイテムは空です</div>
+          <%= form_with url: public_favorite_items_use_items_path, method: :post do |f| %>
+            <%= f.select :favorite_item_id, options_from_collection_for_select(current_customer.favorite_items, :id, :favorite_item_name) %>
+            <%= f.submit "呼び出し", class: "btn-revers", :onclick => "return beforeSubmit()"%>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -58,7 +88,7 @@
       <%= form_with model: @work, url: log_public_works_path, method: :get do |f| %>
         <table class="col">
           <tr>
-            <th class="col-7"><%= f.label :pet_name, "ペット" %></th>
+            <th class="col-7"><%= f.label :pet_id, "ペット" %></th>
             <td class="col-4">
               <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name),  {prompt: "選択してください"}  %>
             </td>

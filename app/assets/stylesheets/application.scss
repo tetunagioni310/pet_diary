@@ -392,9 +392,14 @@ div.item-show {
              }
            }
 
-        tr.submit {
+        tr {
           td {
+            div.add-amount-used {
             font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            }
           }
         }
       }
@@ -460,6 +465,17 @@ div.work-index {
         font-weight: bold;
         }
       }
+    }
+  }
+}
+
+// favorite_item
+
+div.f-items {
+  margin: 0 auto;
+  tr {
+    th {
+      font-weight: bold;
     }
   }
 }

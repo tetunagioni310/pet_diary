@@ -6,7 +6,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.integer :amount, null: false, default: ""
       t.integer :capacity, default: ""
       t.integer :total_capacity, default: ""
-
+      
       t.timestamps
     end
   end

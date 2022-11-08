@@ -77,6 +77,10 @@ a {
   box-shadow: 5px 5px 5px gray;
 }
 
+.box-shadow {
+  box-shadow: 5px 5px 5px gray;
+}
+
 .color {
   text-decoration: none;
   color: #fff;
@@ -91,7 +95,7 @@ a {
     text-decoration: none;
     font-weight: bold;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 6px;
     box-shadow: 5px 5px 5px gray;
 
     }
@@ -100,8 +104,6 @@ a {
     color: #EA6B66;
     background-color: #FFF2CC;
     text-decoration: none;
-    border: 2px solid #EA6B66;
-    box-shadow: none;
 
 }
 
@@ -111,7 +113,7 @@ a {
     text-decoration: none;
     font-weight: bold;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 6px;
     border: 1px solid #EA6B66;
     box-shadow: 5px 5px 5px gray;
 
@@ -121,9 +123,6 @@ a {
     color: #FFF2CC;
     background-color: #EA6B66;
     text-decoration: none;
-    border: 2px solid #FFF2CC;
-    box-shadow: none;
-
 }
 
 .underline {
