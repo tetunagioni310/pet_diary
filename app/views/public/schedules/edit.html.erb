@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>スケジュール編集</h2>
+  <div class="row">
+    <div class="col-10 mt-5 mx-auto text-field">
+      <%= form_with model: @schedule, url: public_schedule_path, method: :patch do |f| %>
+      <%= render "public/shared/error_messages", resource: @schedule %>
+      
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <table class="col-sm-10 m-auto">
+        <tr>
+          <td><%= f.label :schedule_title, "スケジュール名" %></td>
+          <td><%= f.text_field :schedule_title, class: "form-control" %></td>
+        </tr>
+        
+        <tr>
+          <td><%= f.label :schedule_content, "内容" %></td>
+          <td><%= f.text_area :schedule_content, rows: "5", class: "form-control" %></td>
+        </tr>
+        
+        <tr>
+          <td><%= f.label :start_time, "予定日" %></td>
+          <td><%= f.date_select :start_time, use_month_numbers: true %></td>
+        </tr>
+        
+        <tr>
+          <td></td>
+          <td><%= f.submit "作成", class: "btn-change btn-block" %></td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

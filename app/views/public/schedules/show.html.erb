@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>スケジュール詳細</h2>
+  <div class="row">
+    <div class="col-8 mx-auto text-field schedule-show">
+      <table class="col">
+        <tr>
+          <td>タイトル</td>
+          <td><%= @schedule.schedule_title%></td>
+        </tr>
+        
+        <tr>
+          <td>内容</td>
+          <td><%= @schedule.schedule_content%></td>
+        </tr>
+        
+        <tr>
+          <td>予定日</td>
+          <td><%= @schedule.start_time.strftime("%Y/%m/%d") %></td>
+        </tr>
+        
+        <% if @schedule.customer_id == current_customer.id %>
+        <tr>
+          <td></td>
+          <td>
+            <%= link_to "編集", edit_public_schedule_path(@schedule.id), class: "btn-edit" %>
+            <%= link_to "削除", public_schedule_path, class: "btn-edit ml-2"%>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

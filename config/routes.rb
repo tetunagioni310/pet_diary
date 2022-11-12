@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
   namespace :public do
-    get 'favorite_works/index'
+    get 'schedules/new'
+    get 'schedules/show'
+    get 'schedules/index'
   end
+  
   root to: "public/homes#top"
 
   namespace :public do
@@ -17,8 +20,8 @@ Rails.application.routes.draw do
       resources :likes, only: [:create,:destroy]
       resources :comments, only: [:create,:destroy]
     end
-
-
+    
+    resources :schedules, only: [:index,:show,:create,:edit,:update,:destroy]
     resources :pets
     resources :items, only: [:index,:show,:create,:update,:destroy]
     resources :use_items, only: [:index,:create,:update,:destroy] do

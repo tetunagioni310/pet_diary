@@ -12,7 +12,11 @@
 *
 *= require_tree .
 *= require_self
+*= require simple_calendar
 */
+.bootstrap-date-only-width {
+  width: auto; }
+
 #error_explanation {
   color: red;
   padding-bottom: 20px;
@@ -250,7 +254,7 @@ div.item-record {
   margin: 30px 0; }
 
 div.item-show {
-  height: 330px;
+  height: 270px;
   margin: 0 auto;
   padding-top: 10px;
   padding-left: 10px;
@@ -262,8 +266,9 @@ div.item-show {
       border-radius: 20px 0 0 0; }
     div.item-show table tr:first-child td {
       font-size: 15px; }
-    div.item-show table tr:nth-last-child(2) th {
-      border-radius: 0 0 0 20px; }
+    div.item-show table tr:nth-last-child(1) th {
+      border-radius: 0 0 0 20px;
+      border-bottom: none; }
     div.item-show table tr {
       text-align: center; }
       div.item-show table tr th {
@@ -303,7 +308,7 @@ div.items-link {
 div.work-create {
   margin: 30px auto; }
   div.work-create div.pet-select {
-    height: 300px; }
+    height: 270px; }
 
 div.work-index div.work-list table thead th {
   font-weight: bold; }
@@ -311,6 +316,19 @@ div.work-index div.work-list table thead th {
 div.f-items {
   margin: 0 auto; }
   div.f-items tr th {
+    font-weight: bold; }
+
+div.calendar {
+  font-size: 10px; }
+
+a.schedule-link {
+  text-decoration: none;
+  color: #EA6B66;
+  font-weight: bold; }
+
+div.schedule-show {
+  margin: 50px auto; }
+  div.schedule-show table tr td {
     font-weight: bold; }
 
 table.admin-table {

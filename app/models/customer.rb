@@ -13,6 +13,8 @@ class Customer < ApplicationRecord
   has_many :use_items, dependent: :destroy
   has_many :works, dependent: :destroy
   has_many :favorite_items, dependent: :destroy
+  has_many :schedules, dependent: :destroy
+
 
   # フォローをした、されたの関係
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy

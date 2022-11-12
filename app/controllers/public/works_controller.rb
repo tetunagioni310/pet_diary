@@ -7,7 +7,7 @@ class Public::WorksController < ApplicationController
 
   def log
     @work = Work.new(work_params)
-    @use_items = UseItem.where(customer_id: current_customer.id)
+    @use_items = current_customer.use_items
     if @work.pet_id == nil or @work.work_name == nil
       redirect_to public_use_items_path
     end
@@ -17,7 +17,7 @@ class Public::WorksController < ApplicationController
     @work = Work.new(work_params)
     @work.save
     
-    use_items = UseItem.where(customer_id: current_customer.id)
+    use_items = current_customer.use_items
     use_items.each do |use_item|
       # work_detail作成
       @work_detail = WorkDetail.new

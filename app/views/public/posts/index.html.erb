@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="col">
-    
-    <% if !@keyword %>
-      <div class="row col-sm-8">
+
+<div class="col">
+   <% if !@keyword %>
+      <div class="row col">
         <h2>
           <%= current_customer.nick_name %>さんの投稿一覧
         </h2>
@@ -15,7 +15,7 @@
         検索結果：　<%= @keyword %>
       </h2>
     <% end %>
-    
+
     <div class="my-5">
       <div class="col-sm-5">
         <%= form_with url: search_public_posts_path, method: :get, local: true do |f| %>
@@ -26,11 +26,30 @@
         <% end %>
       </div>
     </div>
-    
-  </div>
+
+</div>
+
+<div class="col">
+
 
   <div class="row">
-    <div class="col m-auto post-index">
+
+    <!--<div class="col text-field">-->
+    <!--  <div class="col calendear">-->
+    <!--    <%= month_calendar events: @posts do |date, posts| %>-->
+    <!--      <%= date.day %>-->
+
+    <!--      <% posts.each do |post| %>-->
+    <!--        <div class="col p-2">-->
+    <!--          <%= link_to post.post_title, public_post_path(post.id) %>-->
+    <!--        </div>-->
+    <!--      <% end %>-->
+    <!--    <% end %>-->
+    <!--  </div>-->
+    <!--</div>-->
+
+
+    <div class="col post-index">
       <table class="col">
         <thead>
           <th>ペット</th>
@@ -44,7 +63,7 @@
               <tr>
                 <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id) %></td>
                 <td class="col-4"><%= link_to post.post_title, public_post_path(post.id) %></td>
-                <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
+                <td><%= post.start_time.strftime("%Y/%m/%d") %></td>
                 <td class="row">
                   <% if post.customer_id == current_customer.id%>
                     <%= button_to edit_public_post_path(post.id), method: :get do %>
@@ -66,5 +85,9 @@
         </tbody>
       </table>
     </div>
+
   </div>
+
+  </div>
+
 </div>

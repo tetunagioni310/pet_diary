@@ -6,7 +6,7 @@ class Public::FavoriteItems::UseItemsController < ApplicationController
       UseItem.create!(
           customer: current_customer,
           item: favorite_item_detail.item,
-          amount_used: favorite_item_detail.amount_used,
+          amount_used: favorite_item_detail.amount_used
         )
     end
     redirect_to public_use_items_path

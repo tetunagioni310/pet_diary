@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer :pet_id, null: false, default: ""
       t.string :post_title, null: false, default: ""
       t.string :post_content, null: false, default: ""
+      t.datetime :start_time, null: false, default: ""
 
       t.timestamps
     end

@@ -1,9 +1,9 @@
 <div class="container">
-  <h2>お気に入りアイテム</h2>
+  <h2 class="m-5">お気に入りアイテム</h2>
   <div class="row">
     <div class="f-items col-md-8 text-field">
       <% if @favorite_items.count >= 1 %>
-      <table class="m-auto">
+      <table class="col m-auto">
         <thead>
           <th>表示名</th>
           <th>アイテム一覧</th>
@@ -14,24 +14,32 @@
         <% @favorite_items.each do |favorite_item| %>
         <tr>
 
-          <td>
+          <td class="col-3">
             <%= favorite_item.favorite_item_name %>
           </td>
 
           <% favorite_item_details = FavoriteItemDetail.where(favorite_item_id: favorite_item.id)%>
-          <td>
+          <td class="col-7">
             <% favorite_item_details.each do |favorite_item_detail| %>
-              <%= favorite_item_detail.item.item_name %><br>
+              <%= favorite_item_detail.item.item_name %>(<%= favorite_item_detail.amount_used %>g)<br>
             <% end %>
           </td>
 
-          <td>
-            <%= link_to "編集", edit_public_favorite_item_path(favorite_item.id), class: "btn-sm btn-revers" %>
-          </td>
-          <td>
-            <%= link_to "削除", public_favorite_item_path(favorite_item.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn-sm btn-revers"%>
-          </td>
-          
+         
+            <% if favorite_item.customer_id == current_customer.id%>
+              <td class="col-1">
+              <%= button_to edit_public_favorite_item_path(favorite_item.id), method: :get do %>
+                <i class="fas fa-solid fa-pen"></i>
+              <% end %>
+              </td>
+              
+              <td class="col-1">
+              <%= button_to public_favorite_item_path(favorite_item.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                <i class="fas fa-solid fa-trash"></i>
+              <% end %>
+              </td>
+            <% end %>
+
         </tr>
         <% end %>
         </tbody>

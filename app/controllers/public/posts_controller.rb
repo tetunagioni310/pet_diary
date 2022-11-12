@@ -53,6 +53,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:customer_id,:pet_id,:post_title,:post_content,:post_image)
+    params.require(:post).permit(:customer_id,:pet_id,:post_title,:post_content,:post_image,:start_time)
   end
 end
