@@ -7,17 +7,17 @@
       
       <%= f.hidden_field :customer_id, :value => current_customer.id %>
       <div>
-        <%= f.label :schedule_title, "スケジュール名" %>
+        <%= f.label :schedule_title %>
         <%= f.text_field :schedule_title, class: "form-control" %>
       </div>
 
       <div class="mt-3">
-        <%= f.label :schedule_content, "内容" %>
+        <%= f.label :schedule_content %>
         <%= f.text_field :schedule_content, class: "form-control" %>
       </div>
 
       <div class="mt-3">
-        <%= f.label :start_time, "予定日" %><br>
+        <%= f.label :start_time %><br>
         <%= f.date_select :start_time, use_month_numbers: true %>
       </div>
       

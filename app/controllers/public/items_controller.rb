@@ -20,7 +20,10 @@ class Public::ItemsController < ApplicationController
       item.save
       redirect_to public_items_path
     else
-      if @item.capacity != nil or @item.amount != nil
+      if @item.capacity == nil or @item.amount == nil
+        @items = Item.where(customer_id: current_customer.id)
+        render 'index'
+      else
         @item.total_capacity = @item.capacity * @item.amount
         if @item.save
           flash[:notice] = "Item has been registered.."
@@ -29,9 +32,6 @@ class Public::ItemsController < ApplicationController
           @items = Item.where(customer_id: current_customer.id)
           render 'index'
         end
-      else
-        @items = Item.where(customer_id: current_customer.id)
-        render 'index'
       end
     end
   end

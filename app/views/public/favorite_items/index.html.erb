@@ -1,7 +1,7 @@
 <div class="container">
   <h2 class="m-5">お気に入りアイテム</h2>
   <div class="row">
-    <div class="f-items col-md-8 text-field">
+    <div class="f-items col-md-10 text-field">
       <% if @favorite_items.count >= 1 %>
       <table class="col m-auto">
         <thead>
@@ -45,7 +45,15 @@
         </tbody>
       </table>
       <% else %>
-       お気に入りは登録されていません
+      <table class="col">
+        <tr>
+          <td>
+            <div class="no-favorite-items">
+              お気に入りは登録されていません
+            </div>
+          </td>
+        </tr>
+      </table>
       <% end %>
     </div>
   </div>

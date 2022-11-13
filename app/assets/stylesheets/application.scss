@@ -19,16 +19,24 @@
   width: auto;
 }
 
+div.container {
+  h2 {
+    font-weight: bold;
+  }
+}
+
 #error_explanation {
+  font-size: 12px;
   color: red;
   padding-bottom: 20px;
   width: 100%;
   h2 {
-    font-size: 20px;
+    padding-left: 10px;
+    font-size: 12px;
     font-weight: bold;
   }
   ul {
-    padding-left: 50px;
+    padding-left: 20px;
     list-style: circle;
   }
 }
@@ -136,6 +144,7 @@ div.outer {
 }
 
 // マイページ
+
   div.profile-field {
     background-color: #FFF2CC;
     border-radius: 10px;
@@ -161,6 +170,7 @@ div.outer {
   }
 
 //プロフィールページ
+
 div.self-introduction {
   background-color: #fff;
   height: 200px;
@@ -182,7 +192,6 @@ div.customer-pet-index {
   }
 
     div.customer-pet-list {
-    // overflow: scroll;
     div.customer-pet-link {
       height: 250px;
       text-align: center;
@@ -204,7 +213,6 @@ div.pet-index {
   }
 
   div.pet-list {
-    // overflow: scroll;
     div.pet-link {
       height: 250px;
       text-align: center;
@@ -217,9 +225,16 @@ div.pet-index {
 }
 }
 
-// pet-show
+p.no-pets {
+  line-height: 250px;
+  font-size: 30px;
+  display: inline-block;
+}
+
+// ペット詳細
+
 div.pet-show{
-  margin: 0;
+  margin: 50px 0 50px;
   width: 100%;
   background-color: #FFF2CC;
   border-radius: 20px;
@@ -263,7 +278,7 @@ div.pet-show{
   }
 }
 
-// post
+// 投稿
 
   div.post-index {
     background-color: #FFF2CC;
@@ -328,7 +343,14 @@ div.pet-show{
     }
   }
 
-// items
+  div.no-posts {
+    height: 300px;
+    line-height: 300px;
+    font-size: 30px;
+  }
+
+// アイテム
+
 div.items-list {
   padding: 10px;
   margin: 30px 0;
@@ -348,6 +370,7 @@ div.items-list {
     p {
     color: #EA6B66;
     min-height: 300px;
+    font-size: 26px;
     line-height: 300px;
     text-align: center;
     }
@@ -358,7 +381,7 @@ div.item-record {
   margin: 30px 0;
 }
 
-// item-show
+// アイテム詳細
 
 div.item-show {
   height: 270px;
@@ -411,7 +434,7 @@ div.item-show {
       }
   }
 
-// use_item
+// 使用アイテム
 
 div.use-item-index {
 
@@ -426,7 +449,7 @@ div.use-item-index {
       min-height: 250px;
       line-height: 250px;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 30px;
       text-align: center;
     }
   }
@@ -444,14 +467,14 @@ div.work-create {
 }
 
 div.items-link {
-  margin-top: 30px;
+  margin: 30px auto;
+  text-align: center;
   a {
-    text-decoration:none;
-    color: #FFF2CC;
+    margin: 0 auto;
   }
 }
 
-// works_log
+// ワーク
 
 div.work-create {
   margin: 30px auto;
@@ -460,12 +483,10 @@ div.work-create {
   }
 }
 
-// work-index
-
 div.work-index {
-
   div.work-list {
     table {
+        font-size: 12px;
       thead {
         th {
         font-weight: bold;
@@ -475,7 +496,34 @@ div.work-index {
   }
 }
 
-// favorite_item
+div.work-show {
+  margin: 50px auto;
+  table {
+
+    tr {
+      th {
+        font-weight: bold;
+      }
+    td {
+      text-align: center;
+      div {
+        span {
+          display: flex;
+        }
+      }
+        }
+    }
+
+      }
+    }
+
+div.no-works {
+  height: 300px;
+  line-height: 300px;
+  font-size: 30px;
+}
+
+// お気に入りアイテム
 
 div.f-items {
   margin: 0 auto;
@@ -484,6 +532,13 @@ div.f-items {
       font-weight: bold;
     }
   }
+}
+
+div.no-favorite-items {
+  text-align: center;
+  line-height: 300px;
+  height: 300px;
+  font-size: 30px;
 }
 // スケジュール
 
@@ -520,3 +575,4 @@ table.admin-table {
     background-color: white;
   }
 }
+

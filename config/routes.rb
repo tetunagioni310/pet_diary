@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-
-  namespace :public do
-    get 'schedules/new'
-    get 'schedules/show'
-    get 'schedules/index'
-  end
   
   root to: "public/homes#top"
 
@@ -60,7 +54,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :groups, only: [:index,:create,:edit,:update,:destroy]
-    resources :customers, only: [:index]
+    resources :customers, only: [:index] do
+      resources :posts, only: [:index,:show]
+    end
+    
   end
 
   # 顧客用

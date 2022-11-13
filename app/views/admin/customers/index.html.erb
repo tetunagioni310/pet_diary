@@ -1,24 +1,24 @@
 <div class="container">
   <div class="row">
-    <div class="col-8 m-auto">
+    <div class="col-10 m-auto">
       <h2 class="pb-5">会員一覧</h2>
-      <table class="admin-table table text-center">
-        <thead>
-          <th>ハンドルネーム</th>
-          <th>名前</th>
-          <th>メールアドレス</th>
-        </thead>
-        
-        <tbody>
-          <% @customers.each do |customer| %>
-          <tr>
-            <td><%= customer.nick_name %></td>
-            <td><%= customer.name %></td>
-            <td><%= customer.email %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="col text-field">
+        <table class="col text-center">
+          <thead>
+            <th class="col-6">ハンドルネーム</th>
+            <th class="col-6">メールアドレス</th>
+          </thead>
+          
+          <tbody>
+            <% @customers.each do |customer| %>
+            <tr>
+              <td><%= customer.nick_name %></td>
+              <td><%= customer.email %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

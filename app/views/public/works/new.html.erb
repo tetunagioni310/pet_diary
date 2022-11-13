@@ -1,7 +1,40 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      
+      <div class="work-create col-lg-4 mx-auto">
+      <div class="pet-select text-field col">
+      <%= form_with model: @work, url: log_public_works_path, method: :get do |f| %>
+        <table class="col">
+          <tr>
+            <th class="col-5">
+              <%= f.label :pet_id, "ペット" %>
+            </th>
+            <td class="col-7">
+              <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name),  {prompt: "ペット選択"}, class: "form-control"  %>
+            </td>
+          </tr>
+
+          <tr>
+            <th class="col-5"><%= f.label :work_name, "作業名" %></th>
+            <td class="col-7">
+              <%= f.text_field :work_name, placeholder: "例: 餌やり", class: "form-control" %>
+            </td>
+          </tr>
+
+          <%= f.hidden_field :customer_id, :value => current_customer.id %>
+
+          <tr>
+            <th class="col-5"></th>
+            <td class="col-7">
+              <%= f.submit "作業作成" , class: "btn-change"%>
+            </td>
+            <td></td>
+          </tr>
+
+        </table>
+      <% end %>
+      </div>
+    </div>
     </div>
   </div>
 </div>

@@ -9,32 +9,32 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group row">
-              <%= f.label :pet_name, "ペット名", class: "col-3 col-form-label" %>
+              <%= f.label :pet_name, class: "col-3 col-form-label" %>
               <%= f.text_field :pet_name, placeholder: "ペット名", class: "col-7 form-control" %>
             </div>
 
             <div class="form-group row">
-              <%= f.label :group_id, "カテゴリ", class: "col-3 col-form-label" %>
+              <%= f.label :group_id, class: "col-3 col-form-label" %>
               <%= f.select :group_id, options_from_collection_for_select(Group.all, :id, :group_name), { prompt: '選択してください'}, { class: 'col-7 form-control' , required: true } %>
             </div>
 
             <div class="form-group row">
-              <%= f.label :gender, "性別", class: "col-3 col-form-label" %>
+              <%= f.label :gender, class: "col-3 col-form-label" %>
               <%= f.select :gender, options_for_select(Pet.genders.map { |key, value| [key.humanize, key] }), {prompt: "選択してください"}, class: "col-7 form-control" %>
             </div>
 
             <div class="form-group row">
-              <%= f.label :age, "年齢", class: "col-3 col-form-label" %>
+              <%= f.label :age, class: "col-3 col-form-label" %>
               <%= f.text_field :age, class: "col-7 form-control" %>　<p class="col-form-label">才</p>
             </div>
 
             <div class="form-group row">
-              <%= f.label :birthday, "誕生日", class: "col-3 col-form-label" %>
+              <%= f.label :birthday, class: "col-3 col-form-label" %>
               <%= f.text_field :birthday, placeholder: "2022-01-01", class: "col-7 form-control" %>
             </div>
 
             <div class="form-group row">
-              <%= f.label :pet_image, "画像", class: "col-3 col-form-label" %>
+              <%= f.label :pet_image, class: "col-3 col-form-label" %>
               <%= f.file_field :pet_image, accept: "image/*", class: "col-8 pl-0" %>
             </div>
               <!--現在ログインしているユーザーのユーザーIDを渡す-->
@@ -43,7 +43,7 @@
 
           <div class="col-sm-6">
             <div class="form-group row">
-              <%= f.label :pet_introduction, "ペット紹介", class: "col-3 col-form-label" %>
+              <%= f.label :pet_introduction, class: "col-3 col-form-label" %>
               <%= f.text_area :pet_introduction, rows: "10", class: "col-7 form-control" %>
             </div>
           </div>

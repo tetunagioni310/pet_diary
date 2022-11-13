@@ -15,11 +15,17 @@
       </div>
 
         <div class="pet-list row">
-          <% @pets.each do |pet| %>
-          <div class="pet-link col-md-4">
-            <%= image_tag pet.get_pet_image(200,200) %><br>
-            <%= link_to  pet.pet_name, public_pet_path(pet.id), class: "btn-revers" %>
-          </div>
+          <% if @pets.count >= 1 %>
+            <% @pets.each do |pet| %>
+            <div class="pet-link col-md-4">
+              <%= image_tag pet.get_pet_image(200,200) %><br>
+              <%= link_to  pet.pet_name, public_pet_path(pet.id), class: "btn-revers" %>
+            </div>
+            <% end %>
+          <% else %>
+            <div class="pet-link col m-auto">
+              <p class="no-pets">ペットは登録されていません</p>
+            </div>
           <% end %>
         </div>
 

@@ -1,8 +1,16 @@
 class Public::WorksController < ApplicationController
   before_action :authenticate_customer!
   
+  def new
+    @work = Work.new
+  end
+  
   def index
     @works = Work.where(customer_id: current_customer.id)
+  end
+  
+  def show
+    @work = Work.find(params[:id])
   end
 
   def log
@@ -32,6 +40,10 @@ class Public::WorksController < ApplicationController
       @item.save
     end
     redirect_to public_works_path
+  end
+  
+  def destroy
+    
   end
 
   private

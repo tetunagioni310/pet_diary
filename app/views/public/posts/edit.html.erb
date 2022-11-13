@@ -1,6 +1,6 @@
 <div class="container">
   <h2>投稿編集</h2>
-  <div class="row">
+  <div class="my-5 row">
     <div class="col">
       <%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f| %>
       <%= render "public/shared/error_messages", resource: @post %>

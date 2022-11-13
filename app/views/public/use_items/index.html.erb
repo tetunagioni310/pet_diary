@@ -1,52 +1,57 @@
-
-
 <div class="container">
-  <h2>使用アイテム</h2>
+  <div class="pet-title col-sm-11 m-auto">
+        <h2 class="col-sm-10">使用アイテム
+          <%= link_to public_items_path, class: "text-dark col-1 p-0" do %>
+            <i class="fas fa-solid fa-plus"></i>
+          <% end %>
+        </h2>
   <div class="row">
-    <div class="use-item-index col-lg-8">
-      <div class="use_item_list text-field col">
+    <div class="use-item-index col">
+      <div class="use_item_list text-field">
         <% if @use_items.count >= 1 %>
-        <table class="col">
-            <tr>
-              <th class="col-5">商品名</th>
-              <th class="col-4">使用量</th>
-              <th class="col-2">残</th>
-              <th class="col-1">
-                <%= button_to destroy_all_public_use_items_path, method: :delete, data: {confirm: "使用アイテムを全て削除しますか？"} do %>
-                      <i class="fas fa-solid fa-trash text-danger"></i>
-                <% end %>
-              </th>
-            </tr>
+          <table class="col">
+              <tr>
+                <th class="col-6">商品名</th>
+                <th class="col-4">使用量</th>
+                <th class="col-1 text-center">残</th>
+                <th class="col-1 p-0 m-0">
+                  <%= button_to destroy_all_public_use_items_path, method: :delete, data: {confirm: "使用アイテムを全て削除しますか？"} do %>
+                        <i class="fas fa-solid fa-trash text-danger"></i>
+                  <% end %>
+                </th>
+              </tr>
 
-            <% @use_items.each do |use_item| %>
-            <% item = Item.find_by(id: use_item.item_id)%>
-            <tr>
-              <td class="col-5 bold"><%= use_item.item.item_name %></td>
-              <td class="col-4">
-                <%= form_with model: use_item, url: public_use_item_path(use_item.id), method: :patch do |f| %>
-                  <div class="row m-0 text-center">
-                    <%= f.number_field :amount_used, class: "form-control-sm col-6" %>
-                    <%= f.hidden_field :customer_id, :value => current_customer.id %>
-                    <%= f.hidden_field :item_id, :value => use_item.item_id%>
-                    <%= f.submit "変更", class: "btn-sm btn-change col-5 mx-1" %>
-                  </div>
-                <% end %>
-              </td>
-              <td class="col-2">
-                <%= item.total_capacity / use_item.amount_used %>
-              </td>
-              <td class="col-1">
-                    <%= button_to public_use_item_path(use_item.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
-                      <i class="fas fa-solid fa-trash"></i>
-                    <% end %>
-              </td>
-            </tr>
-            <% end %>
-            <tr>
-              <td></td>
-
-                <td colspan="2" class="col-2">
-
+              <% @use_items.each do |use_item| %>
+              <% item = Item.find_by(id: use_item.item_id)%>
+              <tr>
+                <td class="col-6"><%= use_item.item.item_name %></td>
+                <td class="col-4">
+                  <%= form_with model: use_item, url: public_use_item_path(use_item.id), method: :patch do |f| %>
+                    <div class="row text-center">
+                      <div class="col-7 p-0">
+                        <%= f.number_field :amount_used, class: "form-control-sm col-10 m-0" %>
+                      </div>
+                      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+                      <%= f.hidden_field :item_id, :value => use_item.item_id%>
+                      <div class="col-5 p-0">
+                        <%= f.submit "変更", class: "btn-sm btn-change col-10" %>
+                      </div>
+                    </div>
+                  <% end %>
+                </td>
+                <td class="col-1 text-center">
+                  <%= item.total_capacity / use_item.amount_used %>
+                </td>
+                <td class="col-1 p-0 m-0">
+                      <%= button_to public_use_item_path(use_item.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                        <i class="fas fa-solid fa-trash"></i>
+                      <% end %>
+                </td>
+              </tr>
+              <% end %>
+              <tr>
+                <td class="col-6 p-0 m-0"></td>
+                <td class="col-4">
                   <!--お気に入り追加 確認ダイアログ-->
                   <script>
                     function check_form() {
@@ -60,12 +65,13 @@
 
                   <%= form_with model: @favorite_item, url: public_favorite_items_path, method: :post do |f| %>
                     <%= f.hidden_field :customer_id, :value => current_customer.id %>
-                    <%= f.submit "お気に入り登録", class: "btn-change", :onclick => "return check_form()" %>
+                    <%= f.submit "お気に入り登録", class: "btn-change btn-sm", :onclick => "return check_form()" %>
                   <% end %>
                 </td>
-            </tr>
-        </table>
-
+                <td class="col-1 p-0"></td>
+                <td class="col-1 p-0"></td>
+              </tr>
+          </table>
         <% else %>
 
         <!--お気に入り呼び出し 確認ダイアログ-->
@@ -79,51 +85,19 @@
           }
         </script>
 
+
         <div class="not-use-items col mx-auto">使用アイテムは空です</div>
+        <% if current_customer.favorite_items.count >= 1 %>
           <%= form_with url: public_favorite_items_use_items_path, method: :post do |f| %>
             <%= f.select :favorite_item_id, options_from_collection_for_select(current_customer.favorite_items, :id, :favorite_item_name) %>
             <%= f.submit "呼び出し", class: "btn-revers", :onclick => "return beforeSubmit()"%>
+            <% end %>
           <% end %>
         <% end %>
       </div>
     </div>
-
-    <div class="work-create col-lg-4 mx-auto">
-      <div class="pet-select text-field col">
-      <%= form_with model: @work, url: log_public_works_path, method: :get do |f| %>
-        <table class="col">
-          <tr>
-            <th class="col-5">
-              <%= f.label :pet_id, "ペット" %>
-            </th>
-            <td class="col-7">
-              <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name),  {prompt: "ペット選択"}, class: "form-control"  %>
-            </td>
-          </tr>
-
-          <tr>
-            <th class="col-5"><%= f.label :work_name, "作業名" %></th>
-            <td class="col-7">
-              <%= f.text_field :work_name, placeholder: "例: 餌やり", class: "form-control" %>
-            </td>
-          </tr>
-
-          <%= f.hidden_field :customer_id, :value => current_customer.id %>
-
-          <tr>
-            <th class="col-5"></th>
-            <td class="col-7">
-              <%= f.submit "作業作成" , class: "btn-change btn-block"%>
-            </td>
-            <td></td>
-          </tr>
-
-        </table>
-      <% end %>
-      </div>
-    </div>
   </div>
-  <div class="items-link">
-    <%= link_to "戻る", public_items_path %>
+  <div class="items-link col">
+    <%= link_to "ペット選択", new_public_work_path, class: "col-3 btn-revers" %>
   </div>
 </div>

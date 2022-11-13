@@ -17,15 +17,20 @@
 .bootstrap-date-only-width {
   width: auto; }
 
+div.container h2 {
+  font-weight: bold; }
+
 #error_explanation {
+  font-size: 12px;
   color: red;
   padding-bottom: 20px;
   width: 100%; }
   #error_explanation h2 {
-    font-size: 20px;
+    padding-left: 10px;
+    font-size: 12px;
     font-weight: bold; }
   #error_explanation ul {
-    padding-left: 50px;
+    padding-left: 20px;
     list-style: circle; }
 
 .field_with_errors {
@@ -164,8 +169,13 @@ div.pet-index div.pet-list div.pet-link {
     border-radius: 100%;
     margin: 20px; }
 
+p.no-pets {
+  line-height: 250px;
+  font-size: 30px;
+  display: inline-block; }
+
 div.pet-show {
-  margin: 0;
+  margin: 50px 0 50px;
   width: 100%;
   background-color: #FFF2CC;
   border-radius: 20px;
@@ -238,6 +248,11 @@ div.post-show {
   div.post-show div.comment textarea {
     margin: 20px auto 0; }
 
+div.no-posts {
+  height: 300px;
+  line-height: 300px;
+  font-size: 30px; }
+
 div.items-list {
   padding: 10px;
   margin: 30px 0; }
@@ -247,6 +262,7 @@ div.items-list {
   div.items-list div.not-items-list p {
     color: #EA6B66;
     min-height: 300px;
+    font-size: 26px;
     line-height: 300px;
     text-align: center; }
 
@@ -290,7 +306,7 @@ div.use-item-index div.use_item_list {
     min-height: 250px;
     line-height: 250px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 30px;
     text-align: center; }
 
 div.work-create div.pet-select {
@@ -300,23 +316,45 @@ div.work-create div.pet-select {
     font-weight: bold; }
 
 div.items-link {
-  margin-top: 30px; }
+  margin: 30px auto;
+  text-align: center; }
   div.items-link a {
-    text-decoration: none;
-    color: #FFF2CC; }
+    margin: 0 auto; }
 
 div.work-create {
   margin: 30px auto; }
   div.work-create div.pet-select {
     height: 270px; }
 
-div.work-index div.work-list table thead th {
-  font-weight: bold; }
+div.work-index div.work-list table {
+  font-size: 12px; }
+  div.work-index div.work-list table thead th {
+    font-weight: bold; }
+
+div.work-show {
+  margin: 50px auto; }
+  div.work-show table tr th {
+    font-weight: bold; }
+  div.work-show table tr td {
+    text-align: center; }
+    div.work-show table tr td div span {
+      display: flex; }
+
+div.no-works {
+  height: 300px;
+  line-height: 300px;
+  font-size: 30px; }
 
 div.f-items {
   margin: 0 auto; }
   div.f-items tr th {
     font-weight: bold; }
+
+div.no-favorite-items {
+  text-align: center;
+  line-height: 300px;
+  height: 300px;
+  font-size: 30px; }
 
 div.calendar {
   font-size: 10px; }

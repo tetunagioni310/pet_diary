@@ -125,7 +125,7 @@ a {
     text-decoration: none;
 }
 
-.btn-edit {
+.btn-links {
     background-color: #FFF2CC;
     color: #EA6B66;
     text-decoration: none;
@@ -134,10 +134,10 @@ a {
     border-radius: 6px;
     border: 1px solid #EA6B66;
     box-shadow: 5px 5px 5px gray;
-
+    text-align: center;
     }
 
-.btn-edit:hover {
+.btn-links:hover {
     color: #FFF2CC;
     background-color: #EA6B66;
     text-decoration: none;

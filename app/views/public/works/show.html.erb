@@ -1,2 +1,43 @@
-<h1>Public::Works#show</h1>
-<p>Find me in app/views/public/works/show.html.erb</p>
+<div class="container">
+  <h2 class="pl-sm-5">ワーク詳細</h2>
+  <div class="work-show row col">
+    <div class="text-field col-md-9 m-auto">
+      <table class="col-10 m-auto">
+        <tr>
+          <th class="col-3">日付</td>
+          <td class="col-8">
+            <div class="col-10">
+              <span class="col-5 m-auto pl-sm-5">
+                <%= @work.created_at.strftime("%Y/%m/%d") %>
+                <%= button_to public_work_path(@work.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "ml-3 mr-0" do %>
+                      <i class="fas fa-solid fa-trash"></i>
+                <% end %>
+              </span>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th>ペット</td>
+          <td><%= @work.pet.pet_name%></td>
+        </tr>
+
+        <tr>
+          <th>ワーク</td>
+          <td><%= @work.work_name%></td>
+        </tr>
+
+        <tr>
+          <th>アイテム</td>
+          <td>
+              <!--消費アイテム取得-->
+              <% work_details = WorkDetail.where(work_id: @work.id)%>
+              <% work_details.each do |work_detail| %>
+                <%= work_detail.item.item_name %>(<%= work_detail.amount_used %>g)<br>
+              <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

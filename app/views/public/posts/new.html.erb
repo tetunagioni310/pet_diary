@@ -1,10 +1,7 @@
 <div class="container">
+  <h2>新規投稿</h2>
 
-  <div>
-    <h2>投稿一覧</h2>
-  </div>
-
-  <div class="row">
+  <div class="my-5 row">
     <div class="col-10 m-auto text-field">
       <%= form_with model: @post, url: public_posts_path, method: :post do |f| %>
       <%= render "public/shared/error_messages", resource: @post %>
@@ -12,36 +9,38 @@
       
       <table class="col-10">
         <tr>
-          <td><%= f.label :pet_id, "ペット" %></td>
+          <td><%= f.label :pet_id %></td>
           <td><%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name),  {prompt: "ペット選択"}, class: "form-control col-4" %></td>
         </tr>
         
         <tr>
-          <td><%= f.label :post_title, "投稿名" %></td>
+          <td><%= f.label :post_title %></td>
           <td><%= f.text_field :post_title, class: "form-control" %></td>
         </tr>
   
         <tr>
-          <td><%= f.label :post_content, "内容" %></td>
+          <td><%= f.label :post_content %></td>
           <td><%= f.text_area :post_content,rows: "5", class: "form-control" %></td>
         </tr>
   
         <tr>
-          <td><%= f.label :start_time, "投稿日" %><br></td>
+          <td><%= f.label :start_time %><br></td>
           <td><%= f.date_select :start_time, use_month_numbers: true %></td>
         </tr>
         
         <tr>
-          <td><%= f.label :post_image, "画像" %></td>
+          <td><%= f.label :post_image %></td>
           <td><%= f.file_field :post_image %></td>
         </tr>
         
         <tr>
           <td></td>
-          <td><%= f.submit "作成", class: "btn-change btn-block" %></td>
+          <td><%= f.submit "新規作成", class: "btn-change btn-block" %></td>
         </tr>
-        <% end %>
+        
       </table>
+      
+      <% end %>
     </div>
   </div>
 </div>

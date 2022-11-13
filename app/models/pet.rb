@@ -8,6 +8,7 @@ class Pet < ApplicationRecord
   validates :pet_introduction, presence: true
   validates :gender, presence: true
   validates :age, presence: true
+  validates :birthday, presence: true
 
   has_one_attached :pet_image
 

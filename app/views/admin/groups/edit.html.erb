@@ -1,11 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col text-field">
       <%= form_with model: @group, url: admin_group_path(@group.id), method: :patch do |f| %>
-        <div class="col row form-group">
-          <div><%= f.label :group_name, "グループ名", class: "col-form-label" %></div>
-          <div><%= f.text_field :group_name, class: "form-control" %></div>
-          <div><%= f.submit "変更を保存", class: "btn btn-success" %></div>
+      <%= render "public/shared/error_messages", resource: @group %>
+        <div class="col-8 row form-group my-3 mx-auto ">
+          <div class="col-4"><%= f.label :group_name, class: "col-form-label" %></div>
+          <div class="col-4"><%= f.text_field :group_name, class: "form-control" %></div>
+          <div class="col-4"><%= f.submit "変更を保存", class: "btn btn-success" %></div>
         </div>
       <% end %>
     </div>
