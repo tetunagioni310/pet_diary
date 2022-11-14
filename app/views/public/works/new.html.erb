@@ -1,39 +1,42 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="work-create col-lg-4 mx-auto">
-      <div class="pet-select text-field col">
-      <%= form_with model: @work, url: log_public_works_path, method: :get do |f| %>
-        <table class="col">
-          <tr>
-            <th class="col-5">
-              <%= f.label :pet_id, "ペット" %>
-            </th>
-            <td class="col-7">
-              <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name),  {prompt: "ペット選択"}, class: "form-control"  %>
-            </td>
-          </tr>
+      <div class="work-create col mx-auto">
+        <div class="pet-select text-field col my-0">
 
-          <tr>
-            <th class="col-5"><%= f.label :work_name, "作業名" %></th>
-            <td class="col-7">
-              <%= f.text_field :work_name, placeholder: "例: 餌やり", class: "form-control" %>
-            </td>
-          </tr>
+          <%= form_with model: @work, url: log_public_works_path, method: :get do |f| %>
 
-          <%= f.hidden_field :customer_id, :value => current_customer.id %>
+            <div class="row col-8 px-0 mx-auto mb-3">
 
-          <tr>
-            <th class="col-5"></th>
-            <td class="col-7">
-              <%= f.submit "作業作成" , class: "btn-change"%>
-            </td>
-            <td></td>
-          </tr>
+              <div class="col-3 px-0">
+                <%= f.label :pet_id, "ペット", class: "pt-2" %>
+              </div>
 
-        </table>
-      <% end %>
-      </div>
+              <div class="col-9 px-0">
+                <div>
+                  <%= f.radio_button :pet_option, 0, checked: "checked" %>
+                  <%= f.label :pet_id, "ペット選択", class: "mr-3 mb-0" %>
+                  <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name) %>
+                </div>
+                <div>
+                <%= f.radio_button :pet_option, 1 %>グループ選択
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row col-8 px-0 mx-auto mb-5">
+              <div class="col-3 p-0"><%= f.label :work_name, "作業名", class: "pt-1" %></div>
+              <div class="col-9 p-0"><%= f.text_field :work_name, placeholder: "例: 餌やり", class: "col-sm-8 form-control" %></div>
+            </div>
+
+            <div class="row col-8 px-0 mx-auto mb-5">
+              <div class="col-3 p-0"><%= f.hidden_field :customer_id, :value => current_customer.id %></div>
+              <div class="col-9 p-0"><%= f.submit "ワーク作成" , class: "btn-change col-sm-8"%></div>
+            </div>
+
+          <% end %>
+        </div>
     </div>
     </div>
   </div>

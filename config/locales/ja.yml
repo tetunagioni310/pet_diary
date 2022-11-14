@@ -44,7 +44,7 @@ ja:
         start_time: '投稿日'
         post_image: '画像'
       favorite_item:
-        favorite_item_name: 'お気に入り名'
+        favorite_item_name: '表示名'
       schedule:
         schedule_title: 'スケジュール名'
         schedule_content: '内容'

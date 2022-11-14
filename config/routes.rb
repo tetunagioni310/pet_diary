@@ -16,7 +16,13 @@ Rails.application.routes.draw do
     end
     
     resources :schedules, only: [:index,:show,:create,:edit,:update,:destroy]
+    
     resources :pets
+    namespace :pets do
+      resources :works, only: [:show]
+    end
+
+    
     resources :items, only: [:index,:show,:create,:update,:destroy]
     resources :use_items, only: [:index,:create,:update,:destroy] do
       collection do

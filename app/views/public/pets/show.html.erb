@@ -39,7 +39,7 @@
               <div class="pet-nav">
                 <%= link_to "編集", edit_public_pet_path(@pet.id), class: "btn" %>
                 <%= link_to "アイテム", public_items_path, class: "btn" %>
-                <%= link_to "ワーク", "#", class: "btn" %>
+                <%= link_to "ワーク", public_pets_work_path(@pet.id), class: "btn" %>
                 <%= link_to "削除", public_pet_path(@pet.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn" %>
                 <%= link_to public_customer_path(@pet.customer_id), class: "btn btn-sm" do %>
                   <i class="fas fa-2x fa-solid fa-user"></i>

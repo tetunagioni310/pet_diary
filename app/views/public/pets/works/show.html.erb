@@ -1,8 +1,7 @@
 <div class="container">
+  <h2><%= @pet.pet_name %>のワーク一覧</h2>
   <div class="row">
-
     <div class="work-index px-0 col">
-      <h2>ワーク一覧</h2>
       <div class="work-list text-field col">
           <% if @works.count >= 1 %>
           <table class="col">
@@ -17,9 +16,9 @@
               <% @works.each do |work| %>
               <tr>
                 <td class="col-2"><%= link_to work.created_at.strftime("%m/%d"), public_work_path(work.id), class: "btn-links btn-sm" %></td>
-                <td class="col-3"><%= link_to work.pet.pet_name, public_pets_work_path(work.pet.id), class: "btn-links btn-sm" %></td>
+                <td class="col-3"><%= link_to work.pet.pet_name, public_pet_path(work.pet.id), class: "btn-links btn-sm" %></td>
                 <td class="col-2"><%= work.work_name %></td>
-                <td class="col-6">
+                <td class="col-5">
                     <!--消費アイテム取得-->
                     <% work_details = WorkDetail.where(work_id: work.id)%>
                     <% work_details.each do |work_detail| %>
