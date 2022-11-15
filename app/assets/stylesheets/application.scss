@@ -568,6 +568,26 @@ div.schedule-show {
   }
 }
 
+// followings
+
+div.follow-field {
+  table {
+    tr {
+      td {
+        img {
+          border-radius: 100%;
+          display: inline-block;
+        }
+        a {
+          text-decoration: none;
+          color: #EA6B66;
+          margin: 10px 0 10px 10px;
+        }
+      }
+    }
+  }
+}
+
 // admin
 
 table.admin-table {

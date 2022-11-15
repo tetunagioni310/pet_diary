@@ -1,12 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <% if @work.pet_id == nil or @work.work_name == nil %>
-        <div>
-          ペットが選択又は作業名が記入されていません。
-        </div>
-      <% else %>
-        <h3 class="text-center">以下を使用して<%= @work.pet.pet_name + @work.pet.pet_gender %>の『<%= @work.work_name %>』を実行します</h3>
+        <h3 class="text-center">以下を使用して<%= @work.pet_names.join(" ") %>の『<%= @work.work_name %>』を実行します</h3>
         <div class="col-md-6 m-auto">
           <div class="text-field col">
             <table class="col">
@@ -22,14 +17,14 @@
         <br>
         <div class="work-create text-center col-3">
           <%= form_with model: @work, url: public_works_path, method: :post do |f| %>
-            <%= f.hidden_field :customer_id, :value => @work.customer_id %>
-            <%= f.hidden_field :pet_id, :value => @work.pet_id %>
-            <%= f.hidden_field :work_name, :value => @work.work_name %>
-            
+            <% @work.pet_ids.each do |pet_id| %>
+              <%= f.hidden_field :pet_ids, multiple: true, value: pet_id %>
+            <% end %>
+            <%= f.hidden_field :work_name, value: @work.work_name %>
+
             <%= f.submit "確定", class: "btn btn-success btn-block" %>
           <% end %>
         </div>
-      <% end %>
     </div>
   </div>
 </div>

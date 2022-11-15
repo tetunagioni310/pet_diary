@@ -1,31 +1,44 @@
 <div class="container">
-  <table>
-    <tr>
-      <th>
-        <%= link_to member_info_public_customers_path, class: "color" do %>
-          <i class="fas fa-solid fa-reply"></i>
+  <div class="row">
+    <div class="follow-field col text-field">
+      <table>
+        <tr>
+          <th>
+            <%= link_to public_customer_path(current_customer.id), class: "color" do %>
+              <i class="fas fa-solid fa-reply"></i>
+            <% end %>
+          </th>
+          <th>
+            フォロー
+          </th>
+        </tr>
+        <% if @customers.count >= 1 %>
+        <tr>
+          <td></td>
+          <td>
+            <% @customers.each do |customer| %>
+              <div class="row">
+                <%= image_tag customer.get_customer_image(50,50)%>
+                <%= link_to customer.nick_name, public_customer_path(customer.id), class: "bold" %>
+                <div class="ml-3">
+                    <% if current_customer.following?(customer) %>
+                      <%= link_to "フォロー解除", public_customer_relationships_path(customer.id), class: "btn-links btn-sm btn-block ml-0 mt-2", method: :delete %>
+                    <% else %>
+                      <%= link_to "+フォロー", public_customer_relationships_path(customer.id), class: "btn-links btn-sm btn-block ml-0 mt-2", method: :post %>
+                    <% end %>
+                </div>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+        <% else %>
+        <tr>
+          <td>
+            現在フォローしていません
+          </td>
+        </tr>
         <% end %>
-      </th>
-      <th>
-        フォロー
-      </th>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <% @customers.each do |customer| %>
-          <div class="row">
-            <%= link_to customer.nick_name, public_customer_path(customer.id) %>
-            <div class="ml-3">
-                <% if current_customer.following?(customer) %>
-                  <%= link_to "フォロー解除", public_customer_relationships_path(customer.id), class: "btn btn-sm btn-outline-light", method: :delete %>
-                <% else %>
-                  <%= link_to "+フォロー", public_customer_relationships_path(customer.id), class: "btn btn-sm btn-outline-light", method: :post %>
-                <% end %>
-            </div>
-          </div>
-        <% end %>
-      </td>
-    </tr>
-  </table>
+      </table>
+    </div>
+  </div>
 </div>

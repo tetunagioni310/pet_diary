@@ -1,25 +1,19 @@
 <div class="container">
+  <h2>ペット選択</h2>
   <div class="row">
     <div class="col">
-      <div class="work-create col mx-auto">
-        <div class="pet-select text-field col my-0">
-
-          <%= form_with model: @work, url: log_public_works_path, method: :get do |f| %>
-
+      <div class="work-create text-field col mx-auto">
+        <%= form_with model: @work, url: log_public_works_path, method: :get do |f| %>
+        <%= render "public/shared/error_messages", resource: @work %>
+        <div class="pet-select col my-0">
             <div class="row col-8 px-0 mx-auto mb-3">
-
               <div class="col-3 px-0">
                 <%= f.label :pet_id, "ペット", class: "pt-2" %>
               </div>
-
               <div class="col-9 px-0">
                 <div>
-                  <%= f.radio_button :pet_option, 0, checked: "checked" %>
                   <%= f.label :pet_id, "ペット選択", class: "mr-3 mb-0" %>
-                  <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name) %>
-                </div>
-                <div>
-                <%= f.radio_button :pet_option, 1 %>グループ選択
+                  <%= f.collection_check_boxes :pet_ids, current_customer.pets, :id, :pet_name %>
                 </div>
               </div>
 
@@ -31,12 +25,12 @@
             </div>
 
             <div class="row col-8 px-0 mx-auto mb-5">
-              <div class="col-3 p-0"><%= f.hidden_field :customer_id, :value => current_customer.id %></div>
               <div class="col-9 p-0"><%= f.submit "ワーク作成" , class: "btn-change col-sm-8"%></div>
             </div>
 
-          <% end %>
+
         </div>
+        <% end %>
     </div>
     </div>
   </div>

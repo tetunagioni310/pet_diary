@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :works, only: [:index,:show,:new,:create] do
+    resources :works, only: [:index,:show,:new,:create,:destroy] do
       collection do
         get 'log'
       end

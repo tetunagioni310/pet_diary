@@ -51,6 +51,8 @@ ja:
         start_time: '予定日'
       group:
         group_name: 'カテゴリ名'
+      work:
+        work_name: "ワーク名"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

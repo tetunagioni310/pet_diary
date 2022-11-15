@@ -16,8 +16,8 @@
             <tboby>
               <% @works.each do |work| %>
               <tr>
-                <td class="col-2"><%= link_to work.created_at.strftime("%m/%d"), public_work_path(work.id), class: "btn-links btn-sm" %></td>
-                <td class="col-3"><%= link_to work.pet.pet_name, public_pets_work_path(work.pet.id), class: "btn-links btn-sm" %></td>
+                <td class="col-2"><%= link_to work.created_at.strftime("%m/%d"), public_work_path(work.id), class: "btn-links" %></td>
+                <td class="col-3"><%= link_to work.pet.pet_name, public_pets_work_path(work.pet.id), class: "btn-links" %></td>
                 <td class="col-2"><%= work.work_name %></td>
                 <td class="col-6">
                     <!--消費アイテム取得-->

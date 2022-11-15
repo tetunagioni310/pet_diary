@@ -1,5 +1,7 @@
 <div class="container">
-  <h2 class="my-5"><%= @post.pet.pet_name %>の記事詳細ページ</h2>
+  <h2 class="my-5">
+    <%= @post.pet.pet_name %>の記事詳細ページ
+  </h2>
   <div class="post-show row">
     <div class="content col-md-8 m-auto px-0">
       <div class="post-image col-6">
@@ -16,7 +18,8 @@
         </p>
 
         <div class="h6 row justify-content-end">
-          <%= @post.created_at.strftime("%Y年%m月%d日") %>&emsp;<%= link_to @post.pet.pet_name, public_pet_path(@post.pet_id) %><%= @post.pet.gender == "♂" ? "くん" : "ちゃん" %>の投稿
+          <%= @post.created_at.strftime("%Y年%m月%d日") %>
+          &emsp;<%= link_to @post.pet.pet_name, public_pet_path(@post.pet_id) %><%= @post.pet.gender == "♂" ? "くん" : "ちゃん" %>の投稿
           <%= render "public/shared/like", post: @post %>
         </div>
 
@@ -36,7 +39,7 @@
         <table>
           <% @comments.each do |comment| %>
             <tr>
-              <th class="col-2"><%= comment.customer.nick_name %></th>
+              <th class="col-2"><%= link_to comment.customer.nick_name, public_customer_path(comment.customer.id), class: "btn-links btn-sm" %></th>
               <td class="col-6"><%= comment.comment_content %></td>
               <td class="col-4"><%= comment.created_at.strftime("%Y年%m月%d日") %></td>
             </tr>

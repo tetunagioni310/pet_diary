@@ -13,8 +13,8 @@
             <td colspan="2" class="text-center bold"><%= customer.nick_name %></td>
           </tr>
           <tr>
-            <td class="text-center"><%= customer.followers.count %><%= link_to "フォロー", public_customer_followings_path(customer.id) %></td>
-            <td class="text-center"><%= customer.followings.count %><%= link_to "フォロワー", public_customer_followers_path(customer.id) %></td>
+            <td class="text-center"><%= customer.followings.count %><%= link_to "フォロー", public_customer_followings_path(customer.id) %></td>
+            <td class="text-center"><%= customer.followers.count %><%= link_to "フォロワー", public_customer_followers_path(customer.id) %></td>
           </tr>
           <tr>
             <td colspan="2">
