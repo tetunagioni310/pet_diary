@@ -138,7 +138,8 @@ div.profile-field {
       margin: 0 auto; }
     div.profile-field table td a {
       color: #EA6B66;
-      border-color: #EA6B66; }
+      border-color: #EA6B66;
+      text-decoration: none; }
 
 div.self-introduction {
   background-color: #fff;

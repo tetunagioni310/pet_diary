@@ -68,6 +68,10 @@ a {
 
 /*css*/
 
+.follow-link {
+  text-decoration: none;
+}
+
 .text-field {
   color: #EA6B66;
   background-color: #FFF2CC;

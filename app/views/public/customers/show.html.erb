@@ -1,9 +1,11 @@
 <div class="container">
+
   <div class="row">
 
-    <div class="col-lg-4 mt-5">
-      <div class="col-10 mx-auto profile-field">
-        <table class="col-10 mx-auto">
+    <!--サイドバー-->
+    <div class="col-lg-4 py-5">
+      <div class="col-lg-10 m-auto profile-field">
+        <table class="col-11 mx-auto">
           <tr>
             <td colspan="2">
               <%= image_tag @customer.get_customer_image(200,200), class: "customer-image" %>
@@ -13,7 +15,14 @@
             <td colspan="2" class="text-center bold"><%= @customer.email %></td>
           </tr>
           <tr>
-            <td colspan="2" class="text-center bold"><%= @customer.nick_name %></td>
+            <td class="text-center bold"><%= @customer.nick_name %></td>
+            <td class="text-center">
+              <% if current_customer.following?(@customer) %>
+                <%= link_to "フォロー解除", public_customer_relationships_path(@customer.id), class: "btn-sm btn-links shadow-none", method: :delete %>
+              <% else %>
+                <%= link_to "+フォロー", public_customer_relationships_path(@customer.id), class: "btn-sm btn-links shadow-none", method: :post %>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td class="text-center"><%= @customer.followings.count %><%= link_to "フォロー", public_customer_followings_path(@customer.id) %></td>
@@ -35,15 +44,15 @@
       </div>
     </div>
 
-    <div class="col-lg-8 align-items-end my-3">
-      <div class="row my-5 mx-auto">
-        <h3><%= @customer.nick_name %>さんのプロフィール</h3>
-        <div class="ml-3">
-          <% if current_customer.following?(@customer) %>
-            <%= link_to "フォロー解除", public_customer_relationships_path(@customer.id), class: "btn btn-sm btn-outline-light", method: :delete %>
-          <% else %>
-            <%= link_to "+フォロー", public_customer_relationships_path(@customer.id), class: "btn btn-sm btn-outline-light", method: :post %>
-          <% end %>
+    <!--メイン-->
+    <div class="col-lg-8 align-items-end my-3 mt-5">
+
+      <div class="col-lg-10 mx-auto mb-5">
+        <div class="col row text-center">
+          <h4 class="col bold">
+            <%= @customer.nick_name %>さんのプロフィール
+            
+          </h4>
         </div>
       </div>
 
@@ -54,17 +63,6 @@
         <% end %>
       </div>
 
-      <!--<div class="customer-pet-index col">-->
-      <!--  <h3>ペット一覧</h3>-->
-      <!--  <div class="customer-pet-list row">-->
-      <!--    <% @pets.each do |pet| %>-->
-      <!--    <div class="customer-pet-link col-md-4">-->
-      <!--      <%= image_tag pet.get_pet_image(200,200) %><br>-->
-      <!--      <%= link_to  pet.pet_name, public_pet_path(pet.id), class: "btn-revers" %>-->
-      <!--    </div>-->
-      <!--    <% end %>-->
-      <!--  </div>-->
-      <!--</div>-->
     </div>
   </div>
 </div>
