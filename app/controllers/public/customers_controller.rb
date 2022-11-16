@@ -2,7 +2,7 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
   
   def member_info
-    @posts = Post.where(customer_id: current_customer.id)
+    @posts = Post.where(customer_id: current_customer.id).page(params[:page]).per(10)
   end
   
   def member_info_edit

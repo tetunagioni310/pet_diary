@@ -28,7 +28,6 @@
             <td colspan="2">
               <%= form_with model: @use_item, url: public_use_items_path, method: :post do |f| %>
                 <div class="add-amount-used">
-                  <%= f.hidden_field :customer_id, :value => current_customer.id %>
                   <%= f.hidden_field :item_id, :value => @item.id %>
                   <%= f.number_field :amount_used, :value => nil, class: "col-6 form-control" %>g
                   <%= f.submit "追加", class: "btn-change btn-sm col-3 ml-3", :onclick => "return check_form()" %>

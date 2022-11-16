@@ -13,20 +13,22 @@ class Public::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.customer_id = current_customer.id
     if current_customer.items.find_by(item_name: @item.item_name, capacity: @item.capacity)
       item = current_customer.items.find_by(item_name: @item.item_name, capacity: @item.capacity)
       item.amount += @item.amount
       item.total_capacity += ( @item.amount * @item.capacity )
       item.save
+      flash[:notice] = "在庫を追加しました"
       redirect_to public_items_path
     else
-      if @item.capacity == nil or @item.amount == nil
+      if @item.capacity.blank? || @item.amount.blank?
         @items = Item.where(customer_id: current_customer.id)
         render 'index'
       else
         @item.total_capacity = @item.capacity * @item.amount
         if @item.save
-          flash[:notice] = "Item has been registered.."
+          flash[:notice] = "アイテムを追加しました"
           redirect_to public_items_path
         else
           @items = Item.where(customer_id: current_customer.id)
@@ -42,18 +44,20 @@ class Public::ItemsController < ApplicationController
     @item.amount += item.amount
     @item.total_capacity += @item.capacity * item.amount
     @item.save
+    flash[:notice] = "在庫を追加しました"
     redirect_to public_items_path
   end
 
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
+    flash[:notice] = "アイテムを削除しました"
     redirect_to public_items_path
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:customer_id,:item_name,:amount,:capacity)
+    params.require(:item).permit(:item_name,:amount,:capacity)
   end
 end

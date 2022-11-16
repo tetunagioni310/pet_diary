@@ -17,7 +17,9 @@ class Public::PetsController < ApplicationController
 
   def create
     @pet = Pet.new(pet_params)
+    @pet.customer_id = current_customer.id
     if @pet.save
+      flash[:notice] = "ペットを追加しました"
       redirect_to public_pets_path
     else
       render "new"
@@ -31,6 +33,7 @@ class Public::PetsController < ApplicationController
   def update
     @pet = Pet.find(params[:id])
     if @pet.update(pet_params)
+      flash[:notice] = "ペット情報を更新しました"
       redirect_to public_pet_path(@pet.id)
     else
       render 'edit'
@@ -40,12 +43,13 @@ class Public::PetsController < ApplicationController
   def destroy
     @pet = Pet.find(params[:id])
     @pet.destroy
+    flash[:notice] = "登録ペットを削除しました"
     redirect_to public_pets_path
   end
 
   private
 
   def pet_params
-    params.require(:pet).permit(:pet_name,:pet_introduction,:gender,:age,:pet_image,:customer_id,:group_id,:birthday)
+    params.require(:pet).permit(:pet_name,:pet_introduction,:gender,:age,:pet_image,:group_id,:birthday)
   end
 end

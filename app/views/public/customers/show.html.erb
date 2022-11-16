@@ -1,7 +1,39 @@
 <div class="container">
   <div class="row">
 
-    <%= render "public/shared/sidebar_profile", customer: @customer %>
+    <div class="col-lg-4 mt-5">
+      <div class="col-10 mx-auto profile-field">
+        <table class="col-10 mx-auto">
+          <tr>
+            <td colspan="2">
+              <%= image_tag @customer.get_customer_image(200,200), class: "customer-image" %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-center bold"><%= @customer.email %></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-center bold"><%= @customer.nick_name %></td>
+          </tr>
+          <tr>
+            <td class="text-center"><%= @customer.followings.count %><%= link_to "フォロー", public_customer_followings_path(@customer.id) %></td>
+            <td class="text-center"><%= @customer.followers.count %><%= link_to "フォロワー", public_customer_followers_path(@customer.id) %></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <%= link_to  member_info_edit_public_customers_path, class: "btn-links btn-block text-center" do %>
+                <i class="fas fa-user-cog"></i>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <%= link_to "ペット一覧", public_customers_pet_path(@customer.id), class: "btn-links btn-block text-center" %>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
 
     <div class="col-lg-8 align-items-end my-3">
       <div class="row my-5 mx-auto">
@@ -22,17 +54,17 @@
         <% end %>
       </div>
 
-      <div class="customer-pet-index col">
-        <h3>ペット一覧</h3>
-        <div class="customer-pet-list row">
-          <% @pets.each do |pet| %>
-          <div class="customer-pet-link col-md-4">
-            <%= image_tag pet.get_pet_image(200,200) %><br>
-            <%= link_to  pet.pet_name, public_pet_path(pet.id), class: "btn-revers" %>
-          </div>
-          <% end %>
-        </div>
-      </div>
+      <!--<div class="customer-pet-index col">-->
+      <!--  <h3>ペット一覧</h3>-->
+      <!--  <div class="customer-pet-list row">-->
+      <!--    <% @pets.each do |pet| %>-->
+      <!--    <div class="customer-pet-link col-md-4">-->
+      <!--      <%= image_tag pet.get_pet_image(200,200) %><br>-->
+      <!--      <%= link_to  pet.pet_name, public_pet_path(pet.id), class: "btn-revers" %>-->
+      <!--    </div>-->
+      <!--    <% end %>-->
+      <!--  </div>-->
+      <!--</div>-->
     </div>
   </div>
 </div>

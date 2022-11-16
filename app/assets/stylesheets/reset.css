@@ -81,6 +81,10 @@ a {
   box-shadow: 5px 5px 5px gray;
 }
 
+.bg-color {
+  background-color: #FFF2CC;
+}
+
 .color {
   text-decoration: none;
   color: #fff;
@@ -165,6 +169,36 @@ a {
   width: 840px;
   margin: 0 auto;
 }
+
+/*paginate*/
+.pagination{
+  margin: auto;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
+.pagination span{
+  background-color: rgba(158, 158, 158, 0.4);
+  text-align: center;
+  width: 50px;
+  border: solid 1px #344963;
+  color: rgb(197, 20, 159);
+  transition: .3s;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+.pagination span:hover{
+  transition: .3s;
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.pagination span a:hover{
+  transition: .3s;
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
 /*@media screen and (min-width: 769px) {*/
 /*  .wrapper {*/
 /*    width: 960px;*/

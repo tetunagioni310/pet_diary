@@ -6,7 +6,8 @@ class Public::FavoriteItemsController < ApplicationController
   end
 
   def create
-    @favorite_item = FavoriteItem.new(favorite_item_params)
+    @favorite_item = FavoriteItem.new
+    @favorite_item.customer_id = current_customer.id
     @favorite_items = FavoriteItem.where(customer_id: current_customer.id)
     @favorite_item.favorite_item_name =  "アイテム" + (@favorite_items.count + 1).to_s
     @favorite_item.save
@@ -19,6 +20,7 @@ class Public::FavoriteItemsController < ApplicationController
         amount_used: use_item.amount_used
         )
     end
+    flash[:notice] = "お気に入りアイテムを作成しました"
     redirect_to public_favorite_items_path
   end
   
@@ -30,6 +32,7 @@ class Public::FavoriteItemsController < ApplicationController
     @favorite_item = FavoriteItem.find(params[:id])
     if @favorite_item.update(favorite_item_params)
       @favorite_items = FavoriteItem.where(customer_id: current_customer.id)
+      flash[:notice] = "表示名を変更しました"
       redirect_to public_favorite_items_path
     else
       render 'edit'
@@ -39,13 +42,14 @@ class Public::FavoriteItemsController < ApplicationController
   def destroy
     @favorite_item = FavoriteItem.find(params[:id])
     @favorite_item.destroy
+    flash[:notice] = "お気に入りアイテムを削除しました"
     redirect_to public_favorite_items_path
   end
 
   private
-
+  
   def favorite_item_params
-    params.require(:favorite_item).permit(:customer_id,:favorite_item_name)
+    params.require(:favorite_item).permit(:favorite_item_name)
   end
 
 end

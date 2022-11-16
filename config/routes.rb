@@ -56,6 +56,11 @@ Rails.application.routes.draw do
       get 'followers' => 'relationships#followers', as: 'followers'
 
     end
+    
+    namespace :customers do
+      resources :pets, only: [:show]
+    end
+    
   end
 
   namespace :admin do

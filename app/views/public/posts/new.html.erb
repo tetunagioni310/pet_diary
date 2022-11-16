@@ -5,8 +5,7 @@
     <div class="col-10 m-auto text-field">
       <%= form_with model: @post, url: public_posts_path, method: :post do |f| %>
       <%= render "public/shared/error_messages", resource: @post %>
-      <%= f.hidden_field :customer_id, :value => current_customer.id %>
-      
+
       <table class="col-10">
         <tr>
           <td><%= f.label :pet_id %></td>

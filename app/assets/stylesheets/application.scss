@@ -143,6 +143,15 @@ div.outer {
   }
 }
 
+// メッセージ
+div.messages {
+  color: #FFF2CC;
+  margin: 0 auto 30px;
+  p {
+    font-size: 26px;
+  }
+}
+
 // マイページ
 
   div.profile-field {
@@ -205,12 +214,14 @@ div.customer-pet-index {
 }
 
 // pet-index
-div.pet-index {
-  div.pet-title {
+ div.pet-title {
     line-height: 50px;
-    margin: 30px 10px;
+    margin: 0 auto;
     display: flex;
+    text-align: center;
   }
+
+div.pet-index {
 
   div.pet-list {
     div.pet-link {
@@ -435,6 +446,11 @@ div.item-show {
   }
 
 // 使用アイテム
+div.use-item-title {
+    line-height: 50px;
+    margin: 30px 10px;
+    display: flex;
+  }
 
 div.use-item-index {
 

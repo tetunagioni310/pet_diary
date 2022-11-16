@@ -6,7 +6,7 @@ class Public::WorksController < ApplicationController
   end
 
   def index
-    @works = Work.where(customer_id: current_customer.id)
+    @works = Work.where(customer_id: current_customer.id).page(params[:page]).per(10)
   end
 
   def show
@@ -28,6 +28,7 @@ class Public::WorksController < ApplicationController
       @work.pet_id = pet_id
       @work.customer_id = current_customer.id
       @work.save!
+      flash[:notice] = "ワークを作成しました"
       use_items = current_customer.use_items
       use_items.each do |use_item|
         # work_detail作成

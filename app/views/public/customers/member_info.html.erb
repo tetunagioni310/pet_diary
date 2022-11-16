@@ -1,48 +1,51 @@
 <div class="container">
-<div class="row">
-  
-  <%= render "public/shared/sidebar_profile", customer: current_customer %>
-  
-  <div class="col-lg-8">
-  <h2 class="m-5">投稿一覧</h2>
-  <div class="post-index col-11 m-auto">
-    <table class="col">
-        <thead>
-          <th>ペット</th>
-          <th>タイトル</th>
-          <th>投稿日</th>
-        </thead>
-
-        <tbody>
-          <% if @posts.count >= 1 %>
-            <% @posts.each do |post| %>
-              <tr>
-                <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id) %></td>
-                <td class="col-4"><%= link_to post.post_title, public_post_path(post.id), class: "post-title" %></td>
-                <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
-                <td class="row">
-                  <% if post.customer_id == current_customer.id%>
-                    <%= button_to edit_public_post_path(post.id), method: :get do %>
-                      <i class="fas fa-solid fa-pen"></i>
-                    <% end %>
-                    &emsp;
-                    <%= button_to public_post_path(post.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
-                      <i class="fas fa-solid fa-trash"></i>
-                    <% end %>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          <% else %>
-            <tr>
-              <td colspan="3" class="text-center">
-                <div class="no-posts">投稿はありません</div>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+  <h2 class="text-center">投稿一覧</h2>
+  <div class="row">
+    
+    <%= render "public/shared/sidebar_profile", customer: current_customer %>
+    
+    <div class="col-lg-8 mt-5">
+      <div class="post-index col-11 m-auto">
+        <table class="col">
+            <thead>
+              <th>ペット</th>
+              <th>タイトル</th>
+              <th>投稿日</th>
+            </thead>
+    
+            <tbody>
+              <% if @posts.count >= 1 %>
+                <% @posts.each do |post| %>
+                  <tr>
+                    <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id) %></td>
+                    <td class="col-4"><%= link_to post.post_title, public_post_path(post.id), class: "post-title" %></td>
+                    <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
+                    <td class="row">
+                      <% if post.customer_id == current_customer.id%>
+                        <%= button_to edit_public_post_path(post.id), method: :get do %>
+                          <i class="fas fa-solid fa-pen"></i>
+                        <% end %>
+                        &emsp;
+                        <%= button_to public_post_path(post.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                          <i class="fas fa-solid fa-trash"></i>
+                        <% end %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr>
+                  <td colspan="3" class="text-center">
+                    <div class="no-posts">投稿はありません</div>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <div class="col text-center">
+          <%= paginate @posts %>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </div>

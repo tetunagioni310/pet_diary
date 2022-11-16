@@ -5,7 +5,6 @@
       <%= form_with model: @schedule, url: public_schedules_path, method: :post do |f| %>
       <%= render "public/shared/error_messages", resource: @schedule %>
       
-      <%= f.hidden_field :customer_id, :value => current_customer.id %>
       <div>
         <%= f.label :schedule_title %>
         <%= f.text_field :schedule_title, class: "form-control" %>

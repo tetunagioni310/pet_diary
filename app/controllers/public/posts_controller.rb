@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @posts = Post.where(customer_id: current_customer.id)
+    @posts = Post.where(customer_id: current_customer.id).page(params[:page]).per(10)
   end
 
   def show
@@ -18,7 +18,9 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.customer_id = current_customer.id 
     if @post.save
+      flash[:notice] = "投稿を作成しました"
       redirect_to public_posts_path
     else
       render 'new'
@@ -32,6 +34,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
+      flash[:notice] = "投稿を更新しました"
       redirect_to public_posts_path
     else
       render 'edit'
@@ -41,11 +44,12 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    flash[:notice] = "投稿を削除しました"
     redirect_to public_posts_path
   end
 
   def search
-    @posts = Post.search(params[:keyword], current_customer)
+    @posts = Post.search(params[:keyword], current_customer).page(params[:page]).per(10)
     @keyword = params[:keyword]
     render "index"
   end
@@ -53,6 +57,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:customer_id,:pet_id,:post_title,:post_content,:post_image,:start_time)
+    params.require(:post).permit(:pet_id,:post_title,:post_content,:post_image,:start_time)
   end
 end

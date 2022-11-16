@@ -37,8 +37,6 @@
               <%= f.label :pet_image, class: "col-3 col-form-label" %>
               <%= f.file_field :pet_image, accept: "image/*", class: "col-8 pl-0" %>
             </div>
-              <!--現在ログインしているユーザーのユーザーIDを渡す-->
-              <%= f.hidden_field :customer_id, :value => current_customer.id %>
           </div>
 
           <div class="col-sm-6">

@@ -7,7 +7,6 @@
       <div class="col-10 m-auto">
         <%= f.label :favorite_item_name, class: "col-3 bold" %>
         <%= f.text_field :favorite_item_name, class: "form-cocntrol col-4 ml-3" %>
-        <%= f.hidden_field :customer_id, value: current_customer.id %>
         <%= f.submit "変更", class: "btn-change col-3 ml-2" %>
       </div>
       <% end %>
