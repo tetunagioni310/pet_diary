@@ -605,6 +605,64 @@ div.follow-field {
   }
 }
 
+// マイページ タブ機能
+
+div.area {
+  width: 500px;
+  margin: auto;
+  flex-wrap: wrap;
+  display: flex;
+
+  div.content_class {
+  display: none;
+  width: 100%;
+    div.likes-content {
+      border: 1px solid #000;
+
+      div {
+        align-items: center;
+
+        a {
+          font-size: 25px;
+          text-decoration: none;
+          margin-left: 10px;
+        }
+
+        img {
+        border-radius: 100%;
+        border: 2px  #000;
+        }
+      }
+    }
+
+    div.content_class {
+      overflow: hidden;
+    }
+  }
+
+  input[name="tab_name"] {
+  display: none;
+  }
+
+  input:checked + .tab_class {
+    color: blue;
+  }
+
+  input:checked + .tab_class + .content_class {
+  display: block;
+  }
+
+  label.tab_class {
+  width: calc(100%/3);
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  display: block;
+  float: left;
+  order: -1;
+  }
+}
+
 // admin
 
 table.admin-table {

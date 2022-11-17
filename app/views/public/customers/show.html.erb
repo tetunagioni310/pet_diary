@@ -45,24 +45,61 @@
     </div>
 
     <!--メイン-->
-    <div class="col-lg-8 align-items-end my-3 mt-5">
+    <div class="col-lg-8">
 
-      <div class="col-lg-10 mx-auto mb-5">
+      <div class="col-lg-10 mx-auto">
         <div class="col row text-center">
           <h4 class="col bold">
             <%= @customer.nick_name %>さんのプロフィール
-            
           </h4>
         </div>
       </div>
 
-      <div class="col-10 self-introduction">
-        <p><%= @customer.introduction %></p>
-        <% if @customer.id == current_customer.id %>
-          <%= link_to "コメントを編集", edit_public_customer_path(current_customer.id), class: "btn btn-light" %>
-        <% end %>
+      <div class="text-field col-10 m-auto pt-5">
+        <div class="col-10 self-introduction">
+          <p><%= @customer.introduction %></p>
+          <% if @customer.id == current_customer.id %>
+            <%= link_to "コメントを編集", edit_public_customer_path(current_customer.id), class: "btn btn-light" %>
+          <% end %>
+        </div>
+
+
+       <div class="area col-10">
+          <input type="radio" name="tab_name" id="tab1" checked>
+          <label class="tab_class" for="tab1">タブ1</label>
+          <div class="content_class col">
+            <% @likes.each do |like| %>
+              <div class="col text-field likes-content">
+                <div class="col row">
+                  <%= image_tag like.post.customer.get_customer_image(50,50)%>
+                  <%= link_to like.post.customer.nick_name, public_customer_path(like.post.customer.id)%>
+                </div>
+
+
+                <ul class="col my-2">
+                  <li><%= like.post.post_title %></li>
+                  <li><%= like.post.post_content%></li>
+                  <li><%= link_to "詳細へ", public_post_path(like.post.id)%></li>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+
+          <input type="radio" name="tab_name" id="tab2" >
+          <label class="tab_class" for="tab2">タブ2</label>
+          <div class="content_class">コンテンツ2</div>
+
+          <input type="radio" name="tab_name" id="tab3" >
+          <label class="tab_class" for="tab3">タブ3</label>
+          <div class="content_class">コンテンツ3</div>
+      </div>
+      </div>
+
+
+
       </div>
 
     </div>
   </div>
 </div>
+
