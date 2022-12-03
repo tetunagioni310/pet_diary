@@ -6,7 +6,7 @@ class Public::WorksController < ApplicationController
   end
 
   def index
-    @works = Work.where(customer_id: current_customer.id).page(params[:page]).per(10)
+    @works = Work.where(customer_id: current_customer.id).page(params[:page]).per(10).order(id: "DESC")
   end
 
   def show

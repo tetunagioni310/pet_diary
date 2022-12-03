@@ -63,4 +63,13 @@ class Customer < ApplicationRecord
   def following?(customer)
     followings.include?(customer)
   end
+  
+  # 会員が退会しているかどうか
+  def is_deleted?
+    if self.is_deleted == false 
+      "有効"
+    else 
+      "退会"
+    end
+  end
 end

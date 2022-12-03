@@ -186,7 +186,7 @@ div.self-introduction {
   height: 200px;
   border-radius: 30px;
   text-align: center;
-  padding-top: 50px;
+  padding-top: 80px;
   margin: 0 auto;
   p {
     font-size: 21px;
@@ -213,6 +213,61 @@ div.customer-pet-index {
   }
 }
 }
+
+// プロフィールページ タブ機能
+
+div.area {
+  flex-wrap: wrap;
+  display: flex;
+
+  div.content-class {
+    display: none;
+    div.customer-content {
+      border: 1px solid #EA6B66;
+      background-color: #fff;
+
+      div {
+        align-items: center;
+
+        a {
+          font-size: 15px;
+          margin-left: 10px;
+          font-weight: bold;
+        }
+
+        img {
+        border-radius: 100%;
+        border: 2px  #EA6B66;
+        }
+      }
+    }
+  }
+
+// タブ機能部分
+
+  input[name="tab_name"] {
+  display: none;
+  }
+
+  input:checked + .tab_class {
+    color: blue;
+  }
+
+  input:checked + .tab_class + .content-class {
+  display: block;
+  }
+
+  label.tab_class {
+  width: calc(100%/3);
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  display: block;
+  float: left;
+  order: -1;
+  }
+}
+
 
 // pet-index
  div.pet-title {
@@ -306,10 +361,10 @@ div.pet-show{
     }
 
     td {
-      text-decoration: none;
       color: #EA6B66;
       a {
         color: #EA6B66;
+        text-decoration: none;
       }
     }
   }
@@ -564,15 +619,54 @@ div.no-favorite-items {
 }
 // スケジュール
 
-div.calendar {
+// index
+
+div.schedule-create {
+  height: 500px;
+}
+
+div.schedule {
   font-size: 10px;
+
+  table {
+    height: 500px;
+    margin: 0 auto;
+
+    thead {
+      th {
+        text-align: center;
+        width: 50px;
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          width: 50px;
+          height: 50px;
+          div {
+            text-decoration: none;
+            overflow: hidden;
+
+            a {
+
+            }
+          }
+        }
+      }
+    }
+  }
+
 }
 
 a.schedule-link {
   text-decoration: none;
   color: #EA6B66;
   font-weight: bold;
+  overflow: wrap;
 }
+
+// show
 
 div.schedule-show {
   margin: 50px auto;
@@ -605,61 +699,43 @@ div.follow-field {
   }
 }
 
-// マイページ タブ機能
 
-div.area {
-  width: 500px;
-  margin: auto;
-  flex-wrap: wrap;
-  display: flex;
+// top-page
 
-  div.content_class {
-  display: none;
-  width: 100%;
-    div.likes-content {
-      border: 1px solid #000;
+div.top-sidebar {
+  height: 500px;
 
-      div {
-        align-items: center;
+}
 
-        a {
-          font-size: 25px;
-          text-decoration: none;
-          margin-left: 10px;
-        }
+div.top-main {
+  margin-top: 50px;
 
-        img {
+  div.top-content {
+    background-color: #fff;
+    border: 1px solid #EA6B66;
+    margin: 50px auto 0;
+
+    img {
         border-radius: 100%;
-        border: 2px  #000;
-        }
+      }
+
+    a {
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+    div.top-links {
+      overflow: hidden;
+
+      a {
+        font-weight: normal;
+      }
+
+      a.nick_name {
+        font-weight: bold;
+        color: #EA6B66;
       }
     }
-
-    div.content_class {
-      overflow: hidden;
-    }
-  }
-
-  input[name="tab_name"] {
-  display: none;
-  }
-
-  input:checked + .tab_class {
-    color: blue;
-  }
-
-  input:checked + .tab_class + .content_class {
-  display: block;
-  }
-
-  label.tab_class {
-  width: calc(100%/3);
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  display: block;
-  float: left;
-  order: -1;
   }
 }
 
@@ -676,3 +752,21 @@ table.admin-table {
   }
 }
 
+div.admin-posts {
+  text-align: center;
+  th {
+    font-weight: bold;
+
+  }
+  td {
+
+  }
+}
+
+div.admin-customers {
+  table {
+    th {
+      font-weight: bold;
+    }
+  }
+}

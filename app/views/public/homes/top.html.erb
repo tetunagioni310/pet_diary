@@ -1,2 +1,48 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+
+    <% if customer_signed_in? %>
+      <div class="col-md-4">
+        
+        <div class="col-lg-10 mx-auto text-field">
+          <h4>フォロー中ユーザー</h4>
+            <% @following_customer_posts.each do |following_customer_post| %>
+            <ul>
+              <li>
+                <%= following_customer_post.customer.nick_name%>
+              </li>
+              <li>
+                <%= following_customer_post.post_title %>
+              </li>
+              <li>
+                <% %>
+              </li>
+            </ul>
+            <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="col-md-8 text-field">
+      <%= image_tag '24971705_m.jpg', class: "col image" %>
+
+      <div class="top-main col">
+        <h2 class="text-center">最新投稿</h2>
+          <% @posts.each do |post| %>
+            <div class="col-md-8 text-field top-content">
+              <%= image_tag post.customer.get_customer_image(50,50) %>
+              <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "nick_name" %>
+              <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %><br>
+              <!--<div class="top-links col-10 m-auto">-->
+                <ul class="m-3">
+                  <li><%= post.post_title.truncate(10) %></li>
+                  <li><%= post.post_content.truncate(30) %></li>
+                  <li><%= link_to '詳細', public_post_path(post.id), class: "details-link" %></li>
+                </ul>
+              <!--</div>-->
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

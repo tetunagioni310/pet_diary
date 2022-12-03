@@ -43,7 +43,7 @@
           <% if @posts.count >= 1 %>
             <% @posts.each do |post| %>
               <tr>
-                <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id) %></td>
+                <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "btn-links btn-sm" %></td>
                 <td class="col-4"><%= link_to post.post_title, public_post_path(post.id) %></td>
                 <td><%= post.start_time.strftime("%Y/%m/%d") %></td>
                 <td class="row">

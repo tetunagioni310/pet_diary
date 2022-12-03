@@ -2,7 +2,7 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
   def member_info
-    @posts = Post.where(customer_id: current_customer.id).page(params[:page]).per(10)
+    @posts = Post.where(customer_id: current_customer.id).order(id: "DESC").page(params[:page]).per(10)
   end
 
   def member_info_edit
@@ -21,7 +21,9 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @likes = Like.where(customer_id: @customer.id)
+    @likes = Like.where(customer_id: @customer.id).order(id: "DESC").limit(10)
+    @posts = Post.where(customer_id: @customer.id).order(id: "DESC").limit(10)
+    @following_customer_posts = Post.where(customer_id: [*current_customer.following_ids]).order(id: "DESC").limit(10)
   end
 
   def edit

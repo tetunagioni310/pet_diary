@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root to: "public/homes#top"
 
   namespace :public do
@@ -14,15 +14,15 @@ Rails.application.routes.draw do
       resources :likes, only: [:create,:destroy]
       resources :comments, only: [:create,:destroy]
     end
-    
+
     resources :schedules, only: [:index,:show,:create,:edit,:update,:destroy]
-    
+
     resources :pets
     namespace :pets do
       resources :works, only: [:show]
     end
 
-    
+
     resources :items, only: [:index,:show,:create,:update,:destroy]
     resources :use_items, only: [:index,:create,:update,:destroy] do
       collection do
@@ -36,8 +36,8 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :favorite_items, only: [:index,:edit,:create,:update,:destroy] 
-    
+    resources :favorite_items, only: [:index,:edit,:create,:update,:destroy]
+
     namespace :favorite_items do
       resources :use_items, only: [:create]
     end
@@ -54,21 +54,20 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
-
     end
-    
+
     namespace :customers do
       resources :pets, only: [:show]
     end
-    
+
   end
 
   namespace :admin do
     resources :groups, only: [:index,:create,:edit,:update,:destroy]
-    resources :customers, only: [:index] do
+    
+    resources :customers, only: [:index,:show] do
       resources :posts, only: [:index,:show]
     end
-    
   end
 
   # 顧客用

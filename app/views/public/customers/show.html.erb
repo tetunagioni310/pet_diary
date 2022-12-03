@@ -8,7 +8,7 @@
         <table class="col-11 mx-auto">
           <tr>
             <td colspan="2">
-              <%= image_tag @customer.get_customer_image(200,200), class: "customer-image" %>
+              <%= image_tag @customer.get_customer_image(550,550), class: "customer-image" %>
             </td>
           </tr>
           <tr>
@@ -55,51 +55,86 @@
         </div>
       </div>
 
-      <div class="text-field col-10 m-auto pt-5">
-        <div class="col-10 self-introduction">
+      <div class="text-field col-lg-10 m-auto pt-5">
+        <div class="col-lg-10 self-introduction">
           <p><%= @customer.introduction %></p>
           <% if @customer.id == current_customer.id %>
-            <%= link_to "コメントを編集", edit_public_customer_path(current_customer.id), class: "btn btn-light" %>
+            <%= link_to "コメントを編集", edit_public_customer_path(current_customer.id), class: "btn btn-light btn-sm" %>
           <% end %>
         </div>
 
 
-       <div class="area col-10">
-          <input type="radio" name="tab_name" id="tab1" checked>
-          <label class="tab_class" for="tab1">タブ1</label>
-          <div class="content_class col">
-            <% @likes.each do |like| %>
-              <div class="col text-field likes-content">
-                <div class="col row">
-                  <%= image_tag like.post.customer.get_customer_image(50,50)%>
-                  <%= link_to like.post.customer.nick_name, public_customer_path(like.post.customer.id)%>
-                </div>
+      <div class="area col">
+        
+        <input type="radio" name="tab_name" id="tab1" checked>
+        <label class="tab_class bold" for="tab1">投稿</label>
 
-
-                <ul class="col my-2">
-                  <li><%= like.post.post_title %></li>
-                  <li><%= like.post.post_content%></li>
-                  <li><%= link_to "詳細へ", public_post_path(like.post.id)%></li>
-                </ul>
+        <div class="content-class col">
+          <% @posts.each do |post| %>
+            <div class="col text-field customer-content">
+              <div class="col row">
+                <%= image_tag post.customer.get_customer_image(50,50)%>
+                <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "mr-2" %>
+                <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
               </div>
-            <% end %>
+
+
+              <ul class="col my-2">
+                <li><%= post.post_title.truncate(10) %></li>
+                <li><%= post.post_content.truncate(30) %></li>
+                <li><%= link_to "詳細", public_post_path(post.id), class: "details-link" %></li>
+              </ul>
+            </div>
+          <% end %>
           </div>
 
-          <input type="radio" name="tab_name" id="tab2" >
-          <label class="tab_class" for="tab2">タブ2</label>
-          <div class="content_class">コンテンツ2</div>
+        <input type="radio" name="tab_name" id="tab2">
+        <label class="tab_class bold" for="tab2">いいね</label>
+        <div class="content-class col">
+          <% @likes.each do |like| %>
+            <div class="col text-field customer-content">
+              <div class="col row">
+                <%= image_tag like.post.customer.get_customer_image(50,50)%>
+                <%= link_to like.post.customer.nick_name, public_customer_path(like.post.customer.id), class: "mr-2" %>
+                <%= like.post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+              </div>
 
-          <input type="radio" name="tab_name" id="tab3" >
-          <label class="tab_class" for="tab3">タブ3</label>
-          <div class="content_class">コンテンツ3</div>
+
+              <ul class="col my-2">
+                <li><%= like.post.post_title.truncate(10) %></li>
+                <li><%= like.post.post_content.truncate(30) %></li>
+                <li><%= link_to "詳細", public_post_path(like.post.id), class: "details-link" %></li>
+              </ul>
+            </div>
+             
+          <% end %>
+        </div>
+
+
+
+        <input type="radio" name="tab_name" id="tab3" >
+        <label class="tab_class bold" for="tab3">フォロー</label>
+        <div class="content-class col">
+          <% @following_customer_posts.each do |following_customer_post|%>
+              <div class="col text-field customer-content">
+                <div class="col row">
+                  <%= image_tag following_customer_post.customer.get_customer_image(50,50)%>
+                  <%= link_to following_customer_post.customer.nick_name, public_customer_path(following_customer_post.customer.id), class: "mr-2" %>
+                  <%= following_customer_post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                </div>
+
+                <ul class="col my-2">
+                  <li><%= following_customer_post.post_title.truncate(10) %></li>
+                  <li><%= following_customer_post.post_content.truncate(30) %></li>
+                  <li><%= link_to "詳細", public_post_path(following_customer_post.id), class: "details-link" %></li>
+                </ul>
+              </div>
+          <% end %>
+        </div>
       </div>
-      </div>
-
-
-
-      </div>
-
+    </div>
     </div>
   </div>
+ </div>
 </div>
 

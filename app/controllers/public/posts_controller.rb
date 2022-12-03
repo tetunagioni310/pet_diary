@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @posts = Post.where(customer_id: current_customer.id).page(params[:page]).per(10)
+    @posts = Post.where(customer_id: current_customer.id).order(id: "DESC").page(params[:page]).per(10)
   end
 
   def show
@@ -18,7 +18,7 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.customer_id = current_customer.id 
+    @post.customer_id = current_customer.id
     if @post.save
       flash[:notice] = "投稿を作成しました"
       redirect_to public_posts_path

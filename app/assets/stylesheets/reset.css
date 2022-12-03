@@ -69,8 +69,16 @@ a {
 
 /*css*/
 
+.image {
+  border-radius: 30px;
+}
+
 .follow-link {
   text-decoration: none;
+}
+
+.align-items-center {
+  align-items: center;
 }
 
 .text-field {
@@ -98,6 +106,7 @@ a {
   text-decoration: none;
   color: #000;
 }
+
 .btn-change {
     background-color: #EA6B66;
     color: #FFF2CC;
@@ -144,6 +153,7 @@ a {
     border: 1px solid #EA6B66;
     box-shadow: 5px 5px 5px gray;
     text-align: center;
+    display: inline-block;
     }
 
 .btn-links:hover {
@@ -151,6 +161,23 @@ a {
     background-color: #EA6B66;
     text-decoration: none;
 }
+
+.details-link {
+    float: right;
+    text-decoration: none;
+    color: #87ceeb;
+    background-color: #fff;
+    padding: 0 10px 0 10px;
+    border-radius: 5px;
+    border: 1px solid #87ceeb;
+}
+
+.details-link:hover {
+    background-color: #87ceeb;
+    border: 1px solid #87ceeb;
+    text-decoration: none;
+    color: #fff;
+    }
 
 .underline {
   text-decoration-line: underline;
@@ -178,7 +205,6 @@ a {
 /*paginate*/
 .pagination{
   margin: auto;
-  width: 50%;
   display: flex;
   justify-content: center;
   padding: 30px 0;
