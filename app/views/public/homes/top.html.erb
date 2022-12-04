@@ -3,9 +3,9 @@
 
     <% if customer_signed_in? %>
       <div class="col-md-4">
-        
+
         <div class="col-lg-10 mx-auto text-field">
-          <h4>フォロー中ユーザー</h4>
+          <h6><span class="bold mr-3">フォロー中ユーザー 最新投稿</span></h6>
             <% @following_customer_posts.each do |following_customer_post| %>
             <ul>
               <li>

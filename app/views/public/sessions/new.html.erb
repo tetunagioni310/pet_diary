@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col login-page">
       <h2 class="mb-5">ログイン</h2>
       <%= form_with model: @customer, url: customer_session_path, method: :post do |f| %>
       <%= render "public/shared/error_messages", resource: @customer %>
@@ -37,26 +37,25 @@
               </tr>
               <tr>
                 <td></td>
-                <td><%= f.submit "Log in", class: "btn btn-success" %></td>
+                <td><%= f.submit "ログイン", class: "btn btn-success" %></td>
               </tr>
             </tbody>
           </table>
       <% end %>
-      
+
       <div class="pt-5">
-        <h4 class="mb-3">登録がお済みでない方</h4>
-        <p><%= link_to "こちら", new_customer_registration_path, class: "underline" %>から新規登録を行なってください。</p>
+        <h4 class="mb-5">登録がお済みでない方</h4>
+        <p><%= link_to "こちら", new_customer_registration_path, class: "btn-revers mr-3" %>から新規登録を行なってください。</p>
       </div>
-      
+
       <div class="pt-5">
-        <h4 class="mb-3">管理者ログイン</h4>
-        <p><%= link_to "こちら", new_admin_session_path, class: "underline" %>　へ</p>
+        <h4 class="mb-5">管理者ログイン</h4>
+        <p><%= link_to "こちら", new_admin_session_path, class: "btn-revers mr-3" %>へ</p>
       </div>
-      
+
       <div class="pt-5">
-        <h4>ゲストログイン（閲覧用）</h4>
-        <p><%= link_to 'こちら', public_guest_sign_in_path, method: :post, class: "underline" %>　へ</p>
-        
+        <h4 class="mb-5">ゲストログイン（閲覧用）</h4>
+        <p><%= link_to 'こちら', public_guest_sign_in_path, method: :post, class: "btn-revers mr-3" %>へ</p>
       </div>
     </div>
   </div>
