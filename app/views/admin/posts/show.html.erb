@@ -1,29 +1,53 @@
 <div class="container">
-  <div class="row text-field">
-    <div class="col-md-6" style="width: 100%;">
-      <table class="col">
-        <tr>
-          <th>タイトル</th>
-          <td><%= @post.post_title %></td>
-        </tr>
-        
-        <tr>
-          <th>内容</th>
-          <td><%= @post.post_content %></td>
-        </tr>
-      </table>
-      <div class="col">
-        <%= image_tag @post.get_post_image(400,400) %>
-      </div>
-    </div>
-    
-    <div class="col-md-6">
-        <table class="col-10 m-auto">
+  <div class="row admin">
+    <div class="col-lg-6 admin-post-show text-field">
+
+      <div class="col my-5">
+        <table class="col">
           <tr>
-            <th></th>
-            <td></td>
+            <th class="col-4">タイトル</th>
+            <td class="col-8"><%= @post.post_title %></td>
+          </tr>
+
+          <tr>
+            <th class="col-4">コンテンツ</th>
+            <td class="col-8"><%= @post.post_content %></td>
           </tr>
         </table>
+      </div>
+
+      <div class="col">
+        <div class="col-8 m-auto">
+          <%= image_tag @post.get_post_image(500,500), class: "post-image" %>
+        </div>
+      </div>
     </div>
+
+    <div class="col-lg-5 text-field offset-md-1">
+      <h3 class="bold ml-3">コメント一覧</h3>
+      <div class="col">
+        <% if @comments.count >= 1 %>
+          <table class="col m-auto">
+            <% @comments.each do |comment| %>
+            <tr>
+              <td><%= comment.customer.nick_name %></td>
+              <td><%= comment.comment_content %></td>
+              <td><%= comment.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+            </tr>
+            <% end %>
+          </table>
+          <%= paginate @comments %>
+        <% else %>
+          <div class="ml-3">
+            コメントは<%= @comments.count %>件です。
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="mt-5">
+    <%= link_to  admin_customer_posts_path(@post.pet.customer.id), class: "color" do %>
+      <i class="fas fa-solid fa-reply"></i>
+    <% end %>
   </div>
 </div>

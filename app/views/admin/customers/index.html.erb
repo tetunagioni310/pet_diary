@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-10 m-auto">
+    <div class="col-md-10 m-auto">
       <h2 class="pb-5">会員一覧</h2>
-      <div class="col text-field admin-customers">
+      <div class="col text-field admin-customers custom-table">
         <table class="col text-center">
           <thead>
-            <th>ハンドルネーム</th>
-            <th>メールアドレス</th>
-            <th>投稿一覧</th>
-            <th>ステータス</th>
+            <th>HN</th>
+            <th>Email</th></th>
+            <th>Posts</th>
+            <th>Status</th>
           </thead>
 
           <tbody>
@@ -16,8 +16,8 @@
             <tr>
               <td><%= customer.nick_name %></td>
               <td><%= customer.email %></td>
-              <td><%= link_to "投稿一覧", admin_customer_posts_path(customer.id), class: "btn-links col" %></td>
-              <td><%= customer.is_deleted? %></td>
+              <td><%= link_to "一覧", admin_customer_posts_path(customer.id), class: "btn-links col" %></td>
+              <td><%= link_to customer.is_deleted?, edit_admin_customer_path(customer.id), class: "btn-links col" %></td>
             </tr>
             <% end %>
           </tbody>

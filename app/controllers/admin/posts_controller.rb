@@ -8,5 +8,6 @@ class Admin::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @customer = Customer.find_by(id: params[:customer_id])
+    @comments = Comment.where(post_id: @post.id).order(id: "DESC").page(params[:page]).per(10)
   end
 end

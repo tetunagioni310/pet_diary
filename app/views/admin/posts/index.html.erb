@@ -1,7 +1,7 @@
 <div class="container">
   <h2><%= @customer.nick_name %>さんの投稿一覧</h2>
   <div class="row">
-    <div class="admin-posts col text-field">
+    <div class="admin-posts col text-field custom-table">
        <table class="col-sm-10 m-auto">
          <tr>
            <th>タイトル</th>
@@ -23,5 +23,10 @@
        </ul>
        <%= paginate @posts %>
     </div>
+  </div>
+  <div class="mt-5">
+    <%= link_to  admin_customers_path(@customer.id), class: "color" do %>
+      <i class="fas fa-solid fa-reply"></i>
+    <% end %>
   </div>
 </div>

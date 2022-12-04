@@ -65,7 +65,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :groups, only: [:index,:create,:edit,:update,:destroy]
     
-    resources :customers, only: [:index,:show] do
+    resources :customers, only: [:index,:edit,:update] do
       resources :posts, only: [:index,:show]
     end
   end

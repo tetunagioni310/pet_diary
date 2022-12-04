@@ -770,3 +770,35 @@ div.admin-customers {
     }
   }
 }
+
+div.admin {
+  
+  table {
+    width: 100%;
+    th,td {
+      border: 1px solid #EA6B66;
+    }
+  }
+  
+  div.admin-post-show {
+  width: 100%;
+
+  div {
+      img.post-image {
+        width: 80%;
+        border-radius: 5px;
+    }
+   }
+  }
+}
+
+// table
+
+.custom-table {
+  table {
+    width: 100%;
+    th,td {
+      border: 1px solid #EA6B66;
+    }
+  }
+}
