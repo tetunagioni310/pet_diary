@@ -1,8 +1,21 @@
 <div class="container">
   <div class="row">
-    <div class="col text-field">
-      <%= link_to "有効" %>
-      <%= link_to "無効" %>
+    <div class="col-6 text-field text-center mx-auto my-5">
+      <% if @customer.is_deleted == false %>
+      　<h4>この会員のステータスを無効にしますか？</h4>
+      <% else %>
+      　<h4>この会員のステータスを有効にしますか？</h4>
+      <% end %>
+      
+      <div class="col-8 mx-auto py-5">
+        <% if @customer.is_deleted == false %>
+        　<%= link_to "無効にする", admin_customer_path(@customer.id), method: :patch , data: {confirm: "本当に無効にしますか？"}, class: "btn-links" %>
+        <% else %>
+        　<%= link_to "有効にする", admin_customer_path(@customer.id), method: :patch , data: {confirm: "本当に有効にしますか？"}, class: "btn-links"%>
+        <% end %>
+      </div>
+     
+      
     </div>
   </div>
 </div>

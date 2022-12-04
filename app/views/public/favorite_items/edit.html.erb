@@ -7,9 +7,14 @@
       <div class="col-10 m-auto">
         <%= f.label :favorite_item_name, class: "col-3 bold" %>
         <%= f.text_field :favorite_item_name, class: "form-cocntrol col-4 ml-3" %>
-        <%= f.submit "変更", class: "btn-change col-3 ml-2" %>
+        <%= f.submit "変更", class: "btn btn-success col-3 ml-2" %>
       </div>
       <% end %>
     </div>
+  </div>
+  <div class="my-5">
+    <%= link_to  public_favorite_items_path, class: "color other-link" do %>
+      <i class="fas fa-solid fa-reply"></i>お気に入りアイテム一覧へ
+    <% end %>
   </div>
 </div>

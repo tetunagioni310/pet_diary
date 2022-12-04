@@ -73,8 +73,15 @@ a {
   border-radius: 30px;
 }
 
-.follow-link {
+.other-link {
   text-decoration: none;
+  font-weight: bold;
+  color: #EA6B66;
+}
+
+.other-link:hover {
+  text-decoration: none;
+  color: #00f;
 }
 
 .align-items-center {
@@ -94,9 +101,9 @@ a {
   box-shadow: 5px 5px 5px gray;
 }
 
-.bg-color {
-  background-color: #FFF2CC;
-}
+/*.bg-color {*/
+/*  background-color: #FFF2CC;*/
+/*}*/
 
 .color {
   text-decoration: none;
@@ -105,23 +112,6 @@ a {
 .color2 {
   text-decoration: none;
   color: #000;
-}
-
-.btn-change {
-    background-color: #EA6B66;
-    color: #FFF2CC;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 6px;
-    box-shadow: 5px 5px 5px gray;
-
-    }
-
-.btn-change:hover {
-    color: #EA6B66;
-    background-color: #FFF2CC;
-    text-decoration: none;
 }
 
 .btn-revers {

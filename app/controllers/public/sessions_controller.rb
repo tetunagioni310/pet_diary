@@ -2,9 +2,13 @@
 
 class Public::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
-  before_action :ensure_normal_customer, only: [:destroy]
   before_action :customer_state, only: [:create]
+  
+  # ゲストログインをログアウトする時は以下を無効にする
+  before_action :ensure_normal_customer, only: [:destroy]
 
+
+# ゲストログイン中にはセッションを消去できない
   def ensure_normal_customer
     if !admin_signed_in?
       @customer = Customer.find(current_customer.id) 

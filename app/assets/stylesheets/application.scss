@@ -233,6 +233,12 @@ div.area {
           font-size: 15px;
           margin-left: 10px;
           font-weight: bold;
+          text-decoration: none;
+          color: #EA6B66;
+
+          &:hover {
+            color: #00f;
+          }
         }
 
         img {
@@ -373,10 +379,12 @@ div.pet-show{
     padding: 0;
     margin: 0 auto;
     height: 100%;
+    
     div.content {
       background-color: #FFF2CC;
       border-radius: 10px;
       box-shadow: 5px 5px 5px gray;
+      
       div.post-image {
         margin: 0 auto;
         img {
@@ -392,6 +400,8 @@ div.pet-show{
     div.post-text {
       margin: 0 auto;
       text-align: center;
+      color: #EA6B66;
+      
       h3 {
         margin: 10px 0;
       }
@@ -719,9 +729,14 @@ div.top-main {
         border-radius: 100%;
       }
 
-    a {
+    a.nick_name {
         text-decoration: none;
         font-weight: bold;
+        color: #EA6B66;
+
+        &:hover {
+          color: #00f;
+        }
       }
 
     div.top-links {
@@ -756,7 +771,6 @@ div.admin-posts {
   text-align: center;
   th {
     font-weight: bold;
-
   }
   td {
 
@@ -772,14 +786,14 @@ div.admin-customers {
 }
 
 div.admin {
-  
+
   table {
     width: 100%;
     th,td {
       border: 1px solid #EA6B66;
     }
   }
-  
+
   div.admin-post-show {
   width: 100%;
 

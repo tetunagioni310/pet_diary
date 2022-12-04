@@ -30,7 +30,7 @@
                 <div class="add-amount-used">
                   <%= f.hidden_field :item_id, :value => @item.id %>
                   <%= f.number_field :amount_used, :value => nil, class: "col-6 form-control" %>g
-                  <%= f.submit "追加", class: "btn-change btn-sm col-3 ml-3", :onclick => "return check_form()" %>
+                  <%= f.submit "追加", class: "btn-links btn-sm col-3 ml-3", :onclick => "return check_form()" %>
                 </div>
               <% end %>
             </td>
@@ -38,5 +38,10 @@
         </table>
       </div>
     </div>
+  </div>
+  <div class="my-5">
+    <%= link_to  public_items_path, class: "color other-link" do %>
+      <i class="fas fa-solid fa-reply"></i>アイテム一覧へ
+    <% end %>
   </div>
 </div>

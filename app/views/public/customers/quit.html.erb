@@ -2,7 +2,7 @@
      <div class="inner">
       <h2>退会しますか？</h2>
       <div>
-        <%= link_to "退会をやめる", root_path, class: "btn btn-success" %>  <%= link_to "退会する", "#", class: "btn btn-danger ml-5" %>
+        <%= link_to "退会をやめる", root_path, class: "btn btn-success" %>  <%= link_to "退会する", withdrawal_public_customers_path, method: :patch, class: "btn btn-danger ml-5" %>
       </div>
     </div>
   </div>

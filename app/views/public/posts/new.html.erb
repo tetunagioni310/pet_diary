@@ -34,12 +34,17 @@
         
         <tr>
           <td></td>
-          <td><%= f.submit "新規作成", class: "btn-change btn-block" %></td>
+          <td><%= f.submit "新規作成", class: "btn btn-success btn-block" %></td>
         </tr>
         
       </table>
       
       <% end %>
     </div>
+  </div>
+  <div class="my-5">
+    <%= link_to  public_pets_path, class: "color other-link" do %>
+      <i class="fas fa-solid fa-reply"></i>ペット一覧へ
+    <% end %>
   </div>
 </div>

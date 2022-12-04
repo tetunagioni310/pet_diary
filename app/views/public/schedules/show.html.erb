@@ -21,8 +21,8 @@
         <tr>
           <td></td>
           <td>
-            <%= link_to "編集", edit_public_schedule_path(@schedule.id), class: "btn-links" %>
-            <%= link_to "削除", public_schedule_path(@schedule.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn-links ml-2" %>
+            <%= link_to "編集", edit_public_schedule_path(@schedule.id), class: "btn-links btn-sm" %>
+            <%= link_to "削除", public_schedule_path(@schedule.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-sm ml-2" %>
           </td>
         </tr>
 
@@ -30,8 +30,8 @@
     </div>
   </div>
   <div class="my-5">
-    <%= link_to  public_schedules_path, class: "color" do %>
-      <i class="fas fa-solid fa-reply"></i>
+    <%= link_to  public_schedules_path, class: "color other-link" do %>
+      <i class="fas fa-solid fa-reply"></i>スケジュール一覧へ
     <% end %>
   </div>
 </div>

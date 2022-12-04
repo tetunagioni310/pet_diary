@@ -79,7 +79,7 @@
               </div>
 
 
-              <ul class="col my-2">
+              <ul class="col">
                 <li><%= post.post_title.truncate(10) %></li>
                 <li><%= post.post_content.truncate(30) %></li>
                 <li><%= link_to "詳細", public_post_path(post.id), class: "details-link" %></li>
@@ -100,7 +100,7 @@
               </div>
 
 
-              <ul class="col my-2">
+              <ul class="col">
                 <li><%= like.post.post_title.truncate(10) %></li>
                 <li><%= like.post.post_content.truncate(30) %></li>
                 <li><%= link_to "詳細", public_post_path(like.post.id), class: "details-link" %></li>
@@ -123,7 +123,7 @@
                   <%= following_customer_post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
                 </div>
 
-                <ul class="col my-2">
+                <ul class="col">
                   <li><%= following_customer_post.post_title.truncate(10) %></li>
                   <li><%= following_customer_post.post_content.truncate(30) %></li>
                   <li><%= link_to "詳細", public_post_path(following_customer_post.id), class: "details-link" %></li>

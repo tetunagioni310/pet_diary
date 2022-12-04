@@ -45,7 +45,7 @@ class Public::CustomersController < ApplicationController
   # 会員無効
   def withdrawal
     @customer = Customer.find_by(id: current_customer.id)
-    @customer.is_deleted = "true"
+    @customer.is_deleted = true
     @customer.save
     reset_session
     redirect_to root_path

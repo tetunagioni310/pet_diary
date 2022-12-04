@@ -4,7 +4,7 @@
       <h2 class="my-5">会員情報編集</h2>
       <%= form_with model: @customer, url: member_info_update_public_customers_path, method: :patch do |f| %>
       <%= render "public/shared/error_messages", resource: @customer %>
-        
+
         <table>
           <tr>
             <td><%= f.label :email, class: "col-form-label" %></td>
@@ -21,14 +21,18 @@
           <tr>
             <td></td>
             <td>
-              <%= f.submit "変更を保存", class: "btn-revers mr-5" %>
+              <%= f.submit "変更を保存", class: "btn btn-success mr-5" %>
               <%= link_to "退会", quit_public_customers_path, class: "btn btn-danger ml-5" %>
             </td>
           </tr>
-          
         </table>
-        
+
       <% end %>
     </div>
+  </div>
+  <div class="my-5">
+    <%= link_to  member_info_public_customers_path, class: "color other-link" do %>
+      <i class="fas fa-solid fa-reply"></i>マイページへ
+    <% end %>
   </div>
 </div>

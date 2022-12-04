@@ -21,7 +21,7 @@
                     <div class="d-flex col">
                       <%= f.number_field :amount, value: nil, placeholder: "入力してください", required:true, class: "col-8 form-control" %>
                       <%= f.hidden_field :item_name, :value => item.item_name %>
-                      <%= f.submit "追加", class: "btn-change btn-sm ml-3" %>
+                      <%= f.submit "追加", class: "btn-links btn-sm ml-3" %>
                     </div>
                   <% end %>
                 </td>
@@ -70,7 +70,7 @@
                 <tr>
                   <td class="row mt-3">
                     <div class="col-form-label col-4"></div>
-                    <div class="col-8 p-0"><%= f.submit "登録", class: "btn-change btn-block" %></div>
+                    <div class="col-8 p-0"><%= f.submit "登録", class: "btn btn-success btn-block" %></div>
                   </td>
                 </tr>
               </table>

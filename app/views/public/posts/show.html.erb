@@ -19,7 +19,7 @@
 
         <div class="h6 row justify-content-end">
           <%= @post.created_at.strftime("%Y年%m月%d日") %>
-          &emsp;<%= link_to @post.pet.pet_name, public_pet_path(@post.pet_id) %><%= @post.pet.gender == "♂" ? "くん" : "ちゃん" %>の投稿
+          &emsp;<%= link_to @post.pet.pet_name, public_pet_path(@post.pet_id), class: "other-link" %><%= @post.pet.gender == "♂" ? "くん" : "ちゃん" %>の投稿
           <%= render "public/shared/like", post: @post %>
         </div>
 
@@ -30,7 +30,7 @@
           <div class="col-md-7 m-auto">
             <%= f.text_area :comment_content, rows: "2", class: "form-control" %>
             <%= f.hidden_field :post_id, value: @post.id %>
-            <%= f.submit "コメントをする", class: "btn-change btn-sm my-3" %>
+            <%= f.submit "コメントをする", class: "btn-links btn-sm my-3" %>
           </div>
         <% end %>
       </div>
@@ -51,8 +51,8 @@
     </div>
   </div>
   <div class="my-5">
-    <%= link_to  public_customer_path(@post.pet.customer.id), class: "color" do %>
-      <i class="fas fa-solid fa-reply"></i>
+    <%= link_to  public_customer_path(@post.customer.id), class: "color other-link" do %>
+      <i class="fas fa-solid fa-reply"></i>プロフィールへ
     <% end %>
   </div>
 </div>

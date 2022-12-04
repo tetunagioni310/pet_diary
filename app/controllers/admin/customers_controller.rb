@@ -10,7 +10,16 @@ class Admin::CustomersController < ApplicationController
   end
   
   def update
-    
+    @customer = Customer.find(params[:id])
+    if @customer.is_deleted == false
+      @customer.is_deleted = true
+      @customer.save
+      redirect_to admin_customers_path
+    elsif @customer.is_deleted == true
+      @customer.is_deleted = false
+      @customer.save
+      redirect_to admin_customers_path
+    end
   end
 
 end

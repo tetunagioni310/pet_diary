@@ -31,7 +31,7 @@
           <% @posts.each do |post| %>
             <div class="col-md-8 text-field top-content">
               <%= image_tag post.customer.get_customer_image(50,50) %>
-              <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "nick_name" %>
+              <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "other-link" %>
               <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %><br>
               <!--<div class="top-links col-10 m-auto">-->
                 <ul class="m-3">
