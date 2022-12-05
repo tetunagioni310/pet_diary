@@ -37,9 +37,14 @@
       <% end %>
     </div>
   </div>
-  <div class="my-5">
+  <div class="mt-5">
+    <%= link_to  member_info_public_customers_path, class: "color other-link" do %>
+      <i class="fas fa-solid fa-reply"></i>マイページ
+    <% end %>
+  </div>
+  <div class="mb-5">
     <%= link_to  public_posts_path, class: "color other-link" do %>
-      <i class="fas fa-solid fa-reply"></i>投稿一覧へ
+      <i class="fas fa-solid fa-reply"></i>投稿一覧
     <% end %>
   </div>
 </div>

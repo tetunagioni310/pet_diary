@@ -1,7 +1,7 @@
 <div class="container">
   <h2>
     <%= @pet.pet_name %>くんの詳細ページ
-    <%= link_to public_customer_path(@pet.customer_id), class: "btn btn-sm p-0 mx-2" do %>
+    <%= link_to public_customer_path(@pet.customer_id), class: "btn btn-sm p-0 mx-2 text-warning" do %>
       <i class="fas fa-2x fa-solid fa-user mb-1"></i>
     <% end %>
   </h2>
@@ -45,10 +45,9 @@
                 <%= link_to "編集", edit_public_pet_path(@pet.id), class: "btn" %>
                 <%= link_to "アイテム", public_items_path, class: "btn" %>
                 <%= link_to "ワーク", public_pets_work_path(@pet.id), class: "btn" %>
+                <%= link_to "投稿", public_pets_post_path(@pet.id), class: "btn" %>
                 <%= link_to "削除", public_pet_path(@pet.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn" %>
-                <%= link_to public_customer_path(@pet.customer_id), class: "btn btn-sm" do %>
-                  <i class="fas fa-2x fa-solid fa-user"></i>
-                <% end %>
+
               </div>
               <% end %>
             </td>
@@ -61,9 +60,14 @@
       </div>
 
   </div>
-  <div class="my-5">
-    <%= link_to  public_pets_path, class: "color other-link" do %>
-      <i class="fas fa-solid fa-reply"></i>ペット一覧へ
+  <div class="my-3">
+    <%= link_to  public_customers_pet_path(@pet.customer.id), class: "color other-link" do %>
+      <i class="fas fa-solid fa-reply mr-2"></i>　ペット一覧
+    <% end %>
+  </div>
+  <div class="my-3">
+    <%= link_to  public_customers_post_path(@pet.customer.id), class: "color other-link" do %>
+      <i class="fas fa-solid fa-reply mr-2"></i>　<%= @pet.customer.nick_name %>さんの投稿一覧
     <% end %>
   </div>
 </div>

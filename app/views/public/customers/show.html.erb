@@ -28,6 +28,8 @@
             <td class="text-center"><%= @customer.followings.count %><%= link_to "フォロー", public_customer_followings_path(@customer.id) %></td>
             <td class="text-center"><%= @customer.followers.count %><%= link_to "フォロワー", public_customer_followers_path(@customer.id) %></td>
           </tr>
+
+          <% if @customer.id == current_customer.id %>
           <tr>
             <td colspan="2">
               <%= link_to  member_info_edit_public_customers_path, class: "btn-links btn-block text-center" do %>
@@ -35,9 +37,16 @@
               <% end %>
             </td>
           </tr>
+          <% end %>
+
           <tr>
             <td colspan="2">
               <%= link_to "ペット一覧", public_customers_pet_path(@customer.id), class: "btn-links btn-block text-center" %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <%= link_to "投稿一覧", public_customers_post_path(@customer.id), class: "btn-links btn-block text-center" %>
             </td>
           </tr>
         </table>
@@ -65,7 +74,7 @@
 
 
       <div class="area col">
-        
+
         <input type="radio" name="tab_name" id="tab1" checked>
         <label class="tab_class bold" for="tab1">投稿</label>
 
@@ -106,7 +115,7 @@
                 <li><%= link_to "詳細", public_post_path(like.post.id), class: "details-link" %></li>
               </ul>
             </div>
-             
+
           <% end %>
         </div>
 

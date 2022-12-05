@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-8 m-auto">
+    <div class="col-sm-8">
 
       <h2>コメント編集</h2>
       <%= form_with model: @customer, url: public_customer_path, method: :patch do |f| %>
@@ -20,7 +20,7 @@
   </div>
   <div class="my-5">
     <%= link_to  public_customer_path(@customer.id), class: "color other-link" do %>
-      <i class="fas fa-solid fa-reply"></i>プロフィールページへ
+      <i class="fas fa-solid fa-reply"></i>プロフィールページ
     <% end %>
   </div>
 </div>

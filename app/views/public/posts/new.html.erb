@@ -11,40 +11,40 @@
           <td><%= f.label :pet_id %></td>
           <td><%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name),  {prompt: "ペット選択"}, class: "form-control col-4" %></td>
         </tr>
-        
+
         <tr>
           <td><%= f.label :post_title %></td>
           <td><%= f.text_field :post_title, class: "form-control" %></td>
         </tr>
-  
+
         <tr>
           <td><%= f.label :post_content %></td>
           <td><%= f.text_area :post_content,rows: "5", class: "form-control" %></td>
         </tr>
-  
+
         <tr>
           <td><%= f.label :start_time %><br></td>
           <td><%= f.date_select :start_time, use_month_numbers: true %></td>
         </tr>
-        
+
         <tr>
           <td><%= f.label :post_image %></td>
           <td><%= f.file_field :post_image %></td>
         </tr>
-        
+
         <tr>
           <td></td>
           <td><%= f.submit "新規作成", class: "btn btn-success btn-block" %></td>
         </tr>
-        
+
       </table>
-      
+
       <% end %>
     </div>
   </div>
   <div class="my-5">
     <%= link_to  public_pets_path, class: "color other-link" do %>
-      <i class="fas fa-solid fa-reply"></i>ペット一覧へ
+      <i class="fas fa-solid fa-reply mr-2"></i>ペット一覧
     <% end %>
   </div>
 </div>

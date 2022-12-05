@@ -45,14 +45,19 @@
             </tr>
           <% end %>
         </table>
-        
+
       </div>
 
     </div>
   </div>
   <div class="my-5">
     <%= link_to  public_customer_path(@post.customer.id), class: "color other-link" do %>
-      <i class="fas fa-solid fa-reply"></i>プロフィールへ
+      <i class="fas fa-solid fa-reply"></i>プロフィール
+    <% end %>
+  </div>
+  <div class="my-5">
+    <%= link_to  public_customers_post_path(@post.customer.id), class: "color other-link" do %>
+      <i class="fas fa-solid fa-reply"></i><%= @post.customer.nick_name %>さんの投稿一覧
     <% end %>
   </div>
 </div>

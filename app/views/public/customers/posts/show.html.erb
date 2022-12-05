@@ -1,40 +1,21 @@
 <div class="container">
 
-<div class="col">
-   <% if !@keyword %>
-      <div class="row col">
-        <h2>
-          <%= current_customer.nick_name %>さんの投稿一覧
-        </h2>
-          <%= link_to new_public_post_path, class: "text-warning ml-3" do %>
-            <i class="fas fa-2x fa-solid fa-plus"></i>
-          <% end %>
-      </div>
-    <% else %>
-      <h2>
-        検索結果：　<%= @keyword %>
-      </h2>
+  <div class="row col my-5">
+    <h2>
+      <%= @customer.nick_name %>さんの投稿一覧
+    </h2>
+    <% if @customer.id == current_customer.id %>
+      <%= link_to new_public_post_path, class: "text-warning ml-3" do %>
+        <i class="fas fa-2x fa-solid fa-plus"></i>
+      <% end %>
     <% end %>
-
-    <div class="my-5">
-      <div class="col-sm-5">
-        <%= form_with url: search_public_posts_path, method: :get, local: true do |f| %>
-          <div class="d-flex">
-            <%= f.text_field :keyword, value: @keyword, class: "form-control m-0" %>
-            <%= f.submit "検索", class: "btn btn-success ml-3" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-</div>
+  </div>
 
   <div class="row">
-
     <div class="col post-index">
       <table class="col">
         <thead>
-          <th>ペット</th>
+          <th>ペット選択</th>
           <th>タイトル</th>
           <th>投稿日</th>
         </thead>
@@ -43,9 +24,11 @@
           <% if @posts.count >= 1 %>
             <% @posts.each do |post| %>
               <tr>
-                <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "btn-links btn-sm" %></td>
+                <td><%= link_to post.pet.pet_name, public_pets_post_path(post.pet.id), class: "btn-links btn-sm" %></td>
                 <td class="col-4"><%= link_to post.post_title, public_post_path(post.id) %></td>
                 <td><%= post.start_time.strftime("%Y/%m/%d") %></td>
+
+              <% if @customer.id == current_customer.id %>
                 <td class="row">
                   <% if post.customer_id == current_customer.id%>
                     <%= button_to edit_public_post_path(post.id), method: :get do %>
@@ -57,6 +40,8 @@
                     <% end %>
                   <% end %>
                 </td>
+              <% end %>
+
               </tr>
             <% end %>
           <% else %>
@@ -72,7 +57,6 @@
         <%= paginate @posts %>
       </div>
     </div>
-
   </div>
 
 </div>
