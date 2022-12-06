@@ -39,12 +39,17 @@ class Public::ItemsController < ApplicationController
   end
 
   def update
+    @original_value = Item.find(params[:id])
     @item = Item.find(params[:id])
     item = Item.new(item_params)
     @item.amount += item.amount
     @item.total_capacity += @item.capacity * item.amount
     @item.save
-    flash[:notice] = "在庫を追加しました"
+    if @original_value.amount < @item.amount
+      flash[:notice] = "在庫を追加しました"
+    else
+      flash[:notice] = "在庫を減らしました"
+    end
     redirect_to public_items_path
   end
 

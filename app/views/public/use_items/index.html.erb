@@ -62,7 +62,7 @@
                       }
                     }
                   </script>
-                  
+
                   <%= link_to "お気に入り登録", public_favorite_items_path, method: :post, class: "btn-links btn-sm", onclick: "return check_form()" %>
                 </td>
                 <td class="col-1 p-0"></td>
@@ -73,7 +73,7 @@
         <!--お気に入り呼び出し 確認ダイアログ-->
         <script>
           function beforeSubmit() {
-            if(window.confirm('お気に入りおよび出しますか？')) {
+            if(window.confirm('お気に入りをよび出しますか？')) {
               return true;
             } else {
               return false;

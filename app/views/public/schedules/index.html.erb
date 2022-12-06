@@ -4,7 +4,7 @@
     <div class="schedule-create col-lg-4 text-field">
       <%= form_with model: @schedule, url: public_schedules_path, method: :post do |f| %>
       <%= render "public/shared/error_messages", resource: @schedule %>
-      
+
       <div>
         <%= f.label :schedule_title %>
         <%= f.text_field :schedule_title, class: "form-control" %>
@@ -19,7 +19,7 @@
         <%= f.label :start_time %><br>
         <%= f.date_select :start_time, use_month_numbers: true %>
       </div>
-      
+
       <div class="mt-5">
         <%= f.submit "作成", class: "btn btn-success btn-block" %>
       </div>
@@ -33,7 +33,7 @@
 
           <% schedules.each do |schedule| %>
             <div class="col p-2">
-              <%= link_to schedule.schedule_title, public_schedule_path(schedule.id), class: "schedule-link" %>
+              <%= link_to schedule.schedule_title.truncate(5), public_schedule_path(schedule.id), class: "schedule-link" %>
             </div>
           <% end %>
         <% end %>

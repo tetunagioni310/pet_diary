@@ -6,7 +6,7 @@
     <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
   </div>
 
-  <table class="table-striped">
+  <table class="col table-striped">
     <thead>
       <tr>
         <% date_range.slice(0, 7).each do |day| %>
@@ -16,6 +16,7 @@
     </thead>
 
     <tbody>
+      <!--date_rangeから週を取得-->
       <% date_range.each_slice(7) do |week| %>
         <tr>
           <% week.each do |day| %>

@@ -3,7 +3,7 @@
   <div class="row">
 
     <!--サイドバー-->
-    <div class="col-lg-4 py-5">
+    <div class="col-lg-4 py-4">
       <div class="col-lg-10 m-auto profile-field">
         <table class="col-11 mx-auto">
           <tr>
@@ -56,12 +56,8 @@
     <!--メイン-->
     <div class="col-lg-8">
 
-      <div class="col-lg-10 mx-auto">
-        <div class="col row text-center">
-          <h4 class="col bold">
+      <div class="text-center">
             <%= @customer.nick_name %>さんのプロフィール
-          </h4>
-        </div>
       </div>
 
       <div class="text-field col-lg-10 m-auto pt-5">
@@ -88,7 +84,7 @@
               </div>
 
 
-              <ul class="col">
+              <ul class="m-3">
                 <li><%= post.post_title.truncate(10) %></li>
                 <li><%= post.post_content.truncate(30) %></li>
                 <li><%= link_to "詳細", public_post_path(post.id), class: "details-link" %></li>
@@ -109,7 +105,7 @@
               </div>
 
 
-              <ul class="col">
+              <ul class="m-3">
                 <li><%= like.post.post_title.truncate(10) %></li>
                 <li><%= like.post.post_content.truncate(30) %></li>
                 <li><%= link_to "詳細", public_post_path(like.post.id), class: "details-link" %></li>
@@ -132,7 +128,7 @@
                   <%= following_customer_post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
                 </div>
 
-                <ul class="col">
+                <ul class="m-3">
                   <li><%= following_customer_post.post_title.truncate(10) %></li>
                   <li><%= following_customer_post.post_content.truncate(30) %></li>
                   <li><%= link_to "詳細", public_post_path(following_customer_post.id), class: "details-link" %></li>
