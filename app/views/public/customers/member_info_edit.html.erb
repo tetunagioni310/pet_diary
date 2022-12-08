@@ -1,31 +1,33 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2 class="my-5">会員情報編集</h2>
+      <div class="my-5 h4 bold">会員情報編集</div>
+
       <%= form_with model: @customer, url: member_info_update_public_customers_path, method: :patch do |f| %>
       <%= render "public/shared/error_messages", resource: @customer %>
 
-        <table>
-          <tr>
-            <td><%= f.label :email, class: "col-form-label" %></td>
-            <td><%= f.text_field :email, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :nick_name, class: "col-form-label" %></td>
-            <td><%= f.text_field :nick_name, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :customer_image, class: "col-form-label" %></td>
-            <td><%= f.file_field :customer_image, class: "pl-0" %></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-              <%= f.submit "変更を保存", class: "btn btn-success mr-5" %>
-              <%= link_to "退会", quit_public_customers_path, class: "btn btn-danger ml-5" %>
-            </td>
-          </tr>
-        </table>
+      <div class="col-md-7">
+        <div class="form-group col row">
+          <%= f.label :email, class: "col-form-label col-md-4 px-0" %>
+          <%= f.text_field :email, class: "form-control col-md-8" %>
+        </div>
+
+        <div class="form-group col row">
+          <%= f.label :nick_name, class: "col-form-label col-md-4 px-0" %>
+          <%= f.text_field :nick_name, class: "form-control col-md-8" %>
+        </div>
+
+        <div class="form-group col row">
+          <%= f.label :customer_image, class: "col-form-label col-md-4 px-0" %>
+          <%= f.file_field :customer_image, class: "pl-0 col-md-8" %>
+        </div>
+
+        <div class="form-group col row mt-4">
+          <div class="col-sm-4"></div>
+          <div class="col-4 p-0"><%= f.submit "変更を保存", class: "btn btn-success" %></div>
+          <div class="col-4 p-0"><%= link_to "退会", quit_public_customers_path, class: "btn btn-danger" %></div>
+        </div>
+      </div>
 
       <% end %>
     </div>

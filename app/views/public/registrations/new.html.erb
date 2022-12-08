@@ -1,41 +1,39 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2 class="mb-5">新規登録</h2>
+      <div class="h2 bold my-5">新規登録</div>
 
       <%= form_with model: @customer, url: customer_registration_path, method: :post do |f| %>
       <%= render "public/shared/error_messages", resource: @customer %>
 
-        <!--<table class="customer_info customer_form col-10">-->
-        <table class="col-md-8">
-            <tr>
-              <td class="col-5"><%= f.label :nick_name, "ニックネーム" %></td>
-              <td class="col-7"><%= f.text_field :nick_name, placeholder: "例： Suzuki", class: "form-control" %></td>
-            </tr>
+      <div class="col-md-6">
+          <div class="form-group row">
+            <%= f.label :nick_name, "ニックネーム", class: "col-form-label col-4" %>
+            <%= f.text_field :nick_name, placeholder: "例： Suzuki", class: "form-control col-8" %>
+          </div>
 
+          <div class="form-group row">
+            <%= f.label :email, "メールアドレス", class: "col-form-label col-4" %>
+            <%= f.email_field :email, placeholder: "例：petdiary2022@gmail.com", class: "form-control col-8" %>
+          </div>
 
-            <tr>
-              <td class="col-5"><%= f.label :email, "メールアドレス" %></td>
-              <td class="col-7"><%= f.email_field :email, placeholder: "例：petdiary2022@gmail.com", class: "form-control" %></td>
-            </tr>
+          <div class="form-group row">
+            <%= f.label :password, "パスワード", class: "col-form-label col-4" %>
+            <%= f.password_field :password, placeholder: "パスワードは#{@minimum_password_length}文字以上", class: "form-control col-8" %>
+          </div>
 
-            <tr>
-              <td class="col-5">
-                <%= f.label :password, "パスワード" %>
-              </td>
-              <td class="col-7"><%= f.password_field :password, placeholder: "パスワードは#{@minimum_password_length}文字以上", class: "form-control" %></td>
-            </tr>
+          <div class="form-group row">
+            <%= f.label :password_confirmation, "パスワード(確認用)", class: "col-form-label col-4" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-8" %>
+          </div>
 
-            <tr>
-              <td class="col-5"><%= f.label :password_confirmation, "パスワード(確認用)" %></td>
-              <td class="col-7"><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></td>
-            </tr>
+          <div class="form-group row mt-3">
+            <div class="col-4"></div>
+            <div class="col-8 px-0">
+              <%= f.submit "新規登録", class: "btn btn-success col-6" %>
+            </div>
+          </div>
 
-            <tr>
-              <td class="col-5"></td>
-              <td class="col-7"><%= f.submit "新規登録", class: "btn btn-success btn-block" %></td>
-            </tr>
-        </table>
       <% end %>
     </div>
   </div>

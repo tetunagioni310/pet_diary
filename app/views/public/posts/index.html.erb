@@ -2,10 +2,8 @@
 
 <div class="col">
    <% if !@keyword %>
-      <div class="row col">
-        <h2>
+      <div class="row h2 bold">
           <%= current_customer.nick_name %>さんの投稿一覧
-        </h2>
           <%= link_to new_public_post_path, class: "text-warning ml-3" do %>
             <i class="fas fa-x fa-solid fa-plus"></i>
           <% end %>
@@ -26,12 +24,11 @@
         <% end %>
       </div>
     </div>
-
 </div>
 
   <div class="row">
-
-    <div class="col post-index">
+    <div class="col">
+      <div class="col post-index">
       <table class="col">
         <thead>
           <th>ペット</th>
@@ -44,7 +41,7 @@
             <% @posts.each do |post| %>
               <tr>
                 <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "btn-links btn-sm" %></td>
-                <td class="col-4"><%= link_to post.post_title, public_post_path(post.id) %></td>
+                <td class="col-4"><%= link_to post.post_title.truncate(13), public_post_path(post.id) %></td>
                 <td><%= post.start_time.strftime("%Y/%m/%d") %></td>
                 <td class="row">
                   <% if post.customer_id == current_customer.id%>
@@ -72,7 +69,6 @@
         <%= paginate @posts %>
       </div>
     </div>
-
+   </div>
   </div>
-
 </div>

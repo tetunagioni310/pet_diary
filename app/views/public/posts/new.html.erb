@@ -1,46 +1,48 @@
 <div class="container">
-  <h2>新規投稿</h2>
+  <div class="col-md-8 m-auto h4 bold">新規投稿</div>
 
   <div class="my-5 row">
-    <div class="col-10 m-auto text-field">
-      <%= form_with model: @post, url: public_posts_path, method: :post do |f| %>
-      <%= render "public/shared/error_messages", resource: @post %>
+    <div class="col">
+      <div class="col-md-8 m-auto text-field">
+        <%= form_with model: @post, url: public_posts_path, method: :post do |f| %>
+        <%= render "public/shared/error_messages", resource: @post %>
 
-      <table class="col-10">
-        <tr>
-          <td><%= f.label :pet_id %></td>
-          <td><%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name),  {prompt: "ペット選択"}, class: "form-control col-4" %></td>
-        </tr>
+        <div class="col-md-10">
+          <div class="form-group row">
+            <%= f.label :pet_id, class: "col-3 col-form-label" %>
+            <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name),  {prompt: "ペット選択"}, class: "form-control col-9" %>
+          </div>
 
-        <tr>
-          <td><%= f.label :post_title %></td>
-          <td><%= f.text_field :post_title, class: "form-control" %></td>
-        </tr>
+          <div class="form-group row">
+            <%= f.label :post_title, class: "col-3 col-form-label" %>
+            <%= f.text_field :post_title, class: "form-control col-9" %>
+          </div>
 
-        <tr>
-          <td><%= f.label :post_content %></td>
-          <td><%= f.text_area :post_content,rows: "5", class: "form-control" %></td>
-        </tr>
+          <div class="form-group row">
+            <%= f.label :post_content, class: "col-3 col-form-label" %>
+            <%= f.text_area :post_content,rows: "5", class: "form-control col-9" %>
+          </div>
 
-        <tr>
-          <td><%= f.label :start_time %><br></td>
-          <td><%= f.date_select :start_time, use_month_numbers: true %></td>
-        </tr>
+          <div class="form-group row">
+            <%= f.label :start_time, class: "col-3 col-form-label" %>
+            <%= f.date_select :start_time, use_month_numbers: true, class: "form-control col-9" %>
+          </div>
 
-        <tr>
-          <td><%= f.label :post_image %></td>
-          <td><%= f.file_field :post_image %></td>
-        </tr>
+          <div class="form-group row">
+            <%= f.label :post_image, class: "col-3 col-form-label" %>
+            <%= f.file_field :post_image, use_month_numbers: true, class: "col-9 px-0" %>
+          </div>
 
-        <tr>
-          <td></td>
-          <td><%= f.submit "新規作成", class: "btn btn-success btn-block" %></td>
-        </tr>
+          <div class="row">
+            <div class="col-3"></div>
+            <div class="col-9 p-0"><%= f.submit "新規登録", class: "btn btn-success text-center col-8" %></div>
+          </div>
+        </div>
 
-      </table>
-
-      <% end %>
+        <% end %>
     </div>
+    </div>
+
   </div>
   <div class="my-5">
     <%= link_to  public_pets_path, class: "color other-link" do %>

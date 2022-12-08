@@ -1,44 +1,46 @@
 <div class="container">
   <div class="row">
-    <div class="follow-field col text-field">
-      <table>
-        <tr>
-          <th>
-            <%= link_to public_customer_path(current_customer.id), class: "color" do %>
-              <i class="fas fa-solid fa-reply"></i>
-            <% end %>
-          </th>
-          <th class="bold">
-            フォロワー
-          </th>
-        </tr>
-        <% if @customers.count >= 1 %>
+    <div class="col">
+      <div class="follow-field col text-field">
+        <table>
           <tr>
-            <td></td>
-            <td>
-              <% @customers.each do |customer| %>
-                <div class="row">
-                  <%= image_tag customer.get_customer_image(50,50)%>
-                  <%= link_to customer.nick_name, public_customer_path(customer.id), class: "bold" %>
-                  <div class="ml-3">
-                      <% if current_customer.following?(customer) %>
-                        <%= link_to "フォロー解除", public_customer_relationships_path(customer.id), class: "btn-links btn-sm btn-block ml-0 mt-2", method: :delete %>
-                      <% else %>
-                        <%= link_to "+フォロー", public_customer_relationships_path(customer.id), class: "btn-links btn-sm btn-block ml-0 mt-2", method: :post %>
-                      <% end %>
-                  </div>
-                </div>
+            <th>
+              <%= link_to public_customer_path(current_customer.id), class: "other-link" do %>
+                <i class="fas fa-solid fa-reply"></i>
               <% end %>
-            </td>
+            </th>
+            <th class="bold">
+              フォロワー
+            </th>
           </tr>
-        <% else %>
-          <tr>
-            <td>
-              フォロワーはいません
-            </td>
-          </tr>
-        <% end %>
-      </table>
+          <% if @customers.count >= 1 %>
+            <tr>
+              <td></td>
+              <td>
+                <% @customers.each do |customer| %>
+                  <div class="row">
+                    <%= image_tag customer.get_customer_image(50,50)%>
+                    <%= link_to customer.nick_name, public_customer_path(customer.id), class: "bold other-link mt-2 ml-2" %>
+                    <div class="ml-3">
+                        <% if current_customer.following?(customer) %>
+                          <%= link_to "フォロー解除", public_customer_relationships_path(customer.id), class: "btn btn-outline-danger btn-sm btn-block ml-0 mt-2", method: :delete %>
+                        <% else %>
+                          <%= link_to "+フォロー", public_customer_relationships_path(customer.id), class: "btn btn-success btn-sm btn-block ml-0 mt-2", method: :post %>
+                        <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
+          <% else %>
+            <tr>
+              <td>
+                フォロワーはいません
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
     </div>
   </div>
 </div>

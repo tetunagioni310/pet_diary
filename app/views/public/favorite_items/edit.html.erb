@@ -1,15 +1,17 @@
 <div class="container">
-  <h2 class="m-5">表示名変更</h2>
+  <div class="h4 bold m-3">表示名変更</div>
   <div class="row">
-    <div class="col text-field">
-      <%= form_with model: @favorite_item, url: public_favorite_item_path(@favorite_item.id), method: :patch do |f| %>
-      <%= render "public/shared/error_messages", resource: @favorite_item %>
-      <div class="col-10 m-auto">
-        <%= f.label :favorite_item_name, class: "col-3 bold" %>
-        <%= f.text_field :favorite_item_name, class: "form-cocntrol col-4 ml-3" %>
-        <%= f.submit "変更", class: "btn btn-success col-3 ml-2" %>
-      </div>
-      <% end %>
+    <div class="col">
+      <div class="col text-field">
+        <%= form_with model: @favorite_item, url: public_favorite_item_path(@favorite_item.id), method: :patch do |f| %>
+        <%= render "public/shared/error_messages", resource: @favorite_item %>
+          <div class="col-10 m-auto">
+            <%= f.label :favorite_item_name, class: "col-3 bold" %>
+            <%= f.text_field :favorite_item_name, class: "form-cocntrol col-4 ml-3" %>
+            <%= f.submit "変更", class: "btn btn-success col-3 ml-2" %>
+          </div>
+        <% end %>
+    </div>
     </div>
   </div>
   <div class="my-5">

@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-5">
       <div class="col-lg-6">
-        <h2>アイテム在庫一覧</h2>
+        <div class="h4 bold">アイテム在庫一覧</div>
         <div class="items-list text-field">
           <% if @items.count >= 1 %>
             <table class="col">
@@ -21,7 +21,7 @@
                     <div class="d-flex col">
                       <%= f.number_field :amount, value: nil, placeholder: "入力してください", required:true, class: "col-8 form-control" %>
                       <%= f.hidden_field :item_name, :value => item.item_name %>
-                      <%= f.submit "追加", class: "btn-links btn-sm ml-3" %>
+                      <%= f.submit "追加", class: "btn btn-success btn-sm ml-3" %>
                     </div>
                   <% end %>
                 </td>
@@ -44,7 +44,7 @@
       </div>
 
       <div class="col-lg-6">
-        <h2>アイテム登録</h2>
+        <div class="h4 bold">アイテム登録</div>
         <div class="item-record">
           <%= form_with model: @item, url: public_items_path, method: :post do |f| %>
           <%= render "public/shared/error_messages", resource: @item %>

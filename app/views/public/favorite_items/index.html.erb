@@ -1,38 +1,39 @@
 <div class="container">
-  <h2 class="m-5">お気に入りアイテム</h2>
+  <div class="h4 bold m-5">お気に入りアイテム</div>
   <div class="row">
-    <div class="f-items col-md-10 text-field">
-      <% if @favorite_items.count >= 1 %>
-      <table class="col m-auto">
-        <thead>
-          <th>表示名</th>
-          <th>アイテム一覧</th>
-          <th colspan="2"></th>
-        </thead>
+    <div class="col">
+      <div class="f-items col-md-10 text-field">
+        <% if @favorite_items.count >= 1 %>
+        <table class="col m-auto">
+          <thead>
+            <th>表示名</th>
+            <th>アイテム一覧</th>
+            <th colspan="2"></th>
+          </thead>
 
-        <tbody>
-        <% @favorite_items.each do |favorite_item| %>
-        <tr>
+          <tbody>
+          <% @favorite_items.each do |favorite_item| %>
+          <tr>
 
-          <td class="col-3">
-            <%= favorite_item.favorite_item_name %>
-          </td>
+            <td class="col-3">
+              <%= favorite_item.favorite_item_name %>
+            </td>
 
-          <% favorite_item_details = FavoriteItemDetail.where(favorite_item_id: favorite_item.id)%>
-          <td class="col-7">
-            <% favorite_item_details.each do |favorite_item_detail| %>
-              <%= favorite_item_detail.item.item_name %>(<%= favorite_item_detail.amount_used %>g)<br>
-            <% end %>
-          </td>
+            <% favorite_item_details = FavoriteItemDetail.where(favorite_item_id: favorite_item.id)%>
+            <td class="col-7">
+              <% favorite_item_details.each do |favorite_item_detail| %>
+                <%= favorite_item_detail.item.item_name %>(<%= favorite_item_detail.amount_used %>g)<br>
+              <% end %>
+            </td>
 
-         
+
             <% if favorite_item.customer_id == current_customer.id%>
               <td class="col-1">
               <%= button_to edit_public_favorite_item_path(favorite_item.id), method: :get do %>
                 <i class="fas fa-solid fa-pen"></i>
               <% end %>
               </td>
-              
+
               <td class="col-1">
               <%= button_to public_favorite_item_path(favorite_item.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
                 <i class="fas fa-solid fa-trash"></i>
@@ -40,21 +41,23 @@
               </td>
             <% end %>
 
-        </tr>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <% else %>
+        <table class="col">
+          <tr>
+            <td>
+              <div class="no-favorite-items">
+                お気に入りは登録されていません
+              </div>
+            </td>
+          </tr>
+        </table>
         <% end %>
-        </tbody>
-      </table>
-      <% else %>
-      <table class="col">
-        <tr>
-          <td>
-            <div class="no-favorite-items">
-              お気に入りは登録されていません
-            </div>
-          </td>
-        </tr>
-      </table>
-      <% end %>
     </div>
+    </div>
+
   </div>
 </div>

@@ -1,7 +1,8 @@
 <div class="container">
   <h2>スケジュール一覧</h2>
   <div class="row">
-    <div class="schedule-create col-lg-4 text-field">
+    <div class="col-lg-4">
+      <div class="schedule-create col text-field">
       <%= form_with model: @schedule, url: public_schedules_path, method: :post do |f| %>
       <%= render "public/shared/error_messages", resource: @schedule %>
 
@@ -26,8 +27,10 @@
 
       <% end %>
     </div>
+    </div>
 
-    <div class="schedule text-field col-lg-7 offset-lg-1">
+    <div class="col-lg-7 offset-lg-1">
+      <div class="schedule text-field col">
        <%= month_calendar events: @schedules do |date, schedules| %>
           <%= date.day %>
 
@@ -37,6 +40,8 @@
             </div>
           <% end %>
         <% end %>
+      </div>
     </div>
+
   </div>
 </div>

@@ -61,6 +61,7 @@ header {
 
 main {
   padding: 100px 0;
+  color: #FFF2CC;
   background-color: #EA6B66;
   min-height: 100vh;
   width: 100%;
@@ -84,37 +85,32 @@ td {
   border-color: #aaa;
 }
 
-div.container {
-  color: #FFF2CC;
-}
+
 
 // プロフィールページ
 
   // サイドバー
 
   div.profile-field {
-      background-color: #FFF2CC;
-      border-radius: 10px;
-      padding: 50px 0;
-      box-shadow: 5px 5px 5px gray;
-      table {
-        td {
+    margin: 0 auto;
+    table {
+      td {
+        img.customer-image {
+          width: 100%;
+          border-radius: 100%;
+          display: block;
+          margin: 0 auto;
+        }
+
+        a {
           color: #EA6B66;
-
-          img.customer-image {
-            width: 100%;
-            border-radius: 100%;
-            display: block;
-            margin: 0 auto;
-          }
-
-          a {
-            color: #EA6B66;
-            border-color: #EA6B66;
-            text-decoration: none;
-          }
+          border-color: #EA6B66;
+          text-decoration: none;
+          font-size: 12px;
+          padding: 10px;
         }
       }
+    }
     }
 
 
@@ -136,7 +132,7 @@ div.container {
 
   //タブ機能
 
-  div.area {
+  div.tab-area {
     flex-wrap: wrap;
     display: flex;
 
@@ -196,12 +192,6 @@ div.container {
 
 
 //  ペット一覧
- div.pet-title {
-    line-height: 50px;
-    margin: 0 auto;
-    display: flex;
-    text-align: center;
-  }
 
 div.pet-index {
   div.pet-list {
@@ -431,11 +421,6 @@ div.item-show {
   }
 
 // 使用アイテム
-div.use-item-title {
-    line-height: 50px;
-    margin: 30px 10px;
-    display: flex;
-  }
 
 div.use-item-index {
 
@@ -626,11 +611,6 @@ div.follow-field {
           border-radius: 100%;
           display: inline-block;
         }
-        a {
-          text-decoration: none;
-          color: #EA6B66;
-          margin: 10px 0 10px 10px;
-        }
       }
     }
   }
@@ -651,6 +631,10 @@ div.top-main {
     background-color: #fff;
     border: 1px solid #EA6B66;
     margin: 50px auto 0;
+
+    div {
+        align-items: center;
+    }
 
     img {
         border-radius: 100%;

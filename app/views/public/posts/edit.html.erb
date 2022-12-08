@@ -1,39 +1,38 @@
 <div class="container">
-  <h2>投稿編集</h2>
+  <div class="h4 bold mt-3">投稿編集</div>
   <div class="my-5 row">
-    <div class="col">
+    <div class="col-sm-8">
       <%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f| %>
       <%= render "public/shared/error_messages", resource: @post %>
 
-      <table class="col-md-8">
+        <div class="form-group row col">
+          <%= f.label :pet_id, "ペット名", class: "col-form-label col-4" %>
+          <div class="col-8 p-0">
+            <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name) %>
+          </div>
+        </div>
 
-        <tr>
-          <td><%= f.label :pet_id, "ペット名", class: "col-form-label" %></td>
-          <td><%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name) %></td>
-        </tr>
+        <div class="form-group row col">
+          <%= f.label :post_image, "画像", class: "col-form-label col-4" %>
+          <%= f.file_field :post_image, accept: "image/*", class: "p-0 col-8" %>
+        </div>
 
-        <tr>
-          <td><%= f.label :post_image, "画像", class: "col-form-label" %></td>
-          <td><%= f.file_field :post_image, accept: "image/*", class: "p-0" %></td>
-        </tr>
+        <div class="form-group row col">
+          <%= f.label :post_title, "投稿名", class: "col-form-label col-4" %>
+          <%= f.text_field :post_title, class: "form-control col-8" %>
+        </div>
 
-        <tr>
-          <td><%= f.label :post_title, "投稿名", class: "col-form-label" %></td>
-          <td><%= f.text_field :post_title, class: "form-control" %></td>
-        </tr>
+        <div class="form-group row col">
+          <%= f.label :post_content, "投稿内容", class: "col-form-label col-4" %>
+          <%= f.text_area :post_content, rows: 10, class: "form-control col-8" %>
+        </div>
 
-        <tr>
-          <td><%= f.label :post_content, "投稿内容", class: "col-form-label" %></td>
-          <td><%= f.text_area :post_content, rows: 10, class: "form-control" %></td>
-        </tr>
+          <%= f.hidden_field :customer_id, :value => current_customer.id %>
 
-        <%= f.hidden_field :customer_id, :value => current_customer.id %>
-
-        <tr>
-          <td></td>
-          <td><%= f.submit "変更を保存", class: "btn btn-success btn-block" %></td>
-        </tr>
-      </table>
+        <div class="form-group row col">
+          <div class="col-4"></div>
+          <div class="col-8 p-0"><%= f.submit "変更を保存", class: "btn btn-success btn-block" %></div>
+        </div>
       <% end %>
     </div>
   </div>
