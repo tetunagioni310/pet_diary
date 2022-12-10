@@ -9,7 +9,7 @@
            <th>コメント</th>
            <th>いいね</th>
          </tr>
-         
+
          <% @posts.each do |post| %>
            <tr>
              <td><%= link_to post.post_title.truncate(10), admin_customer_post_path(@customer.id,post.id), class: "btn-links col" %></td>
@@ -19,13 +19,13 @@
            </tr>
          <% end %>
        </table>
-         
+
        </ul>
        <%= paginate @posts %>
     </div>
   </div>
   <div class="mt-5">
-    <%= link_to  admin_customers_path(@customer.id), class: "color" do %>
+    <%= link_to  admin_customers_path(@customer.id), class: "text-light other-link" do %>
       <i class="fas fa-solid fa-reply"></i>
     <% end %>
   </div>

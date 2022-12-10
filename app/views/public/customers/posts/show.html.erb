@@ -1,61 +1,52 @@
 <div class="container">
 
-  <div class="row col my-5 h2 bold">
-    <%= @customer.nick_name %>さんの投稿一覧
-
-    <% if @customer.id == current_customer.id %>
-      <%= link_to new_public_post_path, class: "text-warning ml-3" do %>
-        <i class="fas fa-x fa-solid fa-plus"></i>
-      <% end %>
+  <div class="col my-5 h2 bold">
+    <% if @customer.id != current_customer.id%>
+      <%= @customer.nick_name %>さんの投稿一覧
+    <% else %>
+      あなたの投稿一覧
     <% end %>
   </div>
 
   <div class="row">
-    <div class="col post-index">
-      <table class="col">
-        <thead>
-          <th>ペット選択</th>
-          <th>タイトル</th>
-          <th>投稿日</th>
-        </thead>
+    <div class="col">
+      <div class="col post-index">
+        <table class="col">
+          <thead>
+            <th>ペット選択</th>
+            <th>タイトル</th>
+            <th>投稿日</th>
+          </thead>
 
-        <tbody>
-          <% if @posts.count >= 1 %>
-            <% @posts.each do |post| %>
-              <tr>
-                <td><%= link_to post.pet.pet_name, public_pets_post_path(post.pet.id), class: "btn-links btn-sm" %></td>
-                <td class="col-4"><%= link_to post.post_title, public_post_path(post.id) %></td>
-                <td><%= post.start_time.strftime("%Y/%m/%d") %></td>
-
-              <% if @customer.id == current_customer.id %>
-                <td class="row">
-                  <% if post.customer_id == current_customer.id%>
-                    <%= button_to edit_public_post_path(post.id), method: :get do %>
-                      <i class="fas fa-solid fa-pen"></i>
-                    <% end %>
-                    &emsp;
-                    <%= button_to public_post_path(post.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
-                      <i class="fas fa-solid fa-trash"></i>
-                    <% end %>
-                  <% end %>
-                </td>
+          <tbody>
+            <% if @posts.count >= 1 %>
+              <% @posts.each do |post| %>
+                <tr>
+                  <td><%= link_to post.pet.pet_name, public_pets_post_path(post.pet.id), class: "btn-links btn-sm" %></td>
+                  <td class="col-4"><%= link_to post.post_title.truncate(9), public_post_path(post.id) %></td>
+                  <td><%= post.start_time.strftime("%Y/%m/%d") %></td>
+                </tr>
               <% end %>
-
-              </tr>
+            <% else %>
+               <tr>
+                 <td colspan="3" class="col text-center">
+                   <div class="no-posts">投稿はありません</div>
+                  </td>
+               </tr>
             <% end %>
-          <% else %>
-             <tr>
-               <td colspan="3" class="col text-center">
-                 <div class="no-posts">投稿はありません</div>
-                </td>
-             </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <div class="col text-center">
-        <%= paginate @posts %>
+          </tbody>
+        </table>
+        <div class="col text-center">
+          <%= paginate @posts %>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div class="my-5">
+    <%= link_to  public_customer_path(@customer.id), class: "default-color other-link" do %>
+      <i class="fas fa-solid fa-reply mr-2"></i>プロフィール
+    <% end %>
   </div>
 
 </div>

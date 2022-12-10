@@ -1,47 +1,42 @@
 <div class="container">
   <div class="row">
 
-    <% if customer_signed_in? %>
       <div class="col-md-4">
-
-        <div class="col-lg-10 mx-auto text-field">
-          <h6><span class="bold mr-3">フォロー中ユーザー 最新投稿</span></h6>
-            <% @following_customer_posts.each do |following_customer_post| %>
-            <ul>
-              <li>
-                <%= following_customer_post.customer.nick_name%>
-              </li>
-              <li>
-                <%= following_customer_post.post_title %>
-              </li>
-              <li>
-                <% %>
-              </li>
-            </ul>
+        <div class="col text-field">
+          <div class="text-center h2 mb-3">投稿画像</div>
+          <div class="row">
+            <% @random_posts.each do |random_post| %>
+              <div class="col-6">
+                <%= link_to public_post_path(random_post.id) do %>
+                  <%= image_tag random_post.get_post_image(500,500), width: "128",height: "128", class: "col px-md-0 mx-md-auto" %>
+                <% end %>
+              </div>
             <% end %>
+          </div>
         </div>
       </div>
-    <% end %>
 
-    <div class="col-md-8 text-field">
-      <%= image_tag '24971705_m.jpg', class: "col image" %>
+    <div class="col-md-8">
+      <div class="col text-field">
+        <%= image_tag '24971705_m.jpg', class: "col image" %>
 
-      <div class="top-main col">
-        <h2 class="text-center">最新投稿</h2>
-          <% @posts.each do |post| %>
-            <div class="col-md-8 text-field top-content">
-              <div class="col row">
-                <%= image_tag post.customer.get_customer_image(50,50) %>
-                <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "other-link mx-2" %>
-                <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        <div class="top-main col">
+          <h2 class="text-center">最新投稿</h2>
+            <% @posts.each do |post| %>
+              <div class="col-md-8 text-field top-content">
+                <div class="col row">
+                  <%= image_tag post.customer.get_customer_image(50,50) %>
+                  <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "other-link mx-2" %>
+                  <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                </div>
+                  <ul class="m-3">
+                    <li><%= post.post_title.truncate(10) %></li>
+                    <li><%= post.post_content.truncate(30) %></li>
+                    <li><%= link_to '詳細', public_post_path(post.id), class: "details-link" %></li>
+                  </ul>
               </div>
-                <ul class="m-3">
-                  <li><%= post.post_title.truncate(10) %></li>
-                  <li><%= post.post_content.truncate(30) %></li>
-                  <li><%= link_to '詳細', public_post_path(post.id), class: "details-link" %></li>
-                </ul>
-            </div>
-          <% end %>
+            <% end %>
+        </div>
       </div>
     </div>
   </div>

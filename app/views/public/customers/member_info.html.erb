@@ -19,7 +19,7 @@
                 <% @posts.each do |post| %>
                   <tr>
                     <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id) %></td>
-                    <td class="col-4"><%= link_to post.post_title, public_post_path(post.id), class: "post-title" %></td>
+                    <td class="col-4"><%= link_to post.post_title.truncate(9), public_post_path(post.id), class: "post-title" %></td>
                     <td><%= post.created_at.strftime("%Y/%m/%d") %></td>
                     <td class="row">
                       <% if post.customer_id == current_customer.id%>

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-lg-8 pb-5 m-auto">
-      <h2 class="pb-5">グループ</h2>
+      <div class="h4 bold pb-5">グループ</div>
 
         <div class="mb-5">
           <%= form_with model: @group, url: admin_groups_path, method: :post do |f| %>
@@ -24,7 +24,7 @@
                 <tr>
                   <td class="col-6"><%= group.group_name %></td>
                   <td class="col-3">
-                    <%= link_to "編集", edit_admin_group_path(group.id), class: "btn-links" %>
+                    <%= link_to "編集", edit_admin_group_path(group.id), class: "btn btn-success" %>
                   </td>
                   <td class="col-3">
                      <%= link_to "削除", admin_group_path(group.id), method: :delete , class: "btn btn-danger" %>

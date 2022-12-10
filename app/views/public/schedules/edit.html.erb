@@ -1,7 +1,8 @@
 <div class="container">
   <h2>スケジュール編集</h2>
   <div class="row">
-    <div class="col-10 mt-5 mx-auto text-field">
+    <div class="col">
+      <div class="col mt-5 mx-auto text-field">
       <%= form_with model: @schedule, url: public_schedule_path, method: :patch do |f| %>
       <%= render "public/shared/error_messages", resource: @schedule %>
 
@@ -28,6 +29,7 @@
         </tr>
       </table>
       <% end %>
+    </div>
     </div>
   </div>
   <div class="my-5">

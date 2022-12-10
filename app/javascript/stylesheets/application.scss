@@ -327,6 +327,9 @@ div.pet-show{
         margin: 20px auto 0;
       }
     }
+    div.comment-list {
+      color: #EA6B66;
+    }
   }
 
   div.no-posts {
@@ -535,9 +538,10 @@ div.no-favorite-items {
 
 .wday-0 {
   color: red;
+  height: 100px;
 }
 .wday-6 {
-   color: blue;
+  color: blue;
 }
 
 
@@ -562,10 +566,11 @@ div.schedule {
     }
 
     tbody {
+      color: #000;
+
       tr {
         td {
-          width: 50px;
-          height: 50px;
+          text-align: center;
           div {
             text-decoration: none;
             overflow: hidden;

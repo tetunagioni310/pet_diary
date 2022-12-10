@@ -10,7 +10,6 @@ Rails.application.routes.draw do
       collection do
         get 'search'
       end
-
       resources :likes, only: [:create,:destroy]
       resources :comments, only: [:create,:destroy]
     end
@@ -23,8 +22,8 @@ Rails.application.routes.draw do
       resources :posts, only: [:show]
     end
 
-
     resources :items, only: [:index,:show,:create,:update,:destroy]
+
     resources :use_items, only: [:index,:create,:update,:destroy] do
       collection do
         delete 'destroy_all'
