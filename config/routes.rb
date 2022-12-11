@@ -60,12 +60,12 @@ Rails.application.routes.draw do
       resources :pets, only: [:show]
       resources :posts, only: [:show]
     end
-
   end
 
   namespace :admin do
-    resources :groups, only: [:index,:create,:edit,:update,:destroy]
+    get 'homes/top'
 
+    resources :groups, only: [:index,:create,:edit,:update,:destroy]
     resources :customers, only: [:index,:edit,:update] do
       resources :posts, only: [:index,:show]
     end
@@ -75,7 +75,7 @@ Rails.application.routes.draw do
   # URL /customers/sign_in ...
   devise_for :customers ,skip: [:password], controllers: {
     registrations: 'public/registrations',
-    sessions: 'public/sessions',
+    sessions: 'public/sessions'
   }
 
   devise_scope :customer do

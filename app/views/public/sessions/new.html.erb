@@ -1,13 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col login-page">
+    <div class="col">
+      <div class="col-md-8 m-auto">
       <div class="h2 mb-5">ログイン</div>
       <%= form_with model: @customer, url: customer_session_path, method: :post do |f| %>
       <%= render "public/shared/error_messages", resource: @customer %>
 
 
         <div class="h4 mb-5">会員の方はこちらからログイン</div>
-        <div class="col-md-6">
+        <div class="col">
           <div class="form-group row">
             <%= f.label :email, "メールアドレス", class: "col-form-label col-4" %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-8" %>
@@ -53,6 +54,7 @@
         <div class="h4 mb-3">ゲストログイン（閲覧用）</div>
         <p><%= link_to 'こちら', public_guest_sign_in_path, method: :post, class: "btn btn-success mr-3" %>へ</p>
       </div>
+    </div>
     </div>
   </div>
 </div>

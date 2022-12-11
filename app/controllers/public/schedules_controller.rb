@@ -29,9 +29,12 @@ class Public::SchedulesController < ApplicationController
 
   def update
     @schedule = Schedule.find(params[:id])
-    @schedule.update(schedule_params)
-    flash[:notice] = "投稿を更新しました"
-    redirect_to public_schedule_path(@schedule.id)
+    if @schedule.update(schedule_params)
+      flash[:notice] = "投稿を更新しました"
+      redirect_to public_schedule_path(@schedule.id)
+    else
+      render 'edit'
+    end
   end
 
   def destroy

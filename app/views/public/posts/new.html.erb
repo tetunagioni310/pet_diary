@@ -1,11 +1,12 @@
 <div class="container">
   <div class="col-md-8 m-auto h4 bold">新規投稿</div>
+  <div class="mb-5 row">
+    <div class="col-md-8 m-auto">
 
-  <div class="my-5 row">
-    <div class="col">
-      <div class="col-md-8 m-auto text-field">
         <%= form_with model: @post, url: public_posts_path, method: :post do |f| %>
         <%= render "public/shared/error_messages", resource: @post %>
+
+        <div class="col text-field">
 
         <div class="col-md-10">
           <div class="form-group row">
@@ -38,15 +39,17 @@
             <div class="col-9 p-0"><%= f.submit "新規登録", class: "btn btn-success text-center col-8" %></div>
           </div>
         </div>
+        </div>
 
         <% end %>
-    </div>
+
     </div>
 
   </div>
-  <div class="my-5">
-    <%= link_to  public_pets_path, class: "color other-link" do %>
-      <i class="fas fa-solid fa-reply mr-2"></i>ペット一覧
+
+  <div class="col-md-8 m-auto my-5">
+    <%= link_to  public_posts_path, class: "default-color other-link" do %>
+      <i class="fas fa-solid fa-reply mr-2"></i>投稿一覧
     <% end %>
   </div>
 </div>

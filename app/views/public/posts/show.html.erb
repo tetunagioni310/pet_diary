@@ -50,9 +50,15 @@
     </div>
   </div>
 
-  <div class="row col-md-8 mx-auto my-5">
+  <div class="row col-md-8 mx-auto mt-5 mb-3">
       <%= link_to  public_customers_post_path(@post.customer.id), class: "default-color other-link" do %>
         <i class="fas fa-solid fa-reply"></i><%= @post.customer.nick_name %>さんの投稿一覧
+      <% end %>
+  </div>
+
+  <div class="row col-md-8 mx-auto mb-5">
+      <%= link_to  public_customer_path(@post.customer.id), class: "default-color other-link" do %>
+        <i class="fas fa-solid fa-reply"></i>プロフィール
       <% end %>
   </div>
 </div>

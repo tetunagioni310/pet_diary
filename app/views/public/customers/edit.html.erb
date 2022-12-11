@@ -4,6 +4,7 @@
 
       <div class="h2 bold">コメント編集</div>
       <%= form_with model: @customer, url: public_customer_path, method: :patch do |f| %>
+      <%= render "public/shared/error_messages", resource: @customer %>
 
         <table class="col">
           <tr>
@@ -15,6 +16,7 @@
             </td>
           </tr>
         </table>
+
       <% end %>
     </div>
   </div>

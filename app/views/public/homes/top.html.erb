@@ -1,27 +1,12 @@
 <div class="container">
   <div class="row">
 
-      <div class="col-md-4">
-        <div class="col text-field">
-          <div class="text-center h2 mb-3">投稿画像</div>
-          <div class="row">
-            <% @random_posts.each do |random_post| %>
-              <div class="col-6">
-                <%= link_to public_post_path(random_post.id) do %>
-                  <%= image_tag random_post.get_post_image(500,500), width: "128",height: "128", class: "col px-md-0 mx-md-auto" %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
     <div class="col-md-8">
       <div class="col text-field">
         <%= image_tag '24971705_m.jpg', class: "col image" %>
 
         <div class="top-main col">
-          <h2 class="text-center">最新投稿</h2>
+          <div class="col-lg-8 mx-auto h2 bold text-center border-bottom">最新投稿</div>
             <% @posts.each do |post| %>
               <div class="col-md-8 text-field top-content">
                 <div class="col row">
@@ -39,5 +24,20 @@
         </div>
       </div>
     </div>
+
+    <div class="col-md-4">
+        <div class="col text-field">
+          <div class="col-lg-8 mx-auto text-center h4 bold mb-3 border-bottom">投稿画像</div>
+          <div class="row">
+            <% @random_posts.each do |random_post| %>
+              <div class="col-6">
+                <%= link_to public_post_path(random_post.id) do %>
+                  <%= image_tag random_post.get_post_image(500,500), width: "100",minheight: "100", maxheight: "150px", class: "col px-0 py-1 mx-auto" %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
   </div>
 </div>

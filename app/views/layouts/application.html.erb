@@ -13,7 +13,11 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-light">
-        <%= link_to "PetDiary", root_path, class: "navbar-brand" %>
+        <% if admin_signed_in? %>
+          <%= link_to "PetDiary", admin_homes_top_path, class: "navbar-brand" %>
+        <% else %>
+          <%= link_to "PetDiary", root_path, class: "navbar-brand" %>
+        <% end %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -56,7 +60,7 @@
                 <%= link_to "会員一覧", admin_customers_path, class: "nav-link" %>
               </li>
               <li>
-                <%= link_to "ログアウト",  destroy_customer_session_path, method: :delete, class: "nav-link" %>
+                <%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: "nav-link" %>
               </li>
             <% else %>
               <li class="nav-item">
@@ -78,8 +82,8 @@
     </header>
 
     <main>
-      <div class="messages col-10">
-        <p id="notice" class="col"><%= notice %></p>
+      <div class="messages col-10 mx-auto my-5">
+        <p id="notice" class="col h4"><%= notice %></p>
       </div>
 
       <%= yield %>

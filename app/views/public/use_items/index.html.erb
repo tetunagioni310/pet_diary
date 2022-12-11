@@ -53,18 +53,7 @@
               <tr>
                 <td class="col-5 p-0 m-0"></td>
                 <td colspan="2" class="col-5 px-0">
-                  <!--お気に入り追加 確認ダイアログ-->
-                  <script>
-                    function check_form() {
-                      if(window.confirm('使用アイテムをお気に入りに登録しますか？')) {
-                        return true;
-                      } else {
-                        return false;
-                      }
-                    }
-                  </script>
-
-                  <%= link_to "お気に入り登録", public_favorite_items_path, method: :post, class: "btn-links btn-sm", onclick: "return check_form()" %>
+                  <%= link_to "お気に入り登録", public_favorite_items_path, method: :post, class: "btn-links btn-sm", data: { confirm: '使用アイテムをお気に入りに登録しますか？'} %>
                 </td>
                 <td class="col-1 p-0"></td>
               </tr>
@@ -91,10 +80,10 @@
             <% end %>
           <% end %>
         <% end %>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="items-link col">
-    <%= link_to "ペット選択", new_public_work_path, class: "col-3 btn-revers btn-lg" %>
-  </div>
+    <div class="items-link col">
+      <%= link_to "ペット選択", new_public_work_path, class: "col-3 btn-revers btn-lg" %>
+    </div>
 </div>

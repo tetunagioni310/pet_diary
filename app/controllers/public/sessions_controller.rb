@@ -1,29 +1,10 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  before_action :configure_sign_in_params, only: [:create]
+  # before_action :configure_sign_in_params, only: [:create]
   before_action :customer_state, only: [:create]
-  
-  # ゲストログインをログアウトする時は以下を無効にする
-  before_action :ensure_normal_customer, only: [:destroy]
 
 
-# ゲストログイン中にはセッションを消去できない
-  def ensure_normal_customer
-    if !admin_signed_in?
-      @customer = Customer.find(current_customer.id) 
-      if @customer.email == 'guest@example.com'
-        redirect_to root_path, notice: 'Guest user cannot be deleted.'
-      end
-    end
-  end
-  
-  def guest_sign_in
-    customer = Customer.guest
-    sign_in customer
-    redirect_to root_path, notice: 'I logged in as a guest user.'
-  end
-  
   # GET /resource/sign_in
   # def new
   #   super
@@ -36,16 +17,11 @@ class Public::SessionsController < Devise::SessionsController
 
   # DELETE /resource/sign_out
   # def destroy
-  #   super
+  #     super
   # end
 
   protected
 
-  # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_in_params
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  end
-  
   # 退会しているかを判断するメソッド
   def customer_state
     ## 【処理内容1】 入力されたemailからアカウントを1件取得
@@ -57,5 +33,18 @@ class Public::SessionsController < Devise::SessionsController
       ## 【処理内容3】
       redirect_to new_customer_registration_path
     end
+  end
+
+  # If you have extra params to permit, append them to the sanitizer.
+  # def configure_sign_in_params
+  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+  # end
+
+  def after_sign_in_path_for(resource)
+    root_path
+  end
+
+  def after_sign_out_path_for(resource)
+    new_customer_session_path
   end
 end

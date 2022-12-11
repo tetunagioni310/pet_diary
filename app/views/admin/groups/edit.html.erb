@@ -1,14 +1,22 @@
 <div class="container">
+  <div class="h2 bold">ジャンル名編集</div>
   <div class="row">
-    <div class="col text-field">
-      <%= form_with model: @group, url: admin_group_path(@group.id), method: :patch do |f| %>
-      <%= render "public/shared/error_messages", resource: @group %>
-        <div class="col-8 row form-group my-3 mx-auto ">
-          <div class="col-4"><%= f.label :group_name, class: "col-form-label" %></div>
-          <div class="col-4"><%= f.text_field :group_name, class: "form-control" %></div>
-          <div class="col-4"><%= f.submit "変更を保存", class: "btn btn-success" %></div>
-        </div>
-      <% end %>
+    <div class="col">
+      <div class="col text-field">
+        <%= form_with model: @group, url: admin_group_path(@group.id), method: :patch do |f| %>
+        <%= render "public/shared/error_messages", resource: @group %>
+          <div class="col-md-8 row form-group my-3 mx-auto ">
+            <div class="col-4"><%= f.label :group_name, class: "col-form-label" %></div>
+            <div class="col-4"><%= f.text_field :group_name, class: "form-control" %></div>
+            <div class="col-4"><%= f.submit "変更を保存", class: "btn btn-success" %></div>
+          </div>
+        <% end %>
+      </div>
     </div>
+  </div>
+  <div class="col my-5">
+    <%= link_to  admin_groups_path, class: "default-color other-link" do %>
+      <i class="fas fa-solid fa-reply mr-2"></i>ジャンル一覧
+    <% end %>
   </div>
 </div>

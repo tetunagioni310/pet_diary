@@ -1,8 +1,13 @@
 <script>
 	function check_form() {
-		window.confirm("使用アイテムに追加しますか？")
-};
+        if(window.confirm('使用アイテムに追加しますか？')) {
+          return true;
+        } else {
+          return false;
+        }
+      }
 </script>
+
 <div class="container">
   <div class="h4 bold col-md-10 mx-auto my-5">アイテム詳細</div>
   <div class="row">
@@ -41,7 +46,7 @@
     </div>
   </div>
   <div class="col-md-10 mx-auto my-5">
-    <%= link_to  public_items_path, class: "text-white other-link" do %>
+    <%= link_to  public_items_path, class: "default-color other-link" do %>
       <i class="fas fa-solid fa-reply mr-2"></i>アイテム一覧へ
     <% end %>
   </div>

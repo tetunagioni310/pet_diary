@@ -28,6 +28,7 @@ class Customer < ApplicationRecord
 
   validates :email, presence: true
   validates :nick_name, presence: true, length: { maximum: 8}
+  validates :introduction, presence: true
 
   def get_customer_image(width, height)
     unless customer_image.attached?
@@ -63,12 +64,12 @@ class Customer < ApplicationRecord
   def following?(customer)
     followings.include?(customer)
   end
-  
+
   # 会員が退会しているかどうか
   def is_deleted?
-    if self.is_deleted == false 
+    if self.is_deleted == false
       "有効"
-    else 
+    else
       "退会"
     end
   end

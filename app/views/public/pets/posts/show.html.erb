@@ -37,9 +37,16 @@
     </div>
   </div>
 
-  <div class="my-5 mx-auto col-md-8">
-    <%= link_to public_customers_post_path(@customer.id), class: "default-color other-link" do %>
+  <div class="mt-5 mb-3 mx-auto col-md-8">
+    <%= link_to public_customers_post_path(@pet.id), class: "default-color other-link" do %>
       <i class="fas fa-solid fa-reply mr-2"></i><%= @customer.id != current_customer.id ? @customer.nick_name + "さんの投稿一覧" : "投稿一覧" %>
     <% end %>
   </div>
+
+  <div class="mb-5 mx-auto col-md-8">
+    <%= link_to public_pet_path(@pet.id), class: "default-color other-link" do %>
+      <i class="fas fa-solid fa-reply mr-2"></i><%= @pet.pet_name + @pet.pet_gender %>の詳細ページ
+    <% end %>
+  </div>
+
 </div>

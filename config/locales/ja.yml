@@ -17,7 +17,7 @@ ja:
         comment: 'コメント'
         favorite_item: 'お気に入りアイテム'
         favorite_item_details: 'お気に入り詳細'
-        group: 'カテゴリ'
+        group: 'ジャンル'
         item: 'アイテム'
         like: 'いいね'
         pet: 'ペット'
@@ -33,10 +33,11 @@ ja:
         customer_image: '画像'
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
+        introduction: '紹介文'
         last_name: '姓'
         first_name: '名'
       pet:
-        group_id: 'カテゴリ'
+        group_id: 'ジャンル'
         pet_name: 'ペット名'
         pet_introduction: 'ペット紹介'
         gender: '性別'
@@ -57,7 +58,7 @@ ja:
         schedule_content: '内容'
         start_time: '予定日'
       group:
-        group_name: 'カテゴリ名'
+        group_name: 'ジャンル名'
       work:
         work_name: "ワーク名"
     errors:

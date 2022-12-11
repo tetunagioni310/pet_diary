@@ -1,5 +1,5 @@
 <div class="container">
-  <h2><%= @customer.nick_name %>さんの投稿一覧</h2>
+  <div class="h2 bold"><%= @customer.nick_name %>さんの投稿一覧</div>
   <div class="row">
     <div class="admin-posts col text-field custom-table">
        <table class="col-sm-10 m-auto">
@@ -25,8 +25,8 @@
     </div>
   </div>
   <div class="mt-5">
-    <%= link_to  admin_customers_path(@customer.id), class: "text-light other-link" do %>
-      <i class="fas fa-solid fa-reply"></i>
+    <%= link_to  admin_customers_path(@customer.id), class: "default-color other-link" do %>
+      <i class="fas fa-solid fa-reply mr-2"></i>会員一覧
     <% end %>
   </div>
 </div>
