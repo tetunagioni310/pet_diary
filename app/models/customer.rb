@@ -73,4 +73,8 @@ class Customer < ApplicationRecord
       "退会"
     end
   end
+
+  def self.customer_search(keyword)
+    where("nick_name LIKE ? ", "#{keyword}")
+  end
 end

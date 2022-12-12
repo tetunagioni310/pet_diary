@@ -21,8 +21,6 @@
     </div>
   </div>
   <div class="my-5">
-    <%= link_to  public_customer_path(@customer.id), class: "default-color other-link" do %>
-      <i class="fas fa-solid fa-reply mr-2"></i>プロフィールページ
-    <% end %>
+    <%= render "public/shared/back_page" %>
   </div>
 </div>

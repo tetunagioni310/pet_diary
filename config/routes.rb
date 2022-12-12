@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
     resources :posts do
       collection do
-        get 'search'
+        get 'post_search'
       end
       resources :likes, only: [:create,:destroy]
       resources :comments, only: [:create,:destroy]
@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 
     resources :customers, only: [:show,:edit,:update] do
       collection do
+        get 'search_page'
+        get 'customer_search'
         get 'member_info'
         get 'member_info_edit'
         patch 'member_info_update'
@@ -58,7 +60,11 @@ Rails.application.routes.draw do
 
     namespace :customers do
       resources :pets, only: [:show]
-      resources :posts, only: [:show]
+      resources :posts, only: [:show] do
+        collection do
+          get 'pet_post_search'
+        end
+      end
     end
   end
 

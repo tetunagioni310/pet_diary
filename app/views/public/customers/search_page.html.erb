@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="col">
+    <% if !@keyword %>
+      <div class="col-md-6 m-auto h4 bold">
+        ユーザー検索ページ
+      </div>
+    <% else %>
+      <div class="col-md-6 m-auto h4 bold">
+        検索結果：　[<%= @keyword %>]
+        <% if @customers.count >= 1 %>
+         <%= @customers.count %>ユーザーが見つかりました
+        <% end %>
+      </div>
+    <% end %>
+
+      <div class="col-md-6 mx-auto my-5">
+        <%= form_with url: customer_search_public_customers_path, method: :get, local: true do |f| %>
+          <div class="d-flex">
+            <%= f.text_field :keyword, value: @keyword, placeholder: "ユーザー名を入力", class: "form-control m-0" %>
+            <%= f.submit "検索", class: "btn btn-success ml-3" %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+
+       <% if @customers %>
+        <div class="col-md-6 m-auto text-field">
+          <table>
+
+              <% if @customers.count >= 1 %>
+                <% @customers.each do |customer| %>
+                <tr>
+                  <td><%= link_to customer.nick_name, public_customer_path(customer.id), class: "other-link" %></td>
+                </tr>
+                <% end %>
+              <% elsif @keyword == "" %>
+                <tr>
+                  <td>ユーザー名を入力してください</td>
+                </tr>
+              <% else %>
+                <tr>
+                  <td>見つかりませんでした</td>
+                </tr>
+              <% end %>
+
+          </table>
+        </div>
+       <% end %>
+    </div>
+  </div>
+</div>

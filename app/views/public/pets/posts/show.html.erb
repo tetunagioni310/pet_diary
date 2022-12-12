@@ -2,6 +2,11 @@
 
   <div class="row h4 bold my-5 mx-auto col-md-8">
       <%= @pet.pet_name %><%= @pet.pet_gender %>の投稿一覧
+      <% if @pet.customer.id == current_customer.id %>
+        <%= link_to new_public_post_path, class: "text-warning ml-3" do %>
+          <i class="fas fa-x fa-solid fa-plus"></i>
+        <% end %>
+      <% end %>
   </div>
 
   <div class="row">
@@ -17,8 +22,19 @@
             <% if @posts.count >= 1 %>
               <% @posts.each do |post| %>
                 <tr>
-                  <td class="col-6"><%= link_to post.post_title.truncate(13), public_post_path(post.id) %></td>
-                  <td class="col-6"><%= post.start_time.strftime("%Y/%m/%d") %></td>
+                  <td class="col-4"><%= link_to post.post_title.truncate(13), public_post_path(post.id) %></td>
+                  <td class="col-4"><%= post.start_time.strftime("%Y/%m/%d") %></td>
+                  <td class="row">
+                    <% if post.customer.id == current_customer.id %>
+                      <%= button_to edit_public_post_path(post.id), method: :get do %>
+                        <i class="fas fa-solid fa-pen"></i>
+                      <% end %>
+                      &emsp;
+                      <%= button_to public_post_path(post.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                        <i class="fas fa-solid fa-trash"></i>
+                      <% end %>
+                    <% end %>
+                  </td>
                 </tr>
               <% end %>
             <% else %>
@@ -38,7 +54,7 @@
   </div>
 
   <div class="mt-5 mb-3 mx-auto col-md-8">
-    <%= link_to public_customers_post_path(@pet.id), class: "default-color other-link" do %>
+    <%= link_to public_customers_post_path(@pet.customer.id), class: "default-color other-link" do %>
       <i class="fas fa-solid fa-reply mr-2"></i><%= @customer.id != current_customer.id ? @customer.nick_name + "さんの投稿一覧" : "投稿一覧" %>
     <% end %>
   </div>

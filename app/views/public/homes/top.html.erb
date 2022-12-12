@@ -6,7 +6,8 @@
         <%= image_tag '24971705_m.jpg', class: "col image" %>
 
         <div class="top-main col">
-          <div class="col-lg-8 mx-auto h2 bold text-center border-bottom">最新投稿</div>
+          <div class="col-lg-8 mx-auto h2 bold text-center border-bottom">新着投稿</div>
+          <% if @random_posts.count >= 1 %>
             <% @posts.each do |post| %>
               <div class="col-md-8 text-field top-content">
                 <div class="col row">
@@ -21,6 +22,9 @@
                   </ul>
               </div>
             <% end %>
+          <% else %>
+            <div class="col-md-8 m-auto text-center">投稿はまだありません</div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -29,12 +33,18 @@
         <div class="col text-field">
           <div class="col-lg-8 mx-auto text-center h4 bold mb-3 border-bottom">投稿画像</div>
           <div class="row">
-            <% @random_posts.each do |random_post| %>
-              <div class="col-6">
-                <%= link_to public_post_path(random_post.id) do %>
-                  <%= image_tag random_post.get_post_image(500,500), width: "100",minheight: "100", maxheight: "150px", class: "col px-0 py-1 mx-auto" %>
+            <% if @random_posts.count >= 1 %>
+              <% @random_posts.each do |random_post| %>
+                <% if random_post.post_image.attached? %>
+                <div class="col-6 m-auto">
+                  <%= link_to public_post_path(random_post.id) do %>
+                    <%= image_tag random_post.post_image.variant( resize: "300x300!" ).processed, class: "col px-0 py-1 mx-auto" %>
+                  <% end %>
+                </div>
                 <% end %>
-              </div>
+              <% end %>
+            <% else %>
+              <div class="col-8 m-auto text-center">投稿はまだありません</div>
             <% end %>
           </div>
         </div>

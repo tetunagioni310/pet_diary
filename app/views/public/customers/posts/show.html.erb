@@ -6,6 +6,18 @@
     <% else %>
       あなたの投稿一覧
     <% end %>
+
+    <div class="my-5">
+      <div class="col-sm-5">
+        <%= form_with url: pet_post_search_public_customers_posts_path, method: :get, local: true do |f| %>
+          <div class="d-flex">
+            <%= f.text_field :keyword, value: @keyword, placeholder: "ペット名を入力", class: "form-control m-0" %>
+            <%= f.hidden_field :customer_id, value: @customer.id %>
+            <%= f.submit "検索", class: "btn btn-success ml-3" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 
   <div class="row">
@@ -22,7 +34,7 @@
             <% if @posts.count >= 1 %>
               <% @posts.each do |post| %>
                 <tr>
-                  <td><%= link_to post.pet.pet_name, public_pets_post_path(post.pet.id), class: "btn-links btn-sm" %></td>
+                  <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "btn-links btn-sm" %></td>
                   <td class="col-4"><%= link_to post.post_title.truncate(9), public_post_path(post.id) %></td>
                   <td><%= post.start_time.strftime("%Y/%m/%d") %></td>
                 </tr>

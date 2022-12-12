@@ -51,6 +51,15 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
 
+  def search_page
+  end
+
+  def customer_search
+    @customers = Customer.customer_search(params[:keyword]).page(params[:page]).per(10)
+    @keyword = params[:keyword]
+    render "search_page"
+  end
+
   private
 
   def customer_params

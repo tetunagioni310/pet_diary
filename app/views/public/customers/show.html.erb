@@ -87,6 +87,9 @@
               <ul class="m-3">
                 <li><%= post.post_title.truncate(10) %></li>
                 <li><%= post.post_content.truncate(30) %></li>
+                <% if post.post_image.attached? %>
+                  <li><%= image_tag post.get_post_image(500,500), width: "100",minheight: "100", maxheight: "150px" %></li>
+                <% end %>
                 <li><%= link_to "詳細", public_post_path(post.id), class: "details-link" %></li>
               </ul>
             </div>

@@ -1,16 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="follow-field col text-field">
+      <div class="follow-field text-field">
         <table>
           <tr>
-            <th>
+            <th colspan="2">
               <%= link_to public_customer_path(current_customer.id), class: "other-link" do %>
-                <i class="fas fa-solid fa-reply"></i>
+                <i class="fas fa-solid fa-reply mr-2"></i>フォロワー
               <% end %>
-            </th>
-            <th class="bold">
-              フォロワー
             </th>
           </tr>
           <% if @customers.count >= 1 %>

@@ -4,13 +4,10 @@
       <div class="follow-field col text-field">
         <table>
           <tr>
-            <th>
+            <th colspan="2">
               <%= link_to public_customer_path(current_customer.id), class: "other-link" do %>
-                <i class="fas fa-solid fa-reply"></i>
+                <i class="fas fa-solid fa-reply mr-2"></i>フォロー
               <% end %>
-            </th>
-            <th class="bold">
-              フォロー
             </th>
           </tr>
           <% if @customers.count >= 1 %>

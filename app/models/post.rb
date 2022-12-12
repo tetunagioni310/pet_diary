@@ -15,14 +15,16 @@ class Post < ApplicationRecord
   validates :post_content, presence: true
 
   def get_post_image(width, height)
-    unless post_image.attached?
-      file_path = Rails.root.join('app/assets/images/default-image.jpg')
-      post_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpg')
+    if post_image.attached?
+      post_image.variant(resize_to_limit: [width, height]).processed
     end
-    post_image.variant(resize_to_limit: [width, height]).processed
   end
 
-  def self.search(keyword, current_customer)
+  def self.post_search(keyword, current_customer)
     Post.joins(:pet).where("pet_name LIKE ? ", "%#{keyword}%").where(customer_id: current_customer.id)
+  end
+
+  def self.pet_post_search(keyword, customer)
+    Post.joins(:pet).where("pet_name LIKE ? ", "%#{keyword}%").where(customer_id: customer.id)
   end
 end

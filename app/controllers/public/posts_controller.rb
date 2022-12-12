@@ -48,8 +48,8 @@ class Public::PostsController < ApplicationController
     redirect_to public_posts_path
   end
 
-  def search
-    @posts = Post.search(params[:keyword], current_customer).page(params[:page]).per(10)
+  def post_search
+    @posts = Post.post_search(params[:keyword], current_customer).page(params[:page]).per(10)
     @keyword = params[:keyword]
     render "index"
   end
