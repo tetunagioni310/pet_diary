@@ -6,6 +6,17 @@ class Public::PetsController < ApplicationController
     @pets = Pet.where(customer_id: @customer.id)
   end
 
+  def work_index
+    @pet = Pet.find(params[:pet_id])
+    @works = Work.where(pet_id: @pet.id)
+  end
+
+  def post_index
+    @pet = Pet.find(params[:pet_id])
+    @customer = Customer.find_by(id: @pet.customer.id)
+    @posts = Post.where(pet_id: @pet.id).order(id: "DESC").page(params[:page]).per(10)
+  end
+
   def show
     @pet = Pet.find(params[:id])
   end

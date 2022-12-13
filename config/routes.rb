@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
     resources :posts do
       collection do
-        get 'post_search'
+        get 'search'
       end
       resources :likes, only: [:create,:destroy]
       resources :comments, only: [:create,:destroy]
@@ -16,10 +16,9 @@ Rails.application.routes.draw do
 
     resources :schedules, only: [:index,:show,:create,:edit,:update,:destroy]
 
-    resources :pets
-    namespace :pets do
-      resources :works, only: [:show]
-      resources :posts, only: [:show]
+    resources :pets do
+      get 'work_index'
+      get 'post_index'
     end
 
     resources :items, only: [:index,:show,:create,:update,:destroy]
@@ -45,8 +44,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:show,:edit,:update] do
       collection do
         get 'search_page'
-        get 'customer_search'
-        get 'member_info'
+        get 'search'
         get 'member_info_edit'
         patch 'member_info_update'
         get 'quit'
@@ -56,13 +54,15 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
+      # get 'pet_index'
+      # get 'post_index'
     end
 
     namespace :customers do
       resources :pets, only: [:show]
       resources :posts, only: [:show] do
         collection do
-          get 'pet_post_search'
+          get 'search'
         end
       end
     end

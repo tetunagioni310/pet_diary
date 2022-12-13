@@ -11,14 +11,37 @@ Admin.create!(
 )
 
 Customer.create!(
+  [
    {
    email: 'test@test.com',
    password: 'testtest',
    nick_name: 'ymd',
    introduction: 'よろしくお願いします！',
-   is_deleted: 'false'
+   is_deleted: 'false',
+   status: 1
+   },
+
+   {
+   email: 'kotoko@gmail.com',
+   password: 'kotokokotoko',
+   nick_name: 'kotoko',
+   introduction: 'よろしくお願いします！',
+   is_deleted: 'false',
+   status: 1
    }
+   ]
 )
+
+10.times do |n|
+Customer.create!(
+  nick_name: "customer#{n+1}",
+  email: "customer#{n+1}@example.com",
+  password: "password",
+  introduction: 'よろしくお願いします！',
+  is_deleted: 'false',
+  status: 1
+  )
+end
 
 Group.create!(
    [

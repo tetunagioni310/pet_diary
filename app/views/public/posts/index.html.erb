@@ -16,7 +16,7 @@
 
     <div class="my-5">
       <div class="col-sm-5">
-        <%= form_with url: post_search_public_posts_path, method: :get, local: true do |f| %>
+        <%= form_with url: search_public_posts_path, method: :get, local: true do |f| %>
           <div class="d-flex">
             <%= f.text_field :keyword, value: @keyword, placeholder: "ペット名を入力", class: "form-control m-0" %>
             <%= f.submit "検索", class: "btn btn-success ml-3" %>
@@ -40,8 +40,8 @@
           <% if @posts.count >= 1 %>
             <% @posts.each do |post| %>
               <tr>
-                <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "btn-links btn-sm" %></td>
-                <td class="col-4"><%= link_to post.post_title.truncate(13), public_post_path(post.id) %></td>
+                <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "other-link" %></td>
+                <td class="col-4"><%= link_to post.post_title.truncate(13), public_post_path(post.id), class: "other-link" %></td>
                 <td><%= post.start_time.strftime("%Y/%m/%d") %></td>
                 <td class="row">
                   <% if post.customer_id == current_customer.id%>

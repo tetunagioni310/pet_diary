@@ -7,14 +7,17 @@
     <% else %>
       <div class="col-md-6 m-auto h4 bold">
         検索結果：　[<%= @keyword %>]
+
         <% if @customers.count >= 1 %>
-         <%= @customers.count %>ユーザーが見つかりました
+          <div class="my-3">
+            <%= @customers.count %>ユーザーが見つかりました
+          </div>
         <% end %>
       </div>
     <% end %>
 
       <div class="col-md-6 mx-auto my-5">
-        <%= form_with url: customer_search_public_customers_path, method: :get, local: true do |f| %>
+        <%= form_with url: search_public_customers_path, method: :get, local: true do |f| %>
           <div class="d-flex">
             <%= f.text_field :keyword, value: @keyword, placeholder: "ユーザー名を入力", class: "form-control m-0" %>
             <%= f.submit "検索", class: "btn btn-success ml-3" %>

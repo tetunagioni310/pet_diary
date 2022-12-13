@@ -21,7 +21,7 @@ class Public::PostsController < ApplicationController
     @post.customer_id = current_customer.id
     if @post.save
       flash[:notice] = "投稿を作成しました"
-      redirect_to public_posts_path
+      redirect_to public_post_path(@post.id)
     else
       render 'new'
     end
@@ -48,8 +48,8 @@ class Public::PostsController < ApplicationController
     redirect_to public_posts_path
   end
 
-  def post_search
-    @posts = Post.post_search(params[:keyword], current_customer).page(params[:page]).per(10)
+  def search
+    @posts = Post.my_post_search(params[:keyword], current_customer).order(id: "DESC").page(params[:page]).per(10)
     @keyword = params[:keyword]
     render "index"
   end

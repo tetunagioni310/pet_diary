@@ -27,7 +27,7 @@ class Customer < ApplicationRecord
   has_one_attached :customer_image
 
   validates :email, presence: true
-  validates :nick_name, presence: true, length: { maximum: 8}
+  validates :nick_name, presence: true, length: { maximum: 10}
   validates :introduction, presence: true
 
   def get_customer_image(width, height)

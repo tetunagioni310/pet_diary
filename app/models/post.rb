@@ -20,11 +20,11 @@ class Post < ApplicationRecord
     end
   end
 
-  def self.post_search(keyword, current_customer)
+  def self.my_post_search(keyword, current_customer)
     Post.joins(:pet).where("pet_name LIKE ? ", "%#{keyword}%").where(customer_id: current_customer.id)
   end
 
-  def self.pet_post_search(keyword, customer)
+  def self.other_post_search(keyword, customer)
     Post.joins(:pet).where("pet_name LIKE ? ", "%#{keyword}%").where(customer_id: customer.id)
   end
 end

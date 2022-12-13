@@ -1,10 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
-  def member_info
-    @posts = Post.where(customer_id: current_customer.id).order(id: "DESC").page(params[:page]).per(10)
-  end
-
   def member_info_edit
      @customer = Customer.find_by(id: current_customer.id)
   end
@@ -54,7 +50,7 @@ class Public::CustomersController < ApplicationController
   def search_page
   end
 
-  def customer_search
+  def search
     @customers = Customer.customer_search(params[:keyword]).page(params[:page]).per(10)
     @keyword = params[:keyword]
     render "search_page"
