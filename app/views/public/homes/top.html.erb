@@ -30,15 +30,15 @@
     </div>
 
     <div class="col-md-4">
-        <div class="col text-field">
+        <div class="col text-field image-field">
           <div class="col-lg-8 mx-auto text-center h4 bold mb-3 border-bottom">投稿画像</div>
-          <div class="row">
+          <div class="row image-list">
             <% if @random_posts.count >= 1 %>
               <% @random_posts.each do |random_post| %>
                 <% if random_post.post_image.attached? %>
-                <div class="col-6 m-auto">
+                <div class="col-6 m-auto post-image">
                   <%= link_to public_post_path(random_post.id) do %>
-                    <%= image_tag random_post.post_image.variant( resize: "300x300!" ).processed, class: "col px-0 py-1 mx-auto" %>
+                    <%= image_tag random_post.post_image.variant( resize: "800x800", gravity: :center, crop: "500x500+0+0" ).processed, width: "100%", height: "100%", class: "col px-0 py-md-1 mx-auto" %>
                   <% end %>
                 </div>
                 <% end %>

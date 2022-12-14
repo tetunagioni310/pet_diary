@@ -30,6 +30,8 @@ class Customer < ApplicationRecord
   validates :nick_name, presence: true, length: { maximum: 10}
   validates :introduction, presence: true
 
+  enum status: { nonreleased: 0, released: 1}
+
   def get_customer_image(width, height)
     unless customer_image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')

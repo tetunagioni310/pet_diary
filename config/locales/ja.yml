@@ -1,5 +1,10 @@
 ---
 ja:
+  enums: # enumの設定を行う
+    customer: # モデル名（Orderモデルに対して）
+      status: # カラム名（payment_methodカラムに対して）
+        nonreleased: "非公開"
+        released: "公開"
   views:
     pagination:
       first: '最初'
@@ -34,8 +39,6 @@ ja:
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
         introduction: '紹介文'
-        last_name: '姓'
-        first_name: '名'
       pet:
         group_id: 'ジャンル'
         pet_name: 'ペット名'

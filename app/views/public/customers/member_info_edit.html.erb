@@ -22,6 +22,19 @@
           <%= f.file_field :customer_image, class: "pl-0 col-md-8" %>
         </div>
 
+        <div class="form-group col row">
+          <%= f.label :status, "公開設定", class: "col-md-4 px-0" %>
+
+          <div class="pl-0 col-md-8" >
+            <%= f.radio_button :status, Customer.statuses.key(0) %>
+            <%= f.label :status, Customer.statuses_i18n[:nonreleased] %>
+
+            <%= f.radio_button :status, Customer.statuses.key(1) %>
+            <%= f.label :status, Customer.statuses_i18n[:released] %>
+          </div>
+
+        </div>
+
         <div class="form-group col row mt-4">
           <div class="col-sm-4"></div>
           <div class="col-4 p-0"><%= f.submit "変更を保存", class: "btn btn-success" %></div>

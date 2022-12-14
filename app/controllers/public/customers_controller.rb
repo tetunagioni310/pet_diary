@@ -9,7 +9,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find_by(id: current_customer.id)
     if @customer.update(customer_params)
       @customer.save
-      redirect_to member_info_public_customers_path
+      redirect_to public_customer_path(@customer.id)
     else
       render 'member_info_edit'
     end
@@ -56,9 +56,27 @@ class Public::CustomersController < ApplicationController
     render "search_page"
   end
 
+  def pet_index
+    @customer = Customer.find(params[:customer_id])
+    @pets = Pet.where(customer_id: @customer.id)
+  end
+
+  def post_index
+    @customer = Customer.find(params[:customer_id])
+    @posts = Post.where(customer_id: @customer.id).order(id: "DESC").page(params[:page]).per(10)
+  end
+
+  def post_search
+    @customer = Customer.find(params[:customer_id])
+    customer = @customer
+    @posts = Post.other_post_search(params[:keyword], customer).order(id: "DESC").page(params[:page]).per(10)
+    @keyword = params[:keyword]
+    render "post_index"
+  end
+
   private
 
   def customer_params
-    params.require(:customer).permit(:email,:nick_name,:introduction,:customer_image)
+    params.require(:customer).permit(:email,:nick_name,:introduction,:customer_image,:status)
   end
 end

@@ -1,4 +1,3 @@
-
 <div class="container">
 <% if @customer.status == 0 || @customer.id == current_customer.id %>
   <div class="col my-5 h2 bold">
@@ -11,7 +10,7 @@
 
     <div class="my-5">
       <div class="col-sm-5">
-        <%= form_with url: search_public_customers_posts_path, method: :get, local: true do |f| %>
+        <%= form_with url: public_customer_post_search_path, method: :get, local: true do |f| %>
           <div class="d-flex">
             <%= f.text_field :keyword, value: @keyword, placeholder: "ペット名を入力", class: "form-control m-0" %>
             <%= f.hidden_field :customer_id, value: @customer.id %>

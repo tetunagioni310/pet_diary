@@ -1,148 +1,153 @@
 <div class="container">
 
   <div class="row">
+    <% if @customer.status == "released" || @customer.id == current_customer.id %>
+      <!--サイドバー-->
+      <div class="col-lg-4 py-5">
+        <div class="col-lg-11 profile-field text-field">
+          <table class="col-11 mx-auto">
+            <tr>
+              <td colspan="2">
+                <%= image_tag @customer.get_customer_image(550,550), class: "customer-image" %>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-center bold"><%= @customer.email %></td>
+            </tr>
+            <tr>
+              <td class="text-center bold align-items-center"><%= @customer.nick_name %></td>
+              <td class="text-center">
+                <% if current_customer.following?(@customer) %>
+                  <%= link_to "フォロー中", public_customer_relationships_path(@customer.id), class: "btn-sm btn-links shadow-none follow-btn", method: :delete %>
+                <% else %>
+                  <%= link_to "+フォロー", public_customer_relationships_path(@customer.id), class: "btn-sm btn-links shadow-none follow-btn", method: :post %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center bold"><%= link_to "#{@customer.followings.count}フォロー", public_customer_followings_path(@customer.id) %></td>
+              <td class="text-center bold"><%= link_to "#{@customer.followers.count}フォロワー", public_customer_followers_path(@customer.id) %></td>
+            </tr>
 
-    <!--サイドバー-->
-    <div class="col-lg-4 py-5">
-      <div class="col-lg-11 profile-field text-field">
-        <table class="col-11 mx-auto">
-          <tr>
-            <td colspan="2">
-              <%= image_tag @customer.get_customer_image(550,550), class: "customer-image" %>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" class="text-center bold"><%= @customer.email %></td>
-          </tr>
-          <tr>
-            <td class="text-center bold align-items-center"><%= @customer.nick_name %></td>
-            <td class="text-center">
-              <% if current_customer.following?(@customer) %>
-                <%= link_to "フォロー中", public_customer_relationships_path(@customer.id), class: "btn-sm btn-links shadow-none follow-btn", method: :delete %>
-              <% else %>
-                <%= link_to "+フォロー", public_customer_relationships_path(@customer.id), class: "btn-sm btn-links shadow-none follow-btn", method: :post %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center bold"><%= link_to "#{@customer.followings.count}フォロー", public_customer_followings_path(@customer.id) %></td>
-            <td class="text-center bold"><%= link_to "#{@customer.followers.count}フォロワー", public_customer_followers_path(@customer.id) %></td>
-          </tr>
+            <% if @customer.id == current_customer.id %>
+            <tr>
+              <td colspan="2">
+                <%= link_to  member_info_edit_public_customers_path, class: "btn-links btn-block text-center" do %>
+                  <i class="fas fa-user-cog"></i>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
 
-          <% if @customer.id == current_customer.id %>
-          <tr>
-            <td colspan="2">
-              <%= link_to  member_info_edit_public_customers_path, class: "btn-links btn-block text-center" do %>
-                <i class="fas fa-user-cog"></i>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-
-          <tr>
-            <td colspan="2">
-              <%= link_to "ペット一覧", public_customers_pet_path(@customer.id), class: "btn-links btn-block text-center" %>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <%= link_to "投稿一覧", public_customers_post_path(@customer.id), class: "btn-links btn-block text-center" %>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-
-    <!--メイン-->
-    <div class="col-lg-8">
-
-      <div class="text-center h2 bold">
-            <%= @customer.nick_name %>さんのプロフィール
+            <tr>
+              <td colspan="2">
+                <%= link_to "ペット一覧", public_customer_pet_index_path(@customer.id), class: "btn-links btn-block text-center" %>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <%= link_to "投稿一覧", public_customer_post_index_path(@customer.id), class: "btn-links btn-block text-center" %>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
 
-      <div class="text-field col-lg-10 m-auto pt-5">
-        <div class="col-lg-10 self-introduction">
-          <p><%= @customer.introduction %></p>
-          <% if @customer.id == current_customer.id %>
-            <%= link_to "コメントを編集", edit_public_customer_path(current_customer.id), class: "btn btn-light btn-sm" %>
-          <% end %>
+      <!--メイン-->
+      <div class="col-lg-8">
+
+        <div class="text-center h2 bold">
+              <%= @customer.nick_name %>さんのプロフィール
         </div>
 
-
-      <div class="tab-area col">
-
-        <input type="radio" name="tab_name" id="tab1" checked>
-        <label class="tab_class bold" for="tab1">投稿</label>
-
-        <div class="content-class col">
-          <% @posts.each do |post| %>
-            <div class="col text-field customer-content">
-              <div class="col row">
-                <%= image_tag post.customer.get_customer_image(50,50)%>
-                <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "mr-2" %>
-                <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-              </div>
-
-
-              <ul class="m-3">
-                <li><%= post.post_title.truncate(10) %></li>
-                <li><%= post.post_content.truncate(30) %></li>
-                <% if post.post_image.attached? %>
-                  <li><%= image_tag post.get_post_image(500,500), width: "100",minheight: "100", maxheight: "150px" %></li>
-                <% end %>
-                <li><%= link_to "詳細", public_post_path(post.id), class: "details-link" %></li>
-              </ul>
-            </div>
-          <% end %>
+        <div class="text-field col-lg-10 m-auto pt-5">
+          <div class="col-lg-10 self-introduction">
+            <p><%= @customer.introduction %></p>
+            <% if @customer.id == current_customer.id %>
+              <%= link_to "コメントを編集", edit_public_customer_path(current_customer.id), class: "btn btn-light btn-sm" %>
+            <% end %>
           </div>
 
-        <input type="radio" name="tab_name" id="tab2">
-        <label class="tab_class bold" for="tab2">いいね</label>
-        <div class="content-class col">
-          <% @likes.each do |like| %>
-            <div class="col text-field customer-content">
-              <div class="col row">
-                <%= image_tag like.post.customer.get_customer_image(50,50)%>
-                <%= link_to like.post.customer.nick_name, public_customer_path(like.post.customer.id), class: "mr-2" %>
-                <%= like.post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-              </div>
 
+        <div class="tab-area col">
 
-              <ul class="m-3">
-                <li><%= like.post.post_title.truncate(10) %></li>
-                <li><%= like.post.post_content.truncate(30) %></li>
-                <li><%= link_to "詳細", public_post_path(like.post.id), class: "details-link" %></li>
-              </ul>
-            </div>
+          <input type="radio" name="tab_name" id="tab1" checked>
+          <label class="tab_class bold" for="tab1">投稿</label>
 
-          <% end %>
-        </div>
-
-
-
-        <input type="radio" name="tab_name" id="tab3" >
-        <label class="tab_class bold" for="tab3">フォロー</label>
-        <div class="content-class col">
-          <% @following_customer_posts.each do |following_customer_post|%>
+          <div class="content-class col">
+            <% @posts.each do |post| %>
               <div class="col text-field customer-content">
                 <div class="col row">
-                  <%= image_tag following_customer_post.customer.get_customer_image(50,50)%>
-                  <%= link_to following_customer_post.customer.nick_name, public_customer_path(following_customer_post.customer.id), class: "mr-2" %>
-                  <%= following_customer_post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                  <%= image_tag post.customer.get_customer_image(50,50)%>
+                  <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "mr-2" %>
+                  <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
                 </div>
 
+
                 <ul class="m-3">
-                  <li><%= following_customer_post.post_title.truncate(10) %></li>
-                  <li><%= following_customer_post.post_content.truncate(30) %></li>
-                  <li><%= link_to "詳細", public_post_path(following_customer_post.id), class: "details-link" %></li>
+                  <li><%= post.post_title.truncate(10) %></li>
+                  <li><%= post.post_content.truncate(30) %></li>
+                  <% if post.post_image.attached? %>
+                    <li><%= image_tag post.get_post_image(500,500), width: "50%" %></li>
+                  <% end %>
+                  <li><%= link_to "詳細", public_post_path(post.id), class: "details-link" %></li>
                 </ul>
               </div>
-          <% end %>
+            <% end %>
+            </div>
+
+          <input type="radio" name="tab_name" id="tab2">
+          <label class="tab_class bold" for="tab2">いいね</label>
+          <div class="content-class col">
+            <% @likes.each do |like| %>
+              <div class="col text-field customer-content">
+                <div class="col row">
+                  <%= image_tag like.post.customer.get_customer_image(50,50)%>
+                  <%= link_to like.post.customer.nick_name, public_customer_path(like.post.customer.id), class: "mr-2" %>
+                  <%= like.post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                </div>
+
+
+                <ul class="m-3">
+                  <li><%= like.post.post_title.truncate(10) %></li>
+                  <li><%= like.post.post_content.truncate(30) %></li>
+                  <li><%= link_to "詳細", public_post_path(like.post.id), class: "details-link" %></li>
+                </ul>
+              </div>
+
+            <% end %>
+          </div>
+
+
+
+          <input type="radio" name="tab_name" id="tab3" >
+          <label class="tab_class bold" for="tab3">フォロー</label>
+          <div class="content-class col">
+            <% @following_customer_posts.each do |following_customer_post|%>
+                <div class="col text-field customer-content">
+                  <div class="col row">
+                    <%= image_tag following_customer_post.customer.get_customer_image(50,50)%>
+                    <%= link_to following_customer_post.customer.nick_name, public_customer_path(following_customer_post.customer.id), class: "mr-2" %>
+                    <%= following_customer_post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                  </div>
+
+                  <ul class="m-3">
+                    <li><%= following_customer_post.post_title.truncate(10) %></li>
+                    <li><%= following_customer_post.post_content.truncate(30) %></li>
+                    <li><%= link_to "詳細", public_post_path(following_customer_post.id), class: "details-link" %></li>
+                  </ul>
+                </div>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    </div>
+      </div>
+    <% else %>
+      <div>
+        非公開です
+      </div>
+    <% end %>
   </div>
- </div>
+
 </div>
 

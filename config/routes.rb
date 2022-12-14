@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :posts do
       collection do
         get 'search'
+        get 'all'
       end
       resources :likes, only: [:create,:destroy]
       resources :comments, only: [:create,:destroy]
@@ -54,17 +55,9 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
-      # get 'pet_index'
-      # get 'post_index'
-    end
-
-    namespace :customers do
-      resources :pets, only: [:show]
-      resources :posts, only: [:show] do
-        collection do
-          get 'search'
-        end
-      end
+      get 'pet_index'
+      get 'post_index'
+      get 'post_search'
     end
   end
 
