@@ -42,6 +42,7 @@ ja:
       pet:
         group_id: 'ジャンル'
         pet_name: 'ペット名'
+        pet_type: '種類'
         pet_introduction: 'ペット紹介'
         gender: '性別'
         age: '年齢'

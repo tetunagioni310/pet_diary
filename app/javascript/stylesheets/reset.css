@@ -66,6 +66,10 @@ a {
 .image {
   border-radius: 30px; }
 
+.object-fit-img {
+  object-fit: cover;
+  font-family: "object-fit: cover;"; }
+
 .other-link {
   text-decoration: none;
   font-weight: bold;

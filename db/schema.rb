@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 2022_11_10_225429) do
   create_table "pets", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "group_id", null: false
+    t.string "pet_type", default: "", null: false
     t.string "pet_name", default: "", null: false
     t.string "pet_introduction", default: "", null: false
     t.integer "gender", null: false

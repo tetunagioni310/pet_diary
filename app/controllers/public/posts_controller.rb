@@ -48,6 +48,10 @@ class Public::PostsController < ApplicationController
     redirect_to public_posts_path
   end
 
+  def all
+    @posts = Post.all.order(id: "DESC").page(params[:page]).per(8)
+  end
+
   def search
     @posts = Post.my_post_search(params[:keyword], current_customer).order(id: "DESC").page(params[:page]).per(10)
     @keyword = params[:keyword]

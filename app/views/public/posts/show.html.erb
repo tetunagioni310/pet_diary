@@ -1,10 +1,10 @@
 <div class="container">
-<% if @post.customer.status == 0 || @post.customer.id == current_customer.id %>
+<% if @post.customer.status == "released" || @post.customer.id == current_customer.id %>
   <div class="post-show">
-    <div class="h2 my-5 col-md-8 mx-auto">
+    <div class="h2 my-5 col-md-10 mx-auto">
       <%= link_to @post.customer.nick_name, public_customer_path(@post.customer.id), class: "default-color other-link" %>さんの記事詳細ページ
     </div>
-    <div class="content col-10 m-auto px-0">
+    <div class="content col-md-10 m-auto px-0">
       <div class="post-image col">
         <% if @post.post_image.attached? %>
           <%= image_tag @post.get_post_image(500,500), class: "col" %>
@@ -51,13 +51,13 @@
     </div>
   </div>
 
-  <div class="row col-md-8 mx-auto mt-5 mb-3">
+  <div class="row col-md-10 mx-auto mt-5 mb-3">
       <%= link_to  public_customer_post_index_path(@post.customer.id), class: "default-color other-link" do %>
         <i class="fas fa-solid fa-reply ml-2"></i><%= @post.customer.nick_name %>さんの投稿一覧
       <% end %>
   </div>
 
-  <div class="col-md-8 mx-auto mb-5">
+  <div class="col-md-10 mx-auto mb-5">
       <%= link_to  public_customer_path(@post.customer.id), class: "default-color other-link" do %>
         <i class="fas fa-solid fa-reply ml-2"></i>プロフィール
       <% end %>

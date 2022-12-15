@@ -8,7 +8,7 @@
         <div class="form-group row col">
           <%= f.label :pet_id, "ペット名", class: "col-form-label col-4" %>
           <div class="col-8 p-0">
-            <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name) %>
+            <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name), {prompt: "ペット選択"} %>
           </div>
         </div>
 

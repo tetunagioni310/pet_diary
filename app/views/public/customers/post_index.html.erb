@@ -1,5 +1,5 @@
 <div class="container">
-<% if @customer.status == 0 || @customer.id == current_customer.id %>
+<% if @customer.status == "released" || @customer.id == current_customer.id %>
   <div class="col my-5 h2 bold">
     <%= @customer.nick_name %>さんの投稿一覧
     <% if @customer.id == current_customer.id %>

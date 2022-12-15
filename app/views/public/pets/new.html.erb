@@ -19,6 +19,11 @@
             </div>
 
             <div class="form-group row">
+              <%= f.label :pet_type, class: "col-3 col-form-label" %>
+              <%= f.text_field :pet_type, class: "col-7 form-control" %>
+            </div>
+
+            <div class="form-group row">
               <%= f.label :gender, class: "col-3 col-form-label" %>
               <%= f.select :gender, options_for_select(Pet.genders.map { |key, value| [key.humanize, key] }), {prompt: "選択してください"}, class: "col-7 form-control" %>
             </div>

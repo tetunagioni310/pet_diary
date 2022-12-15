@@ -47,20 +47,6 @@ Group.create!(
    [
     { group_name: '犬' },
     { group_name: '猫'},
-    { group_name: 'ハムスター' },
-    { group_name: 'トカゲ' },
-    { group_name: 'デグー' },
-    { group_name: 'チンチラ'},
-    { group_name: 'モルモット' },
-    { group_name: 'うさぎ' },
-    { group_name: 'リス' },
-    { group_name: 'ジリス' },
-    { group_name: 'フェレット'},
-    { group_name: 'インコ' },
-    { group_name: 'オウム' },
-    { group_name: 'モモンガ' },
-    { group_name: 'ハリネズミ'},
-    { group_name: 'その他小動物' },
-    { group_name: 'その他鳥' }
+    { group_name: 'その他' }
    ]
 )

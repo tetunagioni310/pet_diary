@@ -73,11 +73,10 @@
 
           <input type="radio" name="tab_name" id="tab1" checked>
           <label class="tab_class bold" for="tab1">投稿</label>
-
           <div class="content-class col">
             <% @posts.each do |post| %>
               <div class="col text-field customer-content">
-                <div class="col row">
+                <div class="col row customer-post">
                   <%= image_tag post.customer.get_customer_image(50,50)%>
                   <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "mr-2" %>
                   <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
@@ -101,7 +100,7 @@
           <div class="content-class col">
             <% @likes.each do |like| %>
               <div class="col text-field customer-content">
-                <div class="col row">
+                <div class="col row customer-post">
                   <%= image_tag like.post.customer.get_customer_image(50,50)%>
                   <%= link_to like.post.customer.nick_name, public_customer_path(like.post.customer.id), class: "mr-2" %>
                   <%= like.post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
@@ -114,18 +113,35 @@
                   <li><%= link_to "詳細", public_post_path(like.post.id), class: "details-link" %></li>
                 </ul>
               </div>
-
             <% end %>
           </div>
-
-
 
           <input type="radio" name="tab_name" id="tab3" >
           <label class="tab_class bold" for="tab3">フォロー</label>
           <div class="content-class col">
             <% @following_customer_posts.each do |following_customer_post|%>
                 <div class="col text-field customer-content">
-                  <div class="col row">
+                  <div class="col row customer-post">
+                    <%= image_tag following_customer_post.customer.get_customer_image(50,50)%>
+                    <%= link_to following_customer_post.customer.nick_name, public_customer_path(following_customer_post.customer.id), class: "mr-2" %>
+                    <%= following_customer_post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                  </div>
+
+                  <ul class="m-3">
+                    <li><%= following_customer_post.post_title.truncate(10) %></li>
+                    <li><%= following_customer_post.post_content.truncate(30) %></li>
+                    <li><%= link_to "詳細", public_post_path(following_customer_post.id), class: "details-link" %></li>
+                  </ul>
+                </div>
+            <% end %>
+          </div>
+
+          <input type="radio" name="tab_name" id="tab4" >
+          <label class="tab_class bold" for="tab4">画像</label>
+          <div class="content-class col">
+            <% @following_customer_posts.each do |following_customer_post|%>
+                <div class="col text-field customer-content">
+                  <div class="col row customer-post">
                     <%= image_tag following_customer_post.customer.get_customer_image(50,50)%>
                     <%= link_to following_customer_post.customer.nick_name, public_customer_path(following_customer_post.customer.id), class: "mr-2" %>
                     <%= following_customer_post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>

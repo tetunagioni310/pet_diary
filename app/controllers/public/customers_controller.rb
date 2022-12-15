@@ -19,7 +19,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @likes = Like.where(customer_id: @customer.id).order(id: "DESC").limit(5)
     @posts = Post.where(customer_id: @customer.id).order(id: "DESC").limit(5)
-    @following_customer_posts = Post.where(customer_id: [*current_customer.following_ids]).order(id: "DESC").limit(5)
+    @following_customer_posts = Post.where(customer_id: [*@customer.following_ids]).order(id: "DESC").limit(5)
   end
 
   def edit

@@ -6,6 +6,7 @@ class Pet < ApplicationRecord
 
   validates :pet_name, presence: true
   validates :pet_introduction, presence: true
+  validates :pet_type, presence: true
   validates :gender, presence: true
   validates :age, presence: true
   validates :birthday, presence: true
@@ -21,9 +22,9 @@ class Pet < ApplicationRecord
     end
   pet_image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def pet_gender
     gender == "♂" ? "くん" : "ちゃん"
   end
-  
+
 end

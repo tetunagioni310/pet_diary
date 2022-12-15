@@ -23,63 +23,80 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
             <% if customer_signed_in? %>
-              <li class="nav-items">
-                <div class="nav-link active">
-                  ようこそ、<%= current_customer.nick_name %> さん！
-                </div>
-              </li>
-              <li>
-               <%= link_to "マイページ", public_customer_path(current_customer.id), class: "nav-link" %>
-              </li>
-              <li>
-                <%= link_to "全ての投稿", all_public_posts_path, class: "nav-link" %>
-              </li>
-              <li>
-                <%= link_to "使用アイテム", public_use_items_path, class: "nav-link" %>
-              </li>
-              <li class="nav-items dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  メニュー
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%= link_to "ユーザー検索", search_page_public_customers_path, class: "dropdown-item" %>
-                  <%= link_to "ペット", public_pets_path, class: "dropdown-item" %>
-                  <%= link_to "投稿", public_posts_path, class: "dropdown-item" %>
-                  <%= link_to "ワーク", public_works_path, class: "dropdown-item" %>
-                  <%= link_to "スケジュール", public_schedules_path, class: "dropdown-item" %>
-                  <%= link_to "アイテム", public_items_path, class: "dropdown-item" %>
-                  <%= link_to "お気に入りアイテム", public_favorite_items_path, class: "dropdown-item" %>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-items">
+                  <div class="nav-link active">
+                    ようこそ、<%= current_customer.nick_name %> さん！
                   </div>
-              </li>
-              <li>
-                <%= link_to "ログアウト",  destroy_customer_session_path, method: :delete, class: "nav-link" %>
-              </li>
+                </li>
+                <li>
+                 <%= link_to "マイページ", public_customer_path(current_customer.id), class: "nav-link" %>
+                </li>
+                <li>
+                  <%= link_to "全ての投稿", all_public_posts_path, class: "nav-link" %>
+                </li>
+                <li>
+                  <%= link_to "使用アイテム", public_use_items_path, class: "nav-link" %>
+                </li>
+                <li class="nav-items dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    メニュー
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <%= link_to "ユーザー検索", search_page_public_customers_path, class: "dropdown-item" %>
+                    <%= link_to "ペット", public_pets_path, class: "dropdown-item" %>
+                    <%= link_to "投稿", public_posts_path, class: "dropdown-item" %>
+                    <%= link_to "ワーク", public_works_path, class: "dropdown-item" %>
+                    <%= link_to "スケジュール", public_schedules_path, class: "dropdown-item" %>
+                    <%= link_to "アイテム", public_items_path, class: "dropdown-item" %>
+                    <%= link_to "お気に入りアイテム", public_favorite_items_path, class: "dropdown-item" %>
+                    </div>
+                </li>
+                <li>
+                  <%= link_to "ログアウト",  destroy_customer_session_path, method: :delete, class: "nav-link" %>
+                </li>
+                <li>
+                  <%= form_with url: search_public_posts_path, method: :get, local: true do |f| %>
+                    <div class="d-flex">
+                      <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "form-control m-0" %>
+                      <%= f.submit "検索", class: "btn btn-success ml-3" %>
+                    </div>
+                  <% end %>
+                </li>
+              </ul>
+
             <% elsif admin_signed_in? %>
-              <li>
-                <%= link_to "グループ",  admin_groups_path, class: "nav-link" %>
-              </li>
-              <li>
-                <%= link_to "会員一覧", admin_customers_path, class: "nav-link" %>
-              </li>
-              <li>
-                <%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: "nav-link" %>
-              </li>
+
+              <ul class="navbar-nav ml-auto">
+                <li>
+                  <%= link_to "グループ",  admin_groups_path, class: "nav-link" %>
+                </li>
+                <li>
+                  <%= link_to "会員一覧", admin_customers_path, class: "nav-link" %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト",  destroy_admin_session_path, method: :delete, class: "nav-link" %>
+                </li>
+              </ul>
+
             <% else %>
-              <li class="nav-item">
-                <%= link_to "about", public_homes_about_path, class: "nav-link" %>
-              </li>
 
-              <li class="nav-item">
-                <%= link_to "新規登録", new_customer_registration_path, class: "nav-link" %>
-              </li>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <%= link_to "about", public_homes_about_path, class: "nav-link" %>
+                </li>
 
-              <li class="nav-item">
-                <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
-              </li>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_customer_registration_path, class: "nav-link" %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
+                </li>
+              </ul>
+
             <% end %>
-          </ul>
 
         </div>
       </nav>
