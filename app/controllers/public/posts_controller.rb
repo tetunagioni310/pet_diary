@@ -49,7 +49,10 @@ class Public::PostsController < ApplicationController
   end
 
   def all
-    @posts = Post.all.order(id: "DESC").page(params[:page]).per(8)
+    @posts = Post.all.order(id: "DESC").order(id: "DESC").page(params[:page]).per(12)
+    @cat_posts = Post.joins(:pet).where(group_id: 1).order(id: "DESC").page(params[:page]).per(12)
+    @dog_posts = Post.joins(:pet).where(group_id: 2).order(id: "DESC").page(params[:page]).per(12)
+    @other_posts = Post.joins(:pet).where(group_id: 3).order(id: "DESC").page(params[:page]).per(12)
   end
 
   def search

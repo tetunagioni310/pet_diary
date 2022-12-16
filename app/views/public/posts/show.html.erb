@@ -6,9 +6,7 @@
     </div>
     <div class="content col-md-10 m-auto px-0">
       <div class="post-image col">
-        <% if @post.post_image.attached? %>
           <%= image_tag @post.get_post_image(500,500), class: "col" %>
-        <% end %>
       </div>
 
       <div class="post-text col">

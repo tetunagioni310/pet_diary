@@ -38,7 +38,7 @@
                 <% if random_post.post_image.attached? %>
                 <div class="col-6 m-auto post-image">
                   <%= link_to public_post_path(random_post.id) do %>
-                    <%= image_tag random_post.post_image.variant( resize: "800x800", gravity: :center, crop: "500x500+0+0" ).processed, width: "100%", height: "100%", class: "object-fit-img col px-0 py-md-1 mx-auto" %>
+                    <%= image_tag random_post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "600x600+0+0" ).processed, width: "100%", height: "100%", class: "object-fit-img col px-0 py-md-1 mx-auto" %>
                   <% end %>
                 </div>
                 <% end %>
