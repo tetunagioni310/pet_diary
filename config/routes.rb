@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     resources :posts do
       collection do
         get 'search'
-        get 'all'
+        get 'post_all'
+        get 'search_all'
       end
       resources :likes, only: [:create,:destroy]
       resources :comments, only: [:create,:destroy]

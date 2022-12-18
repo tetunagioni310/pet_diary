@@ -20,12 +20,12 @@
           </tr>
           <tr>
             <th>在庫数</th>
-            <td><%= @item.amount %>袋(<%= @item.capacity %>g)</td>
+            <td><%= @item.amount %>袋(<%= @item.capacity.to_s + @item.unit_i18n  %>)</td>
           </tr>
 
           <tr>
             <th>在庫合計</th>
-            <td><%= @item.total_capacity %>g</td>
+            <td><%= @item.total_capacity.to_s + @item.unit_i18n %></td>
           </tr>
 
 
@@ -35,7 +35,7 @@
               <%= form_with model: @use_item, url: public_use_items_path, method: :post do |f| %>
                 <div class="add-amount-used col">
                   <%= f.hidden_field :item_id, :value => @item.id %>
-                  <%= f.number_field :amount_used, :value => nil, class: "col-6 form-control" %>g
+                  <%= f.number_field :amount_used, :value => nil, class: "col-6 form-control" %><%= @item.unit_i18n %>
                   <%= f.submit "追加", class: "btn btn-success col-4 ml-4", :onclick => "return check_form()" %>
                 </div>
               <% end %>

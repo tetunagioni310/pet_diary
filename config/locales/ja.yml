@@ -5,6 +5,11 @@ ja:
       status: # カラム名（payment_methodカラムに対して）
         nonreleased: "非公開"
         released: "公開"
+    item:
+      unit:
+        grams: 'g'
+        sheets: '枚'
+        pieces: '個'
   views:
     pagination:
       first: '最初'

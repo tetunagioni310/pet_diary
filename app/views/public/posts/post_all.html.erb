@@ -1,0 +1,187 @@
+<div class="container">
+  <div class="tab-area col">
+
+      <input type="radio" name="tab_name" id="tab1" checked>
+      <label class="tab_class bold" for="tab1">全ての投稿</label>
+
+      <div class="content-class col">
+        <div class="col-10 m-auto text-field customer-content">
+          <% if @keyword %>
+            <div class="h4 bold col"><%= @keyword %>の検索結果（<%= @posts.count %>件）</div>
+          <% else %>
+            <div class="h4 bold col">全ての投稿(<%= @posts.count %>件)</div>
+          <% end %>
+
+          <% if @posts.count >= 1 %>
+            <div class="row col all-post m-auto">
+            <% @posts.each do |post| %>
+              <section class="col-lg-3 border mx-auto my-1">
+
+                  <%= link_to public_post_path(post.id) do %>
+                    <div class="col p-0 m-0">
+                      <% if post.post_image.attached? %>
+                        <%= image_tag post.post_image.variant(resize: "1000x1000", gravity: :center, crop: "500x500+0+0").processed, height: "100%", width: "100%", class: "col px-0 py-md-1 mx-auto" %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                  <div></div>
+                    <div class="row col customer-image">
+                      <%= image_tag post.pet.get_pet_image(30,30) %>
+                      <%= link_to post.pet.pet_name + post.pet.pet_gender, public_customer_path(post.customer.id), class: "other-link ml-2" %>
+                    </div>
+
+                  <h2 class="border-bottom"><%= post.post_title.truncate(10) %></h2>
+                  <time><%= post.start_time.strftime('%Y/%m/%d %H:%M') %></time>
+
+              </section>
+            <% end %>
+          </div>
+          <% else %>
+            <div class="no-post h2">
+              投稿はありません
+            </div>
+          <% end %>
+        </div>
+        <%= paginate @posts %>
+      </div>
+
+      <!--犬の投稿タブ-->
+      <input type="radio" name="tab_name" id="tab2">
+      <label class="tab_class bold" for="tab2">犬の投稿</label>
+      <div class="content-class col">
+      <% if @dog_posts %>
+        <div class="col-10 m-auto text-field customer-content">
+          <div class="h4 bold col">犬の投稿(<%= @dog_posts.count %>件)</div>
+          <% if @dog_posts.count >= 1 %>
+            <div class="row col all-post">
+            <% @dog_posts.each do |dog_post| %>
+              <section class="col-lg-3 border mx-auto my-1">
+
+                  <%= link_to public_post_path(dog_post.id) do %>
+                    <div class="col p-0 m-0">
+                      <% if dog_post.post_image.attached? %>
+                        <%= image_tag dog_post.post_image.variant(resize: "1000x1000", gravity: :center, crop: "500x500+0+0").processed, height: "100%", width: "100%", class: "col px-0 py-md-1 mx-auto" %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                  <div></div>
+                    <div class="row col customer-image">
+                      <%= image_tag dog_post.pet.get_pet_image(30,30) %>
+                      <%= link_to dog_post.pet.pet_name + dog_post.pet.pet_gender, public_customer_path(dog_post.customer.id), class: "other-link ml-2" %>
+                    </div>
+
+                  <h2 class="border-bottom"><%= dog_post.post_title.truncate(10) %></h2>
+                  <time><%= dog_post.start_time.strftime('%Y/%m/%d %H:%M') %></time>
+
+              </section>
+            <% end %>
+          </div>
+          <% else %>
+            <div class="no-post h2">
+              投稿はありません
+            </div>
+          <% end %>
+        </div>
+        <%= paginate @dog_posts %>
+      <% else %>
+        <div class="col-10 m-auto text-field customer-content">
+          <div class="no-post h2">
+            投稿はありません
+          </div>
+        </div>
+      <% end %>
+      </div>
+
+
+      <!--猫の投稿タブ-->
+      <input type="radio" name="tab_name" id="tab3" >
+      <label class="tab_class bold" for="tab3">猫の投稿</label>
+      <div class="content-class col">
+      <% if @cat_posts %>
+        <div class="col-10 m-auto text-field customer-content">
+          <div class="h4 bold col">猫の投稿(<%= @cat_posts.count %>件)</div>
+          <% if @cat_posts.count >= 1 %>
+            <div class="row col all-post m-auto">
+              <% @cat_posts.each do |cat_post| %>
+                <section class="col-lg-3 border mx-auto my-1">
+                    <%= link_to public_post_path(cat_post.id) do %>
+                      <div class="col p-0 m-0">
+                        <% if cat_post.post_image.attached? %>
+                          <%= image_tag cat_post.post_image.variant(resize: "1000x1000", gravity: :center, crop: "500x500+0+0").processed, height: "100%", width: "100%", class: "col px-0 py-md-1 mx-auto" %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                    <div></div>
+                      <div class="row col customer-image">
+                        <%= image_tag cat_post.pet.get_pet_image(30,30) %>
+                        <%= link_to cat_post.pet.pet_name + cat_post.pet.pet_gender, public_customer_path(cat_post.customer.id), class: "other-link ml-2" %>
+                      </div>
+
+                    <h2 class="border-bottom"><%= cat_post.post_title.truncate(10) %></h2>
+                    <time><%= cat_post.start_time.strftime('%Y/%m/%d %H:%M') %></time>
+
+                </section>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="no-post h2">
+              投稿はありません
+            </div>
+          <% end %>
+        </div>
+        <%= paginate @cat_posts%>
+      <% else %>
+        <div class="col-10 m-auto text-field customer-content">
+          <div class="no-post h2">
+            投稿はありません
+          </div>
+        </div>
+      <% end %>
+      </div>
+
+
+      <!--その他投稿タブ-->
+      <input type="radio" name="tab_name" id="tab4" >
+      <label class="tab_class bold" for="tab4">その他投稿</label>
+      <div class="content-class col">
+      <% if @other_posts %>
+        <div class="col-10 m-auto text-field customer-content">
+          <div class="h4 bold col">その他の投稿(<%= @other_posts.count %>件)</div>
+          <% if @other_posts.count >= 1 %>
+            <div class="row col all-post">
+            <% @other_posts.each do |other_post| %>
+              <section class="col-lg-3 border mx-auto my-1">
+                  <%= link_to public_post_path(other_post.id) do %>
+                    <div class="col p-0 m-0">
+                        <%= image_tag other_post.post_image.variant(resize: "1000x1000", gravity: :center, crop: "500x500+0+0").processed, height: "100%", width: "100%", class: "col px-0 py-md-1 mx-auto" %>
+                    </div>
+                  <% end %>
+                  <div></div>
+                    <div class="row col customer-image">
+                      <%= image_tag other_post.pet.get_pet_image(30,30) %>
+                      <%= link_to other_post.pet.pet_name + other_post.pet.pet_gender, public_customer_path(other_post.customer.id), class: "other-link ml-2" %>
+                    </div>
+
+                  <h2 class="border-bottom"><%= other_post.post_title.truncate(10) %></h2>
+                  <time><%= other_post.start_time.strftime('%Y/%m/%d %H:%M') %></time>
+
+              </section>
+            <% end %>
+          </div>
+          <% else %>
+            <div class="no-post h2">
+              投稿はありません
+            </div>
+          <% end %>
+        </div>
+          <%= paginate @other_posts %>
+        </div>
+      <% else %>
+        <div class="col-10 m-auto text-field customer-content">
+          <div class="no-post h2">
+            投稿はありません
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>

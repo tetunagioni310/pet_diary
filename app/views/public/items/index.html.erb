@@ -8,10 +8,10 @@
               <% @items.each do |item| %>
               <tr>
                 <td class="bold"><%= link_to item.item_name, public_item_path(item.id), class: "item-link" %></td>
-                <td><%= item.amount %>袋</td>
+                <td><%= item.amount.to_s + "袋" %></td>
                 <td>
                   <%= item.total_capacity %>
-                  <% if item.total_capacity %>g<% end %>
+                  <% if item.total_capacity %><%= item.unit_i18n %><% end %>
                 </td>
               </tr>
 
@@ -19,7 +19,7 @@
                 <td colspan="2">
                   <%= form_with model: item, url: public_item_path(item.id), method: :patch do |f|  %>
                     <div class="d-flex col">
-                      <%= f.number_field :amount, value: nil, placeholder: "入力してください", required:true, class: "col-8 form-control" %>
+                      <%= f.number_field :amount, value: nil, placeholder: "数量を入力してください", required:true, class: "col-8 form-control" %>
                       <%= f.hidden_field :item_name, :value => item.item_name %>
                       <%= f.submit "追加", class: "btn btn-success btn-sm ml-3" %>
                     </div>
@@ -62,9 +62,23 @@
                   </td>
                 </tr>
                 <tr>
+                  <td class="row align-items-center">
+                    <%= f.label :unit, "消費単位", class: "col-form-label col-4" %>
+
+                    <%= f.radio_button :unit, Item.units.key(0) %>
+                    <%= f.label :unit, Item.units_i18n[:grams] %>
+
+                    <%= f.radio_button :unit, Item.units.key(1), class: "ml-2" %>
+                    <%= f.label :unit, Item.units_i18n[:sheets] %>
+
+                    <%= f.radio_button :unit, Item.units.key(2), class: "ml-2" %>
+                    <%= f.label :unit, Item.units_i18n[:pieces] %>
+                  </td>
+                </tr>
+                <tr>
                   <td class="row">
                     <%= f.label :capacity, "内容量", class: "col-form-label col-4" %>
-                    <%= f.number_field :capacity, :placeholder => "例：100g",  class: "form-control col-8" %>
+                    <%= f.number_field :capacity, :placeholder => "数字のみ記載ください",  class: "form-control col-8" %>
                   </td>
                 </tr>
                 <tr>

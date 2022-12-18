@@ -63,6 +63,6 @@ class Public::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:item_name,:amount,:capacity)
+    params.require(:item).permit(:item_name,:amount,:capacity,:unit)
   end
 end

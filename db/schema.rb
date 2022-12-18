@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 2022_11_10_225429) do
     t.integer "customer_id", null: false
     t.string "item_name", default: "", null: false
     t.integer "amount", null: false
+    t.integer "unit", null: false
     t.integer "capacity"
     t.integer "total_capacity"
     t.datetime "created_at", precision: 6, null: false
@@ -134,6 +135,7 @@ ActiveRecord::Schema.define(version: 2022_11_10_225429) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "customer_id", null: false
+    t.integer "group_id", null: false
     t.integer "pet_id", null: false
     t.string "post_title", default: "", null: false
     t.string "post_content", default: "", null: false

@@ -1,10 +1,36 @@
+<!--お気に入り呼び出し 確認ダイアログ-->
+<script>
+  function beforeSubmit() {
+    if(window.confirm('お気に入りをよび出しますか？')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+</script>
+
 <div class="container">
-  <div class="col-sm-11 m-auto h2 bold">
-    使用アイテム
-    <%= link_to public_items_path, class: "text-warning col-1 p-0" do %>
-      <i class="fas fa-solid fa-plus"></i>
-    <% end %>
+  <div class="row col">
+    <div class="bold h2">
+      使用アイテム
+      <%= link_to public_items_path, class: "text-warning col-1 p-0" do %>
+        <i class="fas fa-solid fa-plus"></i>
+      <% end %>
+    </div>
   </div>
+  <% if current_customer.favorite_items.count >= 1 %>
+    <div class="form-group row col my-2 align-items-center">
+      <%= form_with url: public_favorite_items_use_items_path, method: :post do |f| %>
+        <%= f.select :favorite_item_id, options_from_collection_for_select(current_customer.favorite_items, :id, :favorite_item_name), class: "h6" %>
+        <%= f.submit "呼び出し", class: "btn btn-success", :onclick => "return beforeSubmit()"%>
+      <% end %>
+      <%= link_to  public_favorite_items_path, class: "default-color other-link ml-2" do %>
+        一覧へ
+      <% end %>
+    </div>
+
+  <% end %>
+
 
   <div class="row">
     <div class="use-item-index col">
@@ -29,8 +55,9 @@
                 <td class="col-5">
                   <%= form_with model: use_item, url: public_use_item_path(use_item.id), method: :patch do |f| %>
                     <div class="row text-center">
-                      <div class="col-7 p-0 m-0">
+                      <div class="row col-7 p-0 m-0">
                         <%= f.number_field :amount_used, class: "form-control col-10 m-0" %>
+                        <p class="col-form-label"><%= use_item.item.unit_i18n %></p>
                       </div>
                       <%= f.hidden_field :customer_id, :value => current_customer.id %>
                       <%= f.hidden_field :item_id, :value => use_item.item_id%>
@@ -59,31 +86,13 @@
               </tr>
           </table>
         <% else %>
-
-        <!--お気に入り呼び出し 確認ダイアログ-->
-        <script>
-          function beforeSubmit() {
-            if(window.confirm('お気に入りをよび出しますか？')) {
-              return true;
-            } else {
-              return false;
-            }
-          }
-        </script>
-
-
         <div class="not-use-items col mx-auto">使用アイテムは空です</div>
-        <% if current_customer.favorite_items.count >= 1 %>
-          <%= form_with url: public_favorite_items_use_items_path, method: :post do |f| %>
-            <%= f.select :favorite_item_id, options_from_collection_for_select(current_customer.favorite_items, :id, :favorite_item_name) %>
-            <%= f.submit "呼び出し", class: "btn-revers", :onclick => "return beforeSubmit()"%>
-            <% end %>
-          <% end %>
         <% end %>
-        </div>
       </div>
+
     </div>
-    <div class="items-link col">
-      <%= link_to "ペット選択", new_public_work_path, class: "col-3 btn-revers btn-lg" %>
-    </div>
+  </div>
+  <div class="items-link col">
+    <%= link_to "ペット選択", new_public_work_path, class: "col-3 btn-revers btn-lg" %>
+  </div>
 </div>

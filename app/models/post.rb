@@ -2,6 +2,7 @@ class Post < ApplicationRecord
 
   belongs_to :pet
   belongs_to :customer
+  belongs_to :group
   has_many :likes, dependent: :destroy
   has_many :liked_customers, through: :likes, source: :customer
   has_many :comments, dependent: :destroy
@@ -13,13 +14,12 @@ class Post < ApplicationRecord
   validates :customer_id, presence: true
   validates :post_title, presence: true
   validates :post_content, presence: true
+  validates :post_image, presence: true
 
   def get_post_image(width, height)
-    unless post_image.attached?
-      file_path = Rails.root.join('app/assets/images/noimage.jpg')
-      post_image.attach(io: File.open(file_path), filename: 'noimage.jpg', content_type: 'image/jpg')
+    if post_image
+      post_image.variant(resize_to_limit: [width, height]).processed
     end
-    post_image.variant(resize_to_limit: [width, height]).processed
   end
 
   def self.my_post_search(keyword, current_customer)
@@ -28,5 +28,9 @@ class Post < ApplicationRecord
 
   def self.other_post_search(keyword, customer)
     Post.joins(:pet).where("pet_name LIKE ? ", "%#{keyword}%").where(customer_id: customer.id)
+  end
+
+  def self.all_post_search(keyword)
+    Post.joins(:pet).where("post_title LIKE ? OR post_content LIKE ? OR pet_name LIKE ?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%")
   end
 end

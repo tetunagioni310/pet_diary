@@ -2,7 +2,7 @@
 <% if @post.customer.status == "released" || @post.customer.id == current_customer.id %>
   <div class="post-show">
     <div class="h2 my-5 col-md-10 mx-auto">
-      <%= link_to @post.customer.nick_name, public_customer_path(@post.customer.id), class: "default-color other-link" %>さんの記事詳細ページ
+      <%= link_to @post.customer.nick_name, public_customer_path(@post.customer.id), class: "default-color other-link" %>さんの記事詳細
     </div>
     <div class="content col-md-10 m-auto px-0">
       <div class="post-image col">
