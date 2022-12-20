@@ -7,12 +7,7 @@ class Work < ApplicationRecord
   validates :pet_id, presence: true
   validates :work_name, presence: true
 
-  # Form で一時的に選択したペットのID
-  attr_accessor :pet_ids
-
-  def pet_names
-    Pet.where(id: pet_ids).map do |pet|
-      "#{pet.pet_name}#{pet.pet_gender}"
-    end
+  def self.pet_work_search(keyword, current_customer)
+    Work.joins(:pet).where("work_name LIKE ? OR pet_name LIKE ?", "%#{keyword}%", "%#{keyword}%")
   end
 end

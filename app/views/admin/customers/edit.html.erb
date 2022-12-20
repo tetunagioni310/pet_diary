@@ -6,16 +6,18 @@
       <% else %>
       　<h4>この会員のステータスを有効にしますか？</h4>
       <% end %>
-      
+
       <div class="col-8 mx-auto py-5">
         <% if @customer.is_deleted == false %>
+          <%= link_to "変更をやめる", admin_customers_path, class: "btn-links" %>
         　<%= link_to "無効にする", admin_customer_path(@customer.id), method: :patch , data: {confirm: "本当に無効にしますか？"}, class: "btn-links" %>
         <% else %>
+          <%= link_to "変更をやめる", admin_customers_path, class: "btn-links" %>
         　<%= link_to "有効にする", admin_customer_path(@customer.id), method: :patch , data: {confirm: "本当に有効にしますか？"}, class: "btn-links"%>
         <% end %>
       </div>
-     
-      
+
+
     </div>
   </div>
 </div>

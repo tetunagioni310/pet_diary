@@ -17,7 +17,7 @@
               <td><%= customer.nick_name %></td>
               <td><%= customer.email %></td>
               <td><%= link_to "一覧", admin_customer_posts_path(customer.id), class: "btn-links col" %></td>
-              <td><%= link_to customer.is_deleted?, edit_admin_customer_path(customer.id), class: "btn-links col" %></td>
+              <td><%= link_to customer.is_deleted?, edit_admin_customer_path(customer.id), class: "other-link" %></td>
             </tr>
             <% end %>
           </tbody>

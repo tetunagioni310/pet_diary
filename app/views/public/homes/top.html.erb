@@ -6,20 +6,22 @@
         <%= image_tag '24971705_m.jpg', class: "col image" %>
 
         <div class="top-main col">
-          <div class="col-lg-8 mx-auto h2 bold text-center border-bottom">新着投稿</div>
+          <div class="col mx-auto h2 bold text-center border-bottom">新着投稿</div>
           <% if @random_posts.count >= 1 %>
             <% @posts.each do |post| %>
-              <div class="col-md-8 text-field top-content">
-                <div class="col row">
+              <div class="col text-field top-content">
+                <div class="col row user-info">
                   <%= image_tag post.customer.get_customer_image(50,50) %>
                   <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "other-link mx-2" %>
                   <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
                 </div>
+                <%= link_to public_post_path(post.id), class: "other-link" do %>
                   <ul class="m-3">
                     <li><%= post.post_title.truncate(10) %></li>
                     <li><%= post.post_content.truncate(30) %></li>
-                    <li><%= link_to '詳細', public_post_path(post.id), class: "details-link" %></li>
+                    <li><%= image_tag post.get_post_image(500,500) , width: "50%" %></li>
                   </ul>
+                <% end %>
               </div>
             <% end %>
           <% else %>

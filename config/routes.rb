@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     resources :works, only: [:index,:show,:new,:create,:destroy] do
       collection do
         get 'log'
+        get 'search'
       end
     end
 

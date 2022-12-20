@@ -11,7 +11,14 @@
         <table>
           <tr>
             <th class="col-3"></th>
-            <td class="col-9"><%= @pet.pet_type %></td>
+            <td class="col-9">
+            <% if @pet.group_id == 3 %>
+              <%= @pet.pet_type %>
+            <% else %>
+              <%= @pet.group.group_name + ':' + @pet.pet_type %>
+            <% end %>
+
+            </td>
           </tr>
 
           <tr>
@@ -31,7 +38,7 @@
 
           <tr>
             <th>性別</th>
-            <td><%= @pet.gender %><%= @pet.group_id %></td>
+            <td><%= @pet.gender %></td>
           </tr>
 
           <tr>

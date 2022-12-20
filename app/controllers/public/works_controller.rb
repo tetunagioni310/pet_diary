@@ -2,7 +2,7 @@ class Public::WorksController < ApplicationController
   before_action :authenticate_customer!
 
   def new
-    @work = Work.new
+    @work = WorkForm.new
   end
 
   def index
@@ -14,7 +14,7 @@ class Public::WorksController < ApplicationController
   end
 
   def log
-    @work = Work.new(work_params)
+    @work = WorkForm.new(work_params)
     @work.customer_id = current_customer.id
     @use_items = current_customer.use_items
     if @work.pet_ids.blank? || @work.work_name.blank?
@@ -24,28 +24,28 @@ class Public::WorksController < ApplicationController
 
   def create
     work_params[:pet_ids].select(&:present?).each do |pet_id|
-      @work = Work.new(work_params)
+      @work = WorkForm.new(work_params)
       @work.pet_id = pet_id
       @work.customer_id = current_customer.id
-      @work.save!
-      flash[:notice] = "ワークを作成しました"
+      @use_items = current_customer.use_items
+      @work = @work.save!
       use_items = current_customer.use_items
       use_items.each do |use_item|
         # work_detail作成
         @work_detail = WorkDetail.new
         @work_detail.item_id = use_item.item_id
+
         @work_detail.work_id = @work.id
         @work_detail.amount_used = use_item.amount_used
         @work_detail.save!
-  
+
         # itemの在庫を変更
         @item = Item.find_by(id: @work_detail.item_id)
         @item.total_capacity -= @work_detail.amount_used
         @item.save!
       end
     end
-    
-    redirect_to public_works_path
+    redirect_to public_works_path, notice: 'ワークを作成しました。'
   end
 
   def destroy
@@ -54,9 +54,16 @@ class Public::WorksController < ApplicationController
     redirect_to public_works_path
   end
 
+  def search
+    @works = Work.pet_work_search(params[:keyword], current_customer).order(id: "DESC").page(params[:page]).per(12)
+    @keyword = params[:keyword]
+    render "index"
+  end
+
   private
 
+  # pet_ids は配列なので以下の書き方
   def work_params
-    params.require(:work).permit(:work_name, pet_ids: [])
+    params.require(:work_form).permit(:work_name, pet_ids: [])
   end
 end
