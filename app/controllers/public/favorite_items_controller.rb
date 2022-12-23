@@ -1,6 +1,6 @@
 class Public::FavoriteItemsController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def index
     @favorite_items = FavoriteItem.where(customer_id: current_customer.id)
   end
@@ -23,11 +23,11 @@ class Public::FavoriteItemsController < ApplicationController
     flash[:notice] = "お気に入りアイテムを作成しました"
     redirect_to public_favorite_items_path
   end
-  
+
   def edit
     @favorite_item = FavoriteItem.find(params[:id])
   end
-  
+
   def update
     @favorite_item = FavoriteItem.find(params[:id])
     if @favorite_item.update(favorite_item_params)
@@ -47,7 +47,7 @@ class Public::FavoriteItemsController < ApplicationController
   end
 
   private
-  
+
   def favorite_item_params
     params.require(:favorite_item).permit(:favorite_item_name)
   end

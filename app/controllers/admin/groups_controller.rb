@@ -11,11 +11,11 @@ class Admin::GroupsController < ApplicationController
     @group.save
     redirect_to admin_groups_path
   end
-  
+
   def edit
     @group = Group.find(params[:id])
   end
-  
+
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
@@ -24,13 +24,13 @@ class Admin::GroupsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def destroy
-    @group = Group.find(params[:id])
+    @group = Group.find_by(id: params[:id])
     @group.destroy
     redirect_to admin_groups_path
   end
-  
+
   private
   def group_params
     params.require(:group).permit(:group_name)

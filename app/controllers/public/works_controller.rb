@@ -24,17 +24,18 @@ class Public::WorksController < ApplicationController
 
   def create
     work_params[:pet_ids].select(&:present?).each do |pet_id|
+      # formオブジェクト作成
       @work = WorkForm.new(work_params)
       @work.pet_id = pet_id
       @work.customer_id = current_customer.id
       @use_items = current_customer.use_items
+      # formオブジェクトから@workに代入してあげないと生成されたidが取得できない
       @work = @work.save!
       use_items = current_customer.use_items
       use_items.each do |use_item|
         # work_detail作成
         @work_detail = WorkDetail.new
         @work_detail.item_id = use_item.item_id
-
         @work_detail.work_id = @work.id
         @work_detail.amount_used = use_item.amount_used
         @work_detail.save!
@@ -51,6 +52,7 @@ class Public::WorksController < ApplicationController
   def destroy
     @work = Work.find(params[:id])
     @work.destroy
+    flash[:notice] = "ワークを削除しました。"
     redirect_to public_works_path
   end
 

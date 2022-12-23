@@ -31,6 +31,6 @@ class Post < ApplicationRecord
   end
 
   def self.all_post_search(keyword)
-    Post.joins(:pet).where("post_title LIKE ? OR post_content LIKE ? OR pet_name LIKE ?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%")
+    Post.joins(:pet).joins(:group).where("post_title LIKE ? OR post_content LIKE ? OR pet_name LIKE ? OR pet_type LIKE ? OR group_name LIKE ?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%")
   end
 end

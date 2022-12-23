@@ -1,21 +1,33 @@
 <div class="container">
   <div class="row">
     <div class="col">
-        <h3 class="text-center">以下を使用して<%= @work.pet_names.join(" ") %>の『<%= @work.work_name %>』を実行します</h3>
-        <div class="col-md-6 m-auto">
-          <div class="text-field col">
-            <table class="col">
-              <% @use_items.each do |use_item| %>
-                <tr>
-                  <td class="col-8"><%= use_item.item.item_name%></td>
-                  <td class="col-4 text-center"><%= use_item.amount_used %>g</td>
-                </tr>
-              <% end %>
-            </table>
-          </div>
+
+        <div class="text-field col-md-10 mx-auto">
+          <h3 class="text-center">以下を使用して<%= @work.pet_names.join(" ") %>の『<%= @work.work_name %>』を実行します</h3>
+          <table class="col p-0 m-0">
+            <tr class="col text-center">
+              <th class="col-6"></th>
+              <th>在庫</th>
+              <th>使用分</th>
+              <th>残り</th>
+            </tr>
+
+            <% @use_items.each do |use_item| %>
+              <tr>
+                <td class="bold"><%= use_item.item.item_name%>(<%= use_item.amount_used %>g)</td>
+                <% item = Item.find_by(id: use_item.item_id)%>
+                <td class="text-center">
+                  <%= remainder = item.total_capacity / use_item.amount_used %>
+                </td>
+                <td class="text-center"><%= @work.pet_names.count %></td>
+                <td class="text-center"><%= remainder - @work.pet_names.count %></td>
+              </tr>
+            <% end %>
+
+          </table>
         </div>
-        <br>
-        <div class="work-create text-center col-3">
+
+        <div class="work-create text-center col-sm-3">
           <%= form_with model: @work, url: public_works_path, method: :post do |f| %>
             <% @work.pet_ids.each do |pet_id| %>
               <%= f.hidden_field :pet_ids, multiple: true, value: pet_id %>
