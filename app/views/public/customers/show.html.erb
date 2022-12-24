@@ -111,19 +111,19 @@
           <input type="radio" name="tab_name" id="tab3">
           <label class="tab_class bold" for="tab3">いいね</label>
           <div class="content-class col">
-            <% @likes.each do |like| %>
+            <% @customer.liked_posts.each do |liked_post| %>
               <div class="col text-field customer-content">
                 <div class="col row customer-post">
-                  <%= image_tag like.post.customer.get_customer_image(50,50)%>
-                  <%= link_to like.post.customer.nick_name, public_customer_path(like.post.customer.id), class: "mr-2" %>
-                  <%= like.post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                  <%= image_tag liked_post.customer.get_customer_image(50,50)%>
+                  <%= link_to liked_post.customer.nick_name, public_customer_path(liked_post.customer.id), class: "mr-2" %>
+                  <%= liked_post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
                 </div>
 
-                <%= link_to public_post_path(like.post.id), class: "other-link" do %>
+                <%= link_to public_post_path(liked_post.id), class: "other-link" do %>
                   <ul class="m-3">
-                    <li><%= like.post.post_title.truncate(10) %></li>
-                    <li><%= like.post.post_content.truncate(30) %></li>
-                    <li><%= image_tag like.post.get_post_image(500,500) , width: "50%" %></li>
+                    <li><%= liked_post.post_title.truncate(10) %></li>
+                    <li><%= liked_post.post_content.truncate(30) %></li>
+                    <li><%= image_tag liked_post.get_post_image(500,500) , width: "50%" %></li>
                   </ul>
                 <% end %>
               </div>

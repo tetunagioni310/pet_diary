@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_10_225429) do
+ActiveRecord::Schema.define(version: 2022_12_24_004904) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -118,6 +118,17 @@ ActiveRecord::Schema.define(version: 2022_11_10_225429) do
     t.index ["customer_id", "post_id"], name: "index_likes_on_customer_id_and_post_id", unique: true
     t.index ["customer_id"], name: "index_likes_on_customer_id"
     t.index ["post_id"], name: "index_likes_on_post_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "post_id"
+    t.integer "comment_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pets", force: :cascade do |t|

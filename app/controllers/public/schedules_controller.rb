@@ -15,7 +15,7 @@ class Public::SchedulesController < ApplicationController
     @schedule = Schedule.new(schedule_params)
     @schedule.customer_id = current_customer.id
     if @schedule.save
-      flash[:notice] = "スケジュールを作成しました…"
+      flash[:notice] = "スケジュールを作成しました。"
       redirect_to public_schedules_path
     else
       @schedules = current_customer.schedules
@@ -30,7 +30,7 @@ class Public::SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     if @schedule.update(schedule_params)
-      flash[:notice] = "投稿を更新しました"
+      flash[:notice] = "スケジュールを更新しました。"
       redirect_to public_schedule_path(@schedule.id)
     else
       render 'edit'
@@ -40,7 +40,7 @@ class Public::SchedulesController < ApplicationController
   def destroy
     @schedule = Schedule.find(params[:id])
     @schedule.destroy
-    flash[:notice] = "スケジュールを削除しました…"
+    flash[:notice] = "スケジュールを削除しました。"
     redirect_to public_schedules_path
   end
 

@@ -22,7 +22,7 @@ class Public::PostsController < ApplicationController
     @pet = Pet.find_by(id: @post.pet.id)
     @post.group_id = @pet.group_id
     if @post.save
-      flash[:notice] = "投稿を作成しました"
+      flash[:notice] = "投稿を作成しました。"
       redirect_to public_post_path(@post.id)
     else
       render 'new'
@@ -37,7 +37,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.group_id = @post.pet.group_id
     if @post.update(post_params)
-      flash[:notice] = "投稿を更新しました"
+      flash[:notice] = "投稿を更新しました。"
       redirect_to public_post_path(@post.id)
     else
       render 'edit'
@@ -47,7 +47,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    flash[:notice] = "投稿を削除しました"
+    flash[:notice] = "投稿を削除しました。"
     redirect_to public_posts_path
   end
 

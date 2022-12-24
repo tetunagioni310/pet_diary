@@ -578,15 +578,10 @@ div.no-favorite-items {
 
 // スケジュール一覧
 
-div.schedule-create {
-  height: 500px;
-}
-
 div.schedule {
   font-size: 10px;
 
   table {
-    height: 500px;
     margin: 0 auto;
 
     thead {
@@ -598,43 +593,47 @@ div.schedule {
 
     tbody {
       color: #000;
-
-      tr {
-        td {
-          text-align: center;
-          div {
-            text-decoration: none;
-            overflow: hidden;
-
-            a {
-
-            }
-          }
-        }
-      }
     }
   }
+}
 
+.simple-calendar {
+ .day {}
+ .wday-0 {}
+ .wday-1 {}
+ .wday-2 {}
+ .wday-3 {}
+ .wday-4 {}
+ .wday-5 {}
+ .wday-6 {}
+ .today {}
+ .past {}
+ .future {}
+ .start-date {}
+ .prev-month {}
+ .next-month { }
+ .current-month {}
+ .has-events {
+   background: #ffff00;
+ }
 }
 
 a.schedule-link {
-  text-decoration: none;
-  color: #EA6B66;
-  font-weight: bold;
-  overflow: wrap;
+text-decoration: none;
+padding: 0;
+margin: 0;
+color: #EA6B66;
+font-weight: bold;
+overflow: hidden;
+display: block;
 }
+
+
 
 // show
 
 div.schedule-show {
   margin: 50px auto;
-  table {
-    tr {
-      td {
-        font-weight: bold;
-      }
-    }
-  }
 }
 
 // followings
