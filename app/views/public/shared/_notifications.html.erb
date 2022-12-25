@@ -17,7 +17,7 @@
         </div>
       <% when 'like' then %>
         <div class="d-flex align-items-center">
-          <%= link_to 'あなたの投稿', notification.post.post_title, class: "other-link" %>にいいねしました
+          <%= link_to 'あなたの投稿', public_post_path(notification.post.id), class: "other-link" %>にいいねしました
         </div>
       <% when 'comment' then %>
         <% if notification.post.customer_id == visited.id %>
