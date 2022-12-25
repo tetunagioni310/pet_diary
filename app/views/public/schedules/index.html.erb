@@ -1,6 +1,9 @@
 <div class="container">
-  <div class="col bold h2 p-0">
-    スケジュール一覧
+
+  <div class="col p-0">
+    <div class="bold h2 mb-3">
+      スケジュール一覧
+    </div>
 
     <ul class="navbar-nav btn-sm">
       <li class="nav-items dropdown my-3" aria-labelledby="navbarDropdown">
@@ -33,23 +36,17 @@
           <% end %>
         </div>
       </li>
-      <li
     </ul>
   </div>
 
-  <div class="row">
+  <div class="schedule text-field col mt-0">
+   <%= month_calendar events: @schedules do |date, schedules| %>
+      <%= date.day %>
 
-    <div class="col">
-      <div class="schedule text-field col">
-       <%= month_calendar events: @schedules do |date, schedules| %>
-          <%= date.day %>
-
-          <% schedules.each do |schedule| %>
-              <%= link_to schedule.schedule_title.truncate(5), public_schedule_path(schedule.id), class: "schedule-link" %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-
+      <% schedules.each do |schedule| %>
+          <%= link_to schedule.schedule_title.truncate(5), public_schedule_path(schedule.id), class: "schedule-link" %>
+      <% end %>
+    <% end %>
   </div>
+
 </div>

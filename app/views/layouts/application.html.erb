@@ -29,6 +29,20 @@
                   <%= link_to current_customer.nick_name, public_customer_path(current_customer.id), class: "nav-link" %>
                 </li>
                 <li>
+                  <%= link_to public_notifications_path, class: "nav-link pt-1" do %>
+                    <% if unchecked_notifications.any? %>
+                      <span class="fa-stack">
+                        <i class="far fa-bell fa-lg fa-stack-1x" style="font-size: 1em;"></i>
+                        <i class="fas fa-circle n-circle fa-stack-1x" style="font-size: 1.5em;"></i>
+                      </span>
+                    <% else %>
+                      <span class="fa-stack">
+                        <i class="far fa-bell fa-lg fa-stack-1x" style="font-size: 1em;"></i>
+                      </span>
+                    <% end %>
+                  <% end %>
+                </li>
+                <li>
                   <%= link_to "全ての投稿", post_all_public_posts_path, class: "nav-link" %>
                 </li>
                 <li>
@@ -45,6 +59,7 @@
                     <%= link_to "ワーク一覧", public_works_path, class: "dropdown-item" %>
                     <%= link_to "アイテム一覧", public_items_path, class: "dropdown-item" %>
                     <%= link_to "スケジュール", public_schedules_path, class: "dropdown-item" %>
+
                   </div>
                 </li>
                 <li>

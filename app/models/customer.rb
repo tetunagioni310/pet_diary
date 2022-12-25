@@ -14,6 +14,8 @@ class Customer < ApplicationRecord
   has_many :works, dependent: :destroy
   has_many :favorite_items, dependent: :destroy
   has_many :schedules, dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
 
   # フォローをした、されたの関係
@@ -31,6 +33,18 @@ class Customer < ApplicationRecord
   validates :introduction, presence: true
 
   enum status: { nonreleased: 0, released: 1}
+
+  # フォロー通知情報作成・保存メソッド
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
 
   def get_customer_image(width, height)
     unless customer_image.attached?
@@ -56,14 +70,17 @@ class Customer < ApplicationRecord
 
   # フォローしたときの処理
   def follow(customer_id)
+    # ログイン中の会員がfollowed_idをフォローする
     relationships.create(followed_id: customer_id)
   end
   # フォローを外すときの処理
   def unfollow(customer_id)
+    # ログイン中の会員がfollowed_idの会員をフォロー解除する
     relationships.find_by(followed_id: customer_id).destroy
   end
   # フォローしているか判定
   def following?(customer)
+    # customerがfollowingsに含まれているかどうかを確認する
     followings.include?(customer)
   end
 

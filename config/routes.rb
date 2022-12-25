@@ -61,6 +61,8 @@ Rails.application.routes.draw do
       get 'post_index'
       get 'post_search'
     end
+
+    resources :notifications, only: [:index]
   end
 
   namespace :admin do
