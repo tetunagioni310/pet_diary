@@ -366,12 +366,6 @@ div.pet-show{
     }
   }
 
-  div.no-posts {
-    height: 300px;
-    line-height: 300px;
-    font-size: 30px;
-  }
-
 // アイテム
 
 div.items-list {
@@ -467,14 +461,6 @@ div.use-item-index {
     th {
       font-weight: bold;
     }
-
-    div.not-use-items {
-      min-height: 250px;
-      line-height: 250px;
-      font-weight: bold;
-      font-size: 30px;
-      text-align: center;
-    }
   }
 }
 
@@ -541,12 +527,6 @@ div.work-show {
 
       }
   }
-
-div.no-works {
-  height: 300px;
-  line-height: 300px;
-  font-size: 30px;
-}
 
 // お気に入りアイテム
 
@@ -770,4 +750,12 @@ div.admin {
       border: 1px solid #EA6B66;
     }
   }
+}
+
+//　その他
+.no-date {
+  height: 300px;
+  line-height: 300px;
+  font-size: 30px;
+  text-align: center;
 }

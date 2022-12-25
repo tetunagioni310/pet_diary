@@ -6,6 +6,7 @@ class Public::RelationshipsController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     if @customer.id != current_customer.id
       current_customer.follow(params[:customer_id])
+      @customer.create_notification_follow!(current_customer)
       redirect_to request.referer
     else
       redirect_to request.referer

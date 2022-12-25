@@ -11,12 +11,14 @@
                 <%= image_tag @customer.get_customer_image(550,550), class: "customer-image" %>
               </td>
             </tr>
+
             <tr>
               <td colspan="2" class="text-center bold"><%= @customer.email %></td>
             </tr>
+
             <tr>
-              <td class="text-center bold align-items-center"><%= @customer.nick_name %></td>
-              <td class="text-center">
+              <td class="col-6 text-center bold align-items-center"><%= @customer.nick_name %></td>
+              <td class="col-6 text-center">
                 <% if current_customer.following?(@customer) %>
                   <%= link_to "フォロー中", public_customer_relationships_path(@customer.id), class: "btn-sm btn-links shadow-none follow-btn", method: :delete %>
                 <% else %>
@@ -74,43 +76,52 @@
           <input type="radio" name="tab_name" id="tab1" checked>
           <label class="tab_class bold" for="tab1">投稿</label>
           <div class="content-class col">
-            <% @posts.each do |post| %>
-              <div class="col text-field customer-content">
-                <div class="col row customer-post">
-                  <%= image_tag post.customer.get_customer_image(50,50)%>
-                  <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "mr-2" %>
-                  <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+            <% if @posts.count >= 1 %>
+              <% @posts.each do |post| %>
+                <div class="col text-field customer-content">
+                  <div class="col row customer-post">
+                    <%= image_tag post.customer.get_customer_image(50,50)%>
+                    <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "mr-2" %>
+                    <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                  </div>
+
+                  <%= link_to public_post_path(post.id), class: "other-link" do %>
+                    <ul class="m-3">
+                      <li><%= post.post_title.truncate(10) %></li>
+                      <li><%= post.post_content.truncate(30) %></li>
+                      <li><%= image_tag post.get_post_image(500,500) , width: "50%" %></li>
+                    </ul>
+                  <% end %>
+
                 </div>
-
-                <%= link_to public_post_path(post.id), class: "other-link" do %>
-                  <ul class="m-3">
-                    <li><%= post.post_title.truncate(10) %></li>
-                    <li><%= post.post_content.truncate(30) %></li>
-                    <li><%= image_tag post.get_post_image(500,500) , width: "50%" %></li>
-                  </ul>
-                <% end %>
-
-              </div>
+              <% end %>
+            <% else %>
+                <p class="no-date">投稿はありません</p>
             <% end %>
             </div>
 
           <input type="radio" name="tab_name" id="tab2" >
           <label class="tab_class bold" for="tab2">画像</label>
           <div class="content-class col">
-            <% @posts.each do |post|%>
-                <div class="col text-field customer-content">
-                  <%= link_to public_post_path(post.id) do %>
-                  <ul class="m-3">
-                      <li><%= image_tag post.get_post_image(500,500), width: "50%" %></li>
-                  </ul>
-                  <% end %>
-                </div>
+            <% if @posts.count >= 1 %>
+              <% @posts.each do |post|%>
+                  <div class="col text-field customer-content">
+                    <%= link_to public_post_path(post.id) do %>
+                    <ul class="m-3">
+                        <li><%= image_tag post.get_post_image(500,500), width: "50%" %></li>
+                    </ul>
+                    <% end %>
+                  </div>
+              <% end %>
+            <% else %>
+              <p class="no-date">画像の投稿はありません</p>
             <% end %>
           </div>
 
           <input type="radio" name="tab_name" id="tab3">
           <label class="tab_class bold" for="tab3">いいね</label>
           <div class="content-class col">
+          <% if @customer.liked_posts.count >= 1 %>
             <% @customer.liked_posts.each do |liked_post| %>
               <div class="col text-field customer-content">
                 <div class="col row customer-post">
@@ -128,12 +139,16 @@
                 <% end %>
               </div>
             <% end %>
+          <% else %>
+              <p class="no-date">投稿がいいねされていません</p>
+          <% end %>
           </div>
 
           <input type="radio" name="tab_name" id="tab4" >
           <label class="tab_class bold" for="tab4">フォロー</label>
           <div class="content-class col">
-            <% @following_customer_posts.each do |following_customer_post|%>
+            <% if @following_customer_posts.count >= 1 %>
+              <% @following_customer_posts.each do |following_customer_post|%>
                 <div class="col text-field customer-content">
                   <div class="col row customer-post">
                     <%= image_tag following_customer_post.customer.get_customer_image(50,50)%>
@@ -149,6 +164,9 @@
                     </ul>
                   <% end %>
                 </div>
+              <% end %>
+            <% else %>
+                <p class="no-date">フォロー会員がいません</p>
             <% end %>
           </div>
 
