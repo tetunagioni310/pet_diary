@@ -6,7 +6,7 @@
   <% visited = notification.visited %>
   <div class="row">
 
-      <%= image_tag visitor.get_customer_image(50,50), class: "image mx-2" %>
+      <%= image_tag visitor.get_customer_image(50,50), class: "image-circle mx-2" %>
       <div class="d-flex align-items-center">
         <%= link_to visitor.nick_name, public_customer_path(visitor.id), class: "other-link bold" %>さんが
       </div>

@@ -1,31 +1,30 @@
 <div class="container">
 <% if @customer.status == "released" || @customer.id == current_customer.id %>
-  <div class="col my-5 h2 bold">
+ <div class="row col h2 bold">
     <%= @customer.nick_name %>さんの投稿一覧
     <% if @customer.id == current_customer.id %>
       <%= link_to new_public_post_path, class: "text-warning ml-3" do %>
         <i class="fas fa-x fa-solid fa-plus"></i>
       <% end %>
     <% end %>
-
-    <div class="my-5">
-      <div class="col-sm-5">
-        <%= form_with url: public_customer_post_search_path, method: :get, local: true do |f| %>
-          <div class="d-flex">
-            <%= f.text_field :keyword, value: @keyword, placeholder: "ペット名を入力", class: "form-control m-0" %>
-            <%= f.hidden_field :customer_id, value: @customer.id %>
-            <%= f.submit "検索", class: "btn btn-success ml-3" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
   </div>
+
+  <div class="col-sm-5 mt-5 p-0">
+    <%= form_with url: public_customer_post_search_path, method: :get, local: true do |f| %>
+      <div class="d-flex">
+        <%= f.text_field :keyword, value: @keyword, placeholder: "ペット名を入力", class: "form-control m-0" %>
+        <%= f.hidden_field :customer_id, value: @customer.id %>
+        <%= f.submit "検索", class: "btn btn-success ml-3" %>
+      </div>
+    <% end %>
+  </div>
+
 
   <div class="row">
     <div class="col">
-      <div class="col post-index">
+      <div class="col text-field">
         <table class="col">
-          <thead>
+          <thead class="border-bottom">
             <th>ペット</th>
             <th>タイトル</th>
             <th>投稿日</th>
@@ -53,9 +52,9 @@
               <% end %>
             <% else %>
                <tr>
-                 <td colspan="3" class="col text-center">
-                   <div class="no-posts">投稿はありません</div>
-                  </td>
+                <td colspan="3" class="col text-center">
+                   <p class="no-date">投稿はありません</p>
+                </td>
                </tr>
             <% end %>
           </tbody>
