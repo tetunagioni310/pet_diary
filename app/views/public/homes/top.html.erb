@@ -3,23 +3,26 @@
 
     <div class="col-md-8">
       <div class="col text-field">
-        <%= image_tag '24971705_m.jpg', class: "col image" %>
+        <%= image_tag '24971705_m.jpg', class: "col my-3" %>
 
-        <div class="top-main col">
+        <div class="col mt-5">
           <div class="col mx-auto h2 bold text-center border-bottom">新着投稿</div>
-          <% if @random_posts.count >= 1 %>
+          <% if @posts.count >= 1 %>
             <% @posts.each do |post| %>
-              <div class="col text-field top-content">
+              <div class="col-sm-8 text-field top-content">
                 <div class="col row user-info">
                   <%= image_tag post.customer.get_customer_image(50,50) %>
                   <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "other-link mx-2" %>
-                  <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                  <div class="small text-muted">
+                    <%= time_ago_in_words(post.created_at).upcase %>
+                  </div>
                 </div>
-                <%= link_to public_post_path(post.id), class: "other-link" do %>
+
+                <%= link_to public_post_path(post.id), class: "other-link p-0 m-0" do %>
                   <ul class="m-3">
                     <li><%= post.post_title.truncate(10) %></li>
                     <li><%= post.post_content.truncate(30) %></li>
-                    <li><%= image_tag post.get_post_image(500,500) , width: "50%" %></li>
+                    <li><%= image_tag post.get_post_image(500,500) , width: "100%", class: "border-radius mt-3" %></li>
                   </ul>
                 <% end %>
               </div>
@@ -32,15 +35,15 @@
     </div>
 
     <div class="col-md-4">
-        <div class="col text-field image-field">
+        <div class="col text-field">
           <div class="col-lg-8 mx-auto text-center h4 bold mb-3 border-bottom">投稿画像</div>
-          <div class="row image-list">
+          <div class="row">
             <% if @random_posts.count >= 1 %>
               <% @random_posts.each do |random_post| %>
                 <% if random_post.post_image.attached? %>
-                <div class="col-6 m-auto post-image">
+                <div class="col-6">
                   <%= link_to public_post_path(random_post.id) do %>
-                    <%= image_tag random_post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "600x600+0+0" ).processed, width: "100%", height: "100%", class: "object-fit-img col px-0 py-md-1 mx-auto" %>
+                    <%= image_tag random_post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "1000x800+0+0" ).processed, width: "100px", height: "100px", maxheight: "100px", class: "object-fit-img col px-0 py-md-1 mx-auto" %>
                   <% end %>
                 </div>
                 <% end %>

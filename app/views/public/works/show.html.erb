@@ -1,13 +1,13 @@
 <div class="container">
   <div class="h4 bold col-md-9 m-auto">ワーク詳細</div>
-  <div class="work-show row col">
-    <div class="text-field col-md-9 m-auto">
+  <div class="mx-auto mt-5 row col">
+    <div class="work-show text-field col-md-9 m-auto">
         <table class="col-10 m-auto">
           <tr>
             <th class="col-4">日付</td>
-            <td class="col-8">
+            <td class="col-8 text-center ">
               <div class="col-10">
-                <span class="col-5 m-auto pl-sm-5">
+                <span class="d-flex col-5 m-auto pl-sm-5">
                   <%= @work.created_at.strftime("%Y/%m/%d") %>
                   <%= button_to public_work_path(@work.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "ml-3 mr-0" do %>
                         <i class="fas fa-solid fa-trash"></i>

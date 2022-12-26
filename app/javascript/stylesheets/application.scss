@@ -83,6 +83,7 @@ th {
   padding: 10px;
   border-style: solid;
   border-color: #aaa;
+  font-weight: bold;
 }
 
 td {
@@ -142,62 +143,32 @@ td {
     flex-wrap: wrap;
     display: flex;
 
-    div.content-class {
-      display: none;
-      div.customer-content {
-        border: 1px solid #EA6B66;
-        background-color: #fff;
+  div.content-class {
+    display: none;
+    div.customer-content {
+      border: 1px solid #EA6B66;
+      background-color: #fff;
 
-        div.customer-post {
-          align-items: center;
-          a {
-            font-size: 15px;
-            margin-left: 10px;
-            font-weight: bold;
-            text-decoration: none;
-            color: #EA6B66;
-
-            &:hover {
-              color: #00f;
-            }
-          }
-
-          img {
-            border-radius: 100%;
-          }
-        }
-
-        div.all-post {
-          margin: 0 auto;
-          div.customer-image {
-            align-items: center;
-
-            a {
-              font-size: 10px;
-              margin-left: 10px;
-              font-weight: bold;
-              text-decoration: none;
-              color: #EA6B66;
-
-              &:hover {
-                color: #00f;
-              }
-            }
-
-            img {
-            border-radius: 100%;
-            border: 1px solid #EA6B66;
-            }
-        }
-      }
-
-        div.no-post {
-          text-align: center;
+      div.customer-post {
+        align-items: center;
+        a {
+          font-size: 15px;
+          margin-left: 10px;
           font-weight: bold;
-          line-height: 300px;
+          text-decoration: none;
+          color: #EA6B66;
+
+          &:hover {
+            color: #00f;
+          }
+        }
+
+        img {
+          border-radius: 100%;
         }
       }
     }
+  }
 
   // タブ機能部分
 
@@ -227,7 +198,6 @@ td {
 
 //  ペット一覧
 
-div.pet-index {
   div.pet-list {
     div.pet-link {
       height: 250px;
@@ -239,36 +209,20 @@ div.pet-index {
       }
     }
   }
-}
-
-p.no-pets {
-  line-height: 250px;
-  font-size: 30px;
-  display: inline-block;
-}
 
 // ペット詳細
+div.introduction-field {
+  font-size: 24px;
+  margin: 20px 0;
 
-div.pet-show{
-  margin: 50px 0 50px;
-  width: 100%;
-  background-color: #FFF2CC;
-  border-radius: 20px;
-  box-shadow: 5px 5px 5px gray;
-
-  div.introduction-field {
-    font-size: 24px;
-    margin: 20px 0;
-
-    th {
-      color: #EA6B66;
-    }
+  tr {
+    color: #EA6B66;
 
     td {
       text-align: center;
-      color: #EA6B66;
 
       div.pet-nav {
+        font-size: 10px;
         background-color: #EA6B66;
         margin: 30px 0;
         padding: 10px 0;
@@ -284,117 +238,53 @@ div.pet-show{
       }
     }
   }
+}
 
-  div.pet-profile {
-    text-align: center;
-    margin: 50px 0;
-    img {
-      border-radius: 20px;
-    }
+div.pet-profile {
+  text-align: center;
+  margin: 50px 0;
+  img {
+    border-radius: 20px;
   }
 }
 
 // 投稿
 
-  div.post-index {
-    background-color: #FFF2CC;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px gray;
-    thead {
-      border-bottom: 1px solid #EA6B66;
+div.post-show {
+  padding: 0;
+  margin: 0 auto;
+  height: 100%;
 
-      th {
-      color: #EA6B66;
-      font-weight: bold;
-      }
-    }
-
-    td {
-      color: #EA6B66;
-      a {
-        color: #EA6B66;
-        text-decoration: none;
-      }
-    }
+  div.post-image {
+  margin: 0 auto;
+  padding: 20px;
+  img {
+  width: auto;
+  max-height: 500px;
+  margin: 0 auto;
+  display: block;
   }
+}
 
-  div.post-show {
-    padding: 0;
+  div.post-text {
     margin: 0 auto;
-    height: 100%;
+    text-align: center;
+    color: #EA6B66;
 
-    div.content {
-      background-color: #FFF2CC;
-      border-radius: 10px;
-      box-shadow: 5px 5px 5px gray;
-
-      div.post-image {
-        margin: 0 auto;
-        padding: 20px;
-        img {
-        width: auto;
-        max-height: 500px;
-        margin: 0 auto;
-        display: block;
-        }
-      }
-    }
-
-    div.post-text {
-      margin: 0 auto;
-      text-align: center;
-      color: #EA6B66;
-
-      h3 {
-        margin: 10px 0;
-      }
-      p {
-        font-size: 21px;
-      }
-      div {
-          text-align: end;
-      }
-    }
-
-    div.comment {
-      textarea {
-        margin: 20px auto 0;
-      }
-    }
-    div.comment-list {
-      color: #EA6B66;
+    p {
+      font-size: 21px;
     }
   }
+
+  div.comment-list {
+    color: #EA6B66;
+  }
+}
 
 // アイテム
 
 div.items-list {
   padding: 10px;
-  margin: 30px 0;
-
-  table {
-    tr {
-      td {
-        a.item-link {
-          text-decoration: none;
-          color: #EA6B66;
-        }
-      }
-    }
-  }
-
-  div.not-items-list {
-    p {
-    color: #EA6B66;
-    min-height: 300px;
-    font-size: 26px;
-    line-height: 300px;
-    text-align: center;
-    }
-  }
-}
-
-div.item-record {
   margin: 30px 0;
 }
 
@@ -410,141 +300,73 @@ div.item-show {
   table {
     margin: 0 auto;
     font-size: 26px;
-        tr:first-child {
-          th {
-            border-radius: 20px 0 0 0;
-          }
 
-          td {
-            font-size: 15px;
-          }
-        }
-
-        tr:nth-last-child(1) {
-          th {
-            border-radius: 0 0 0 20px;
-            border-bottom: none;
-          }
-        }
-
-        tr {
-          text-align: center;
-
-          th {
-            border-bottom: 3px solid #FFF2CC;
-            background-color: #EA6B66;
-            color: #FFF2CC;
-            font-weight: bold;
-             }
-           }
-
-        tr {
-          td {
-            div.add-amount-used {
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            }
-          }
-        }
-      }
-  }
-
-// 使用アイテム
-
-div.use-item-index {
-
-  div.use_item_list {
-    margin-top: 30px;
-
-    th {
-      font-weight: bold;
-    }
-  }
-}
-
-div.work-create {
-
-  div.pet-select {
-    margin-top: 0;
-    height: 230px;
+    tr:first-child {
       th {
-      font-weight: bold;
+        border-radius: 20px 0 0 0;
+      }
+      td {
+        font-size: 15px;
+      }
+    }
+
+    tr:nth-last-child(1) {
+      th {
+        border-radius: 0 0 0 20px;
+        border-bottom: none;
+      }
+    }
+
+    tr {
+      text-align: center;
+
+      th {
+        border-bottom: 3px solid #FFF2CC;
+        background-color: #EA6B66;
+        color: #FFF2CC;
+        font-weight: bold;
+         }
+
+      td {
+        div.add-amount-used {
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
     }
   }
-}
-
-div.items-link {
-  margin: 30px auto;
-  text-align: center;
-  a {
-    margin: 0 auto;
   }
 }
 
 // ワーク
 
 div.work-create {
-  margin: 50px auto;
+
   div.pet-select {
-    height: 300px;
-    padding-top: 50px;
+    margin-top: 0;
+    height: 230px;
   }
 }
 
-div.work-index {
-  div.work-list {
-    table {
-        font-size: 10px;
-      thead {
-        th {
-        font-weight: bold;
-        font-size: 15px;
-        }
-      }
-    }
+// ワーク
+div.pet-select {
+  height: 300px;
+  padding-top: 50px;
+}
+
+div.work-list {
+  td {
+  font-size: 10px;
   }
 }
 
 div.work-show {
-  margin: 50px auto;
-  table {
-
-    tr {
-      th {
-        font-weight: bold;
-      }
-      td {
-      text-align: center;
-      div {
-        span {
-          display: flex;
-        }
-      }
-        }
-    }
-
-      }
-  }
-
-// お気に入りアイテム
-
-div.f-items {
-  margin: 0 auto;
-  tr {
-    th {
-      font-weight: bold;
-    }
-  }
-}
-
-div.no-favorite-items {
+  td {
   text-align: center;
-  line-height: 300px;
-  height: 300px;
-  font-size: 30px;
+  }
 }
+
 // スケジュール
 
 .wday-0 {
@@ -608,16 +430,7 @@ overflow: hidden;
 display: block;
 }
 
-
-
-// show
-
-div.schedule-show {
-  margin: 50px auto;
-}
-
-// followings
-
+// フォロー
 div.follow-field {
   table {
     tr {
@@ -633,124 +446,19 @@ div.follow-field {
 
 
 // top-page
-
-div.top-main {
-  margin-top: 50px;
-
-  div.top-content {
-    background-color: #fff;
-    border: 1px solid #EA6B66;
-    margin: 50px auto 0;
+div.top-content {
+  background-color: #fff;
+  border: 1px solid #EA6B66;
+  margin: 50px auto 0;
 
     div.user-info {
         align-items: center;
         img {
         border-radius: 100%;
-      }
-    }
-
-
-
-    a.nick_name {
-        text-decoration: none;
-        font-weight: bold;
-        color: #EA6B66;
-
-        &:hover {
-          color: #00f;
-        }
-      }
-
-    div.top-links {
-      overflow: hidden;
-
-      a {
-        font-weight: normal;
-      }
-
-      a.nick_name {
-        font-weight: bold;
-        color: #EA6B66;
+        border: 1px solid #EA6B66;
       }
     }
   }
-}
-
-div.image-field {
-  div.image-list {
-    div.post-image {
-      width: 100px;
-      a {
-        img {
-          max-height: 100px;
-        }
-      }
-    }
-  }
-}
-
-// admin
-
-table.admin-table {
-  margin-top: 50px;
-  th {
-    background-color: lightgray;
-  }
-
-  td {
-    background-color: white;
-  }
-}
-
-div.admin-posts {
-  text-align: center;
-  th {
-    font-weight: bold;
-  }
-  td {
-
-  }
-}
-
-div.admin-customers {
-  table {
-    th {
-      font-weight: bold;
-    }
-  }
-}
-
-div.admin {
-
-  table {
-    width: 100%;
-    th,td {
-      border: 1px solid #EA6B66;
-    }
-  }
-
-  div.admin-post-show {
-  width: 100%;
-
-  div {
-      img.post-image {
-        width: 80%;
-        border-radius: 5px;
-    }
-   }
-  }
-}
-
-// table
-
-.custom-table {
-  table {
-    width: 100%;
-    th,td {
-      border: 1px solid #EA6B66;
-    }
-  }
-}
 
 //　その他
 .no-date {
@@ -758,4 +466,5 @@ div.admin {
   line-height: 300px;
   font-size: 30px;
   text-align: center;
+  font-weight: bold;
 }

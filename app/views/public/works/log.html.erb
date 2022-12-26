@@ -27,7 +27,7 @@
           </table>
         </div>
 
-        <div class="work-create text-center col-sm-3">
+        <div class="mx-auto mt-4 text-center col-sm-3">
           <%= form_with model: @work, url: public_works_path, method: :post do |f| %>
             <% @work.pet_ids.each do |pet_id| %>
               <%= f.hidden_field :pet_ids, multiple: true, value: pet_id %>

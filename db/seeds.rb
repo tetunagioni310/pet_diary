@@ -7,14 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Admin.create!(
    email: 'example@gmail.com',
-   password: 'password'
+   password: 'passwordpassword'
 )
 
 Customer.create!(
   [
    {
    email: 'test@test.com',
-   password: 'testtest',
+   password: 'testtesttest',
    nick_name: 'ymd',
    introduction: 'よろしくお願いします！',
    is_deleted: 'false',
@@ -32,16 +32,16 @@ Customer.create!(
    ]
 )
 
-10.times do |n|
-Customer.create!(
-  nick_name: "customer#{n+1}",
-  email: "customer#{n+1}@example.com",
-  password: "password",
-  introduction: 'よろしくお願いします！',
-  is_deleted: 'false',
-  status: 1
-  )
-end
+# 10.times do |n|
+# Customer.create!(
+#   nick_name: "customer#{n+1}",
+#   email: "customer#{n+1}@example.com",
+#   password: "password",
+#   introduction: 'よろしくお願いします！',
+#   is_deleted: 'false',
+#   status: 1
+#   )
+# end
 
 Group.create!(
    [

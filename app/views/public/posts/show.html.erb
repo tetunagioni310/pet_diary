@@ -4,13 +4,13 @@
     <div class="h2 my-5 col-md-10 mx-auto">
       <%= link_to @post.customer.nick_name, public_customer_path(@post.customer.id), class: "default-color other-link" %>さんの記事詳細
     </div>
-    <div class="content col-md-10 m-auto px-0">
+    <div class="text-field col-md-10 m-auto px-0">
       <div class="post-image col">
           <%= image_tag @post.get_post_image(500,500), class: "col" %>
       </div>
 
       <div class="post-text col">
-        <h3><%= @post.post_title %></h3>
+        <h3 class="h3 mb-3"><%= @post.post_title %></h3>
 
         <p>
           <%= @post.post_content %>
@@ -24,10 +24,10 @@
 
       </div>
 
-      <div class="comment col border-top">
+      <div class="col border-top">
         <%= form_with model: [@post,@comment],url: public_post_comments_path(@post.id), method: :post do |f| %>
           <div class="col-md-7 m-auto">
-            <%= f.text_area :comment_content, rows: "2", class: "form-control" %>
+            <%= f.text_area :comment_content, rows: "2", class: "form-control mx-auto mt-3" %>
             <%= f.hidden_field :post_id, value: @post.id %>
             <%= f.submit "コメントをする", class: "btn btn-success btn-sm my-3" %>
           </div>

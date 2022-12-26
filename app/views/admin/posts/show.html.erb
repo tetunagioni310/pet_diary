@@ -1,26 +1,29 @@
 <div class="container">
-  <div class="row admin">
-    <div class="col-lg-6 admin-post-show text-field">
+  <div class="row">
 
-      <div class="col my-5">
-        <table class="col">
-          <tr>
-            <th class="col-4">タイトル</th>
-            <td class="col-8"><%= @post.post_title %></td>
-          </tr>
+    <div class="col-lg-6">
+      <div class="col text-field">
+        <div class="col mb-5">
+          <table class="col">
+            <tr>
+              <th class="col-4">タイトル</th>
+              <td class="col-8"><%= @post.post_title %></td>
+            </tr>
 
-          <tr>
-            <th class="col-4">コンテンツ</th>
-            <td class="col-8"><%= @post.post_content %></td>
-          </tr>
-        </table>
-      </div>
+            <tr>
+              <th class="col-4">コンテンツ</th>
+              <td class="col-8"><%= @post.post_content %></td>
+            </tr>
+          </table>
+        </div>
 
-      <div class="col">
-        <div class="col-8 m-auto">
-          <%= image_tag @post.get_post_image(500,500), class: "post-image" %>
+        <div class="col">
+          <div class="col-8 m-auto">
+            <%= image_tag @post.get_post_image(500,500), height: "100%", width: "100%", class: "post-image" %>
+          </div>
         </div>
       </div>
+
     </div>
 
     <div class="col-lg-5 text-field offset-md-1">
@@ -31,8 +34,12 @@
             <% @comments.each do |comment| %>
             <tr>
               <td><%= comment.customer.nick_name %></td>
-              <td><%= comment.comment_content %></td>
-              <td><%= comment.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+              <td>
+                <%= comment.comment_content %>
+                <div class="small text-muted text-right">
+                  <%= comment.created_at.strftime("%Y/%m/%d") %>
+                </div>
+              </td>
             </tr>
             <% end %>
           </table>

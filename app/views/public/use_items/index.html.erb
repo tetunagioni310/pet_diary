@@ -19,7 +19,7 @@
     </div>
   </div>
   <% if current_customer.favorite_items.count >= 1 %>
-    <div class="form-group row col my-2 align-items-center">
+    <div class="form-group row col my-2 align-center">
       <%= form_with url: public_favorite_items_use_items_path, method: :post do |f| %>
         <%= f.select :favorite_item_id, options_from_collection_for_select(current_customer.favorite_items, :id, :favorite_item_name), class: "h6" %>
         <%= f.submit "呼び出し", class: "btn btn-success", :onclick => "return beforeSubmit()"%>
@@ -33,7 +33,7 @@
 
 
   <div class="row">
-    <div class="use-item-index col">
+    <div class="col">
       <div class="use_item_list text-field">
         <% if @use_items.count >= 1 %>
           <table class="col">
@@ -86,13 +86,13 @@
               </tr>
           </table>
         <% else %>
-        <div class="no-date col mx-auto">使用アイテムは空です</div>
+        <div class="no-date">使用アイテムは空です</div>
         <% end %>
       </div>
 
     </div>
   </div>
-  <div class="items-link col">
+  <div class="text-center mx-auto mt-5 col">
     <%= link_to "ペット選択", new_public_work_path, class: "col-3 btn-revers btn-lg" %>
   </div>
 </div>

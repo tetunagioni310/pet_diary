@@ -5,7 +5,8 @@
       <i class="fas fa-2x fa-solid fa-user mb-1"></i>
     <% end %>
   </div>
-  <div class="pet-show row">
+  <div class="col">
+    <div class="text-field row">
 
       <div class="introduction-field col-lg-6">
         <table>
@@ -67,6 +68,7 @@
         <%= image_tag @pet.get_pet_image(400,400) %>
       </div>
 
+  </div>
   </div>
   <div class="my-3">
     <%= link_to  public_customer_pet_index_path(@pet.customer.id), class: "default-color other-link" do %>

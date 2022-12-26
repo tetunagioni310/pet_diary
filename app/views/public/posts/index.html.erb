@@ -13,7 +13,7 @@
     </div>
   <% end %>
 
-  <div class="col-md-5 my-5 p-0">
+  <div class="col-md-5 mt-5 p-0">
     <%= form_with url: search_public_posts_path, method: :get, local: true do |f| %>
       <div class="d-flex">
         <%= f.text_field :keyword, value: @keyword, placeholder: "ペット名を入力", class: "form-control m-0" %>
@@ -24,9 +24,9 @@
 
   <div class="row">
     <div class="col">
-      <div class="col post-index">
+      <div class="col text-field">
       <table class="col">
-        <thead>
+        <thead class="border-bottom">
           <th>ペット</th>
           <th>タイトル</th>
           <th>投稿日</th>

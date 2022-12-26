@@ -63,8 +63,8 @@ a {
   text-decoration-line: none; }
 
 /*css*/
-.image {
-  border-radius: 30px; }
+.border-radius {
+  border-radius: 10px; }
 
 .n-circle {
   position: absolute;
@@ -150,10 +150,6 @@ a {
   border: 1px solid #87ceeb;
   text-decoration: none;
   color: #fff; }
-
-.underline {
-  text-decoration-line: underline;
-  text-decoration-color: #333; }
 
 .bold {
   font-weight: bold; }
