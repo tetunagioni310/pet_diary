@@ -8,7 +8,6 @@ class Public::CustomersController < ApplicationController
   def member_info_update
     @customer = Customer.find_by(id: current_customer.id)
     if @customer.update(customer_params)
-      @customer.save
       redirect_to public_customer_path(@customer.id)
     else
       render 'member_info_edit'
@@ -17,9 +16,10 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @likes = Like.where(customer_id: @customer.id).order(id: "DESC").limit(5)
+    # POSTテーブルと結合して公開状態の投稿を取得
+    @like_posts = Post.joins(:likes,:customer).where(likes: { customer_id: @customer.id },customers: { status: 1 }).order(id: "DESC").limit(5)
     @posts = Post.where(customer_id: @customer.id).order(id: "DESC").limit(5)
-    @following_customer_posts = Post.where(customer_id: [*@customer.following_ids]).order(id: "DESC").limit(5)
+    @following_customer_posts = Post.joins(:customer).where(posts: {customer_id: [*@customer.following_ids]}, customers: { status: 1 }).order(id: "DESC").limit(5)
   end
 
   def edit

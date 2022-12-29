@@ -96,7 +96,7 @@
                 </div>
               <% end %>
             <% else %>
-                <p class="no-date">投稿はありません</p>
+                <p class="no-data">投稿はありません</p>
             <% end %>
             </div>
 
@@ -114,34 +114,34 @@
                   </div>
               <% end %>
             <% else %>
-              <p class="no-date">画像の投稿はありません</p>
+              <p class="no-data">画像の投稿はありません</p>
             <% end %>
           </div>
 
           <input type="radio" name="tab_name" id="tab3">
           <label class="tab_class bold" for="tab3">いいね</label>
           <div class="content-class col">
-          <% if @customer.liked_posts.count >= 1 %>
-            <% @customer.liked_posts.each do |liked_post| %>
-              <div class="col text-field customer-content">
-                <div class="col row customer-post">
-                  <%= image_tag liked_post.customer.get_customer_image(50,50)%>
-                  <%= link_to liked_post.customer.nick_name, public_customer_path(liked_post.customer.id), class: "mr-2" %>
-                  <%= liked_post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-                </div>
+            <% if @like_posts.count >= 1 %>
+              <% @like_posts.each do |like_post| %>
+                <div class="col text-field customer-content">
+                  <div class="col row customer-post">
+                    <%= image_tag like_post.customer.get_customer_image(50,50)%>
+                    <%= link_to like_post.customer.nick_name, public_customer_path(like_post.customer.id), class: "mr-2" %>
+                    <%= like_post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+                  </div>
 
-                <%= link_to public_post_path(liked_post.id), class: "other-link" do %>
-                  <ul class="m-3">
-                    <li><%= liked_post.post_title.truncate(10) %></li>
-                    <li><%= liked_post.post_content.truncate(30) %></li>
-                    <li><%= image_tag liked_post.get_post_image(500,500) , width: "50%" %></li>
-                  </ul>
-                <% end %>
-              </div>
+                  <%= link_to public_post_path(like_post.id), class: "other-link" do %>
+                    <ul class="m-3">
+                      <li><%= like_post.post_title.truncate(10) %></li>
+                      <li><%= like_post.post_content.truncate(30) %></li>
+                      <li><%= image_tag like_post.get_post_image(500,500) , width: "50%" %></li>
+                    </ul>
+                  <% end %>
+                </div>
+              <% end %>
+            <% else %>
+                <p class="no-data">投稿がいいねされていません</p>
             <% end %>
-          <% else %>
-              <p class="no-date">投稿がいいねされていません</p>
-          <% end %>
           </div>
 
           <input type="radio" name="tab_name" id="tab4" >
@@ -166,7 +166,7 @@
                 </div>
               <% end %>
             <% else %>
-                <p class="no-date">フォロー会員がいません</p>
+                <p class="no-data">フォロー会員がいません</p>
             <% end %>
           </div>
 
@@ -175,7 +175,7 @@
       </div>
       </div>
     <% else %>
-      <div>
+      <div class="no-data m-auto">
         非公開です
       </div>
     <% end %>

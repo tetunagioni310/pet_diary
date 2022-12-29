@@ -28,7 +28,7 @@
               </div>
             <% end %>
           <% else %>
-            <div class="col-md-8 m-auto text-center no-date">投稿はありません</div>
+            <div class="col-md-8 m-auto text-center no-data">投稿はありません</div>
           <% end %>
         </div>
       </div>
@@ -41,15 +41,15 @@
             <% if @random_posts.count >= 1 %>
               <% @random_posts.each do |random_post| %>
                 <% if random_post.post_image.attached? %>
-                <div class="col-6">
-                  <%= link_to public_post_path(random_post.id) do %>
-                    <%= image_tag random_post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "1000x800+0+0" ).processed, width: "100px", height: "100px", maxheight: "100px", class: "object-fit-img col px-0 py-md-1 mx-auto" %>
-                  <% end %>
-                </div>
+                  <div class="col-6">
+                    <%= link_to public_post_path(random_post.id) do %>
+                      <%= image_tag random_post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "1000x800+0+0" ).processed, width: "100px", height: "100px", maxheight: "100px", class: "object-fit-img col px-0 py-md-1 mx-auto" %>
+                    <% end %>
+                  </div>
                 <% end %>
               <% end %>
             <% else %>
-              <p class="col no-date">投稿はありません</p>
+              <p class="col no-data">投稿はありません</p>
             <% end %>
           </div>
         </div>

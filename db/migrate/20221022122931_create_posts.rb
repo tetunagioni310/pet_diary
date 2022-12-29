@@ -2,7 +2,6 @@ class CreatePosts < ActiveRecord::Migration[6.1]
   def change
     create_table :posts do |t|
       t.integer :customer_id, null: false, default: ""
-      t.integer :group_id, null: false, default: ""
       t.integer :pet_id, null: false, default: ""
       t.string :post_title, null: false, default: ""
       t.string :post_content, null: false, default: ""

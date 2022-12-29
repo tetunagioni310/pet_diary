@@ -7,7 +7,7 @@
       <div class="content-class col">
         <div class="col-10 m-auto text-field customer-content">
           <% if @keyword %>
-            <div class="h4 bold col"><%= @keyword %>の検索結果（<%= @posts.count %>件）</div>
+            <div class="h4 bold col"><%= @keyword %>の検索結果（<%= @osts.count %>件）</div>
           <% else %>
             <div class="h4 bold col">全ての投稿(<%= @posts.count %>件)</div>
           <% end %>
@@ -17,28 +17,28 @@
             <% @posts.each do |post| %>
               <section class="col-lg-3 border mx-0 my-3">
 
-                <%= link_to public_post_path(post.id) do %>
-                  <div class="col p-0 m-0">
-                    <% if post.post_image.attached? %>
-                      <%= image_tag post.post_image.variant(resize: "1000x1000", gravity: :center, crop: "500x500+0+0").processed, height: "100%", width: "100%", class: "col px-0 py-md-1 mx-auto" %>
-                    <% end %>
-                  </div>
-                <% end %>
-                  <div class="row col customer-image">
-                    <%= image_tag post.pet.get_pet_image(30,30) %>
-                    <%= link_to post.pet.pet_name + post.pet.pet_gender, public_pet_path(post.pet.id), class: "other-link ml-2" %>
-                  </div>
+                  <%= link_to public_post_path(post.id) do %>
+                    <div class="col p-0 m-0">
+                      <% if post.post_image.attached? %>
+                        <%= image_tag post.post_image.variant(resize: "1000x1000", gravity: :center, crop: "500x500+0+0").processed, height: "100%", width: "100%", class: "col px-0 py-md-1 mx-auto" %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                    <div class="row col customer-image">
+                      <%= image_tag post.pet.get_pet_image(30,30), class: "image-circle" %>
+                      <%= link_to post.pet.pet_name + post.pet.pet_gender, public_pet_path(post.pet.id), class: "other-link ml-2" %>
+                    </div>
 
-                <%= link_to public_post_path(post.id), class: "other-link" do %>
-                  <h2 class="border-bottom"><%= post.post_title.truncate(10) %></h2>
-                <% end %>
-                  <time><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></time>
+                  <%= link_to public_post_path(post.id), class: "other-link" do %>
+                    <h2 class="border-bottom"><%= post.post_title.truncate(10) %></h2>
+                  <% end %>
+                    <time><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></time>
 
-              </section>
+                </section>
             <% end %>
             </div>
           <% else %>
-            <p class="no-date h2">
+            <p class="no-data h2">
               投稿はありません
             </p>
           <% end %>
@@ -54,7 +54,7 @@
         <div class="col-10 m-auto text-field customer-content">
           <div class="h4 bold col">犬の投稿(<%= @dog_posts.count %>件)</div>
           <% if @dog_posts.count >= 1 %>
-            <div class="row col all-post">
+            <div class="row col all-post m-auto">
               <% @dog_posts.each do |dog_post| %>
                 <section class="col-lg-3 border mx-0 my-3">
 
@@ -66,7 +66,7 @@
                     </div>
                   <% end %>
                   <div class="row col customer-image">
-                    <%= image_tag dog_post.pet.get_pet_image(30,30) %>
+                    <%= image_tag dog_post.pet.get_pet_image(30,30), class: "image-circle" %>
                     <%= link_to dog_post.pet.pet_name + dog_post.pet.pet_gender, public_customer_path(dog_post.customer.id), class: "other-link ml-2" %>
                   </div>
 
@@ -77,7 +77,7 @@
               <% end %>
             </div>
           <% else %>
-            <p class="no-date h2">
+            <p class="no-data h2">
               投稿はありません
             </p>
           <% end %>
@@ -85,7 +85,7 @@
         <%= paginate @dog_posts %>
       <% else %>
         <div class="col-10 m-auto text-field customer-content">
-          <p class="no-date h2">
+          <p class="no-data h2">
             投稿はありません
           </p>
         </div>
@@ -112,7 +112,7 @@
                       </div>
                     <% end %>
                       <div class="row col customer-image">
-                        <%= image_tag cat_post.pet.get_pet_image(30,30) %>
+                        <%= image_tag cat_post.pet.get_pet_image(30,30), class: "image-circle" %>
                         <%= link_to cat_post.pet.pet_name + cat_post.pet.pet_gender, public_customer_path(cat_post.customer.id), class: "other-link ml-2" %>
                       </div>
 
@@ -123,7 +123,7 @@
                 <% end %>
               </div>
             <% else %>
-              <p class="no-date h2">
+              <p class="no-data h2">
                 投稿はありません
               </p>
             <% end %>
@@ -131,7 +131,7 @@
           <%= paginate @cat_posts%>
         <% else %>
           <div class="col-10 m-auto text-field customer-content">
-            <p class="no-date h2">
+            <p class="no-data h2">
               投稿はありません
             </p>
           </div>
@@ -143,44 +143,43 @@
       <input type="radio" name="tab_name" id="tab4" >
       <label class="tab_class bold" for="tab4">その他投稿</label>
       <div class="content-class col">
-      <% if @other_posts %>
-        <div class="col-10 m-auto text-field customer-content">
-          <div class="h4 bold col">その他の投稿(<%= @other_posts.count %>件)</div>
-          <% if @other_posts.count >= 1 %>
-            <div class="row col m-auto">
-            <% @other_posts.each do |other_post| %>
-              <section class="col-lg-3 border mx-0 my-3">
+        <% if @other_posts %>
+          <div class="col-10 m-auto text-field customer-content">
+            <div class="h4 bold col">その他の投稿(<%= @other_posts.count %>件)</div>
+            <% if @other_posts.count >= 1 %>
+              <div class="row col m-auto">
+                <% @other_posts.each do |other_post| %>
+                  <section class="col-lg-3 border mx-0 my-3">
 
-                <%= link_to public_post_path(other_post.id) do %>
-                  <div class="col p-0 m-0">
-                    <%= image_tag other_post.post_image.variant(resize: "1000x1000", gravity: :center, crop: "500x500+0+0").processed, height: "100%", width: "100%", class: "col px-0 py-md-1 mx-auto" %>
-                  </div>
+                    <%= link_to public_post_path(other_post.id) do %>
+                      <div class="col p-0 m-0">
+                        <%= image_tag other_post.post_image.variant(resize: "1000x1000", gravity: :center, crop: "500x500+0+0").processed, height: "100%", width: "100%", class: "col px-0 py-md-1 mx-auto" %>
+                      </div>
+                    <% end %>
+                      <div class="row col">
+                        <%= image_tag other_post.pet.get_pet_image(30,30), class: "image-circle" %>
+                        <%= link_to other_post.pet.pet_name + other_post.pet.pet_gender, public_customer_path(other_post.customer.id), class: "other-link ml-2" %>
+                      </div>
+
+                      <h2 class="border-bottom"><%= other_post.post_title.truncate(10) %></h2>
+                      <time><%= other_post.start_time.strftime('%Y/%m/%d %H:%M') %></time>
+
+                  </section>
                 <% end %>
-                  <div class="row col">
-                    <%= image_tag other_post.pet.get_pet_image(30,30) %>
-                    <%= link_to other_post.pet.pet_name + other_post.pet.pet_gender, public_customer_path(other_post.customer.id), class: "other-link ml-2" %>
-                  </div>
-
-                  <h2 class="border-bottom"><%= other_post.post_title.truncate(10) %></h2>
-                  <time><%= other_post.start_time.strftime('%Y/%m/%d %H:%M') %></time>
-
-              </section>
+              </div>
+            <% else %>
+              <p class="no-data h2">
+                投稿はありません
+              </p>
             <% end %>
           </div>
-          <% else %>
-            <p class="no-date h2">
+          <%= paginate @other_posts %>
+        <% else %>
+          <div class="col-10 m-auto text-field customer-content">
+            <p class="no-data h2">
               投稿はありません
             </p>
-          <% end %>
-        </div>
-        <%= paginate @other_posts %>
-        </div>
-      <% else %>
-        <div class="col-10 m-auto text-field customer-content">
-          <p class="no-date">
-            投稿はありません
-          </p>
-        </div>
-      <% end %>
-  </div>
+          </div>
+        <% end %>
+      </div>
 </div>

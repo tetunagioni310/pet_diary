@@ -20,16 +20,6 @@
             <td class="text-center bold"><%= link_to "#{customer.followers.count}フォロワー", public_customer_followers_path(customer.id), class: "follow-link" %></td>
           </tr>
 
-          <% if @customer.id == current_customer.id %>
-          <tr>
-            <td colspan="2">
-              <%= link_to  member_info_edit_public_customers_path, class: "btn-links btn-block text-center" do %>
-                <i class="fas fa-user-cog"></i>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-
           <tr>
             <td colspan="2">
               <%= link_to "投稿一覧", public_customer_post_index_path(customer.id), class: "btn-links btn-block text-center" %>

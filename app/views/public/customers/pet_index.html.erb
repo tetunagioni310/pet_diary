@@ -1,7 +1,6 @@
 <div class="container">
 <% if @customer.status == "released" || @customer.id == current_customer.id %>
   <div class="row">
-
     <%= render "public/shared/sidebar_profile", customer: @customer %>
 
     <div class="col-lg-8 pet-index">
@@ -27,13 +26,14 @@
             <% end %>
           <% else %>
             <div class="pet-link col m-auto">
-              <p class="no-date">ペットは登録されていません</p>
+              <p class="no-data">ペットは登録されていません</p>
             </div>
           <% end %>
         </div>
 
     </div>
   </div>
+
 <% else %>
   <div>
     非公開です

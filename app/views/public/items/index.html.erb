@@ -34,7 +34,7 @@
               <% end %>
             </table>
           <% else %>
-            <p class="no-date">
+            <p class="no-data">
             アイテムは登録されていません
             </p>
           <% end %>
@@ -60,7 +60,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="row align-items-center">
+                  <td class="row align-center">
                     <%= f.label :unit, "消費単位", class: "col-form-label col-4" %>
 
                     <%= f.radio_button :unit, Item.units.key(0) %>

@@ -150,7 +150,6 @@ ActiveRecord::Schema.define(version: 2022_12_24_004904) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.integer "group_id", null: false
     t.integer "pet_id", null: false
     t.string "post_title", default: "", null: false
     t.string "post_content", default: "", null: false

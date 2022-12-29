@@ -96,109 +96,105 @@ td {
 
 // プロフィールページ
 
-  // サイドバー
+// サイドバー
 
   div.profile-field {
     margin: 0 auto;
-    table {
-      td {
-        img.customer-image {
-          width: 100%;
-          border-radius: 100%;
-          display: block;
-          margin: 0 auto;
-        }
+    td {
+      img.customer-image {
+        width: 100%;
+        border-radius: 100%;
+        display: block;
+        margin: 0 auto;
+      }
 
-        a {
-          color: #EA6B66;
-          border-color: #EA6B66;
-          text-decoration: none;
-          font-size: 12px;
-          padding: 10px;
-        }
+      a {
+        color: #EA6B66;
+        border-color: #EA6B66;
+        text-decoration: none;
+        font-size: 12px;
+        padding: 10px;
       }
     }
-    }
+  }
 
 
 //メイン
 
-  // 自己紹介
-  div.self-introduction {
-    background-color: #fff;
-    height: 200px;
-    border-radius: 30px;
-    text-align: center;
-    padding-top: 80px;
-    margin: 0 auto;
-    p {
-      font-size: 21px;
-      font-weight: bold;
-    }
+// 自己紹介
+div.self-introduction {
+  background-color: #fff;
+  height: 200px;
+  border-radius: 30px;
+  text-align: center;
+  padding-top: 80px;
+  margin: 0 auto;
+  p {
+    font-size: 21px;
+    font-weight: bold;
   }
+}
 
-  //タブ機能
+//タブ機能
+div.tab-area {
+  flex-wrap: wrap;
+  display: flex;
 
-  div.tab-area {
-    flex-wrap: wrap;
-    display: flex;
+div.content-class {
+  display: none;
+  div.customer-content {
+    border: 1px solid #EA6B66;
+    background-color: #fff;
 
-  div.content-class {
-    display: none;
-    div.customer-content {
-      border: 1px solid #EA6B66;
-      background-color: #fff;
+    div.customer-post {
+      align-items: center;
+      a {
+        font-size: 15px;
+        margin-left: 10px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #EA6B66;
 
-      div.customer-post {
-        align-items: center;
-        a {
-          font-size: 15px;
-          margin-left: 10px;
-          font-weight: bold;
-          text-decoration: none;
-          color: #EA6B66;
-
-          &:hover {
-            color: #00f;
-          }
+        &:hover {
+          color: #00f;
         }
+      }
 
-        img {
-          border-radius: 100%;
-        }
+      img {
+        border-radius: 100%;
       }
     }
   }
+}
 
-  // タブ機能部分
+// タブ機能部分
 
-    input[name="tab_name"] {
-    display: none;
-    }
-
-    input:checked + .tab_class {
-      color: blue;
-    }
-
-    input:checked + .tab_class + .content-class {
-    display: block;
-    }
-
-    label.tab_class {
-    width: calc(100%/4);
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    display: block;
-    float: left;
-    order: -1;
-    }
+  input[name="tab_name"] {
+  display: none;
   }
+
+  input:checked + .tab_class {
+    color: blue;
+  }
+
+  input:checked + .tab_class + .content-class {
+  display: block;
+  }
+
+  label.tab_class {
+  width: calc(100%/4);
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  display: block;
+  float: left;
+  order: -1;
+  }
+}
 
 
 //  ペット一覧
-
-  div.pet-list {
+div.pet-list {
     div.pet-link {
       height: 250px;
       text-align: center;
@@ -349,7 +345,6 @@ div.work-create {
   }
 }
 
-// ワーク
 div.pet-select {
   height: 300px;
   padding-top: 50px;
@@ -444,7 +439,6 @@ div.follow-field {
   }
 }
 
-
 // top-page
 div.top-content {
   background-color: #fff;
@@ -461,7 +455,7 @@ div.top-content {
   }
 
 //　その他
-.no-date {
+.no-data {
   height: 300px;
   line-height: 300px;
   font-size: 30px;

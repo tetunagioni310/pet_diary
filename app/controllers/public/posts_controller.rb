@@ -20,7 +20,6 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
     @pet = Pet.find_by(id: @post.pet.id)
-    @post.group_id = @pet.group_id
     if @post.save
       flash[:notice] = "投稿を作成しました。"
       redirect_to public_post_path(@post.id)
@@ -35,7 +34,6 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.group_id = @post.pet.group_id
     if @post.update(post_params)
       flash[:notice] = "投稿を更新しました。"
       redirect_to public_post_path(@post.id)
@@ -52,10 +50,10 @@ class Public::PostsController < ApplicationController
   end
 
   def post_all
-    @posts = Post.all.order(id: "DESC").order(id: "DESC").page(params[:page]).per(12)
-    @dog_posts = Post.where(group_id: 1).order(id: "DESC").page(params[:page]).per(12)
-    @cat_posts = Post.where(group_id: 2).order(id: "DESC").page(params[:page]).per(12)
-    @other_posts = Post.where(group_id: 3).order(id: "DESC").page(params[:page]).per(12)
+    @posts = Post.joins(:customer).where(customers: { status: 1 }).order(id: "DESC").page(params[:page]).per(12)
+    @dog_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 1 }).order(id: "DESC").page(params[:page]).per(12)
+    @cat_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 2 }).order(id: "DESC").page(params[:page]).per(12)
+    @other_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 3 }).page(params[:page]).per(12)
   end
 
   def search

@@ -13,12 +13,14 @@
           <tr>
             <th class="col-3"></th>
             <td class="col-9">
-            <% if @pet.group_id == 3 %>
               <%= @pet.pet_type %>
-            <% else %>
-              <%= @pet.group.group_name + ':' + @pet.pet_type %>
-            <% end %>
+            </td>
+          </tr>
 
+          <tr>
+            <th class="col-3">分類</th>
+            <td class="col-9">
+              <%= @pet.group.group_name %>
             </td>
           </tr>
 
@@ -70,14 +72,9 @@
 
   </div>
   </div>
-  <div class="my-3">
+  <div class="my-4">
     <%= link_to  public_customer_pet_index_path(@pet.customer.id), class: "default-color other-link" do %>
       <i class="fas fa-solid fa-reply mr-2"></i>ペット一覧
-    <% end %>
-  </div>
-  <div class="my-3">
-    <%= link_to :back, class: "default-color other-link" do %>
-      <i class="fas fa-solid fa-reply mr-2"></i>戻る
     <% end %>
   </div>
 </div>

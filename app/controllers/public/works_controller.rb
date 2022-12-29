@@ -17,7 +17,7 @@ class Public::WorksController < ApplicationController
     @work = WorkForm.new(work_params)
     @work.customer_id = current_customer.id
     @use_items = current_customer.use_items
-    if @work.pet_ids.blank? || @work.work_name.blank?
+    if @work.pet_ids.count <= 1 || @work.work_name.blank?
       render 'new'
     end
   end

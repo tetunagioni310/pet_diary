@@ -3,42 +3,47 @@
     <div class="col">
       <div class="follow-field col text-field">
         <table class="col">
-          <tr>
+        <% if @customers.count >= 1 %>
+            <tr>
             <th colspan="2">
               <%= link_to public_customer_path(current_customer.id), class: "other-link" do %>
                 <i class="fas fa-solid fa-reply mr-2"></i>フォロー
               <% end %>
             </th>
           </tr>
-          <% if @customers.count >= 1 %>
-          <% @customers.each do |customer| %>
-          <tr>
-            <td></td>
-            <td>
-                <div class="row my-3">
+            <% @customers.each do |customer| %>
+              <tr>
+                <td></td>
+                <td>
+                    <div class="row my-3">
+                      <%= image_tag customer.get_customer_image(50,50)%>
+                      <%= link_to customer.nick_name, public_customer_path(customer.id), class: "bold other-link mt-2 ml-2" %>
+                      <div class="ml-3">
+                        <% if current_customer.following?(customer) %>
+                          <%= link_to "フォロー解除", public_customer_relationships_path(customer.id), class: "btn btn-outline-danger btn-sm mt-2", method: :delete %>
+                        <% else %>
+                          <%= link_to "+フォロー", public_customer_relationships_path(customer.id), class: "btn btn-success btn-sm mt-2", method: :post %>
+                        <% end %>
+                      </div>
+                    </div>
 
-                  <%= image_tag customer.get_customer_image(50,50)%>
-                  <%= link_to customer.nick_name, public_customer_path(customer.id), class: "bold other-link mt-2 ml-2" %>
-                  <div class="ml-3">
-                      <% if current_customer.following?(customer) %>
-                        <%= link_to "フォロー解除", public_customer_relationships_path(customer.id), class: "btn btn-outline-danger btn-sm mt-2", method: :delete %>
-                      <% else %>
-                        <%= link_to "+フォロー", public_customer_relationships_path(customer.id), class: "btn btn-success btn-sm mt-2", method: :post %>
-                      <% end %>
-                  </div>
-                </div>
-              <% end %>
-            </td>
-          </tr>
+                </td>
+              </tr>
+            <% end %>
           <% else %>
-          <tr>
-            <td class="col">
-              <p class="no-date">現在フォローしていません</p>
-            </td>
-          </tr>
+            <tr>
+              <td class="col">
+                <p class="no-data">フォローしていません</p>
+              </td>
+            </tr>
           <% end %>
         </table>
       </div>
     </div>
+  </div>
+  <div class="col mt-4">
+    <%= link_to public_customer_path(current_customer.id), class: "default-color other-link" do %>
+      <i class="fas fa-solid fa-reply mr-2"></i>戻る
+    <% end %>
   </div>
 </div>
