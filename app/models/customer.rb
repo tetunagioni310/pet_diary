@@ -94,6 +94,6 @@ class Customer < ApplicationRecord
   end
 
   def self.customer_search(keyword)
-    where("nick_name LIKE ? ", "#{keyword}")
+    Customer.where(status: 1).where("nick_name LIKE ? ", "#{keyword}")
   end
 end

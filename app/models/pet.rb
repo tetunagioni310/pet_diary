@@ -26,5 +26,4 @@ class Pet < ApplicationRecord
   def pet_gender
     gender == "♂" ? "くん" : "ちゃん"
   end
-
 end
