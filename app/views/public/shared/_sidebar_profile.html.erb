@@ -1,6 +1,6 @@
 <div class="col-lg-4 py-5">
-      <div class="col-lg-11 profile-field text-field">
-        <table class="col-lg-11 mx-auto">
+      <div class="col profile-field text-field">
+        <table class="col mx-auto">
           <tr>
             <td colspan="2">
               <%= image_tag customer.get_customer_image(550,550), class: "customer-image" %>
@@ -12,7 +12,14 @@
           </tr>
 
           <tr>
-            <td colspan="2" class="text-center bold"><%= customer.nick_name %></td>
+            <td class="text-center bold"><%= customer.nick_name %></td>
+            <td class="text-center">
+                <% if current_customer.following?(@customer) %>
+                  <%= link_to "フォロー中", public_customer_relationships_path(@customer.id), class: "btn-sm btn-links shadow-none", method: :delete %>
+                <% else %>
+                  <%= link_to "+フォロー", public_customer_relationships_path(@customer.id), class: "btn-sm btn-links shadow-none", method: :post %>
+                <% end %>
+            </td>
           </tr>
 
           <tr>

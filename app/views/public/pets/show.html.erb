@@ -53,11 +53,11 @@
             <td colspan="2">
               <% if @pet.customer_id == current_customer.id %>
               <div class="pet-nav">
-                <%= link_to "編集", edit_public_pet_path(@pet.id), class: "btn" %>
-                <%= link_to "アイテム", public_items_path, class: "btn" %>
-                <%= link_to "ワーク", public_pet_work_index_path(@pet.id), class: "btn" %>
-                <%= link_to "投稿", public_pet_post_index_path(@pet.id), class: "btn" %>
-                <%= link_to "削除", public_pet_path(@pet.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn" %>
+                <%= link_to "編集", edit_public_pet_path(@pet.id), class: "btn btn-sm" %>
+                <%= link_to "アイテム", public_items_path, class: "btn btn-sm" %>
+                <%= link_to "ワーク", public_pet_work_index_path(@pet.id), class: "btn btn-sm" %>
+                <%= link_to "投稿", public_pet_post_index_path(@pet.id), class: "btn btn-sm" %>
+                <%= link_to "削除", public_pet_path(@pet.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-sm" %>
 
               </div>
               <% end %>
@@ -75,6 +75,11 @@
   <div class="my-4">
     <%= link_to  public_customer_pet_index_path(@pet.customer.id), class: "default-color other-link" do %>
       <i class="fas fa-solid fa-reply mr-2"></i>ペット一覧
+    <% end %>
+  </div>
+  <div class="my-4">
+    <%= link_to :back, class: "default-color other-link" do %>
+      <i class="fas fa-solid fa-reply mr-2"></i>戻る
     <% end %>
   </div>
 </div>

@@ -32,23 +32,21 @@
        <% if @customers %>
         <div class="col-md-6 m-auto text-field">
           <table>
-
-              <% if @customers.count >= 1 %>
-                <% @customers.each do |customer| %>
-                <tr>
-                  <td><%= link_to customer.nick_name, public_customer_path(customer.id), class: "other-link" %></td>
-                </tr>
-                <% end %>
-              <% elsif @keyword.blank? %>
-                <tr>
-                  <td>ユーザー名を入力してください</td>
-                </tr>
-              <% else %>
-                <tr>
-                  <td>見つかりませんでした</td>
-                </tr>
+            <% if @customers.count >= 1 %>
+              <% @customers.each do |customer| %>
+              <tr>
+                <td><%= link_to customer.nick_name, public_customer_path(customer.id), class: "other-link" %></td>
+              </tr>
               <% end %>
-
+            <% elsif @keyword.blank? %>
+              <tr>
+                <td>ユーザー名を入力してください</td>
+              </tr>
+            <% else %>
+              <tr>
+                <td>見つかりませんでした</td>
+              </tr>
+            <% end %>
           </table>
         </div>
        <% end %>

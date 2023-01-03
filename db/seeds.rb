@@ -14,21 +14,18 @@ Customer.create!(
   [
    {
    email: 'test@test.com',
-   password: 'testtesttest',
-   nick_name: 'ymd',
-   introduction: 'よろしくお願いします！',
-   is_deleted: 'false',
-   status: 1
-   },
+   password: 'testtesttest1105',
+   nick_name: '会員A',
+  }
 
-   {
-   email: 'kotoko@gmail.com',
-   password: 'kotokokotoko',
-   nick_name: 'kotoko',
-   introduction: 'よろしくお願いします！',
-   is_deleted: 'false',
-   status: 1
-   }
+  # ,{
+  # email: 'kotoko@gmail.com',
+  # password: 'kotokokotoko',
+  # nick_name: 'kotoko',
+  # introduction: 'よろしくお願いします！',
+  # is_deleted: 'false',
+  # status: 1
+  # }
    ]
 )
 
@@ -44,9 +41,9 @@ Customer.create!(
 # end
 
 Group.create!(
-   [
+  [
     { group_name: '犬' },
     { group_name: '猫'},
     { group_name: 'その他' }
-   ]
+  ]
 )

@@ -15,23 +15,34 @@
 
         <div class="col text-field">
           <table class="col">
-            <thead>
-              <th colspan="3">ジャンル名</th>
-            </thead>
 
-            <tbody>
-              <% @groups.each do |group| %>
-                <tr>
-                  <td class="col-6"><%= group.group_name %></td>
-                  <td class="col-3">
-                    <%= link_to "編集", edit_admin_group_path(group.id), class: "btn btn-success" %>
-                  </td>
-                  <td class="col-3">
-                     <%= link_to "削除", admin_group_path(group.id), method: :delete , data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
+              <% if @groups.count >= 1 %>
+                  <tr>
+                    <th colspan="3">ジャンル名</th>
+                  </tr>
+                <% @groups.each do |group| %>
+                  <tr>
+                    <td class="col-6"><%= group.group_name %></td>
+
+                    <% if group.id > 3 %>
+                    <td class="col-3">
+                      <%= link_to "編集", edit_admin_group_path(group.id), class: "btn btn-success" %>
+                    </td>
+                    <td class="col-3">
+                       <%= link_to "削除", admin_group_path(group.id), method: :delete , data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %>
+                    </td>
+                    <% end %>
+
+                  </tr>
+                <% end %>
+              <% else %>
+                  <tr>
+                    <td>
+                      <p class="no-data">登録グループはありません</p>
+                    </td>
+                  </tr>
+                <% end %>
+
           </table>
         </div>
     </div>

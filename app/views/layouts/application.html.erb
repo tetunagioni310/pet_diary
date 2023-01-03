@@ -68,7 +68,7 @@
                 <li>
                   <%= form_with url: search_all_public_posts_path, method: :get, local: true do |f| %>
                     <div class="d-flex">
-                      <%= f.text_field :keyword, value: @keyword, placeholder: "キーワードを入力", class: "form-control m-0" %>
+                      <%= f.text_field :keyword, placeholder: "キーワードを入力", class: "form-control m-0" %>
                       <%= f.submit "検索", class: "btn btn-success ml-3" %>
                     </div>
                   <% end %>
@@ -78,9 +78,9 @@
             <% elsif admin_signed_in? %>
 
               <ul class="navbar-nav ml-auto">
-                <li>
-                  <%= link_to "ジャンル",  admin_groups_path, class: "nav-link" %>
-                </li>
+                <!--<li>-->
+                <!--  <%= link_to "ジャンル",  admin_groups_path, class: "nav-link" %>-->
+                <!--</li>-->
                 <li>
                   <%= link_to "会員一覧", admin_customers_path, class: "nav-link" %>
                 </li>

@@ -38,7 +38,7 @@
         <table class="col table-striped">
           <% @comments.each do |comment| %>
             <tr>
-              <th class="col-2"><%= link_to comment.customer.nick_name, public_customer_path(comment.customer.id), class: "btn-links btn-block btn-sm" %></th>
+              <th class="col-2"><%= link_to comment.customer.nick_name, public_customer_path(comment.customer.id), class: "other-link btn-block btn-sm" %></th>
               <td class="col-6"><%= comment.comment_content %></td>
               <td class="col-4"><%= comment.created_at.strftime("%Y年%m月%d日") %></td>
             </tr>
@@ -53,6 +53,11 @@
       <%= link_to  public_customer_post_index_path(@post.customer.id), class: "default-color other-link" do %>
         <i class="fas fa-solid fa-reply mr-2"></i><%= @post.customer.nick_name %>さんの投稿一覧
       <% end %>
+  </div>
+  <div class="col-md-10 mx-auto my-4">
+    <%= link_to :back, class: "default-color other-link" do %>
+      <i class="fas fa-solid fa-reply mr-2"></i>戻る
+    <% end %>
   </div>
 <% else %>
 非公開です
