@@ -100,26 +100,8 @@
             <% end %>
             </div>
 
-          <input type="radio" name="tab_name" id="tab2" >
-          <label class="tab_class bold" for="tab2">画像</label>
-          <div class="content-class col">
-            <% if @posts.count >= 1 %>
-              <% @posts.each do |post|%>
-                  <div class="col text-field customer-content">
-                    <%= link_to public_post_path(post.id) do %>
-                    <ul class="m-3">
-                        <li><%= image_tag post.get_post_image(500,500), width: "50%" %></li>
-                    </ul>
-                    <% end %>
-                  </div>
-              <% end %>
-            <% else %>
-              <p class="no-data">画像の投稿はありません</p>
-            <% end %>
-          </div>
-
-          <input type="radio" name="tab_name" id="tab3">
-          <label class="tab_class bold" for="tab3">いいね</label>
+          <input type="radio" name="tab_name" id="tab2">
+          <label class="tab_class bold" for="tab2">いいね</label>
           <div class="content-class col">
             <% if @like_posts.count >= 1 %>
               <% @like_posts.each do |like_post| %>
@@ -144,8 +126,8 @@
             <% end %>
           </div>
 
-          <input type="radio" name="tab_name" id="tab4" >
-          <label class="tab_class bold" for="tab4">フォロー</label>
+          <input type="radio" name="tab_name" id="tab3" >
+          <label class="tab_class bold" for="tab3">フォロー</label>
           <div class="content-class col">
             <% if @following_customer_posts.count >= 1 %>
               <% @following_customer_posts.each do |following_customer_post|%>
@@ -167,6 +149,24 @@
               <% end %>
             <% else %>
                 <p class="no-data">フォロー会員がいません</p>
+            <% end %>
+          </div>
+
+          <input type="radio" name="tab_name" id="tab4" >
+          <label class="tab_class bold" for="tab4">画像</label>
+          <div class="content-class col">
+            <% if @posts.count >= 1 %>
+              <% @posts.each do |post|%>
+                  <div class="col text-field customer-content">
+                    <%= link_to public_post_path(post.id) do %>
+                    <ul class="m-3">
+                        <li><%= image_tag post.get_post_image(500,500), width: "100%", class: "border-radius" %></li>
+                    </ul>
+                    <% end %>
+                  </div>
+              <% end %>
+            <% else %>
+              <p class="no-data">画像の投稿はありません</p>
             <% end %>
           </div>
 

@@ -15,30 +15,10 @@ Customer.create!(
    {
    email: 'test@test.com',
    password: 'testtesttest1105',
-   nick_name: '会員A',
+   nick_name: '会員A'
   }
-
-  # ,{
-  # email: 'kotoko@gmail.com',
-  # password: 'kotokokotoko',
-  # nick_name: 'kotoko',
-  # introduction: 'よろしくお願いします！',
-  # is_deleted: 'false',
-  # status: 1
-  # }
-   ]
+  ]
 )
-
-# 10.times do |n|
-# Customer.create!(
-#   nick_name: "customer#{n+1}",
-#   email: "customer#{n+1}@example.com",
-#   password: "password",
-#   introduction: 'よろしくお願いします！',
-#   is_deleted: 'false',
-#   status: 1
-#   )
-# end
 
 Group.create!(
   [
