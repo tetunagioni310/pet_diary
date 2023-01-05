@@ -79,6 +79,6 @@ class Post < ApplicationRecord
   end
 
   def self.all_post_search(keyword)
-    Post.joins(:pet,:customer).where(customers: { status: 1 }).where("post_title LIKE ? OR post_content LIKE ? OR pet_name LIKE ? OR pet_type LIKE ?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%")
+    Post.joins(:pet,:customer).where(customers: { status: 1 }).where("post_title LIKE ? OR post_content LIKE ? OR pet_name LIKE ? OR pet_kind LIKE ?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%")
   end
 end

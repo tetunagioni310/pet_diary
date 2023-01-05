@@ -17,8 +17,26 @@ class Public::WorksController < ApplicationController
     @work = WorkForm.new(work_params)
     @work.customer_id = current_customer.id
     @use_items = current_customer.use_items
-    if @work.pet_ids.count <= 1 || @work.work_name.blank?
+    # 空白("")がカウントされてしまうので2以上でなければ戻るにしなければならない
+    if @work.pet_ids.reject(&:blank?).count <= 0 || @work.work_name.blank?
+      flash.now[:notice] = "ワーク名もしくはペットを選択してください"
       render 'new'
+    end
+
+    # アイテムの使用量に対して在庫を確認
+    @use_items.each do |use_item|
+      item = Item.find_by(id: use_item.item_id)
+      if @work.pet_ids.reject(&:blank?).count >= 2
+        # ペットが複数の場合は(在庫)と(ペット数×使用量)を比較して在庫が少ない場合はアイテム不足フラグを作成
+        if item.total_capacity < use_item.amount_used * (@work.pet_ids.reject(&:blank?).count)
+          @missing_item_flag = 1
+        end
+      else
+        if item.total_capacity < use_item.amount_used
+          # ペットが単数の場合は(在庫)と(使用量)を比較して在庫が少ない場合はアイテム不足フラグを作成
+          @missing_item_flag = 1
+        end
+      end
     end
   end
 
@@ -43,6 +61,7 @@ class Public::WorksController < ApplicationController
         # itemの在庫を変更
         @item = Item.find_by(id: @work_detail.item_id)
         @item.total_capacity -= @work_detail.amount_used
+        @item.amount = @item.total_capacity / @item.capacity
         @item.save!
       end
     end

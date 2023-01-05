@@ -113,7 +113,10 @@
 
     <main>
       <div class="messages col-sm-10 mx-auto my-5">
-        <p id="notice" class="col h4"><%= notice %></p>
+        <% if flash[:notice] %>
+          <div id="notice" class="col h4"><%= flash[:notice] %></div>
+        <% end %>
+
       </div>
 
       <%= yield %>
