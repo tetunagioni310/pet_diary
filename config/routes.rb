@@ -48,8 +48,8 @@ Rails.application.routes.draw do
       collection do
         get 'search_page'
         get 'search'
-        get 'member_info_edit'
-        patch 'member_info_update'
+        get 'introduction_edit'
+        patch 'introduction_update'
         get 'quit'
         patch 'withdrawal'
       end

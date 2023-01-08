@@ -1,37 +1,54 @@
 <div class="container">
-  <div class="h4 bold"><%= link_to @pet.pet_name, public_pet_path(@pet.id), class: "default-color other-link" %><%= @pet.pet_gender %>のワーク一覧</div>
+  <div class="h4 bold col-sm-6 mx-auto mb-3"><%= link_to @pet.pet_name, public_pet_path(@pet.id), class: "default-color other-link" %><%= @pet.pet_gender %>のワーク一覧</div>
+
+
   <div class="row">
     <div class="col">
-      <div class="work-index px-0 col">
-        <div class="work-list text-field col">
+      <div class="px-0 col">
+        <div class="work-list col-sm-6 p-0 m-auto">
+          <table class="col">
+            <tboby>
             <% if @works.count >= 1 %>
-            <table class="col">
-              <thead>
+              <% @works.each do |work| %>
                 <tr>
-                  <th>日付</th>
-                  <th>ワーク</th>
-                  <th>アイテム</th>
+                  <th colspan="3" class="text-center col-sm-4">
+                      <%= work.created_at.strftime("%y/%m/%d") %>
+                  </th>
                 </tr>
-              </thead>
-
-              <tboby>
-                <% @works.each do |work| %>
                 <tr>
-                  <td class="col-3"><%= link_to work.created_at.strftime("%m/%d"), public_work_path(work.id), class: "other-link" %></td>
-                  <td class="col-3"><%= work.work_name %></td>
-                  <td class="col-5">
-                      <!--消費アイテム取得-->
-                      <% work_details = WorkDetail.where(work_id: work.id)%>
-                      <% work_details.each do |work_detail| %>
-                        <%= work_detail.item.item_name %>(<%= work_detail.amount_used %>g)<br>
+                  <td class="col-4 p-0">
+                    <div class="d-flex align-center justify-content-center">
+                      <div class="favorite_items">
+                        <ul class="navbar-nav btn-sm p-0">
+                          <li class="nav-items dropdown my-3" aria-labelledby="navbarDropdown">
+                            <a class="other-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <%= work.work_name %>
+                            </a>
+                            <div class="dropdown-menu">
+                              <!--消費アイテム取得-->
+                              <% work_details = WorkDetail.where(work_id: work.id)%>
+                              <div class="col">
+                                <% work_details.each do |work_detail| %>
+                                  <%= work_detail.item.item_name %>(<%= work_detail.amount_used %>g)<br>
+                                <% end %>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="col-4"><%= link_to work.pet.pet_name, public_pet_path(work.pet.id), class: "other-link" %></td>
+                  <td class="col-4">
+                    <span class="d-flex col-5">
+                      <%= button_to public_work_path(work.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "ml-3 mr-0" do %>
+                            <i class="fas fa-solid fa-trash"></i>
                       <% end %>
+                    </span>
                   </td>
                 </tr>
-                <% end %>
-              </tboby>
-            </table>
+              <% end %>
             <% else %>
-            <table class="col">
               <tr>
                 <td colspan="4" class="text-center">
                   <p class="no-data">
@@ -39,10 +56,15 @@
                   </p>
                 </td>
               </tr>
-            </table>
             <% end %>
+            </tboby>
+          </table>
+
+          <div class="col text-center">
+            <%= paginate @works %>
+          </div>
         </div>
-    </div>
+      </div>
     </div>
   </div>
   <div class="mt-5 mb-3">

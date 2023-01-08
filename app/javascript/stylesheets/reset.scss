@@ -66,6 +66,10 @@ a {
   text-decoration-line: none;
 }
 
+p {
+  overflow-wrap: break-word;
+　　　word-wrap: break-word;
+}
 
 /*css*/
 .border-radius {
@@ -103,7 +107,7 @@ a {
   color: #EA6B66;
   background-color: #FFF2CC;
   border-radius: 20px;
-  padding: 20px;
+  padding: 10px;
   margin-top: 50px;
   box-shadow: 5px 5px 5px gray;
 }
@@ -153,23 +157,6 @@ a {
     background-color: #EA6B66;
     text-decoration: none;
 }
-
-// .details-link {
-//     float: right;
-//     text-decoration: none;
-//     color: #87ceeb;
-//     background-color: #fff;
-//     padding: 0 10px 0 10px;
-//     border-radius: 5px;
-//     border: 1px solid #87ceeb;
-// }
-
-// .details-link:hover {
-//     background-color: #87ceeb;
-//     border: 1px solid #87ceeb;
-//     text-decoration: none;
-//     color: #fff;
-//     }
 
 .bold {font-weight: bold;}
 .text-center {text-align: center;}

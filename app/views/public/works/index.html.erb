@@ -2,19 +2,19 @@
 
 
   <% if !@keyword %>
-    <div class="h2 bold">
+    <div class="h2 bold col-sm-6 mx-auto">
       ワーク一覧
       <%= link_to public_use_items_path, class: "text-warning col-1 p-0" do %>
         <i class="fas fa-solid fa-plus"></i>
       <% end %>
     </div>
   <% else %>
-    <div class="h4 bold">
+    <div class="h4 bold col-sm-6 mx-auto">
       検索結果：　<%= @keyword %>
     </div>
   <% end %>
 
-  <div class="col-md-5 mt-5 p-0">
+  <div class="col-sm-6 mt-3 mx-auto mb-3">
     <%= form_with url: search_public_works_path, method: :get, local: true do |f| %>
       <div class="d-flex">
         <%= f.text_field :keyword, value: @keyword, placeholder: "ペット名を入力", class: "form-control m-0" %>
@@ -27,30 +27,51 @@
   <div class="row">
     <div class="col">
       <div class="px-0 col">
-        <div class="work-list text-field col">
+        <div class="work-list col-sm-6 p-0 m-auto">
           <table class="col">
-            <thead class="border-bottom">
-              <th>日付</th>
-              <th>ペット</th>
-              <th>ワーク</th>
-              <th>アイテム</th>
-            </thead>
-
             <tboby>
               <% if @works.count >= 1 %>
                 <% @works.each do |work| %>
                   <tr>
-                  <td class="col-2"><%= link_to work.created_at.strftime("%m/%d"), public_work_path(work.id), class: "other-link" %></td>
-                  <td class="col-3"><%= link_to work.pet.pet_name, public_pet_path(work.pet.id), class: "other-link" %></td>
-                  <td class="col-3"><%= work.work_name %></td>
-                  <td class="col-5">
-                      <!--消費アイテム取得-->
-                      <% work_details = WorkDetail.where(work_id: work.id)%>
-                      <% work_details.each do |work_detail| %>
-                        <%= work_detail.item.item_name %>(<%= work_detail.amount_used %>g)<br>
-                      <% end %>
-                  </td>
-                </tr>
+                    <th colspan="3" class="text-center col-sm-4">
+                        <%= work.created_at.strftime("%y/%m/%d") %>
+                    </th>
+                  </tr>
+
+                  <tr>
+                    <td class="col-4 p-0">
+                      <div class="d-flex align-center justify-content-center">
+                        <div class="favorite_items">
+                          <ul class="navbar-nav btn-sm p-0">
+                            <li class="nav-items dropdown my-3" aria-labelledby="navbarDropdown">
+                              <a class="other-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <%= work.work_name %>
+                              </a>
+                              <div class="dropdown-menu">
+                                <!--消費アイテム取得-->
+                                <% work_details = WorkDetail.where(work_id: work.id)%>
+                                <div class="col">
+                                  <% work_details.each do |work_detail| %>
+                                    <%= work_detail.item.item_name %>(<%= work_detail.amount_used %>g)<br>
+                                  <% end %>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+
+                    <td class="col-4"><%= link_to work.pet.pet_name, public_pet_path(work.pet.id), class: "other-link" %></td>
+                    <td class="col-4">
+                      <span class="d-flex col-5">
+                        <%= button_to public_work_path(work.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "ml-3 mr-0" do %>
+                              <i class="fas fa-solid fa-trash"></i>
+                        <% end %>
+                      </span>
+                    </td>
+                  </tr>
+
                 <% end %>
               <% else %>
                   <tr>

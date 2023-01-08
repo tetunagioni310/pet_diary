@@ -1,27 +1,7 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
-  def member_info_edit
-     @customer = Customer.find_by(id: current_customer.id)
-  end
-
-  def member_info_update
-    @customer = Customer.find_by(id: current_customer.id)
-    if @customer.update(customer_params)
-      redirect_to public_customer_path(@customer.id)
-    else
-      render 'member_info_edit'
-    end
-  end
-
-  def show
-    @customer = Customer.find(params[:id])
-    # POSTテーブルと結合して公開状態の投稿を取得
-    @like_posts = Post.joins(:likes,:customer).where(likes: { customer_id: @customer.id },customers: { status: 1 }).order(id: "DESC").limit(5)
-    @posts = Post.where(customer_id: @customer.id).order(id: "DESC").limit(5)
-    @following_customer_posts = Post.joins(:customer).where(posts: {customer_id: [*@customer.following_ids]}, customers: { status: 1 }).order(id: "DESC").limit(5)
-  end
-
+  # 会員情報編集
   def edit
     @customer = Customer.find(params[:id])
   end
@@ -34,6 +14,29 @@ class Public::CustomersController < ApplicationController
       render 'edit'
     end
   end
+
+  # 自己紹介コメント編集
+  def introduction_edit
+     @customer = Customer.find_by(id: current_customer.id)
+  end
+
+  def introduction_update
+    @customer = Customer.find_by(id: current_customer.id)
+    if @customer.update(customer_params)
+      redirect_to public_customer_path(@customer.id)
+    else
+      render 'introduction_edit'
+    end
+  end
+
+  def show
+    @customer = Customer.find(params[:id])
+    # POSTテーブルと結合して公開状態の投稿を取得
+    @like_posts = Post.joins(:likes,:customer).where(likes: { customer_id: @customer.id },customers: { status: 1 }).order(id: "DESC").limit(5)
+    @posts = Post.where(customer_id: @customer.id).order(id: "DESC").limit(5)
+    @following_customer_posts = Post.joins(:customer).where(posts: {customer_id: [*@customer.following_ids]}, customers: { status: 1 }).order(id: "DESC").limit(5)
+  end
+
 
   def quit
   end

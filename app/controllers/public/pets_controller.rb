@@ -8,7 +8,7 @@ class Public::PetsController < ApplicationController
 
   def work_index
     @pet = Pet.find(params[:pet_id])
-    @works = Work.where(pet_id: @pet.id)
+    @works = Work.where(pet_id: @pet.id).page(params[:page]).per(10).order(id: "DESC")
   end
 
   def post_index

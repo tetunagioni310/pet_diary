@@ -71,6 +71,7 @@ class Public::WorksController < ApplicationController
   def destroy
     @work = Work.find(params[:id])
     @work.destroy
+    # 在庫を戻す作業
     flash[:notice] = "ワークを削除しました。"
     redirect_to public_works_path
   end

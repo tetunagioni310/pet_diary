@@ -4,8 +4,9 @@
     <div class="bold h2 mb-3">
       スケジュール一覧
     </div>
+  </div>
 
-    <ul class="navbar-nav btn-sm">
+  <ul class="navbar-nav btn-sm">
       <li class="nav-items dropdown my-3" aria-labelledby="navbarDropdown">
         <a class="btn-revers dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           新規登録
@@ -37,7 +38,6 @@
         </div>
       </li>
     </ul>
-  </div>
 
   <div class="schedule text-field col mt-0">
    <%= month_calendar events: @schedules do |date, schedules| %>

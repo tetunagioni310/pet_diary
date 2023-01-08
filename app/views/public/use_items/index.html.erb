@@ -10,16 +10,17 @@
 </script>
 
 <div class="container">
-  <div class="row col">
+  <div class="row col-md-6 mx-auto">
     <div class="bold h2">
       使用アイテム
-      <%= link_to public_items_path, class: "text-warning col-1 p-0" do %>
+      <%= link_to public_items_path, class: "text-warning p-0" do %>
         <i class="fas fa-solid fa-plus"></i>
       <% end %>
     </div>
   </div>
+
   <% if current_customer.favorite_items.count >= 1 %>
-    <div class="form-group row col my-2 align-center">
+    <div class="form-group row col-md-6 mx-auto my-2 align-center">
       <%= form_with url: public_favorite_items_use_items_path, method: :post do |f| %>
         <%= f.select :favorite_item_id, options_from_collection_for_select(current_customer.favorite_items, :id, :favorite_item_name), class: "h6" %>
         <%= f.submit "呼び出し", class: "btn btn-success", :onclick => "return beforeSubmit()"%>
@@ -28,71 +29,64 @@
         一覧へ
       <% end %>
     </div>
-
   <% end %>
 
 
   <div class="row">
     <div class="col">
-      <div class="text-field">
+      <div class="text-field col-md-6 mx-auto">
         <% if @use_items.count >= 1 %>
-          <table class="col">
-              <tr>
-                <th class="col-6">商品名</th>
-                <th class="col-4">使用量</th>
-                <th class="col-1 text-center">残</th>
-                <th class="col-1 p-0 m-0">
-                  <%= button_to destroy_all_public_use_items_path, method: :delete, data: {confirm: "使用アイテムを全て削除しますか？"} do %>
-                        <i class="fas fa-solid fa-trash text-danger"></i>
-                  <% end %>
-                </th>
-              </tr>
 
-              <% @use_items.each do |use_item| %>
-              <% item = Item.find_by(id: use_item.item_id)%>
-              <tr>
-                <td class="col-5"><%= use_item.item.item_name %></td>
-                <td class="col-5">
-                  <%= form_with model: use_item, url: public_use_item_path(use_item.id), method: :patch do |f| %>
-                    <div class="row text-center">
-                      <div class="row col-7 p-0 m-0">
-                        <%= f.number_field :amount_used, class: "form-control col-10 m-0" %>
-                        <p class="col-form-label"><%= use_item.item.unit_i18n %></p>
-                      </div>
-                      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+          <% @use_items.each do |use_item| %>
+            <% item = Item.find_by(id: use_item.item_id)%>
+            <div class="my-3 mx-auto border-bottom">
+              <div class="d-flex mx-md-3 my-3 bold p-0 align-center">
+                <%= use_item.item.item_name %>
+              </div>
+
+              <div class="mx-md-3 my-3 p-0">
+                ＊<%= item.total_capacity / use_item.amount_used %>　回分の在庫があります
+              </div>
+
+
+              <div class="mx-md-3 my-3 p-0 d-flex justify-content-between">
+                <%= form_with model: use_item, url: public_use_item_path(use_item.id), method: :patch do |f| %>
+                    <div class="d-flex col-md-8 m-0 p-0">
+                      <%= f.number_field :amount_used, class: "form-control-sm col-6" %>
+
+                      <div class="mr-2"><%= use_item.item.unit_i18n %></div>
+
                       <%= f.hidden_field :item_id, :value => use_item.item_id%>
-                      <div class="col-5 p-0">
-                        <%= f.submit "変更", class: "btn btn-success text-center" %>
+
+                      <div class="mr-auto">
+                        <%= f.submit "変更", class: "btn btn-success btn-sm" %>
                       </div>
                     </div>
-                  <% end %>
-                </td>
-                <td class="col-1 text-center">
-                  <%= item.total_capacity / use_item.amount_used %>
-                </td>
-                <td class="col-1 p-0 m-0">
-                      <%= button_to public_use_item_path(use_item.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
-                        <i class="fas fa-solid fa-trash"></i>
-                      <% end %>
-                </td>
-              </tr>
-              <% end %>
-              <tr>
-                <td class="col-5 p-0 m-0"></td>
-                <td colspan="2" class="col-5 px-0">
-                  <%= link_to "お気に入り登録", public_favorite_items_path, method: :post, class: "btn-links btn-sm", data: { confirm: '使用アイテムをお気に入りに登録しますか？'} %>
-                </td>
-                <td class="col-1 p-0"></td>
-              </tr>
-          </table>
+                <% end %>
+
+                <%= button_to public_use_item_path(use_item.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                  <i class="fas fa-solid fa-trash"></i>
+                <% end %>
+              </div>
+
+            </div>
+          <% end %>
+
+          <div class="mx-md-3 my-3 p-0 d-flex justify-between">
+            <%= link_to "お気に入り登録", public_favorite_items_path, method: :post, class: "btn-links btn-sm", data: { confirm: '使用アイテムをお気に入りに登録しますか？'} %>
+            <%= button_to destroy_all_public_use_items_path, method: :delete, data: {confirm: "使用アイテムを全て削除しますか？"} do %>
+              <i class="fas fa-solid fa-trash text-danger"></i>
+            <% end %>
+          </div>
         <% else %>
-        <p class="no-data">使用アイテムは空です</p>
+          <p class="no-data">使用アイテムは空です</p>
         <% end %>
       </div>
 
+      <div class="col my-5 text-center">
+        <%= link_to "ペット選択", new_public_work_path, class: "col-3 btn-revers btn-lg" %>
+      </div>
+
     </div>
-  </div>
-  <div class="text-center mx-auto mt-5 col">
-    <%= link_to "ペット選択", new_public_work_path, class: "col-3 btn-revers btn-lg" %>
-  </div>
+
 </div>

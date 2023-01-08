@@ -1,36 +1,29 @@
 <div class="container">
-  <div class="h2 bold">ペット選択</div>
+  <div class="col-md-6 mx-auto mb-5 h2 bold">ペット選択</div>
   <div class="row">
     <div class="col">
-      <div class="work-create text-field col mx-auto">
+      <div class="text-field col-lg-6 m-auto">
         <%= form_with model: @work, url: log_public_works_path, method: :get do |f| %>
         <%= render "public/shared/error_messages", resource: @work %>
-        <div class="pet-select col my-0">
-            <div class="row col-8 px-0 mx-auto mb-3">
-              <div class="col-3 px-0">
-                <%= f.label :pet_id, "ペット", class: "pt-2" %>
+        <!--<div class="col my-0">-->
+            <div class="col-md-8 mx-auto mb-3">
+              <%= f.label :pet_id, "ペット選択", class: "mb-3 bold" %>
+              <div class="pet-names">
+                <%= f.collection_check_boxes :pet_ids, current_customer.pets, :id, :pet_name %>
               </div>
-              <div class="col-9 px-0">
-                <div>
-                  <%= f.label :pet_id, "ペット選択", class: "mr-3 pt-2" %>
-                  <%= f.collection_check_boxes :pet_ids, current_customer.pets, :id, :pet_name %>
-                </div>
-              </div>
-
             </div>
 
-            <div class="row col-8 px-0 mx-auto mb-5">
-              <div class="col-3 p-0"><%= f.label :work_name, "ワーク名", class: "pt-1" %></div>
-              <div class="col-9 p-0"><%= f.text_field :work_name, placeholder: "例: 餌やり", class: "col-sm-8 form-control" %></div>
+            <div class="col-md-8 mx-auto mb-5">
+              <%= f.label :work_name, "ワーク名", class: "mb-3 bold" %>
+              <%= f.text_field :work_name, placeholder: "例: 餌やり", class: "col form-control" %>
             </div>
 
-            <div class="row col-8 px-0 mx-auto mb-5">
-              <div class="col-3"></div>
-              <div class="col-9 p-0"><%= f.submit "ワーク作成" , class: "btn btn-success col-sm-8"%></div>
+            <div class="col-md-8 mx-auto">
+              <%= f.submit "ワーク作成" , class: "btn btn-success btn-block"%>
             </div>
 
 
-        </div>
+        <!--</div>-->
         <% end %>
     </div>
     </div>

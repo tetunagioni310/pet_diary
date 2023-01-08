@@ -6,19 +6,19 @@
     <% end %>
   </div>
   <div class="col">
-    <div class="text-field row">
+    <div class="text-field row p-0">
 
       <div class="introduction-field col-lg-6">
-        <table>
+        <table class="col">
           <tr>
-            <th class="col-3"></th>
-            <td class="col-9">
+            <th class="col-3 px-0 my-0"></th>
+            <td class="col-9 px-0 my-0">
               <%= @pet.pet_kind %>
             </td>
           </tr>
 
           <tr>
-            <th class="col-3">分類</th>
+            <th class="col-3 px-0">分類</th>
             <td class="col-9">
               <%= @pet.group.group_name %>
             </td>
@@ -52,13 +52,12 @@
           <tr>
             <td colspan="2">
               <% if @pet.customer_id == current_customer.id %>
-              <div class="pet-nav">
+              <div class="pet-nav col-sm-8 m-sm-auto px-0">
                 <%= link_to "編集", edit_public_pet_path(@pet.id), class: "btn btn-sm" %>
                 <%= link_to "アイテム", public_items_path, class: "btn btn-sm" %>
                 <%= link_to "ワーク", public_pet_work_index_path(@pet.id), class: "btn btn-sm" %>
                 <%= link_to "投稿", public_pet_post_index_path(@pet.id), class: "btn btn-sm" %>
                 <%= link_to "削除", public_pet_path(@pet.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-sm" %>
-
               </div>
               <% end %>
             </td>
@@ -67,7 +66,7 @@
       </div>
 
       <div class="pet-profile col-lg-6">
-        <%= image_tag @pet.get_pet_image(400,400) %>
+        <%= image_tag @pet.get_pet_image(400,400), width: "100%", height: "100%" %>
       </div>
 
   </div>

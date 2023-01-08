@@ -1,6 +1,6 @@
 <div class="container">
 <% if @customer.status == "released" || @customer.id == current_customer.id %>
- <div class="row col h2 bold">
+ <div class="row col h5 bold">
     <%= @customer.nick_name %>さんの投稿一覧
     <% if @customer.id == current_customer.id %>
       <%= link_to new_public_post_path, class: "text-warning ml-3" do %>
@@ -31,14 +31,22 @@
           </thead>
 
           <tbody>
-            <% if @posts.count >= 1 %>
-              <% @posts.each do |post| %>
-                <tr>
-                  <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "other-link" %></td>
-                  <td class="col-4"><%= link_to post.post_title.truncate(9), public_post_path(post.id), class: "other-link" %></td>
-                  <td><%= post.start_time.strftime("%Y/%m/%d") %></td>
-                  <td class="row">
-                    <% if post.customer_id == current_customer.id%>
+          <% if @posts.count >= 1 %>
+            <% @posts.each do |post| %>
+              <tr>
+                <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "other-link" %></td>
+                <td class="col-4"><%= link_to post.post_title.truncate(13), public_post_path(post.id), class: "other-link" %></td>
+                <td>
+                  <div class="small text-muted">
+                      <%= post.start_time.strftime("%Y/%m/%d") %>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="3" class="px-2 py-0">
+                  <% if post.customer_id == current_customer.id%>
+                   <div class="row col justify-content-end m-0 p-0">
                       <%= button_to edit_public_post_path(post.id), method: :get do %>
                         <i class="fas fa-solid fa-pen"></i>
                       <% end %>
@@ -46,18 +54,19 @@
                       <%= button_to public_post_path(post.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
                         <i class="fas fa-solid fa-trash"></i>
                       <% end %>
-                    <% end %>
-                  </td>
-                </tr>
-              <% end %>
-            <% else %>
-               <tr>
-                <td colspan="3" class="col text-center">
-                   <p class="no-data">投稿はありません</p>
+                   </div>
+                  <% end %>
                 </td>
-               </tr>
+              </tr>
             <% end %>
-          </tbody>
+          <% else %>
+             <tr>
+              <td colspan="3" class="col text-center">
+               <p class="no-data">投稿はありません</p>
+              </td>
+             </tr>
+          <% end %>
+        </tbody>
         </table>
         <div class="col text-center">
           <%= paginate @posts %>

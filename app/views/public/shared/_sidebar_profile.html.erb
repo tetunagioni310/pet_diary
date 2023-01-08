@@ -3,7 +3,9 @@
         <table class="col mx-auto">
           <tr>
             <td colspan="2">
-              <%= image_tag customer.get_customer_image(550,550), class: "customer-image" %>
+              <div class="col-10 mx-auto my-2">
+                <%= image_tag customer.get_customer_image(550,550), class: "customer-image" %>
+              </div>
             </td>
           </tr>
 

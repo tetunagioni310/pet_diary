@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mt-5">
-      <div class="col-lg-6">
+      <div class="col-lg-6 mb-3">
         <div class="h4 bold">アイテム在庫一覧</div>
         <div class="items-list text-field">
           <% if @items.count >= 1 %>
@@ -10,8 +10,7 @@
                 <td class="bold"><%= link_to item.item_name, public_item_path(item.id), class: "other-link" %></td>
                 <td><%= item.amount.to_s + "袋" %></td>
                 <td>
-                  <%= item.total_capacity %>
-                  <% if item.total_capacity %><%= item.unit_i18n %><% end %>
+                  <%= item.total_capacity.to_s + item.unit_i18n %>
                 </td>
               </tr>
 
@@ -19,7 +18,7 @@
                 <td colspan="2">
                   <%= form_with model: item, url: public_item_path(item.id), method: :patch do |f|  %>
                     <div class="d-flex col">
-                      <%= f.number_field :amount, value: nil, placeholder: "数量を入力してください", required:true, class: "col-8 form-control" %>
+                      <%= f.number_field :amount, value: nil, placeholder: "数量を入力してください", required:true, class: "col-8 form-control-sm" %>
                       <%= f.hidden_field :item_name, :value => item.item_name %>
                       <%= f.submit "追加", class: "btn btn-success btn-sm ml-3" %>
                     </div>

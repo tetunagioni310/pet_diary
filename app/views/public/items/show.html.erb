@@ -16,7 +16,7 @@
         <table class="col">
           <tr>
             <th>商品名</th>
-            <td class="col-6"><%= @item.item_name %></td>
+            <td class="col-8"><%= @item.item_name %></td>
           </tr>
           <tr>
             <th>在庫数</th>
@@ -36,7 +36,7 @@
                 <div class="add-amount-used col">
                   <%= f.hidden_field :item_id, :value => @item.id %>
                   <%= f.number_field :amount_used, :value => nil, class: "col-6 form-control" %><%= @item.unit_i18n %>
-                  <%= f.submit "追加", class: "btn btn-success col-4 ml-4", :onclick => "return check_form()" %>
+                  <%= f.submit "追加", class: "btn btn-success ml-4", :onclick => "return check_form()" %>
                 </div>
               <% end %>
             </td>

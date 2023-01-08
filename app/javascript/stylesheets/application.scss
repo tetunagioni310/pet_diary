@@ -92,8 +92,6 @@ td {
   border-color: #aaa;
 }
 
-
-
 // プロフィールページ
 
 // サイドバー
@@ -124,14 +122,13 @@ td {
 // 自己紹介
 div.self-introduction {
   background-color: #fff;
-  height: 200px;
   border-radius: 30px;
   text-align: center;
-  padding-top: 80px;
   margin: 0 auto;
   p {
-    font-size: 21px;
+    font-size: 18px;
     font-weight: bold;
+
   }
 }
 
@@ -189,40 +186,43 @@ div.content-class {
   display: block;
   float: left;
   order: -1;
+  font-size: 12px;
   }
 }
 
 //  ペット一覧
 div.pet-list {
     div.pet-link {
-      height: 250px;
-      text-align: center;
-      margin-bottom: 30px;
       img {
         border-radius: 100%;
-        margin: 20px;
       }
     }
   }
 
 // ペット詳細
 div.introduction-field {
-  font-size: 24px;
+  font-size: 18px;
   margin: 20px 0;
 
   tr {
     color: #EA6B66;
+    th {
+      padding-left: 0;
+      padding-right: 0;
+    }
 
     td {
       text-align: center;
+      padding-left: 0;
+      padding-right: 0;
 
       div.pet-nav {
-        font-size: 10px;
         background-color: #EA6B66;
         margin: 30px 0;
         padding: 10px 0;
         border-radius: 10px;
         a {
+          font-size: 5px;
           color: #FFF2CC;
           font-weight: bold;
         }
@@ -281,27 +281,25 @@ div.post-show {
 div.items-list {
   padding: 10px;
   margin: 30px 0;
+  td {
+    font-size: 14px;
+  }
 }
 
 // アイテム詳細
 
 div.item-show {
-  height: 270px;
   margin: 0 auto;
-  padding-top: 10px;
-  padding-left: 10px;
+  padding: 10px;
   border-radius: 30px;
 
   table {
     margin: 0 auto;
-    font-size: 26px;
+    font-size: 14px;
 
     tr:first-child {
       th {
         border-radius: 20px 0 0 0;
-      }
-      td {
-        font-size: 15px;
       }
     }
 
@@ -334,30 +332,52 @@ div.item-show {
   }
 }
 
-// ワーク
+// 使用アイテム
 
-div.work-create {
-
-  div.pet-select {
-    margin-top: 0;
-    height: 230px;
+div.use-items-list {
+  padding: 10px;
+  margin: 10px auto;
+  td {
+    font-size: 14px;
   }
 }
 
-div.pet-select {
-  height: 300px;
-  padding-top: 50px;
+// お気に入り
+div.favorite_items {
+  div.dropdown-menu {
+    min-width: 17rem;
+  }
+}
+
+// ワーク
+div.pet-names {
+  input {
+    margin-left: 10px;
+  }
 }
 
 div.work-list {
-  td {
-  font-size: 10px;
+  table {
+    border: 1px solid #FFF2CC;
+    background-color: #FFF2CC;
+    tbody {
+      th {
+        text-align: center;
+        color: #FFF2CC;
+        background-color: #EA6B66;
+      }
+
+      td {
+        font-size: 10px;
+        text-align: center;
+      }
+    }
   }
 }
 
 div.work-show {
   td {
-  text-align: center;
+    text-align: center;
   }
 }
 
@@ -442,7 +462,7 @@ div.follow-field {
 div.top-content {
   background-color: #fff;
   border: 1px solid #EA6B66;
-  margin: 50px auto 0;
+  margin: 30px auto 0;
 
     div.user-info {
         align-items: center;
@@ -457,7 +477,7 @@ div.top-content {
 .no-data {
   height: 300px;
   line-height: 300px;
-  font-size: 30px;
+  font-size: 18px;
   text-align: center;
   font-weight: bold;
 }

@@ -1,26 +1,27 @@
 <div class="container">
 <% if @customer.status == "released" || @customer.id == current_customer.id %>
   <div class="row">
+
     <%= render "public/shared/sidebar_profile", customer: @customer %>
 
-    <div class="col-lg-8 pet-index">
+    <div class="col-lg-8 pet-index mt-5">
 
-        <div class="pet-title col text-center pt-5">
-          <div class="col h4 bold">
-            <%= @customer.nick_name %>さんのペット一覧
-              <% if @customer.id == current_customer.id %>
-              <%= link_to new_public_pet_path, class: "text-warning col-1 p-0" do %>
-                <i class="fas fa-solid fa-plus"></i>
-              <% end %>
+        <div class="text-center mb-3 h5 bold">
+          <%= current_customer.nick_name %>さんのペット一覧
+          <% if @customer.id == current_customer.id %>
+            <%= link_to new_public_pet_path, class: "text-warning col-1 p-0" do %>
+              <i class="fas fa-solid fa-plus"></i>
             <% end %>
-          </div>
+          <% end %>
         </div>
 
         <div class="pet-list row">
           <% if @pets.count >= 1 %>
             <% @pets.each do |pet| %>
-            <div class="pet-link col-md-4">
-              <%= image_tag pet.get_pet_image(200,200) %><br>
+            <div class="pet-link col-md-4 text-center mb-5">
+              <div class="col-10 mx-auto m-2">
+                <%= image_tag pet.get_pet_image(500,500), width: "100%", height: "100%" %><br>
+              </div>
               <%= link_to  pet.pet_name, public_pet_path(pet.id), class: "btn-revers" %>
             </div>
             <% end %>
@@ -33,7 +34,6 @@
 
     </div>
   </div>
-
 <% else %>
   <div>
     非公開です

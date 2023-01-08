@@ -1,0 +1,29 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 m-auto">
+
+      <div class="mb-5 h2 bold">コメント編集</div>
+      <%= form_with model: @customer, url: public_customer_path(@customer.id), method: :patch do |f| %>
+      <%= render "public/shared/error_messages", resource: @customer %>
+
+        <table class="col">
+          <tr>
+            <td><%= f.text_area :introduction, class: "form-control", rows: "8" %></td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.submit "変更を保存", class: "btn btn-success" %>
+            </td>
+          </tr>
+        </table>
+
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-8 mx-auto my-5">
+    <%= link_to  public_customer_path(@customer.id), class: "default-color other-link" do %>
+      <i class="fas fa-solid fa-reply mr-2"></i>戻る
+    <% end %>
+  </div>
+</div>
