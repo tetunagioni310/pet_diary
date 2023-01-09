@@ -10,7 +10,7 @@
 </script>
 
 <div class="container">
-  <div class="row col-md-6 mx-auto">
+  <div class="row col-md-6 mx-auto px-0">
     <div class="bold h2">
       使用アイテム
       <%= link_to public_items_path, class: "text-warning p-0" do %>
@@ -20,7 +20,7 @@
   </div>
 
   <% if current_customer.favorite_items.count >= 1 %>
-    <div class="form-group row col-md-6 mx-auto my-2 align-center">
+    <div class="form-group row col-md-6 mx-auto my-2 px-0 align-center">
       <%= form_with url: public_favorite_items_use_items_path, method: :post do |f| %>
         <%= f.select :favorite_item_id, options_from_collection_for_select(current_customer.favorite_items, :id, :favorite_item_name), class: "h6" %>
         <%= f.submit "呼び出し", class: "btn btn-success", :onclick => "return beforeSubmit()"%>

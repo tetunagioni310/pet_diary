@@ -1,7 +1,7 @@
 <div class="container">
 
   <% if !@keyword %>
-    <div class="row h5 bold my-5 col-md-5">
+    <div class="row h5 bold my-5 mx-0 px-0 col-md-5">
       <%= current_customer.nick_name %>さんの投稿一覧
       <%= link_to new_public_post_path, class: "text-warning ml-3" do %>
         <i class="fas fa-x fa-solid fa-plus"></i>
@@ -24,7 +24,7 @@
 
   <div class="row">
     <div class="col">
-      <div class="col text-field px-0">
+      <div class="col text-field px-0 mx-auto">
         <table class="col">
           <% if @posts.count >= 1 %>
             <thead class="border-bottom text-center">
@@ -38,15 +38,17 @@
               <% if @posts.count >= 1 %>
                 <% @posts.each do |post| %>
                   <tr>
-                    <td class="px-0 small text-muted"><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "other-link" %></td>
-                    <td class="px-0 small text-muted"><%= link_to post.post_title.truncate(13), public_post_path(post.id), class: "other-link" %></td>
-                    <td class="px-0 small text-muted">
-                      <%= post.start_time.strftime("%Y/%m/%d") %>
+                    <td class="px-0"><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "other-link small" %></td>
+                    <td class="px-0"><%= link_to post.post_title.truncate(13), public_post_path(post.id), class: "other-link small" %></td>
+                    <td class="px-0">
+                      <p class="small text-muted px-0">
+                        <%= post.start_time.strftime("%Y/%m/%d") %>
+                      </p>
                     </td>
                   </tr>
 
                   <tr>
-                    <td colspan="3" class="px-2 py-0">
+                    <td colspan="3" class="py-0">
                       <% if post.customer_id == current_customer.id%>
                        <div class="row col justify-content-end m-0 p-0">
                           <%= button_to edit_public_post_path(post.id), method: :get do %>
@@ -73,7 +75,7 @@
         <div class="col text-center">
           <%= paginate @posts %>
         </div>
-    </div>
+      </div>
     </div>
   </div>
 </div>
