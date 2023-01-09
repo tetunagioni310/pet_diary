@@ -9,28 +9,28 @@
 
       <div class="col">
           <div class="form-group row">
-            <%= f.label :nick_name, "ニックネーム", class: "col-form-label col-4" %>
-            <%= f.text_field :nick_name, placeholder: "例： Suzuki", class: "form-control col-8" %>
+            <%= f.label :nick_name, "ニックネーム", class: "col-form-label col-sm-4 px-0" %>
+            <%= f.text_field :nick_name, placeholder: "例： Suzuki", class: "form-control col-sm-8" %>
           </div>
 
           <div class="form-group row">
-            <%= f.label :email, "メールアドレス", class: "col-form-label col-4" %>
-            <%= f.email_field :email, placeholder: "例：petdiary2022@gmail.com", class: "form-control col-8" %>
+            <%= f.label :email, "メールアドレス", class: "col-form-label col-sm-4 px-0" %>
+            <%= f.email_field :email, placeholder: "例：petdiary2022@gmail.com", class: "form-control col-sm-8" %>
           </div>
 
           <div class="form-group row">
-            <%= f.label :password, "パスワード", class: "col-form-label col-4" %>
-            <%= f.password_field :password, autocomplete: "new-password",placeholder: "パスワードは#{@minimum_password_length}文字以上", class: "form-control col-8" %>
+            <%= f.label :password, "パスワード", class: "col-form-label col-sm-4 px-0" %>
+            <%= f.password_field :password, autocomplete: "new-password",placeholder: "パスワードは#{@minimum_password_length}文字以上", class: "form-control col-sm-8" %>
           </div>
 
           <div class="form-group row">
-            <%= f.label :password_confirmation, "パスワード(確認用)", class: "col-form-label col-4" %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-8" %>
+            <%= f.label :password_confirmation, "パスワード(確認用)", class: "col-form-label col-sm-4 px-0" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-sm-8" %>
           </div>
 
           <div class="form-group row mt-3">
-            <div class="col-4"></div>
-            <div class="col-8 px-0">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8 px-0">
               <%= f.submit "新規登録", class: "btn btn-success col-6" %>
             </div>
           </div>

@@ -1,42 +1,38 @@
 <div class="container">
-  <div class="h4 bold mt-3">投稿編集</div>
-  <div class="my-5 row">
-    <div class="col-sm-8">
-      <%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f| %>
-      <%= render "public/shared/error_messages", resource: @post %>
+  <div class="h4 bold mt-3 col-sm-8 mx-auto my-5">投稿編集</div>
+  <div class="col-md-8 mx-auto">
+    <%= form_with model: @post, url: public_post_path(@post.id), method: :patch do |f| %>
+    <%= render "public/shared/error_messages", resource: @post %>
 
-        <div class="form-group row col">
-          <%= f.label :pet_id, "ペット名", class: "col-form-label col-4" %>
-          <div class="col-8 p-0">
-            <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name), {prompt: "ペット選択"} %>
-          </div>
-        </div>
+      <div class="form-group row col mx-0">
+        <%= f.label :pet_id, "ペット名", class: "col-form-label col-md-4 px-0" %>
+        <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name), {prompt: "ペット選択"}, class: "col-md-8" %>
+      </div>
 
-        <div class="form-group row col">
-          <%= f.label :post_image, "画像", class: "col-form-label col-4" %>
-          <%= f.file_field :post_image, accept: "image/*", class: "p-0 col-8" %>
-        </div>
+      <div class="form-group row col mx-0">
+        <%= f.label :post_image, "画像", class: "col-form-label col-md-4 px-0" %>
+        <%= f.file_field :post_image, accept: "image/*", class: "col-md-8 px-0" %>
+      </div>
 
-        <div class="form-group row col">
-          <%= f.label :post_title, "投稿名", class: "col-form-label col-4" %>
-          <%= f.text_field :post_title, class: "form-control col-8" %>
-        </div>
+      <div class="form-group row col mx-0">
+        <%= f.label :post_title, "投稿名", class: "col-form-label col-md-4 px-0" %>
+        <%= f.text_field :post_title, class: "form-control col-md-8" %>
+      </div>
 
-        <div class="form-group row col">
-          <%= f.label :post_content, "投稿内容", class: "col-form-label col-4" %>
-          <%= f.text_area :post_content, rows: 10, class: "form-control col-8" %>
-        </div>
+      <div class="form-group row col mx-0">
+        <%= f.label :post_content, "投稿内容", class: "col-form-label col-md-4 px-0" %>
+        <%= f.text_area :post_content, rows: 10, class: "form-control col-md-8" %>
+      </div>
 
-          <%= f.hidden_field :customer_id, :value => current_customer.id %>
+        <%= f.hidden_field :customer_id, :value => current_customer.id %>
 
-        <div class="form-group row col">
-          <div class="col-4"></div>
-          <div class="col-8 p-0"><%= f.submit "変更を保存", class: "btn btn-success btn-block" %></div>
-        </div>
-      <% end %>
+      <div class="form-group row col mx-0 mt-3">
+        <div class="col-md-4"></div>
+        <div class="col-md-8 p-0"><%= f.submit "変更を保存", class: "btn btn-success btn-block" %></div>
+      </div>
+    <% end %>
     </div>
-  </div>
-  <div class="mb-5">
+  <div class="my-5 col-md-8 mx-auto">
     <%= link_to  public_posts_path, class: "default-color other-link" do %>
       <i class="fas fa-solid fa-reply mr-2"></i>投稿一覧
     <% end %>

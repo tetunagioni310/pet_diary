@@ -70,8 +70,17 @@ class Public::WorksController < ApplicationController
 
   def destroy
     @work = Work.find(params[:id])
-    @work.destroy
     # 在庫を戻す作業
+    @work.work_details.each do |work_detail|
+      # アイテム情報を取得
+      item = Item.find(work_detail.item_id)
+      # アイテムの総量に使用量を足す
+      item.total_capacity += work_detail.amount_used
+      # アイテムの総量から一袋の量を割って袋の量を数える
+      item.amount = item.total_capacity / item.capacity
+      item.save
+    end
+    @work.destroy
     flash[:notice] = "ワークを削除しました。"
     redirect_to public_works_path
   end

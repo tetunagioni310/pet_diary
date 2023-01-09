@@ -72,7 +72,7 @@
             </div>
           <% end %>
 
-          <div class="mx-md-3 my-3 p-0 d-flex justify-between">
+          <div class="mx-md-3 my-3 p-0 d-flex justify-between align-center">
             <%= link_to "お気に入り登録", public_favorite_items_path, method: :post, class: "btn-links btn-sm", data: { confirm: '使用アイテムをお気に入りに登録しますか？'} %>
             <%= button_to destroy_all_public_use_items_path, method: :delete, data: {confirm: "使用アイテムを全て削除しますか？"} do %>
               <i class="fas fa-solid fa-trash text-danger"></i>

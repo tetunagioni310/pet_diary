@@ -22,7 +22,11 @@
                   <ul class="m-3">
                     <li><%= post.post_title.truncate(10) %></li>
                     <li><p><%= post.post_content.truncate(30) %></p></li>
-                    <li><%= image_tag post.get_post_image(500,500) , width: "100%", class: "border-radius mt-3" %></li>
+                    <li>
+                      <div class="col-10 m-auto">
+                        <%= image_tag post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "800x800+0+0" ).processed , width: "100%", class: "border-radius mt-3 p-0" %>
+                      </div>
+                    </li>
                   </ul>
                 <% end %>
               </div>

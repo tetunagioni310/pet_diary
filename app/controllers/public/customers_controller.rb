@@ -9,6 +9,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
+      flash[:notice] = "会員情報を更新しました"
       redirect_to public_customer_path(@customer.id)
     else
       render 'edit'
@@ -23,6 +24,7 @@ class Public::CustomersController < ApplicationController
   def introduction_update
     @customer = Customer.find_by(id: current_customer.id)
     if @customer.update(customer_params)
+      flash[:notice] = "コメントを更新しました"
       redirect_to public_customer_path(@customer.id)
     else
       render 'introduction_edit'

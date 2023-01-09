@@ -4,51 +4,50 @@
     <div class="col-lg-6">
       <div class="col text-field">
         <div class="col mb-5">
-          <table class="col">
-            <tr>
-              <th class="col-4">タイトル</th>
-              <td class="col-8"><%= @post.post_title %></td>
-            </tr>
+          <p class="col my-3">タイトル：<%= @post.post_title %></p>
 
-            <tr>
-              <th class="col-4">コンテンツ</th>
-              <td class="col-8"><%= @post.post_content %></td>
-            </tr>
-          </table>
+          <p class="col my-3">
+            コンテンツ：
+            <%= @post.post_content %>
+          </p>
         </div>
 
         <div class="col">
-          <div class="col-8 m-auto">
-            <%= image_tag @post.get_post_image(500,500), height: "100%", width: "100%", class: "post-image" %>
+          <div class="col m-auto">
+            <%= image_tag @post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "800x800+0+0" ).processed, width: "100%", class: "border-radius" %>
           </div>
         </div>
       </div>
 
     </div>
 
-    <div class="col-lg-5 text-field offset-md-1">
-      <h3 class="bold ml-3">コメント一覧</h3>
-      <div class="col">
+
+    <div class="col-lg-5 offset-md-1">
+      <div class="text-field col">
+        <h3 class="bold ml-3">コメント一覧</h3>
         <% if @comments.count >= 1 %>
-          <table class="col m-auto">
-            <% @comments.each do |comment| %>
-            <tr>
-              <td><%= comment.customer.nick_name %></td>
-              <td>
-                <%= comment.comment_content %>
-                <div class="small text-muted text-right">
-                  <%= comment.created_at.strftime("%Y/%m/%d") %>
+          <% @comments.each do |comment| %>
+            <div class="col border-top pt-2">
+              <div class="row col">
+                <div class="col-3">
+                  <%= comment.customer.nick_name %>
                 </div>
-              </td>
-            </tr>
-            <% end %>
-          </table>
+                <p class="col-9">
+                  <%= comment.comment_content %>
+                </p>
+              </div>
+              <div class="small text-muted text-right">
+                <%= comment.created_at.strftime("%Y/%m/%d") %>
+              </div>
+            </div>
+          <% end %>
           <%= paginate @comments %>
         <% else %>
-          <div class="ml-3">
+          <p class="ml-3">
             コメントは<%= @comments.count %>件です。
-          </div>
+          </p>
         <% end %>
+
       </div>
     </div>
   </div>

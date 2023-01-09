@@ -76,7 +76,7 @@
           <div class="content-class col p-0">
             <% if @posts.count >= 1 %>
               <% @posts.each do |post| %>
-                <div class="col text-field customer-content p-2">
+                <div class="col-md-8 mx-auto text-field customer-content p-2">
                   <div class="col row customer-post">
                     <%= image_tag post.customer.get_customer_image(50,50)%>
                     <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "mr-2" %>
@@ -89,7 +89,7 @@
                     <ul class="m-3">
                       <li><%= post.post_title.truncate(10) %></li>
                       <li><p><%= post.post_content.truncate(30) %></p></li>
-                      <li><%= image_tag post.get_post_image(500,500) , width: "50%" %></li>
+                      <li><%= image_tag post.get_post_image(500,500) , width: "100%", class: "border-radius" %></li>
                     </ul>
                   <% end %>
 
@@ -161,9 +161,9 @@
           <div class="content-class col">
             <% if @posts.count >= 1 %>
               <% @posts.each do |post|%>
-                  <div class="col p-0 m-2">
+                  <div class="col-md-10 py-5 m-auto">
                     <%= link_to public_post_path(post.id) do %>
-                      <%= image_tag post.get_post_image(500,500), width: "100%", class: "border-radius" %></li>
+                      <%= image_tag post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "800x800+0+0" ).processed, width: "100%", height: "100%", class: "border-radius" %></li>
                     <% end %>
                   </div>
               <% end %>

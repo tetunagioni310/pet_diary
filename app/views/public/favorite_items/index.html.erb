@@ -1,54 +1,56 @@
 <div class="container">
-  <div class="col-sm-6 h5 m-auto bold">お気に入りアイテム</div>
+  <div class="col-md-6 h5 mx-auto my-5 bold">お気に入りアイテム</div>
   <div class="row">
     <div class="col">
-      <div class="col-sm-6 text-field mx-auto p-4">
+      <div class="col-md-6 text-field m-auto">
         <% if @favorite_items.count >= 1 %>
-        <% @favorite_items.each do |favorite_item| %>
+          <% @favorite_items.each do |favorite_item| %>
+            <div class="row col align-center text-center">
+              <div class="col-lg-4 bold text-left">
+                <%= favorite_item.favorite_item_name %>
+              </div>
 
-          <%= favorite_item.favorite_item_name %>
+              <div class="col-lg-8 d-flex align-center text-right">
+                <div class="favorite_items">
+                  <ul class="navbar-nav btn-sm">
+                    <li class="nav-items dropdown my-3" aria-labelledby="navbarDropdown">
+                      <a class="btn-revers dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        アイテム一覧
+                      </a>
+                      <div class="dropdown-menu">
+                        <% favorite_item_details = FavoriteItemDetail.where(favorite_item_id: favorite_item.id)%>
+                        <div class="col">
+                          <% favorite_item_details.each do |favorite_item_detail| %>
+                            <%= favorite_item_detail.item.item_name %>(<%= favorite_item_detail.amount_used %>g)<br>
+                          <% end %>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
 
-          <div class="d-flex align-center">
-            <div class="favorite_items">
-              <ul class="navbar-nav btn-sm">
-                <li class="nav-items dropdown my-3" aria-labelledby="navbarDropdown">
-                  <a class="btn-revers dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    アイテム一覧
-                  </a>
-                  <div class="dropdown-menu">
-                    <% favorite_item_details = FavoriteItemDetail.where(favorite_item_id: favorite_item.id)%>
-                    <div class="col">
-                      <% favorite_item_details.each do |favorite_item_detail| %>
-                        <%= favorite_item_detail.item.item_name %>(<%= favorite_item_detail.amount_used %>g)<br>
-                      <% end %>
-                    </div>
+                <% if favorite_item.customer_id == current_customer.id%>
+                  <div class="mx-2">
+                    <%= button_to edit_public_favorite_item_path(favorite_item.id), method: :get do %>
+                      <i class="fas fa-solid fa-pen"></i>
+                    <% end %>
                   </div>
-                </li>
-              </ul>
+
+                  <div>
+                    <%= button_to public_favorite_item_path(favorite_item.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                      <i class="fas fa-solid fa-trash"></i>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
             </div>
-            <% if favorite_item.customer_id == current_customer.id%>
-              <div class="mx-2">
-                <%= button_to edit_public_favorite_item_path(favorite_item.id), method: :get do %>
-                  <i class="fas fa-solid fa-pen"></i>
-                <% end %>
-              </div>
-
-              <div>
-                <%= button_to public_favorite_item_path(favorite_item.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
-                  <i class="fas fa-solid fa-trash"></i>
-                <% end %>
-              </div>
-
-              <% end %>
-            <% end %>
-          </div>
-
+          <% end %>
         <% else %>
           <p class="no-data">
             お気に入りは登録されていません
           </p>
         <% end %>
-    </div>
+      </div>
     </div>
   </div>
 </div>

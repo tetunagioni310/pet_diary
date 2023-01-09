@@ -1,23 +1,22 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 m-auto">
-      <div class="h2 bold pb-5">会員一覧</div>
-      <div class="col text-field admin-customers custom-table">
+    <div class="col">
+      <div class="h2 bold pb-5 col-sm-6 m-auto">会員一覧</div>
+      <div class="col-sm-6 m-auto text-field admin-customers custom-table p-3">
         <table class="col text-center">
-          <tr class="border-bottom">
-            <th>名前</th>
-            <th>メール</th>
-            <th>投稿</th>
-            <th></th>
-          </tr>
 
           <% if @customers.count >= 1 %>
             <% @customers.each do |customer| %>
+            <tr class="border-bottom">
+              <td class="px-0 bold"><%= customer.nick_name %></td>
+              <td class="px-0"><%= customer.email %></td>
+            </tr>
+
             <tr>
-              <td><%= customer.nick_name %></td>
-              <td><%= customer.email %></td>
-              <td><%= link_to "一覧", admin_customer_posts_path(customer.id), class: "btn btn-success" %></td>
-              <td><%= link_to customer.is_deleted?, edit_admin_customer_path(customer.id), class: "other-link" %></td>
+              <td colspan="2" class="col text-right">
+                <%= link_to "投稿一覧", admin_customer_posts_path(customer.id), class: "btn btn-success btn-sm" %>
+                <%= link_to customer.is_deleted?, edit_admin_customer_path(customer.id), class: "other-link ml-2" %>
+              </td>
             </tr>
             <% end %>
           <% else %>

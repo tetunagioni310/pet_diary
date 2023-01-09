@@ -3,23 +3,23 @@
     <div class="col pb-5 mb-5">
       <div class="col-md-6 m-auto">
 
-        <div class="h2 py-5">管理者ログイン</div>
+        <div class="h2 py-4">管理者ログイン</div>
 
         <%= form_with model: @admin, url: admin_session_path, method: :post do |f| %>
 
-            <div class="form-group row">
-              <%= f.label :email, "メールアドレス", class: "col-form-label col-4" %>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-8" %>
+            <div class="form-group row col">
+              <%= f.label :email, "メールアドレス", class: "col-form-label col-sm-5 px-0" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-sm-7" %>
             </div>
 
-            <div class="form-group row">
-              <%= f.label :password, "パスワード", class: "col-form-label col-4" %>
-              <%= f.password_field :password, autocomplete: "current-password", class: "form-control col-8" %>
+            <div class="form-group row col">
+              <%= f.label :password, "パスワード", class: "col-form-label col-sm-5 px-0" %>
+              <%= f.password_field :password, autocomplete: "current-password", class: "form-control col-sm-7" %>
             </div>
 
-            <div class="form-group row">
-              <div class="col-4"></div>
-              <div class="col-8 px-0">
+            <div class="form-group row col">
+              <div class="col-sm-5"></div>
+              <div class="col-sm-7 px-0">
                 <% if devise_mapping.rememberable? %>
                     <%= f.check_box :remember_me %>
                     <%= f.label :remember_me %>
@@ -27,9 +27,9 @@
               </div>
             </div>
 
-            <div class="form-group row">
-              <div class="col-4"></div>
-              <div class="col-8 px-0"><%= f.submit "ログイン", class: "btn btn-success" %></div>
+            <div class="form-group row col">
+              <div class="col-sm-5"></div>
+              <div class="col-sm-7 px-0"><%= f.submit "ログイン", class: "btn btn-success" %></div>
             </div>
 
         <% end %>

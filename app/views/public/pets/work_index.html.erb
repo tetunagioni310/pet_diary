@@ -1,73 +1,72 @@
 <div class="container">
-  <div class="h4 bold col-sm-6 mx-auto mb-3"><%= link_to @pet.pet_name, public_pet_path(@pet.id), class: "default-color other-link" %><%= @pet.pet_gender %>のワーク一覧</div>
+  <div class="h5 bold col-md-6 mx-auto mb-5"><%= link_to @pet.pet_name, public_pet_path(@pet.id), class: "default-color other-link" %><%= @pet.pet_gender %>のワーク一覧</div>
 
 
   <div class="row">
     <div class="col">
       <div class="px-0 col">
-        <div class="work-list col-sm-6 p-0 m-auto">
-          <table class="col">
-            <tboby>
-            <% if @works.count >= 1 %>
-              <% @works.each do |work| %>
-                <tr>
-                  <th colspan="3" class="text-center col-sm-4">
-                      <%= work.created_at.strftime("%y/%m/%d") %>
-                  </th>
-                </tr>
-                <tr>
-                  <td class="col-4 p-0">
-                    <div class="d-flex align-center justify-content-center">
-                      <div class="favorite_items">
-                        <ul class="navbar-nav btn-sm p-0">
-                          <li class="nav-items dropdown my-3" aria-labelledby="navbarDropdown">
-                            <a class="other-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <%= work.work_name %>
-                            </a>
-                            <div class="dropdown-menu">
-                              <!--消費アイテム取得-->
-                              <% work_details = WorkDetail.where(work_id: work.id)%>
-                              <div class="col">
-                                <% work_details.each do |work_detail| %>
-                                  <%= work_detail.item.item_name %>(<%= work_detail.amount_used %>g)<br>
-                                <% end %>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="col-4"><%= link_to work.pet.pet_name, public_pet_path(work.pet.id), class: "other-link" %></td>
-                  <td class="col-4">
-                    <span class="d-flex col-5">
-                      <%= button_to public_work_path(work.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "ml-3 mr-0" do %>
-                            <i class="fas fa-solid fa-trash"></i>
-                      <% end %>
-                    </span>
-                  </td>
-                </tr>
-              <% end %>
-            <% else %>
+
+        <% if @works.count >= 1 %>
+          <% @works.each do |work| %>
+            <div class="work-list col-md-6 p-0 m-auto">
+            <table class="col">
               <tr>
-                <td colspan="4" class="text-center">
-                  <p class="no-data">
-                    ワークはありません
-                  </p>
+                <th colspan="3" class="text-center col-md-4">
+                    <%= work.created_at.strftime("%y/%m/%d") %>
+                </th>
+              </tr>
+              <tr>
+                <td class="col-4 p-0">
+                  <div class="d-flex align-center justify-content-center">
+                    <div class="favorite_items">
+                      <ul class="navbar-nav btn-sm p-0">
+                        <li class="nav-items dropdown my-3" aria-labelledby="navbarDropdown">
+                          <a class="other-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <%= work.work_name %>
+                          </a>
+                          <div class="dropdown-menu">
+                            <!--消費アイテム取得-->
+                            <% work_details = WorkDetail.where(work_id: work.id)%>
+                            <div class="col">
+                              <% work_details.each do |work_detail| %>
+                                <%= work_detail.item.item_name %>(<%= work_detail.amount_used %>g)<br>
+                              <% end %>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </td>
+                <td class="col-4"><%= link_to work.pet.pet_name, public_pet_path(work.pet.id), class: "other-link" %></td>
+                <td class="col-4">
+                  <span class="d-flex col-5">
+                    <%= button_to public_work_path(work.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "ml-3 mr-0" do %>
+                          <i class="fas fa-solid fa-trash"></i>
+                    <% end %>
+                  </span>
                 </td>
               </tr>
-            <% end %>
-            </tboby>
-          </table>
+            </table>
+          </div>
+          <% end %>
+        <% else %>
+          <div class="text-field col-md-6 p-0 m-auto">
+            <p class="no-data">
+              ワークはありません
+            </p>
+          </div>
+        <% end %>
 
-          <div class="col text-center">
+
+        <div class="col text-center">
             <%= paginate @works %>
           </div>
-        </div>
       </div>
     </div>
   </div>
-  <div class="mt-5 mb-3">
+
+  <div class="col-md-6 mt-5 mb-3 mx-auto">
     <%= link_to  public_pet_path(@pet.id), class: "default-color other-link" do %>
       <i class="fas fa-solid fa-reply mr-2"></i><%= @pet.pet_name + @pet.pet_gender %>の詳細ページ
     <% end %>

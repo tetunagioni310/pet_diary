@@ -2,14 +2,14 @@
   <div class="row mt-5">
       <div class="col-lg-6 mb-3">
         <div class="h4 bold">アイテム在庫一覧</div>
-        <div class="items-list text-field">
+        <div class="items-list text-field p-3">
           <% if @items.count >= 1 %>
             <table class="col">
               <% @items.each do |item| %>
               <tr>
-                <td class="bold"><%= link_to item.item_name, public_item_path(item.id), class: "other-link" %></td>
-                <td><%= item.amount.to_s + "袋" %></td>
-                <td>
+                <td class="px-0 bold"><%= link_to item.item_name, public_item_path(item.id), class: "other-link" %></td>
+                <td class="px-0 small text-muted"><%= item.amount.to_s + "袋" %></td>
+                <td class="px-0 small text-muted">
                   <%= item.total_capacity.to_s + item.unit_i18n %>
                 </td>
               </tr>

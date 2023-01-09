@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="h4 bold">
+  <p class="h5 bold">
     <%= @pet.pet_name + @pet.pet_gender %>の詳細ページ
     <%= link_to public_customer_path(@pet.customer_id), class: "btn btn-sm p-0 mx-2 text-warning" do %>
       <i class="fas fa-2x fa-solid fa-user mb-1"></i>
     <% end %>
-  </div>
+  </p>
   <div class="col">
     <div class="text-field row p-0">
 
@@ -26,7 +26,9 @@
 
           <tr>
             <th>名前</th>
-            <td><%= @pet.pet_name %></td>
+            <td>
+                <%= @pet.pet_name %>
+            </td>
           </tr>
 
           <tr>

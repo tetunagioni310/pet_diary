@@ -15,7 +15,7 @@ Customer.create!(
    {
    email: 'test@test.com',
    password: 'testtesttest1105',
-   nick_name: '会員A'
+   nick_name: 'test'
   }
   ]
 )

@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div class="row h4 bold my-5 mx-auto col-md-8">
+  <div class="row h5 bold my-5 px-0 mx-auto col-md-8">
       <%= @pet.pet_name %><%= @pet.pet_gender %>の投稿一覧
       <% if @pet.customer.id == current_customer.id %>
         <%= link_to new_public_post_path, class: "text-warning ml-3" do %>
@@ -11,11 +11,11 @@
 
   <div class="row">
     <div class="col">
-      <div class="col-md-8 text-field m-auto">
+      <div class="col-md-8 text-field m-auto px-0">
         <table class="col text-center">
-          <thead>
-            <th>タイトル</th>
-            <th>投稿日</th>
+          <thead class="mx-0 border-bottom">
+            <th class="small text-muted">タイトル</th>
+            <th class="small text-muted">投稿日</th>
           </thead>
 
           <tbody>

@@ -54,11 +54,15 @@ q::before, q::after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  td {
+    word-break: break-all !important;
+  }
 }
 
 p,div,td,th,h1,h2,h3,ul {
   font-weight: normal;
   line-height: 1.5em;
+  word-break: break-all !important;
 }
 
 a {
@@ -67,8 +71,7 @@ a {
 }
 
 p {
-  overflow-wrap: break-word;
-　　　word-wrap: break-word;
+  word-break: break-all !important;
 }
 
 /*css*/
@@ -106,7 +109,7 @@ p {
 .text-field {
   color: #EA6B66;
   background-color: #FFF2CC;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 10px;
   margin-top: 50px;
   box-shadow: 5px 5px 5px gray;

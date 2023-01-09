@@ -1,22 +1,23 @@
 <div class="container">
   <div class="row">
-    <div class="col-6 text-field text-center mx-auto my-5">
-      <% if @customer.is_deleted == false %>
-      　<h4>この会員のステータスを無効にしますか？</h4>
-      <% else %>
-      　<h4>この会員のステータスを有効にしますか？</h4>
-      <% end %>
-
-      <div class="col-8 mx-auto py-5">
+    <div class="col">
+      <div class="col-sm-6 text-field text-center mx-auto my-5">
         <% if @customer.is_deleted == false %>
-          <%= link_to "変更をやめる", admin_customers_path, class: "btn btn-success" %>
-        　<%= link_to "無効にする", admin_customer_path(@customer.id), method: :patch , data: {confirm: "本当に無効にしますか？"}, class: "btn btn-danger" %>
+        　<h4 class="bold">この会員のステータスを無効にしますか？</h4>
         <% else %>
-          <%= link_to "変更をやめる", admin_customers_path, class: "btn btn-success" %>
-        　<%= link_to "有効にする", admin_customer_path(@customer.id), method: :patch , data: {confirm: "本当に有効にしますか？"}, class: "btn btn-danger"%>
+        　<h4 class="bold">この会員のステータスを有効にしますか？</h4>
+        <% end %>
+
+      <div class="col-sm-8 mx-auto py-3">
+        <% if @customer.is_deleted == false %>
+          <%= link_to "変更をやめる", admin_customers_path, class: "btn btn-success btn-sm" %>
+        　<%= link_to "無効にする", admin_customer_path(@customer.id), method: :patch , data: {confirm: "本当に無効にしますか？"}, class: "btn btn-danger btn-sm" %>
+        <% else %>
+          <%= link_to "変更をやめる", admin_customers_path, class: "btn btn-success btn-sm" %>
+        　<%= link_to "有効にする", admin_customer_path(@customer.id), method: :patch , data: {confirm: "本当に有効にしますか？"}, class: "btn btn-danger btn-sm"%>
         <% end %>
       </div>
-
+    </div>
 
     </div>
   </div>
