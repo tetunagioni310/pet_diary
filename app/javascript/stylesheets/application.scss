@@ -275,6 +275,10 @@ div.post-show {
   }
 }
 
+div.post-all {
+  border: 1px solid #dee2e6 !important;
+  padding: 5px;
+}
 // アイテム
 
 div.items-list {
@@ -408,6 +412,9 @@ div.schedule {
 
     tbody {
       color: #000;
+      td {
+        padding: 0;
+      }
     }
   }
 }
@@ -435,8 +442,7 @@ div.schedule {
 
 a.schedule-link {
 text-decoration: none;
-padding: 0;
-margin: 0;
+margin: 0 auto;
 color: #EA6B66;
 font-weight: bold;
 overflow: hidden;

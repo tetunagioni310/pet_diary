@@ -77,22 +77,23 @@
             <% if @posts.count >= 1 %>
               <% @posts.each do |post| %>
                 <div class="col-md-8 mx-auto text-field customer-content p-2">
-                  <div class="col row customer-post">
-                    <%= image_tag post.customer.get_customer_image(50,50)%>
-                    <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "mr-2" %>
-                    <div class="small text-muted">
-                      <%= time_ago_in_words(post.created_at).upcase %>
+                  <seciton>
+                    <div class="col row customer-post">
+                      <%= image_tag post.customer.get_customer_image(50,50)%>
+                      <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "mr-2" %>
+                      <time class="small text-muted">
+                        <%= time_ago_in_words(post.created_at).upcase %>
+                      </time>
                     </div>
-                  </div>
 
-                  <%= link_to public_post_path(post.id), class: "other-link" do %>
-                    <ul class="m-3">
-                      <li><%= post.post_title.truncate(10) %></li>
-                      <li><p><%= post.post_content.truncate(30) %></p></li>
-                      <li><%= image_tag post.get_post_image(500,500) , width: "100%", class: "border-radius" %></li>
-                    </ul>
-                  <% end %>
-
+                    <%= link_to public_post_path(post.id), class: "other-link" do %>
+                      <div class="col">
+                        <h4><%= post.post_title.truncate(10) %></h4>
+                        <p><%= post.post_content.truncate(30) %></p>
+                        <%= image_tag post.get_post_image(500,500) , width: "100%", class: "border-radius" %>
+                      </div>
+                    <% end %>
+                  </seciton>
                 </div>
               <% end %>
             <% else %>
@@ -106,21 +107,23 @@
             <% if @like_posts.count >= 1 %>
               <% @like_posts.each do |like_post| %>
                 <div class="col text-field customer-content">
-                  <div class="col row customer-post">
-                    <%= image_tag like_post.customer.get_customer_image(50,50)%>
-                    <%= link_to like_post.customer.nick_name, public_customer_path(like_post.customer.id), class: "mr-2" %>
-                    <div class="small text-muted">
-                      <%= time_ago_in_words(like_post.created_at).upcase %>
+                  <section>
+                    <div class="col row customer-post">
+                      <%= image_tag like_post.customer.get_customer_image(50,50)%>
+                      <%= link_to like_post.customer.nick_name, public_customer_path(like_post.customer.id), class: "mr-2" %>
+                      <time class="small text-muted">
+                        <%= time_ago_in_words(like_post.created_at).upcase %>
+                      </time>
                     </div>
-                  </div>
 
-                  <%= link_to public_post_path(like_post.id), class: "other-link" do %>
-                    <ul class="m-3">
-                      <li><%= like_post.post_title.truncate(10) %></li>
-                      <li><%= like_post.post_content.truncate(30) %></li>
-                      <li><%= image_tag like_post.get_post_image(500,500) , width: "50%" %></li>
-                    </ul>
-                  <% end %>
+                    <%= link_to public_post_path(like_post.id), class: "other-link" do %>
+                      <div class="m-3">
+                        <h4><%= like_post.post_title.truncate(10) %></h4>
+                        <p><%= like_post.post_content.truncate(30) %></p>
+                        <%= image_tag like_post.get_post_image(500,500) , width: "50%" %>
+                      </div>
+                    <% end %>
+                  </section>
                 </div>
               <% end %>
             <% else %>
@@ -134,21 +137,22 @@
             <% if @following_customer_posts.count >= 1 %>
               <% @following_customer_posts.each do |following_customer_post|%>
                 <div class="col text-field customer-content">
-                  <div class="col row customer-post">
+                  <section>
+                    <div class="col row customer-post">
                     <%= image_tag following_customer_post.customer.get_customer_image(50,50)%>
                     <%= link_to following_customer_post.customer.nick_name, public_customer_path(following_customer_post.customer.id), class: "mr-2" %>
                     <div class="small text-muted">
                       <%= time_ago_in_words(following_customer_post.created_at).upcase %>
                     </div>
                   </div>
-
-                  <%= link_to public_post_path(following_customer_post.id), class: "other-link" do %>
-                    <ul class="m-3">
-                      <li><%= following_customer_post.post_title.truncate(10) %></li>
-                      <li><%= following_customer_post.post_content.truncate(30) %></li>
-                      <li><%= image_tag following_customer_post.get_post_image(500,500) , width: "50%" %></li>
-                    </ul>
-                  <% end %>
+                    <%= link_to public_post_path(following_customer_post.id), class: "other-link" do %>
+                      <div class="m-3">
+                        <h4 class="h4"><%= following_customer_post.post_title.truncate(10) %></h4>
+                        <p><%= following_customer_post.post_content.truncate(30) %></p>
+                        <%= image_tag following_customer_post.get_post_image(500,500) , width: "50%" %>
+                      </div>
+                    <% end %>
+                  </section>
                 </div>
               <% end %>
             <% else %>
@@ -163,7 +167,7 @@
               <% @posts.each do |post|%>
                   <div class="col-md-10 py-5 m-auto">
                     <%= link_to public_post_path(post.id) do %>
-                      <%= image_tag post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "800x800+0+0" ).processed, width: "100%", height: "100%", class: "border-radius" %></li>
+                      <%= image_tag post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "800x800+0+0" ).processed, width: "100%", height: "100%", class: "border-radius" %>
                     <% end %>
                   </div>
               <% end %>

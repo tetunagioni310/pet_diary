@@ -1,36 +1,44 @@
 <div class="container">
   <div class="col-md-6 mx-auto text-field">
-  <h2 class="h2 bold mx-3 mb-5 mt-3">通知一覧</h2>
+  <h4 class="h4 bold mx-3 mb-5 mt-3">通知一覧</h2>
   <% notifications.each do |notification| %>
   <% visitor = notification.visitor %>
   <% visited = notification.visited %>
-  <div class="row">
+  <div class="row col mx-0 px-0">
 
-      <%= image_tag visitor.get_customer_image(50,50), class: "image-circle mx-2" %>
-      <div class="d-flex align-items-center">
-        <%= link_to visitor.nick_name, public_customer_path(visitor.id), class: "other-link bold" %>さんが
+      <%= image_tag visitor.get_customer_image(30,30), class: "image-circle mx-2 px-0" %>
+      <div class="d-flex align-items-center small">
+        <p class="small">
+          <%= link_to visitor.nick_name, public_customer_path(visitor.id), class: "other-link bold" %>さんが
+        </p>
       </div>
       <% case notification.action %>
       <% when 'follow' then %>
-        <div class="d-flex align-items-center">
-          あなたをフォローしました
+        <div class="d-flex align-items-center small">
+          <p class="small">あなたをフォローしました</p>
         </div>
       <% when 'like' then %>
-        <div class="d-flex align-items-center">
-          <%= link_to 'あなたの投稿', public_post_path(notification.post.id), class: "other-link" %>にいいねしました
+        <div class="d-flex align-items-center small">
+          <p class="small">
+            <%= link_to 'あなたの投稿', public_post_path(notification.post.id), class: "other-link small" %>にいいねしました
+          </p>
         </div>
       <% when 'comment' then %>
         <% if notification.post.customer_id == visited.id %>
-          <div class="d-flex align-items-center">
-            <%= link_to "あなたの投稿", public_post_path(notification.post.id), class: "d-flex other-link align-items-center" %>にコメントしました
+          <div class="d-flex align-items-center small">
+            <p class="small d-flex">
+              <%= link_to "あなたの投稿", public_post_path(notification.post.id), class: "d-flex other-link align-items-center" %>にコメントしました
+            </p>
           </div>
         <% else %>
-          <span>
-            <%= link_to post_path(notification.post), class: "d-flex other-link align-items-center" do %>
-              <%= image_tag avatar_url(notification.post.customer).to_s %>
-            <% end %>
-            <strong><%= notification.post.user.name + 'さんの投稿' %></strong>にコメントしました
-            <%= Comment.find_by(id: notification.comment_id)&.comment %>
+          <span class="small">
+            <p class="small">
+              <%= link_to post_path(notification.post), class: "d-flex other-link align-items-center small" do %>
+                <%= image_tag avatar_url(notification.post.customer).to_s %>
+              <% end %>
+              <strong><%= notification.post.user.name + 'さんの投稿' %></strong>にコメントしました
+              <%= Comment.find_by(id: notification.comment_id)&.comment %>
+            </p>
           </span>
         <% end %>
       <% end %>

@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :customer
   has_many :use_items, dependent: :destroy
-  has_many :work_details, dependent: :destroy
+  has_many :work_details
   has_many :favorite_item_details, dependent: :destroy
 
   validates :item_name, presence: true

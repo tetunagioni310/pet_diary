@@ -44,7 +44,7 @@
       <%= date.day %>
 
       <% schedules.each do |schedule| %>
-          <%= link_to schedule.schedule_title.truncate(5), public_schedule_path(schedule.id), class: "schedule-link" %>
+        <%= link_to schedule.schedule_title.truncate(5), public_schedule_path(schedule.id), class: "schedule-link col px-0 text-center" %>
       <% end %>
     <% end %>
   </div>
