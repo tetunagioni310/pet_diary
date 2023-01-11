@@ -7,12 +7,12 @@
     <div class="text-field col-md-6 m-auto px-0">
       <section>
         <div class="post-image col">
-            <%= image_tag @post.get_post_image(500,500), class: "col" %>
+          <%= image_tag @post.get_post_image(500,500), class: "col px-0" %>
         </div>
 
         <div class="post-text col">
           <h3 class="h3 mb-3"><%= @post.post_title %></h3>
-          <p><%= @post.post_content %></p>
+          <p class="mb-3"><%= @post.post_content %></p>
         </div>
 
         <time class="col small text-muted text-left">

@@ -385,49 +385,49 @@ div.work-show {
 }
 
 // スケジュール
-
-.wday-0 {
-  color: red;
-  height: 100px;
-}
-.wday-6 {
-  color: blue;
-}
-
-
-// スケジュール一覧
-
 div.schedule {
   font-size: 10px;
 
   table {
     margin: 0 auto;
-
+    font-weight: bold;
     thead {
       th {
         text-align: center;
+        background-color: #FFF2CC;
+        color: #EA6B66;
         width: 50px;
       }
     }
 
     tbody {
-      color: #000;
       td {
+        font-weight: bold;
+        text-align: center;
         padding: 0;
       }
     }
   }
 }
 
+.calendar-heading {
+  margin-left: 10px;
+}
+
 .simple-calendar {
  .day {}
- .wday-0 {}
+ .wday-0 {
+  color: red;
+  height: 100px;
+ }
  .wday-1 {}
  .wday-2 {}
  .wday-3 {}
  .wday-4 {}
  .wday-5 {}
- .wday-6 {}
+ .wday-6 {
+   color: blue;
+ }
  .today {}
  .past {}
  .future {}
@@ -436,17 +436,8 @@ div.schedule {
  .next-month { }
  .current-month {}
  .has-events {
-   background: #ffff00;
+   background: #dc143c;
  }
-}
-
-a.schedule-link {
-text-decoration: none;
-margin: 0 auto;
-color: #EA6B66;
-font-weight: bold;
-overflow: hidden;
-display: block;
 }
 
 // フォロー

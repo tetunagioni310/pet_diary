@@ -1,5 +1,7 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
+   # ゲストユーザーの更新・削除・退会を無効
+  before_action :ensure_normal_customer, only: [:destroy,:update,:withdrawal]
 
   # 会員情報編集
   def edit
@@ -77,6 +79,16 @@ class Public::CustomersController < ApplicationController
     @posts = Post.other_post_search(params[:keyword], customer).order(id: "DESC").page(params[:page]).per(10)
     @keyword = params[:keyword]
     render "post_index"
+  end
+
+   # ゲストログイン中にはセッションを消去できない
+  def ensure_normal_customer
+    if !admin_signed_in?
+      @customer = Customer.find(current_customer.id)
+      if @customer.email == 'guest@example.com'
+        redirect_to root_path, notice: 'ゲスト ユーザーは更新・削除できません'
+      end
+    end
   end
 
   private

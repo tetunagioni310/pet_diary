@@ -44,6 +44,12 @@ class Public::SchedulesController < ApplicationController
     redirect_to public_schedules_path
   end
 
+  def schedule_list
+    start_time = params[:date].in_time_zone.to_datetime
+    end_time = params[:date].in_time_zone.to_datetime.end_of_day
+    @schedules = current_customer.schedules.where("start_time >=? AND start_time <= ?", start_time, end_time)
+  end
+
   private
   # カレンダーを表示するときに先頭を日曜日に並べ直す
   def set_beginning_of_week

@@ -16,7 +16,9 @@ Rails.application.routes.draw do
       resources :comments, only: [:create,:destroy]
     end
 
+    get 'schedules/schedule_list'
     resources :schedules, only: [:index,:show,:create,:edit,:update,:destroy]
+
 
     resources :pets do
       get 'work_index'

@@ -2,16 +2,16 @@
 
 
   <% if !@keyword %>
-    <div class="h2 bold col-md-6 mx-auto">
+    <div class="h2 bold col-md-6 px-0 mx-auto">
       ワーク一覧
     </div>
   <% else %>
-    <div class="h4 bold col-md-6 mx-auto">
+    <div class="h4 bold col-md-6 px-0 mx-auto">
       検索結果：　<%= @keyword %>
     </div>
   <% end %>
 
-  <div class="col-md-6 mt-3 mx-auto mb-3">
+  <div class="col-md-6 mt-3 px-0 mx-auto mb-3">
     <%= form_with url: search_public_works_path, method: :get, local: true do |f| %>
       <div class="d-flex">
         <%= f.text_field :keyword, value: @keyword, placeholder: "ペット名を入力", class: "form-control m-0" %>

@@ -9,7 +9,7 @@
           <h2 class="col mx-auto h2 bold text-center border-bottom">新着投稿</h2>
           <% if @posts.count >= 1 %>
             <% @posts.each do |post| %>
-              <div class="col text-field top-content">
+              <div class="col-md-8 text-field top-content">
                 <div class="col p-md-2 d-flex px-0 user-info">
                   <%= image_tag post.customer.get_customer_image(30,30) %>
                   <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "other-link mx-2" %>
@@ -22,9 +22,7 @@
                   <%= link_to public_post_path(post.id), class: "other-link" do %>
                     <h4 class="h4"><%= post.post_title.truncate(10) %></h4>
                     <p><%= post.post_content.truncate(30) %></p>
-                    <div class="col-10 m-auto">
-                      <%= image_tag post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "800x800+0+0" ).processed , width: "100%", class: "border-radius mt-3 p-0" %>
-                    </div>
+                    <%= image_tag post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "800x800+0+0" ).processed , width: "100%", class: "border-radius mt-3 p-0" %>
                   <% end %>
                 </section>
               </div>

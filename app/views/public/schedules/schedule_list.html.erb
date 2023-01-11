@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="col">
+    <div class="col-md-5 mx-auto text-field py-5">
+      <h4 class="col-10 m-auto h4 bold">予定リスト</h4>
+      <div class="col">
+          <% @schedules.each do |schedule| %>
+          <p class="col-8 m-auto py-3 border-bottom">
+            <%= link_to schedule.schedule_title, public_schedule_path(schedule.id), class: "other-link" %>
+          </p>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

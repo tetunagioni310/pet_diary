@@ -4,7 +4,7 @@
       <input type="radio" name="tab_name" id="tab1" checked>
       <label class="tab_class bold" for="tab1">全ての投稿</label>
       <div class="content-class col">
-        <div class="col text-field customer-content">
+        <div class="col-md-10 mx-auto text-field customer-content">
           <% if @keyword %>
             <div class="h4 bold col"><%= @keyword %>の検索結果（<%= @posts.count %>件）</div>
           <% else %>
@@ -50,7 +50,7 @@
       <label class="tab_class bold" for="tab2">犬の投稿</label>
       <div class="content-class col">
       <% if @dog_posts %>
-        <div class="col text-field customer-content">
+        <div class="col-md-10 mx-auto text-field customer-content">
           <div class="h4 bold col">犬の投稿(<%= @dog_posts.count %>件)</div>
           <% if @dog_posts.count >= 1 %>
             <div class="row col mx-auto">
@@ -97,7 +97,7 @@
       <label class="tab_class bold" for="tab3">猫の投稿</label>
       <div class="content-class col">
         <% if @cat_posts %>
-          <div class="col text-field customer-content">
+          <div class="col-md-10 mx-auto text-field customer-content">
             <div class="h4 bold col">猫の投稿(<%= @cat_posts.count %>件)</div>
             <% if @cat_posts.count >= 1 %>
               <div class="row col mx-auto">
@@ -144,7 +144,7 @@
       <label class="tab_class bold" for="tab4">その他投稿</label>
       <div class="content-class col">
         <% if @other_posts %>
-          <div class="col text-field customer-content">
+          <div class="col-md-10 mx-auto text-field customer-content">
             <div class="h4 bold col">その他投稿(<%= @other_posts.count %>件)</div>
             <% if @other_posts.count >= 1 %>
               <div class="row col mx-auto">

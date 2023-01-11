@@ -7,7 +7,7 @@
     <div class="col-lg-8 pet-index mt-5">
 
         <div class="text-center mb-3 h5 bold">
-          <%= current_customer.nick_name %>さんのペット一覧
+          <%= @customer.nick_name %>さんのペット一覧
           <% if @customer.id == current_customer.id %>
             <%= link_to new_public_pet_path, class: "text-warning col-1 p-0" do %>
               <i class="fas fa-solid fa-plus"></i>
