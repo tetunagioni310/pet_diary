@@ -16,7 +16,11 @@
           <table class="col p-0 m-0">
 
             <tr class="col text-center">
+<<<<<<< HEAD
               <th class="px-0 col-5"></th>
+=======
+              <th class="px-0"></th>
+>>>>>>> development
               <th class="px-0">在庫</th>
               <th class="px-0">消費</th>
               <th class="px-0">残量</th>
@@ -28,7 +32,11 @@
 
                 <% if @work.pet_ids.reject(&:blank?).count >= 2 %>
                   <!--ペットが複数の場合-->
+<<<<<<< HEAD
                     <td class="px-0 bold small"><%= use_item.item.item_name %>(<%= use_item.amount_used.to_s + use_item.item.unit_i18n %>)</td>
+=======
+                    <td class="px-0 text-center small"><%= use_item.item.item_name %>(<%= use_item.amount_used.to_s + use_item.item.unit_i18n %>)</td>
+>>>>>>> development
                     <td class="px-0 text-center small"><%= item.total_capacity.to_s + item.unit_i18n %></td>
 
                     <% if item.total_capacity < use_item.amount_used * @work.pet_ids.reject(&:blank?).count %>

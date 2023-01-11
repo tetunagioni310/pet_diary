@@ -29,7 +29,7 @@
             <%= f.radio_button :status, Customer.statuses.key(0) %>
             <%= f.label :status, Customer.statuses_i18n[:nonreleased] %>
 
-            <%= f.radio_button :status, Customer.statuses.key(1) %>
+            <%= f.radio_button :status, Customer.statuses.key(1), class: "ml-2" %>
             <%= f.label :status, Customer.statuses_i18n[:released] %>
           </div>
 

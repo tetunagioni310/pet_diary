@@ -4,10 +4,10 @@
     <div class="col-lg-6">
       <div class="col text-field">
         <div class="col mb-5">
-          <p class="col my-3">タイトル：<%= @post.post_title %></p>
+          <h4 class="col h4 my-3">タイトル：<%= @post.post_title %></h4>
 
           <p class="col my-3">
-            コンテンツ：
+            コンテンツ：<br>
             <%= @post.post_content %>
           </p>
         </div>
@@ -28,11 +28,11 @@
         <% if @comments.count >= 1 %>
           <% @comments.each do |comment| %>
             <div class="col border-top pt-2">
-              <div class="row col">
-                <div class="col-3">
+              <div class="col">
+                <div class="col bold">
                   <%= comment.customer.nick_name %>
                 </div>
-                <p class="col-9">
+                <p class="col mt-2">
                   <%= comment.comment_content %>
                 </p>
               </div>

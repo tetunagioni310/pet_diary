@@ -19,13 +19,13 @@ class Public::RelationshipsController < ApplicationController
   end
   # フォロー一覧用
   def followings
-    customer = Customer.find(params[:customer_id])
-    @customers = customer.followings
+    @customer = Customer.find(params[:customer_id])
+    @customers = @customer.followings
   end
   # フォロワー一覧用
   def followers
-    customer = Customer.find(params[:customer_id])
-    @customers = customer.followers
+    @customer = Customer.find(params[:customer_id])
+    @customers = @customer.followers
   end
 
 end
