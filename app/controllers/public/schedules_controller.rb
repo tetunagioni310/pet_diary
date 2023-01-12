@@ -45,8 +45,9 @@ class Public::SchedulesController < ApplicationController
   end
 
   def schedule_list
-    start_time = params[:date].in_time_zone.to_datetime
-    end_time = params[:date].in_time_zone.to_datetime.end_of_day
+    # 送信されてきた日付を[in_time_zone]でアプリケーション側の時間に変換したのち
+    start_time = params[:date].in_time_zone
+    end_time = params[:date].in_time_zone.end_of_day
     @schedules = current_customer.schedules.where("start_time >=? AND start_time <= ?", start_time, end_time)
   end
 

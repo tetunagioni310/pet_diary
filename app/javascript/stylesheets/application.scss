@@ -395,6 +395,7 @@ div.schedule {
       th {
         text-align: center;
         background-color: #FFF2CC;
+        border: 1px solid #b22222;
         color: #EA6B66;
         width: 50px;
       }
@@ -415,10 +416,13 @@ div.schedule {
 }
 
 .simple-calendar {
- .day {}
+ .day {
+  border:1px solid #b22222;
+  height: 100px;
+ }
  .wday-0 {
   color: red;
-  height: 100px;
+  background-color: #bc8f8f;
  }
  .wday-1 {}
  .wday-2 {}
@@ -426,20 +430,24 @@ div.schedule {
  .wday-4 {}
  .wday-5 {}
  .wday-6 {
-   color: blue;
+    color: blue;
+    background-color: #bc8f8f;
  }
- .today {}
+ .today {
+   background-color: #ffa500;
+ }
  .past {}
  .future {}
  .start-date {}
  .prev-month {}
- .next-month { }
+ .next-month {
+   color: #f08080;
+ }
  .current-month {}
  .has-events {
    background: #dc143c;
  }
 }
-
 // フォロー
 div.follow-field {
   table {
