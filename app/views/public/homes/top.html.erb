@@ -38,12 +38,12 @@
         <div class="col text-field">
           <h4 class="col-lg-8 mx-auto text-center h4 bold mb-3 border-bottom">投稿画像</h4>
           <div class="row">
-            <% if @random_posts.count >= 1 %>
-              <% @random_posts.each do |random_post| %>
-                <% if random_post.post_image.attached? %>
+            <% if @order_posts.count >= 1 %>
+              <% @order_posts.each do |order_post| %>
+                <% if order_post.post_image.attached? %>
                   <div class="col-6">
-                    <%= link_to public_post_path(random_post.id) do %>
-                      <%= image_tag random_post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "1000x800+0+0" ).processed, width: "100px", height: "100px", maxheight: "100px", class: "object-fit-img col px-0 py-md-1 mx-auto" %>
+                    <%= link_to public_post_path(order_post.id) do %>
+                      <%= image_tag order_post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "1000x800+0+0" ).processed, width: "100px", height: "100px", maxheight: "100px", class: "object-fit-img col px-0 py-md-1 mx-auto" %>
                     <% end %>
                   </div>
                 <% end %>
