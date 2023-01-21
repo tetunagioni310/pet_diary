@@ -10,7 +10,7 @@
         <a class="btn-revers dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           新規登録
         </a>
-        <div class="dropdown-menu col-md-6">
+        <div class="dropdown-menu schedule-form col-md-6">
           <%= form_with model: @schedule, url: public_schedules_path, method: :post do |f| %>
           <%= render "public/shared/error_messages", resource: @schedule %>
 

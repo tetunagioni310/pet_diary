@@ -74,7 +74,7 @@ main {
 }
 
 body {
-  background-image: url(<%= asset_path '23354873.png' %>);
+  background-image: url('/assets/23354873.jpg');
 }
 
 footer {
@@ -111,8 +111,8 @@ td {
       }
 
       a {
-        color: #EA6B66;
-        border-color: #EA6B66;
+        color: #cd5c5c;
+        border-color: #cd5c5c;
         text-decoration: none;
         font-size: 12px;
         padding: 10px;
@@ -154,7 +154,7 @@ div.content-class {
         margin-left: 10px;
         font-weight: bold;
         text-decoration: none;
-        color: #EA6B66;
+        color: #cd5c5c;
 
         &:hover {
           color: #00f;
@@ -209,7 +209,7 @@ div.introduction-field {
   margin: 20px 0;
 
   tr {
-    color: #EA6B66;
+    color: #cd5c5c;
     th {
       padding-left: 0;
       padding-right: 0;
@@ -221,7 +221,7 @@ div.introduction-field {
       padding-right: 0;
 
       div.pet-nav {
-        background-color: #EA6B66;
+        background-color: #cd5c5c;
         margin: 30px 0;
         padding: 10px 0;
         border-radius: 10px;
@@ -232,7 +232,7 @@ div.introduction-field {
         }
         a:hover {
           background-color: #FFF2CC;
-          color: #EA6B66;
+          color: #cd5c5c;
         }
       }
     }
@@ -267,15 +267,9 @@ div.post-show {
 
   div.post-text {
     margin: 0 auto;
-    color: #EA6B66;
-
     p {
       font-size: 21px;
     }
-  }
-
-  div.comment-list {
-    color: #EA6B66;
   }
 }
 
@@ -322,7 +316,7 @@ div.item-show {
 
       th {
         border-bottom: 3px solid #FFF2CC;
-        background-color: #EA6B66;
+        background-color: #cd5c5c;
         color: #FFF2CC;
         font-weight: bold;
          }
@@ -417,6 +411,11 @@ div.schedule {
 
 .calendar-heading {
   margin-left: 10px;
+}
+
+.schedule-form {
+  background-color: #cd5c5c;
+  color: #FFF2CC;
 }
 
 .simple-calendar {

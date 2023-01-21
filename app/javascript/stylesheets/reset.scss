@@ -98,7 +98,7 @@ p {
 .other-link {
   text-decoration: none;
   font-weight: bold;
-  color: #EA6B66;
+  color: #cd5c5c;
 }
 
 .other-link:hover {
@@ -107,7 +107,7 @@ p {
 }
 
 .text-field {
-  color: #EA6B66;
+  color: #cd5c5c;
   background-color: #FFF2CC;
   border-radius: 10px;
   padding: 10px;
@@ -126,30 +126,29 @@ p {
 
 .btn-revers {
     background-color: #FFF2CC;
-    color: #EA6B66;
+    color: #cd5c5c;
     text-decoration: none;
     font-weight: bold;
     padding: 10px 20px;
     border-radius: 6px;
-    border: 1px solid #EA6B66;
+    border: 1px solid #cd5c5c;
     box-shadow: 5px 5px 5px gray;
   }
 
 .btn-revers:hover {
     color: #FFF2CC;
-    background-color: #EA6B66;
-    border: 1px solid #FFF2CC;
+    background-color: #cd5c5c;
     text-decoration: none;
 }
 
 .btn-links {
     background-color: #FFF2CC;
-    color: #EA6B66;
+    color: #cd5c5c;
     text-decoration: none;
     font-weight: bold;
     padding: 10px 20px;
     border-radius: 6px;
-    border: 1px solid #EA6B66;
+    border: 1px solid #cd5c5c;
     box-shadow: 5px 5px 5px gray;
     text-align: center;
     display: inline-block;
@@ -157,8 +156,12 @@ p {
 
 .btn-links:hover {
     color: #FFF2CC;
-    background-color: #EA6B66;
+    background-color: #cd5c5c;
     text-decoration: none;
+}
+
+.new-link {
+  color: #ffff00;
 }
 
 .bold {font-weight: bold;}

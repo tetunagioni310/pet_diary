@@ -6,19 +6,19 @@
         <%= form_with model: @work, url: log_public_works_path, method: :get do |f| %>
         <%= render "public/shared/error_messages", resource: @work %>
         <!--<div class="col my-0">-->
-            <div class="col-md-8 px-0 mb-3">
+            <div class="col-md-8 px-0 mb-3 mx-auto">
               <%= f.label :pet_id, "ペット選択", class: "mb-3 bold" %>
               <div class="pet-names">
                 <%= f.collection_check_boxes :pet_ids, current_customer.pets, :id, :pet_name, class: "col-4" %>
               </div>
             </div>
 
-            <div class="col-md-8 px-0 mb-5">
+            <div class="col-md-8 px-0 mb-5 mx-auto">
               <%= f.label :work_name, "ワーク名", class: "mb-3 bold" %>
               <%= f.text_field :work_name, placeholder: "例: 餌やり", class: "col form-control" %>
             </div>
 
-            <div class="col-md-8 px-0">
+            <div class="col-md-8 px-0 mx-auto">
               <%= f.submit "ワーク作成" , class: "btn btn-success btn-block"%>
             </div>
 
