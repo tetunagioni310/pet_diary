@@ -102,10 +102,10 @@ ActiveRecord::Schema.define(version: 2022_12_24_004904) do
   create_table "items", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "item_name", default: "", null: false
-    t.integer "amount", null: false
-    t.integer "unit", null: false
-    t.integer "capacity"
-    t.integer "total_capacity"
+    t.integer "amount", default: 0, null: false
+    t.integer "unit", default: 0, null: false
+    t.integer "capacity", default: 0
+    t.integer "total_capacity", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -142,7 +142,6 @@ ActiveRecord::Schema.define(version: 2022_12_24_004904) do
     t.string "pet_name", default: "", null: false
     t.string "pet_introduction", default: "", null: false
     t.integer "gender", null: false
-    t.integer "age", null: false
     t.date "birthday", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -27,12 +27,7 @@
               <%= f.label :gender, class: "col-md-3 col-form-label bold px-0" %>
               <%= f.select :gender, options_for_select(Pet.genders.map { |key, value| [key.humanize, key] }), {prompt: "選択してください"}, class: "col-md-7 form-control" %>
             </div>
-
-            <div class="form-group row">
-              <%= f.label :age, class: "col-md-3 col-form-label bold px-0" %>
-              <%= f.text_field :age, class: "col-md-7 form-control" %></p>
-            </div>
-
+            
             <div class="form-group row">
               <%= f.label :birthday, class: "col-md-3 col-form-label bold px-0" %>
               <%= f.text_field :birthday, placeholder: "2022-01-01", class: "col-md-7 form-control" %>

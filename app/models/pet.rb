@@ -8,7 +8,6 @@ class Pet < ApplicationRecord
   validates :pet_introduction, presence: true
   validates :pet_kind, presence: true
   validates :gender, presence: true
-  validates :age, presence: true
   validates :birthday, presence: true
 
   has_one_attached :pet_image
@@ -25,5 +24,10 @@ class Pet < ApplicationRecord
 
   def pet_gender
     gender == "♂" ? "くん" : "ちゃん"
+  end
+  
+  def age(date)
+    date_format = "%Y%m%d"
+    (date.strftime(date_format).to_i - birthday.strftime(date_format).to_i) / 10000
   end
 end
