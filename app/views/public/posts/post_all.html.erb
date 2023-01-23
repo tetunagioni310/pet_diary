@@ -70,7 +70,7 @@
                     </div>
 
                     <h2 class="border-bottom"><%= dog_post.post_title.truncate(10) %></h2>
-                    <time class="small text-muted"><%= dog_post.start_time.strftime('%Y/%m/%d %H:%M') %></time>
+                    <time class="small text-muted"><%= dog_post.created_at.strftime('%Y/%m/%d %H:%M') %></time>
                   </div>
                 </section>
               <% end %>
@@ -117,7 +117,7 @@
                         </div>
 
                         <h2 class="border-bottom"><%= cat_post.post_title.truncate(10) %></h2>
-                        <time class="small text-muted"><%= cat_post.start_time.strftime('%Y/%m/%d %H:%M') %></time>
+                        <time class="small text-muted"><%= cat_post.created_at.strftime('%Y/%m/%d %H:%M') %></time>
                     </div>
                   </section>
                 <% end %>
@@ -162,7 +162,7 @@
                         </div>
 
                         <h2 class="border-bottom"><%= other_post.post_title.truncate(10) %></h2>
-                        <time class="small text-muted"><%= other_post.start_time.strftime('%Y/%m/%d %H:%M') %></time>
+                        <time class="small text-muted"><%= other_post.created_at.strftime('%Y/%m/%d %H:%M') %></time>
                     </div>
                   </section>
                 <% end %>

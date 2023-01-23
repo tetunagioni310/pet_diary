@@ -26,34 +26,45 @@ Group.create!(
 Customer.create!(
   [
    {
+   nick_name: 'test',
    email: 'test@test.com',
    password: 'testtesttest1105',
-   nick_name: 'test'
   }
   ]
 )
 
 
 
-10.times do |n|
+20.times do |n|
  Customer.create!(
-  nick_name: "customer#{n+1}",
-  email: "customer#{n+1}@example.com",
-  password: "password",
-  introduction: 'よろしくお願いします！',
-  is_deleted: 'false',
-  status: 1
-  )
+  nick_name: Faker::JapaneseMedia::StudioGhibli.unique.character,
+  email:     Faker::Internet.unique.email,
+  password:  "passwordpassword")
+end
+
+Customer.all.each do |customer|
+ 2.times do |n|
+ Pet.create!(
+  customer_id: customer.id,
+  group_id: rand(1..3),
+  # group_id が3の時だけ作成したい
+  pet_kind: Faker::Creature::Animal.name,
+  pet_name: Faker::Creature::Dog.name,
+  gender:   rand(1..2),
+  birthday: Faker::Date.birthday)
+ end
 end
 
 # Customer.all.each do |customer|
-#  Pet.create!(
-#   customer_id: customer.id,
-#   group_id: rand(1..3),
-#   pet_kind: "test",
-#   pet_name: "test#{n+1}",
-#   pet_introduction: "test",
-#   gender: rand(1..2),
-#   birthday: "2018-10-15"
-#   )
+#  customer.pets.each do |pet|
+#   2.times do |n|
+#   Post.create!(
+#    customer_id: customer.id,
+#    pet_id: pet.id,
+#    post_title: "test#{ n + 1 }",
+#    post_content: "test",
+#    post_image: ActiveStorage::Blob.create_and_upload!(io: File.open("app/assets/images/test-image.jpg"),filename: 'test-image.jpg')
+#    )
+#   end
+#  end
 # end

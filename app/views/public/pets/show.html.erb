@@ -1,10 +1,12 @@
 <div class="container">
+  
   <p class="h5 bold">
     <%= @pet.pet_name + @pet.pet_gender %>の詳細ページ
     <%= link_to public_customer_path(@pet.customer_id), class: "btn btn-sm p-0 mx-2 text-warning" do %>
       <i class="fas fa-2x fa-solid fa-user mb-1"></i>
     <% end %>
   </p>
+  
   <div class="col">
     <div class="text-field row p-0">
 
@@ -47,32 +49,39 @@
           </tr>
 
           <tr>
+            <% if @pet.pet_introduction.present? %>
             <th>紹介</th>
-            <td><%= @pet.pet_introduction%></td>
+            <td><%= @pet.pet_introduction %></td>
+            <% end %>
           </tr>
 
-          <tr>
-            <td colspan="2">
-              <% if @pet.customer_id == current_customer.id %>
-              <div class="pet-nav col-sm-8 m-sm-auto px-0">
-                <%= link_to "編集", edit_public_pet_path(@pet.id), class: "btn btn-sm" %>
-                <%= link_to "アイテム", public_items_path, class: "btn btn-sm" %>
-                <%= link_to "ワーク", public_pet_work_index_path(@pet.id), class: "btn btn-sm" %>
-                <%= link_to "投稿", public_pet_post_index_path(@pet.id), class: "btn btn-sm" %>
-                <%= link_to "削除", public_pet_path(@pet.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-sm" %>
-              </div>
-              <% end %>
-            </td>
-          </tr>
         </table>
+        <% if @pet.customer_id == current_customer.id %>
+        <div class="col pt-5">
+          <table class="col">
+            <tr>
+              <td colspan="2">
+                <div class="pet-nav col-sm-8 m-sm-auto px-0">
+                  <%= link_to "編集", edit_public_pet_path(@pet.id), class: "btn btn-sm" %>
+                  <%= link_to "アイテム", public_items_path, class: "btn btn-sm" %>
+                  <%= link_to "ワーク", public_pet_work_index_path(@pet.id), class: "btn btn-sm" %>
+                  <%= link_to "投稿", public_pet_post_index_path(@pet.id), class: "btn btn-sm" %>
+                  <%= link_to "削除", public_pet_path(@pet.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-sm" %>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <% end %>
       </div>
 
       <div class="pet-profile col-lg-6">
         <%= image_tag @pet.get_pet_image(400,400), width: "100%", height: "100%" %>
       </div>
 
+    </div>
   </div>
-  </div>
+  
   <div class="my-4">
     <%= link_to  public_customer_pet_index_path(@pet.customer.id), class: "default-color other-link" do %>
       <i class="fas fa-solid fa-reply mr-2"></i>ペット一覧
