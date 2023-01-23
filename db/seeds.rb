@@ -7,7 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # 管理者側
-
 Admin.create!(
    email: 'example@gmail.com',
    password: 'passwordpassword'
@@ -22,18 +21,11 @@ Group.create!(
 )
 
 # 会員側
-
 Customer.create!(
-  [
-   {
    nick_name: 'test',
    email: 'test@test.com',
-   password: 'testtesttest1105',
-  }
-  ]
+   password: 'testtesttest1105'
 )
-
-
 
 20.times do |n|
  Customer.create!(
@@ -55,16 +47,19 @@ Customer.all.each do |customer|
  end
 end
 
-# Customer.all.each do |customer|
-#  customer.pets.each do |pet|
-#   2.times do |n|
-#   Post.create!(
-#    customer_id: customer.id,
-#    pet_id: pet.id,
-#    post_title: "test#{ n + 1 }",
-#    post_content: "test",
-#    post_image: ActiveStorage::Blob.create_and_upload!(io: File.open("app/assets/images/test-image.jpg"),filename: 'test-image.jpg')
-#    )
-#   end
-#  end
-# end
+Customer.all.each do |customer|
+ customer.pets.each do |pet|
+  2.times do |n|
+   Post.create!(
+    customer_id: customer.id,
+    pet_id: pet.id,
+    post_title: Faker::Lorem.sentence,
+    post_content: Faker::Lorem.sentence,
+    post_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/sample-image.jpg')),filename: 'sample-image.jpg')
+   )
+  end
+ end
+end
+
+
+

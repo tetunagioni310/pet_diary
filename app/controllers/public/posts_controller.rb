@@ -50,9 +50,16 @@ class Public::PostsController < ApplicationController
   end
 
   def post_all
+    @post_all = Post.joins(:customer).where(customers: { status: 1 })
     @posts = Post.joins(:customer).where(customers: { status: 1 }).order(id: "DESC").page(params[:page]).per(12)
+    
+    @dog_post_all = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 1 })
     @dog_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 1 }).order(id: "DESC").page(params[:page]).per(12)
+    
+    @cat_post_all = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 2 })
     @cat_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 2 }).order(id: "DESC").page(params[:page]).per(12)
+    
+    @other_post_all = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 3 })
     @other_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 3 }).page(params[:page]).per(12)
   end
 
@@ -63,6 +70,7 @@ class Public::PostsController < ApplicationController
   end
 
   def search_all
+    @post_all = Post.all_post_search(params[:keyword])
     @posts = Post.all_post_search(params[:keyword]).order(id: "DESC").page(params[:page]).per(12)
     @keyword = params[:keyword]
     render "post_all"
