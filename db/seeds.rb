@@ -72,7 +72,6 @@ Customer.all.each do |customer|
     post_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/sample-image.jpg')),filename: 'sample-image.jpg')
    )
   end
-
 end
 
 
