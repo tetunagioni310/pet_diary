@@ -29,27 +29,33 @@ Customer.create!(
 
 20.times do |n|
  Customer.create!(
-  nick_name: Faker::JapaneseMedia::StudioGhibli.unique.character,
+  nick_name: Faker::Internet.user_name,
   email:     Faker::Internet.unique.email,
   password:  "passwordpassword")
 end
 
 Customer.all.each do |customer|
- 2.times do |n|
  Pet.create!(
   customer_id: customer.id,
-  group_id: rand(1..3),
+  group_id: 1,
   # group_id が3の時だけ作成したい
-  pet_kind: Faker::Creature::Animal.name,
+  pet_kind: Faker::Creature::Dog.breed,
   pet_name: Faker::Creature::Dog.name,
   gender:   rand(1..2),
-  birthday: Faker::Date.birthday)
- end
-end
-
-Customer.all.each do |customer|
+  birthday: Faker::Date.between_except( from: '2014-09-23', to: '2015-09-25', excepted: '2015-01-24')
+  )
+  
+  Pet.create!(
+  customer_id: customer.id,
+  group_id: 2,
+  # group_id が3の時だけ作成したい
+  pet_kind: Faker::Creature::Cat.breed,
+  pet_name: Faker::Creature::Cat.name,
+  gender:   rand(1..2),
+  birthday: Faker::Date.between_except( from: '2014-09-23', to: '2015-09-25', excepted: '2015-01-24')
+  )
+  
  customer.pets.each do |pet|
-  2.times do |n|
    Post.create!(
     customer_id: customer.id,
     pet_id: pet.id,
@@ -57,9 +63,8 @@ Customer.all.each do |customer|
     post_content: Faker::Lorem.sentence,
     post_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/sample-image.jpg')),filename: 'sample-image.jpg')
    )
-  end
  end
+ 
 end
-
 
 
