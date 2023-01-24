@@ -27,7 +27,7 @@ Customer.create!(
    password: 'testtesttest1105'
 )
 
-5.times do |n|
+20.times do |n|
  Customer.create!(
   nick_name: Faker::Internet.user_name,
   email:     Faker::Internet.unique.email,
@@ -74,4 +74,11 @@ Customer.all.each do |customer|
   end
 end
 
-
+# customers = Customer.all
+# customer  = customers.first
+# # フォローされている
+# following = customers[2..50]
+# # フォローしている
+# followers = customers[3..40]
+# following.each { |followed| customer.follow(followed) }
+# followers.each { |follower| follower.follow(customer) }
