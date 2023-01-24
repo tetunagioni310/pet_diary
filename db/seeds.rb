@@ -27,7 +27,7 @@ Customer.create!(
    password: 'testtesttest1105'
 )
 
-20.times do |n|
+50.times do |n|
  Customer.create!(
   nick_name: Faker::Internet.user_name,
   email:     Faker::Internet.unique.email,
@@ -62,8 +62,9 @@ Customer.all.each do |customer|
   gender:   rand(1..2),
   birthday: Faker::Date.between_except( from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
   )
-  
- customer.pets.each do |pet|
+ 
+ 20.times do |n|
+  customer.pets.each do |pet|
    Post.create!(
     customer_id: customer.id,
     pet_id: pet.id,
@@ -71,7 +72,8 @@ Customer.all.each do |customer|
     post_content: Faker::Lorem.sentence,
     post_image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/sample-image.jpg')),filename: 'sample-image.jpg')
    )
- end
+  end
+end
  
 end
 
