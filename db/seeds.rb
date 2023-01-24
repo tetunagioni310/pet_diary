@@ -42,17 +42,25 @@ Customer.all.each do |customer|
   pet_kind: Faker::Creature::Dog.breed,
   pet_name: Faker::Creature::Dog.name,
   gender:   rand(1..2),
-  birthday: Faker::Date.between_except( from: '2014-09-23', to: '2015-09-25', excepted: '2015-01-24')
+  birthday: Faker::Date.between_except( from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
   )
   
   Pet.create!(
   customer_id: customer.id,
   group_id: 2,
-  # group_id が3の時だけ作成したい
   pet_kind: Faker::Creature::Cat.breed,
   pet_name: Faker::Creature::Cat.name,
   gender:   rand(1..2),
-  birthday: Faker::Date.between_except( from: '2014-09-23', to: '2015-09-25', excepted: '2015-01-24')
+  birthday: Faker::Date.between_except( from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
+  )
+  
+  Pet.create!(
+  customer_id: customer.id,
+  group_id: 3,
+  pet_kind: Faker::Creature::Animal.name,
+  pet_name: Faker::Creature::Dog.name,
+  gender:   rand(1..2),
+  birthday: Faker::Date.between_except( from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
   )
   
  customer.pets.each do |pet|
