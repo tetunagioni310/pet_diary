@@ -27,7 +27,7 @@ Customer.create!(
    password: 'testtesttest1105'
 )
 
-100.times do |n|
+5.times do |n|
  Customer.create!(
   nick_name: Faker::Internet.user_name,
   email:     Faker::Internet.unique.email,
