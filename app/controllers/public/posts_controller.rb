@@ -60,7 +60,7 @@ class Public::PostsController < ApplicationController
     @cat_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 2 }).order(id: "DESC").page(params[:page]).per(12)
     
     @other_post_all = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 3 })
-    @other_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 3 }).page(params[:page]).per(12)
+    @other_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 3 }).order(id: "DESC").page(params[:page]).per(12)
   end
 
   def search
