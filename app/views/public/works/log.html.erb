@@ -9,9 +9,9 @@
               在庫が不足しています。ワークを作成できません
             <% else %>
             <!--アイテム不足フラグがない時-->
-              以下を使用して<%= @work.pet_names.join(" ") %>の『<%= @work.work_name %>』を実行します
+              <span class="bold">[<%= @work.pet_names.join("] [") %>]</span>の『<%= @work.work_name %>』を実行します
             <% end %>
-          </h3>
+          </h5>
 
           <table class="col p-0 m-0">
 
