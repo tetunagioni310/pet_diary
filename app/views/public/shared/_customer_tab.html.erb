@@ -1,0 +1,20 @@
+<% posts.each do |post|%>
+    <div class="col-md-8 mx-auto text-field customer-content p-2">
+      <section>
+        <div class="col row customer-info">
+        <%= image_tag post.customer.get_customer_image(50,50)%>
+        <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "mr-2" %>
+        <div class="small text-muted">
+          <%= time_ago_in_words(post.created_at).upcase %>
+        </div>
+      </div>
+        <%= link_to public_post_path(post.id), class: "other-link" do %>
+          <div class="col">
+            <h4 class="h4"><%= post.post_title.truncate(10) %></h4>
+            <p><%= post.post_content.truncate(30) %></p>
+            <%= image_tag post.get_post_image(500,500) , width: "100%", class: "border-radius mt-3" %>
+          </div>
+        <% end %>
+      </section>
+    </div>
+  <% end %>
