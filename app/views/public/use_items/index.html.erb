@@ -43,14 +43,16 @@
               <h2 class="d-flex mx-md-3 my-3 bold p-0 align-center">
                 <%= use_item.item.item_name %>
               </h2>
-
-              <p class="mx-md-3 my-3 p-0">
-                ＊<%= item.total_capacity / use_item.amount_used %>　回分の在庫があります<br>
+              
+              <div>
+                <p class="mx-md-3 my-3 p-0">
+                ＊<%= item.total_capacity / use_item.amount_used %>　回分の在庫があります
+                </p>
                 <% if item.minimum_capacity > item.total_capacity %>
-                  <span class="text-secondary">既定容量を下回っています。追加を推奨します。</span>
+                  <p class="mx-md-3 my-3 p-0 text-secondary">既定容量を下回っています。追加を推奨します。</p>
                 <% end %>
-              </p>
-
+              </div>
+              
 
               <div class="mx-md-3 my-3 p-0 d-flex justify-content-between">
                 <%= form_with model: use_item, url: public_use_item_path(use_item.id), method: :patch do |f| %>
