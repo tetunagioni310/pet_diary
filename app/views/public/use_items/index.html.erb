@@ -45,7 +45,10 @@
               </h2>
 
               <p class="mx-md-3 my-3 p-0">
-                ＊<%= item.total_capacity / use_item.amount_used %>　回分の在庫があります
+                ＊<%= item.total_capacity / use_item.amount_used %>　回分の在庫があります<br>
+                <% if item.minimum_capacity > item.total_capacity %>
+                  <span class="text-secondary">既定容量を下回っています。追加を推奨します。</span>
+                <% end %>
               </p>
 
 

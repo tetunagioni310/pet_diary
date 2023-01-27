@@ -25,7 +25,9 @@ Rails.application.routes.draw do
       get 'post_index'
     end
 
-    resources :items, only: [:index,:show,:create,:update,:destroy]
+    resources :items, only: [:index,:show,:create,:update,:destroy] do
+      patch 'minimum_capacity'
+    end
 
     resources :use_items, only: [:index,:create,:update,:destroy] do
       collection do

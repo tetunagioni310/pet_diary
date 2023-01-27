@@ -1,11 +1,18 @@
 <script>
-	function check_form() {
-        if(window.confirm('使用アイテムに追加しますか？')) {
+	function minimum_capacity_form() {
+        if(window.confirm('最低容量を設定しますか？')) {
           return true;
         } else {
           return false;
         }
       }
+  function use_item_form() {
+    if(window.confirm('使用アイテムに追加しますか？')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 </script>
 
 <div class="container">
@@ -27,16 +34,29 @@
             <th>在庫合計</th>
             <td><%= @item.total_capacity.to_s + @item.unit_i18n %></td>
           </tr>
+          
+          <tr>
+            <th>alert設定</th>
+            <td>
+              <%= form_with model: @item, url: public_item_minimum_capacity_path(@item.id), method: :patch do |f| %>
+                <div class="add-amount-used col">
+                  <%= f.hidden_field :item_id, :value => @item.id %>
+                  <%= f.number_field :minimum_capacity, class: "col-6 form-control" %><%= @item.unit_i18n %>
+                  <%= f.submit "設定", class: "btn btn-success ml-4", :onclick => "return minimum_capacity_form()" %>
+                </div>
+              <% end %>
+            </td>
+          </tr>
 
 
           <tr>
             <th>使用量</th>
-            <td colspan="2">
+            <td>
               <%= form_with model: @use_item, url: public_use_items_path, method: :post do |f| %>
                 <div class="add-amount-used col">
                   <%= f.hidden_field :item_id, :value => @item.id %>
                   <%= f.number_field :amount_used, :value => nil, class: "col-6 form-control" %><%= @item.unit_i18n %>
-                  <%= f.submit "追加", class: "btn btn-success ml-4", :onclick => "return check_form()" %>
+                  <%= f.submit "追加", class: "btn btn-success ml-4", :onclick => "return use_item_form()" %>
                 </div>
               <% end %>
             </td>

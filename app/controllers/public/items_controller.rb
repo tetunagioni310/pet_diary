@@ -39,18 +39,25 @@ class Public::ItemsController < ApplicationController
   end
 
   def update
-    @original_value = Item.find(params[:id])
+    @criterion_vlue = Item.find(params[:id])
     @item = Item.find(params[:id])
-    item = Item.new(item_params)
-    @item.amount += item.amount
-    @item.total_capacity += @item.capacity * item.amount
+    add_item = Item.new(item_params)
+    @item.amount += add_item.amount
+    @item.total_capacity += @item.capacity * add_item.amount
     @item.save
-    if @original_value.amount < @item.amount
+    if @criterion_vlue.amount < @item.amount
       flash[:notice] = "在庫を追加しました"
     else
       flash[:notice] = "在庫を減らしました"
     end
     redirect_to public_items_path
+  end
+  
+  def minimum_capacity
+    @item = Item.find(params[:item_id])
+    @item.update(item_params)
+    flash[:notice] = "通知を設定しました"
+    redirect_to public_item_path(@item.id)
   end
 
   def destroy
@@ -63,6 +70,6 @@ class Public::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:item_name,:amount,:capacity,:unit)
+    params.require(:item).permit(:item_name,:amount,:capacity,:minimum_capacity,:unit)
   end
 end

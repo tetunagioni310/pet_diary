@@ -6,6 +6,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.integer :amount, null: false, default: 0
       t.integer :unit, null: false, default: 0
       t.integer :capacity, default: 0
+      t.integer :minimum_capacity, default: 0
       t.integer :total_capacity, default: 0
 
       t.timestamps

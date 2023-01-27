@@ -61,63 +61,66 @@
       <div class="col-lg-8">
 
         <div class="text-field col-lg-10 m-auto pt-5">
+          
           <div class="col-lg-10 self-introduction py-3">
             <p><%= @customer.introduction %></p>
             <% if @customer.id == current_customer.id %>
               <%= link_to "コメントを編集", introduction_edit_public_customers_path, class: "btn btn-light btn-sm" %>
             <% end %>
           </div>
+          
+          <div class="tab-area col p-0">
 
-
-        <div class="tab-area col p-0">
-
-          <input type="radio" name="tab_name" id="tab1" checked>
-          <label class="tab_class bold" for="tab1">投稿</label>
-          <div class="content-class col p-0">
-            <% if @posts.count >= 1 %>
-              <%= render 'public/shared/customer_tab', posts: @posts %>
-            <% else %>
-              <p class="no-data">投稿はありません</p>
-            <% end %>
-            </div>
-
-          <input type="radio" name="tab_name" id="tab2">
-          <label class="tab_class bold" for="tab2">いいね</label>
-          <div class="content-class col p-0">
-            <% if @like_posts.count >= 1 %>
-              <%= render 'public/shared/customer_tab', posts: @like_posts %>
-            <% else %>
-              <p class="no-data">投稿がいいねされていません</p>
-            <% end %>
-          </div>
-
-          <input type="radio" name="tab_name" id="tab3" >
-          <label class="tab_class bold" for="tab3">フォロー</label>
-          <div class="content-class col p-0">
-            <% if @following_customer_posts.count >= 1 %>
-              <%= render 'public/shared/customer_tab', posts: @following_customer_posts %>
-            <% else %>
-              <p class="no-data">フォロー会員がいません</p>
-            <% end %>
-          </div>
-
-          <input type="radio" name="tab_name" id="tab4" >
-          <label class="tab_class bold" for="tab4">画像</label>
-          <div class="content-class col p-0">
-            <% if @posts.count >= 1 %>
-              <% @posts.each do |post|%>
-                <div class="col-md-10 py-5 m-auto">
-                  <%= link_to public_post_path(post.id) do %>
-                    <%= image_tag post.get_post_image(500,500) , width: "100%", class: "border-radius" %>
-                  <% end %>
-                </div>
+            <input type="radio" name="tab_name" id="tab1" checked>
+            <label class="tab_class bold" for="tab1">投稿</label>
+            <div class="content-class col p-0">
+              <% if @posts.count >= 1 %>
+                <%= render 'public/shared/customer_tab', posts: @posts %>
+              <% else %>
+                <p class="no-data">投稿はありません</p>
               <% end %>
-            <% else %>
-              <p class="no-data">画像の投稿はありません</p>
-            <% end %>
+              </div>
+  
+            <input type="radio" name="tab_name" id="tab2">
+            <label class="tab_class bold" for="tab2">いいね</label>
+            <div class="content-class col p-0">
+              <% if @like_posts.count >= 1 %>
+                <%= render 'public/shared/customer_tab', posts: @like_posts %>
+              <% else %>
+                <p class="no-data">投稿がいいねされていません</p>
+              <% end %>
+            </div>
+  
+            <input type="radio" name="tab_name" id="tab3" >
+            <label class="tab_class bold" for="tab3">フォロー</label>
+            <div class="content-class col p-0">
+              <% if @following_customer_posts.count >= 1 %>
+                <%= render 'public/shared/customer_tab', posts: @following_customer_posts %>
+              <% else %>
+                <p class="no-data">フォロー会員がいません</p>
+              <% end %>
+            </div>
+  
+            <input type="radio" name="tab_name" id="tab4" >
+            <label class="tab_class bold" for="tab4">画像</label>
+            <div class="content-class col p-0">
+              <% if @posts.count >= 1 %>
+                <% @posts.each do |post|%>
+                  <div class="col-md-10 py-5 m-auto">
+                    <%= link_to public_post_path(post.id) do %>
+                      <%= image_tag post.get_post_image(500,500) , width: "100%", class: "border-radius" %>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% else %>
+                <p class="no-data">画像の投稿はありません</p>
+              <% end %>
+            </div>
+          
           </div>
+          
         </div>
-      </div>
+        
       </div>
     <% else %>
       <div class="no-data m-auto">

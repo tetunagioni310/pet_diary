@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 2022_12_24_004904) do
     t.integer "amount", default: 0, null: false
     t.integer "unit", default: 0, null: false
     t.integer "capacity", default: 0
+    t.integer "minimum_capacity", default: 0
     t.integer "total_capacity", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
