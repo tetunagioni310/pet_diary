@@ -36,7 +36,20 @@
           </tr>
           
           <tr>
-            <th>alert設定</th>
+            <th>
+              <ul class="navbar-nav text-center">
+                <li class="nav-items dropdown" aria-labelledby="navbarDropdown">
+                  <div class="revers-color bold" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ※alert設定
+                  </div>
+                  <!--消費アイテム取得-->
+                  <p class="dropdown-menu col">
+                    在庫が設定値を下回るとメッセージが表示されます。
+                  </p>
+                </li>
+              </ul>
+            </th>
+            
             <td>
               <%= form_with model: @item, url: public_item_minimum_capacity_path(@item.id), method: :patch do |f| %>
                 <div class="add-amount-used col">
