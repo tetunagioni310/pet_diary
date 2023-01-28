@@ -112,12 +112,13 @@
     </header>
 
     <main>
-      <div class="messages my-5 text-center">
-        <% if flash[:notice] %>
-          <div id="notice" class="col h4"><%= flash[:notice] %></div>
-        <% end %>
-
-      </div>
+      <% if flash[:notice] %>
+        <div class="messages my-5 text-center">
+          <% if flash[:notice] %>
+            <div id="notice" class="col h4"><%= flash[:notice] %></div>
+          <% end %>
+        </div>
+      <% end %>
 
       <%= yield %>
     </main>
