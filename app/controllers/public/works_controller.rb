@@ -3,6 +3,9 @@ class Public::WorksController < ApplicationController
 
   def new
     @work = WorkForm.new
+    if current_customer.pets.blank? || current_customer.use_items.blank?
+      redirect_to public_use_items_path
+    end
   end
 
   def index
