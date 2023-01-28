@@ -38,10 +38,10 @@
               <% if @posts.count >= 1 %>
                 <% @posts.each do |post| %>
                   <tr>
-                    <td class="px-0"><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "other-link small" %></td>
-                    <td class="px-0"><%= link_to post.post_title.truncate(13), public_post_path(post.id), class: "other-link small" %></td>
-                    <td class="px-0">
-                      <p class="small text-muted px-0">
+                    <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "other-link small" %></td>
+                    <td><%= link_to post.post_title.truncate(13), public_post_path(post.id), class: "other-link small" %></td>
+                    <td>
+                      <p class="small text-muted">
                         <%= post.created_at.strftime("%Y/%m/%d") %>
                       </p>
                     </td>
