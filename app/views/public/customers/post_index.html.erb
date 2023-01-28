@@ -1,6 +1,6 @@
 <div class="container">
 <% if @customer.status == "released" || @customer.id == current_customer.id %>
- <div class="row col h4 bold">
+ <div class="row col h6 bold">
     <%= @customer.nick_name %>さんの投稿一覧
     <% if @customer.id == current_customer.id %>
       <%= link_to new_public_post_path, class: "new-link ml-3" do %>
