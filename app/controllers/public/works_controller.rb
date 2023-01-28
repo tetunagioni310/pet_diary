@@ -6,7 +6,7 @@ class Public::WorksController < ApplicationController
   end
 
   def index
-    @works = Work.where(customer_id: current_customer.id).page(params[:page]).per(10).order(id: "DESC")
+    @works = Work.where(customer_id: current_customer.id).page(params[:page]).per(10).order(id: 'DESC')
   end
 
   def show
@@ -19,7 +19,7 @@ class Public::WorksController < ApplicationController
     @use_items = current_customer.use_items
     # 空白("")がカウントされてしまうので2以上でなければ戻るにしなければならない
     if @work.pet_ids.reject(&:blank?).count <= 0 || @work.work_name.blank?
-      flash.now[:notice] = "ワーク名もしくはペットを選択してください"
+      flash.now[:notice] = 'ワーク名もしくはペットを選択してください'
       render 'new'
     end
 
@@ -81,14 +81,13 @@ class Public::WorksController < ApplicationController
       item.save
     end
     @work.destroy
-    flash[:notice] = "ワークを削除しました。"
-    redirect_to public_works_path
+    redirect_to public_works_path, notice: 'ワークを削除しました。'
   end
 
   def search
-    @works = Work.pet_work_search(params[:keyword], current_customer).order(id: "DESC").page(params[:page]).per(12)
+    @works = Work.pet_work_search(params[:keyword], current_customer).order(id: 'DESC').page(params[:page]).per(12)
     @keyword = params[:keyword]
-    render "index"
+    render 'index'
   end
 
   private

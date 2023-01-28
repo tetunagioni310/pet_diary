@@ -31,7 +31,7 @@ Customer.create!(
  Customer.create!(
   nick_name: Faker::Internet.user_name,
   email:     Faker::Internet.unique.email,
-  password:  "passwordpassword")
+  password:  'passwordpassword')
 end
 
 Customer.all.each do |customer|

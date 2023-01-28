@@ -2,12 +2,12 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @posts = Post.where(customer_id: current_customer.id).order(id: "DESC").page(params[:page]).per(10)
+    @posts = Post.where(customer_id: current_customer.id).order(id: 'DESC').page(params[:page]).per(10)
   end
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.order(id: "DESC")
+    @comments = @post.comments.order(id: 'DESC')
     @comment = current_customer.comments.new
     @like = Like.new
   end
@@ -21,8 +21,7 @@ class Public::PostsController < ApplicationController
     @post.customer_id = current_customer.id
     @pet = Pet.find_by(id: @post.pet.id)
     if @post.save
-      flash[:notice] = "投稿を作成しました。"
-      redirect_to public_post_path(@post.id)
+      redirect_to public_post_path(@post.id), notice: '投稿を作成しました。'
     else
       render 'new'
     end
@@ -35,8 +34,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = "投稿を更新しました。"
-      redirect_to public_post_path(@post.id)
+      redirect_to public_post_path(@post.id), notice: '投稿を更新しました。'
     else
       render 'edit'
     end
@@ -45,35 +43,34 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    flash[:notice] = "投稿を削除しました。"
-    redirect_to public_posts_path
+    redirect_to public_posts_path, notice: '投稿を削除しました。'
   end
 
   def post_all
     @post_all = Post.joins(:customer).where(customers: { status: 1 })
-    @posts = Post.joins(:customer).where(customers: { status: 1 }).order(id: "DESC").page(params[:page]).per(12)
+    @posts = Post.joins(:customer).where(customers: { status: 1 }).order(id: 'DESC').page(params[:page]).per(12)
     
     @dog_post_all = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 1 })
-    @dog_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 1 }).order(id: "DESC").page(params[:page]).per(12)
+    @dog_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 1 }).order(id: 'DESC').page(params[:page]).per(12)
     
     @cat_post_all = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 2 })
-    @cat_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 2 }).order(id: "DESC").page(params[:page]).per(12)
+    @cat_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 2 }).order(id: 'DESC').page(params[:page]).per(12)
     
     @other_post_all = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 3 })
-    @other_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 3 }).order(id: "DESC").page(params[:page]).per(12)
+    @other_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 3 }).order(id: 'DESC').page(params[:page]).per(12)
   end
 
   def search
-    @posts = Post.my_post_search(params[:keyword], current_customer).order(id: "DESC").page(params[:page]).per(12)
+    @posts = Post.my_post_search(params[:keyword], current_customer).order(id: 'DESC').page(params[:page]).per(12)
     @keyword = params[:keyword]
-    render "index"
+    render 'index'
   end
 
   def search_all
     @post_all = Post.all_post_search(params[:keyword])
-    @posts = Post.all_post_search(params[:keyword]).order(id: "DESC").page(params[:page]).per(12)
+    @posts = Post.all_post_search(params[:keyword]).order(id: 'DESC').page(params[:page]).per(12)
     @keyword = params[:keyword]
-    render "post_all"
+    render 'post_all'
   end
 
   private

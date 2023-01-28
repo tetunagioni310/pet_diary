@@ -15,8 +15,7 @@ class Public::SchedulesController < ApplicationController
     @schedule = Schedule.new(schedule_params)
     @schedule.customer_id = current_customer.id
     if @schedule.save
-      flash[:notice] = "スケジュールを作成しました。"
-      redirect_to public_schedules_path
+      redirect_to public_schedules_path, notice: 'スケジュールを作成しました。'
     else
       @schedules = current_customer.schedules
       render 'index'
@@ -30,8 +29,7 @@ class Public::SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     if @schedule.update(schedule_params)
-      flash[:notice] = "スケジュールを更新しました。"
-      redirect_to public_schedule_path(@schedule.id)
+      redirect_to public_schedule_path(@schedule.id), notice: 'スケジュールを更新しました。'
     else
       render 'edit'
     end
@@ -40,15 +38,14 @@ class Public::SchedulesController < ApplicationController
   def destroy
     @schedule = Schedule.find(params[:id])
     @schedule.destroy
-    flash[:notice] = "スケジュールを削除しました。"
-    redirect_to public_schedules_path
+    redirect_to public_schedules_path, notice: 'スケジュールを削除しました。'
   end
 
   def schedule_list
     # 送信されてきた日付を[in_time_zone]でアプリケーション側の時間に変換したのち
     start_time = params[:date].in_time_zone
     end_time = params[:date].in_time_zone.end_of_day
-    @schedules = current_customer.schedules.where("start_time >=? AND start_time <= ?", start_time, end_time)
+    @schedules = current_customer.schedules.where('start_time >=? AND start_time <= ?', start_time, end_time)
   end
 
   private

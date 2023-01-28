@@ -19,8 +19,7 @@ class Public::ItemsController < ApplicationController
       item.amount += @item.amount
       item.total_capacity += ( @item.amount * @item.capacity )
       item.save
-      flash[:notice] = "在庫を追加しました"
-      redirect_to public_items_path
+      redirect_to public_items_path, notice: '在庫を追加しました。'
     else
       if @item.capacity.blank? || @item.amount.blank?
         @items = Item.where(customer_id: current_customer.id)
@@ -28,8 +27,7 @@ class Public::ItemsController < ApplicationController
       else
         @item.total_capacity = @item.capacity * @item.amount
         if @item.save
-          flash[:notice] = "アイテムを追加しました"
-          redirect_to public_items_path
+          redirect_to public_items_path, notice: 'アイテムを追加しました。'
         else
           @items = Item.where(customer_id: current_customer.id)
           render 'index'
@@ -46,9 +44,9 @@ class Public::ItemsController < ApplicationController
     @item.total_capacity += @item.capacity * add_item.amount
     @item.save
     if @criterion_vlue.amount < @item.amount
-      flash[:notice] = "在庫を追加しました"
+      flash[:notice] = '在庫を追加しました'
     else
-      flash[:notice] = "在庫を減らしました"
+      flash[:notice] = '在庫を減らしました'
     end
     redirect_to public_items_path
   end
@@ -56,15 +54,13 @@ class Public::ItemsController < ApplicationController
   def minimum_capacity
     @item = Item.find(params[:item_id])
     @item.update(item_params)
-    flash[:notice] = "通知を設定しました"
-    redirect_to public_item_path(@item.id)
+    redirect_to public_item_path(@item.id), notice: '通知を設定しました。'
   end
 
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    flash[:notice] = "アイテムを削除しました"
-    redirect_to public_items_path
+    redirect_to public_items_path, notice: 'アイテムを削除しました。'
   end
 
   private

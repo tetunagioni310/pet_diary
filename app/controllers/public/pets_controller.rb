@@ -8,13 +8,13 @@ class Public::PetsController < ApplicationController
 
   def work_index
     @pet = Pet.find(params[:pet_id])
-    @works = Work.where(pet_id: @pet.id).page(params[:page]).per(10).order(id: "DESC")
+    @works = Work.where(pet_id: @pet.id).page(params[:page]).per(10).order(id: 'DESC')
   end
 
   def post_index
     @pet = Pet.find(params[:pet_id])
     @customer = Customer.find_by(id: @pet.customer.id)
-    @posts = Post.where(pet_id: @pet.id).order(id: "DESC").page(params[:page]).per(10)
+    @posts = Post.where(pet_id: @pet.id).order(id: 'DESC').page(params[:page]).per(10)
   end
 
   def show
@@ -30,10 +30,9 @@ class Public::PetsController < ApplicationController
     @pet = Pet.new(pet_params)
     @pet.customer_id = current_customer.id
     if @pet.save
-      flash[:notice] = "ペットを追加しました"
-      redirect_to public_pets_path
+      redirect_to public_pets_path, notice: 'ペットを追加しました。'
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -44,8 +43,7 @@ class Public::PetsController < ApplicationController
   def update
     @pet = Pet.find(params[:id])
     if @pet.update(pet_params)
-      flash[:notice] = "ペット情報を更新しました"
-      redirect_to public_pet_path(@pet.id)
+      redirect_to public_pet_path(@pet.id), notice: 'ペット情報を更新しました。'
     else
       render 'edit'
     end
@@ -54,8 +52,7 @@ class Public::PetsController < ApplicationController
   def destroy
     @pet = Pet.find(params[:id])
     @pet.destroy
-    flash[:notice] = "登録ペットを削除しました"
-    redirect_to public_pets_path
+    redirect_to public_pets_path, notice: '登録ペットを削除しました。'
   end
 
   private
