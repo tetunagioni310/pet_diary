@@ -113,11 +113,7 @@
 
     <main>
       <% if flash[:notice] %>
-        <div class="messages my-5 text-center">
-          <% if flash[:notice] %>
-            <div id="notice" class="col h4"><%= flash[:notice] %></div>
-          <% end %>
-        </div>
+        <p id="notice" class="text-center mb-5 h4"><%= flash[:notice] %></hp>
       <% end %>
 
       <%= yield %>
