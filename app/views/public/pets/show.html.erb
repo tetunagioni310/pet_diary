@@ -57,11 +57,11 @@
 
         </table>
         <% if @pet.customer_id == current_customer.id %>
-        <div class="col pt-5">
+        <div class="col pt-5 px-0">
           <table class="col">
             <tr>
               <td colspan="2">
-                <div class="pet-nav col-sm-8 m-sm-auto px-0">
+                <div class="pet-nav col px-0">
                   <%= link_to "編集", edit_public_pet_path(@pet.id), class: "btn btn-sm" %>
                   <%= link_to "アイテム", public_items_path, class: "btn btn-sm" %>
                   <%= link_to "ワーク", public_pet_work_index_path(@pet.id), class: "btn btn-sm" %>
