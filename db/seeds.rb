@@ -8,7 +8,7 @@
 
 # 管理者側
 Admin.create!(
-   email: 'example@gmail.com',
+   email: 'example@test.com',
    password: 'passwordpassword'
 )
 
