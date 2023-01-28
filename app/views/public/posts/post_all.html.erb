@@ -6,9 +6,11 @@
     <div class="content-class col">
       <div class="col-md-10 mx-auto text-field customer-content">
         <% if @keyword %>
-          <h4 class="h4 bold col"><%= @keyword %>の検索結果（<%= @post_all.count %>件）</h4>
+          <h6 class="h6 bold col">
+            "<%= @keyword %>"の検索結果（<%= @post_all.count %>件）
+          </h6>
         <% else %>
-          <h4 class="h4 bold col">全ての投稿(<%= @post_all.count %>件)</h4>
+          <h6 class="h6 bold col">全ての投稿(<%= @post_all.count %>件)</h6>
         <% end %>
         
         <%= render 'public/shared/post_all_list', posts: @posts %>
@@ -22,7 +24,7 @@
       
       <div class="col-md-10 mx-auto text-field customer-content">
         <% if @dog_post_all && @dog_posts %>
-          <h4 class="h4 bold col">犬の投稿(<%= @dog_post_all.count %>件)</h4>
+          <h6 class="h6 bold col">犬の投稿(<%= @dog_post_all.count %>件)</h6>
           <%= render 'public/shared/post_all_list', posts: @dog_posts %>
         <% else %>
           <p class="no-data h2">
@@ -41,7 +43,7 @@
       
       <div class="col-md-10 mx-auto text-field customer-content">
         <% if @cat_post_all && @cat_posts %>
-          <h4 class="h4 bold col">猫の投稿(<%= @cat_post_all.count %>件)</h4>
+          <h6 class="h6 bold col">猫の投稿(<%= @cat_post_all.count %>件)</h6>
           <%= render 'public/shared/post_all_list', posts: @cat_posts %>
         <% else %>
           <p class="no-data h2">
@@ -60,7 +62,7 @@
       
       <div class="col-md-10 mx-auto text-field customer-content">
         <% if @other_post_all && @other_posts %>
-          <h4 class="h4 bold col">その他の投稿(<%= @other_post_all.count %>件)</h4>
+          <h6 class="h6 bold col">その他の投稿(<%= @other_post_all.count %>件)</h6>
           <%= render 'public/shared/post_all_list', posts: @other_posts %>
         <% else %>
           <p class="no-data h2">
