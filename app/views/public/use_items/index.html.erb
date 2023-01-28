@@ -47,8 +47,9 @@
                 <p class="mx-md-3 my-3 p-0">
                 ＊<%= item.total_capacity / use_item.amount_used %>　回分の在庫があります
                 </p>
-                <!--追加-->
-              
+                <% if item.minimum_capacity > item.total_capacity %>
+                  <p class="mx-md-3 my-3 p-0 text-secondary">既定容量を下回っています。追加を推奨します。</p>
+                <% end %>
 
               <div class="mx-md-3 my-3 p-0 d-flex justify-content-between">
                 <%= form_with model: use_item, url: public_use_item_path(use_item.id), method: :patch do |f| %>
