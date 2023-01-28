@@ -26,9 +26,9 @@
         <table class="col">
           <% if @posts.count >= 1 %>
             <thead class="border-bottom text-center">
-              <th class="col-4 px-0 small text-muted">ペット</th>
-              <th class="col-4 px-0 small text-muted">タイトル</th>
-              <th class="col-4 px-0 small text-muted">投稿日</th>
+              <th class="col-4 small text-muted">ペット</th>
+              <th class="col-4 small text-muted">タイトル</th>
+              <th class="col-4 small text-muted">投稿日</th>
             </thead>
           <% end %>
 
@@ -36,8 +36,8 @@
               <% if @posts.count >= 1 %>
                 <% @posts.each do |post| %>
                   <tr>
-                    <td class="px-0 small text-muted"><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "other-link" %></td>
-                    <td class="px-0 small text-muted"><%= link_to post.post_title.truncate(13), public_post_path(post.id), class: "other-link" %></td>
+                    <td class="small text-muted"><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "other-link" %></td>
+                    <td class="small text-muted"><%= link_to post.post_title.truncate(13), public_post_path(post.id), class: "other-link" %></td>
                     <td class="px-0 small text-muted">
                       <%= post.created_at.strftime("%Y/%m/%d") %>
                     </td>

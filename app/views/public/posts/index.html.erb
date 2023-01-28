@@ -28,8 +28,8 @@
         <table class="col">
           <% if @posts.count >= 1 %>
             <thead class="border-bottom text-center">
-              <th class="col-4 px-0 small text-muted">ペット</th>
-              <th class="col-4 px-0 small text-muted">タイトル</th>
+              <th class="col-4 small text-muted">ペット</th>
+              <th class="col-4 small text-muted">タイトル</th>
               <th class="col-4 px-0 small text-muted">投稿日</th>
             </thead>
           <% end %>
@@ -40,7 +40,7 @@
                   <tr>
                     <td><%= link_to post.pet.pet_name, public_pet_path(post.pet.id), class: "other-link small" %></td>
                     <td><%= link_to post.post_title.truncate(13), public_post_path(post.id), class: "other-link small" %></td>
-                    <td>
+                    <td class="px-0">
                       <p class="small text-muted">
                         <%= post.created_at.strftime("%Y/%m/%d") %>
                       </p>
