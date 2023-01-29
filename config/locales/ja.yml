@@ -44,6 +44,8 @@ ja:
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
         introduction: '紹介文'
+      admin:
+        email: 'メールアドレス'
       pet:
         group_id: 'ジャンル'
         pet_name: 'ペット名'
