@@ -1,7 +1,7 @@
 <div class="container">
 
   <% if !@keyword %>
-    <div class="row h6 bold mb-5 mx-0 px-0 col-md-5">
+    <div class="row h6 bold my-5 mx-0 px-0 col-md-5">
       <%= current_customer.nick_name %>さんの投稿一覧
       <%= link_to new_public_post_path, class: "new-link ml-3" do %>
         <i class="fas fa-x fa-solid fa-plus"></i>
@@ -13,7 +13,7 @@
     </div>
   <% end %>
 
-  <div class="col-md-5 mt-5 p-0">
+  <div class="col-md-5 my-5 p-0">
     <%= form_with url: search_public_posts_path, method: :get, local: true do |f| %>
       <div class="d-flex">
         <%= f.text_field :keyword, value: @keyword, placeholder: "ペット名を入力", class: "form-control m-0" %>

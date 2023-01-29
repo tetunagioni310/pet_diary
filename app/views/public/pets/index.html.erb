@@ -1,6 +1,6 @@
 <div class="container">
 <% if @customer.status == "released" || @customer.id == current_customer.id %>
-  <div class="row">
+  <div class="row mt-5">
 
     <%= render "public/shared/sidebar_profile", customer: @customer %>
 

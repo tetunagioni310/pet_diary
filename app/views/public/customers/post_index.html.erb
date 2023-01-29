@@ -9,7 +9,7 @@
     <% end %>
   </div>
 
-  <div class="col-sm-5 mt-5 p-0">
+  <div class="col-sm-5 my-5 p-0">
     <%= form_with url: public_customer_post_search_path, method: :get, local: true do |f| %>
       <div class="d-flex">
         <%= f.text_field :keyword, value: @keyword, placeholder: "ペット名を入力", class: "form-control m-0" %>

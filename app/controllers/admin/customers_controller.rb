@@ -14,11 +14,11 @@ class Admin::CustomersController < ApplicationController
     if @customer.is_deleted == false
       @customer.is_deleted = true
       @customer.save
-      redirect_to admin_customers_path
+      redirect_to admin_customers_path, notice: '会員名『' + @customer.nick_name + '』を無効にしました'
     elsif @customer.is_deleted == true
       @customer.is_deleted = false
       @customer.save
-      redirect_to admin_customers_path
+      redirect_to admin_customers_path, notice: '会員名『' + @customer.nick_name + '』を有効にしました'
     end
   end
 

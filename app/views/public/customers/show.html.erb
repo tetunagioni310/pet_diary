@@ -1,6 +1,6 @@
 <div class="container">
 
-  <div class="row">
+  <div class="row mt-5">
     <% if @customer.status == "released" || @customer.id == current_customer.id %>
       <!--サイドバー-->
       <div class="col-lg-4 mb-5">
@@ -79,7 +79,7 @@
               <% else %>
                 <p class="no-data">投稿はありません</p>
               <% end %>
-              </div>
+            </div>
   
             <input type="radio" name="tab_name" id="tab2">
             <label class="tab_class bold" for="tab2">いいね</label>
