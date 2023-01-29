@@ -1,11 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <div class="col-md-8 m-auto">
-      <div class="h2 mb-5">ログイン</div>
+    <div class="col-md-8 m-auto">
+      <div class="h2 my-5">ログイン</div>
+      
       <%= form_with model: @customer, url: customer_session_path, method: :post do |f| %>
-      <%= render "public/shared/error_messages", resource: @customer %>
-
+      <%= render "public/shared/alert" %>
 
         <div class="bold mb-4">会員の方はこちらからログイン</div>
         <div class="col">
@@ -53,7 +52,6 @@
         <div class="bold mb-3">ゲストログイン（閲覧用）</div>
         <%= link_to 'こちら', public_guest_sign_in_path, method: :post, class: "btn btn-success mr-3" %>
       </div>
-    </div>
     </div>
   </div>
 </div>
