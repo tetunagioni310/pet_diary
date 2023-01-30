@@ -4,7 +4,7 @@ class Pet < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :works, dependent: :destroy
 
-  validates :pet_name, presence: true
+  validates :pet_name, presence: true,length: { maximum: 8 }
   validates :group_id, presence: true
   validates :gender, presence: true
   validates :birthday, presence: true
