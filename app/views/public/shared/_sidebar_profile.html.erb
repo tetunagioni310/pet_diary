@@ -1,45 +1,56 @@
 <div class="col-lg-4 mb-5">
-      <div class="col profile-field text-field">
-        <table class="col mx-auto">
-          <tr>
-            <td colspan="2">
-              <div class="col-10 mx-auto my-2">
-                <%= image_tag customer.get_customer_image(550,550), class: "customer-image" %>
-              </div>
-            </td>
-          </tr>
+  <div class="col profile-field text-field">
+    <table class="col mx-auto">
+      <tr>
+        <td colspan="2">
+          <div class="col-10 mx-auto my-2">
+            <%= image_tag customer.get_customer_image(550,550), class: "customer-image" %>
+          </div>
+        </td>
+      </tr>
 
-          <tr>
-            <td colspan="2" class="text-center bold"><%= customer.email %></td>
-          </tr>
+      <tr>
+        <td colspan="2" class="text-center bold"><%= customer.email %></td>
+      </tr>
 
-          <tr>
-            <td class="text-center bold"><%= customer.nick_name %></td>
-            <td class="text-center">
-                <% if current_customer.following?(@customer) %>
-                  <%= link_to "フォロー中", public_customer_relationships_path(@customer.id), class: "btn-sm btn-links shadow-none", method: :delete %>
-                <% else %>
-                  <%= link_to "+フォロー", public_customer_relationships_path(@customer.id), class: "btn-sm btn-links shadow-none", method: :post %>
-                <% end %>
-            </td>
-          </tr>
+      <tr>
+        <td class="text-center bold"><%= customer.nick_name %></td>
+        <td class="text-center">
+            <% if current_customer.following?(customer) %>
+              <%= link_to "フォロー中", public_customer_relationships_path(customer.id), class: "btn-sm btn-links shadow-none", method: :delete %>
+            <% else %>
+              <%= link_to "+フォロー", public_customer_relationships_path(customer.id), class: "btn-sm btn-links shadow-none", method: :post %>
+            <% end %>
+        </td>
+      </tr>
 
-          <tr>
-            <td class="text-center bold"><%= link_to "#{customer.followings.count}フォロー", public_customer_followings_path(customer.id), class: "follow-link" %></td>
-            <td class="text-center bold"><%= link_to "#{customer.followers.count}フォロワー", public_customer_followers_path(customer.id), class: "follow-link" %></td>
-          </tr>
+      <tr>
+        <td class="text-center bold"><%= link_to "#{customer.followings.count}フォロー", public_customer_followings_path(customer.id), class: "follow-link" %></td>
+        <td class="text-center bold"><%= link_to "#{customer.followers.count}フォロワー", public_customer_followers_path(customer.id), class: "follow-link" %></td>
+      </tr>
+      
+      <% if customer.id == current_customer.id %>
+        <tr>
+          <td colspan="2">
+            <%= link_to edit_public_customer_path(customer.id), class: "btn-links btn-block text-center" do %>
+              <i class="fas fa-user-cog"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+        
+      <tr>
+        <td colspan="2">
+          <%= link_to "ペット一覧", public_customer_pet_index_path(customer.id), class: "btn-links btn-block text-center" %>
+        </td>
+      </tr>
 
-          <tr>
-            <td colspan="2">
-              <%= link_to "投稿一覧", public_customer_post_index_path(customer.id), class: "btn-links btn-block text-center" %>
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="2">
-              <%= link_to "プロフィール", public_customer_path(customer.id), class: "btn-links btn-block text-center" %>
-            </td>
-          </tr>
-        </table>
-    </div>
-    </div>
+      <tr>
+        <td colspan="2">
+          <%= link_to "投稿一覧", public_customer_post_index_path(customer.id), class: "btn-links btn-block text-center" %>
+        </td>
+      </tr>
+      
+    </table>
+  </div>
+</div>

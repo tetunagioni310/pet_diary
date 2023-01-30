@@ -1,10 +1,9 @@
 <div class="container">
-  <h4 class="col-lg-5 m-auto h4 bold">スケジュール編集</h4>
+  <h4 class="col-lg-5 mx-auto mb-5 h4 bold">スケジュール編集</h4>
   <div class="row">
     <div class="col-lg-5 m-auto">
       <%= form_with model: @schedule, url: public_schedule_path, method: :patch do |f| %>
       <%= render "public/shared/error_messages", resource: @schedule %>
-      <%= f.hidden_field :customer_id, :value => current_customer.id %>
 
       <div class="col text-field">
         <div class="col">
