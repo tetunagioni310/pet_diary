@@ -2,6 +2,7 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
    # ゲストユーザーの更新・削除・退会を無効
   before_action :ensure_normal_customer, only: [:destroy,:update,:withdrawal]
+  before_action :correct_customer, only: [:edit,:update,:introduction_edit,:introduction_update]
 
   # 会員情報編集
   def edit
@@ -55,6 +56,7 @@ class Public::CustomersController < ApplicationController
   def search_page
   end
 
+  # 会員検索
   def search
     @customers = Customer.customer_search(params[:keyword]).page(params[:page]).per(10)
     @keyword = params[:keyword]
@@ -88,7 +90,14 @@ class Public::CustomersController < ApplicationController
       end
     end
   end
-
+  
+  def correct_customer
+    customer = Customer.find(params[:id])
+    if customer != current_customer
+      redirect_to root_path
+    end
+  end
+  
   private
 
   def customer_params

@@ -5,5 +5,5 @@ class ApplicationController < ActionController::Base
     sign_in customer
     redirect_to public_customer_path(customer.id), notice: 'ゲストユーザーとしてログインしました'
   end
-
+  
 end

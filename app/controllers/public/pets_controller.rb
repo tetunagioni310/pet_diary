@@ -1,5 +1,6 @@
 class Public::PetsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :correct_customer, only: [:edit,:update,:destroy]
 
   def index
     @customer = Customer.find_by(id: current_customer.id)
@@ -53,6 +54,14 @@ class Public::PetsController < ApplicationController
     @pet = Pet.find(params[:id])
     @pet.destroy
     redirect_to public_pets_path, notice: '登録ペットを削除しました。'
+  end
+  
+  def correct_customer
+    pet = Pet.find(params[:id])
+    customer = Customer.find_by(id: pet.customer_id)
+    if customer.id != current_customer.id
+      redirect_to root_path
+    end
   end
 
   private

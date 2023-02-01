@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :correct_customer, only: [:edit,:update,:destroy]
 
   def index
     @posts = Post.where(customer_id: current_customer.id).order(id: 'DESC').page(params[:page]).per(10)
@@ -71,6 +72,14 @@ class Public::PostsController < ApplicationController
     @posts = Post.all_post_search(params[:keyword]).order(id: 'DESC').page(params[:page]).per(12)
     @keyword = params[:keyword]
     render 'post_all'
+  end
+  
+  def correct_customer
+    post = Post.find(params[:id])
+    customer = Customer.find_by(id: post.customer_id)
+    if customer.id != current_customer.id
+      redirect_to root_path
+    end
   end
 
   private
