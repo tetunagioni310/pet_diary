@@ -28,6 +28,6 @@ class WorkForm
 
   # formオブジェクトを使う場合は個別でsaveメソッドを設ける
   def save!
-    Work.create!(customer_id: customer_id, pet_id: pet_id, work_name: work_name)
+    Work.create!(customer_id:, pet_id:, work_name:)
   end
 end

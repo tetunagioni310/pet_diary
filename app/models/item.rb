@@ -9,5 +9,5 @@ class Item < ApplicationRecord
   validates :capacity, presence: true
   validates :total_capacity, presence: true
 
-  enum unit: { grams: 0, sheets: 1, pieces: 2}
+  enum unit: { grams: 0, sheets: 1, pieces: 2 }
 end

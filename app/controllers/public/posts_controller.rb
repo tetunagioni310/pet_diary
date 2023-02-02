@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :correct_customer, only: [:edit,:update,:destroy]
+  before_action :correct_customer, only: %i[edit update destroy]
 
   def index
     @posts = Post.where(customer_id: current_customer.id).order(id: 'DESC').page(params[:page]).per(10)
@@ -50,15 +50,18 @@ class Public::PostsController < ApplicationController
   def post_all
     @post_all = Post.joins(:customer).where(customers: { status: 1 })
     @posts = Post.joins(:customer).where(customers: { status: 1 }).order(id: 'DESC').page(params[:page]).per(12)
-    
-    @dog_post_all = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 1 })
-    @dog_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 1 }).order(id: 'DESC').page(params[:page]).per(12)
-    
-    @cat_post_all = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 2 })
-    @cat_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 2 }).order(id: 'DESC').page(params[:page]).per(12)
-    
-    @other_post_all = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 3 })
-    @other_posts = Post.joins(:customer,:pet).where(customers: { status: 1 },pets: { group_id: 3 }).order(id: 'DESC').page(params[:page]).per(12)
+
+    @dog_post_all = Post.joins(:customer, :pet).where(customers: { status: 1 }, pets: { group_id: 1 })
+    @dog_posts = Post.joins(:customer, :pet).where(customers: { status: 1 },
+                                                   pets: { group_id: 1 }).order(id: 'DESC').page(params[:page]).per(12)
+
+    @cat_post_all = Post.joins(:customer, :pet).where(customers: { status: 1 }, pets: { group_id: 2 })
+    @cat_posts = Post.joins(:customer, :pet).where(customers: { status: 1 },
+                                                   pets: { group_id: 2 }).order(id: 'DESC').page(params[:page]).per(12)
+
+    @other_post_all = Post.joins(:customer, :pet).where(customers: { status: 1 }, pets: { group_id: 3 })
+    @other_posts = Post.joins(:customer, :pet).where(customers: { status: 1 },
+                                                     pets: { group_id: 3 }).order(id: 'DESC').page(params[:page]).per(12)
   end
 
   def search
@@ -73,18 +76,18 @@ class Public::PostsController < ApplicationController
     @keyword = params[:keyword]
     render 'post_all'
   end
-  
+
   def correct_customer
     post = Post.find(params[:id])
     customer = Customer.find_by(id: post.customer_id)
-    if customer.id != current_customer.id
-      redirect_to root_path
-    end
+    return unless customer.id != current_customer.id
+
+    redirect_to root_path
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:pet_id,:post_title,:post_content,:post_image)
+    params.require(:post).permit(:pet_id, :post_title, :post_content, :post_image)
   end
 end

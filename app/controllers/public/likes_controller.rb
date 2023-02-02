@@ -8,10 +8,8 @@ class Public::LikesController < ApplicationController
       current_customer.likes.create(post_id: params[:post_id])
       # 通知レコードを作成
       post.create_notification_like!(current_customer)
-      redirect_back(fallback_location: root_path)
-    else
-      redirect_back(fallback_location: root_path)
     end
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -25,5 +23,4 @@ class Public::LikesController < ApplicationController
   def like_params
     params.require(:like).permit(:post_id)
   end
-
 end

@@ -15,7 +15,7 @@
             <tr>
               <td colspan="2" class="col text-right">
                 <%= link_to "投稿一覧", admin_customer_posts_path(customer.id), class: "btn btn-success btn-sm" %>
-                <%= link_to customer.is_deleted?, edit_admin_customer_path(customer.id), class: "other-link ml-2" %>
+                <%= link_to customer.deleted?, edit_admin_customer_path(customer.id), class: "other-link ml-2" %>
               </td>
             </tr>
             <% end %>

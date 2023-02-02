@@ -41,6 +41,6 @@ class Public::UseItemsController < ApplicationController
   private
 
   def use_item_params
-    params.require(:use_item).permit(:item_id,:amount_used)
+    params.require(:use_item).permit(:item_id, :amount_used)
   end
 end

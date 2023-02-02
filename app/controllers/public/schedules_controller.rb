@@ -49,12 +49,13 @@ class Public::SchedulesController < ApplicationController
   end
 
   private
+
   # カレンダーを表示するときに先頭を日曜日に並べ直す
   def set_beginning_of_week
     Date.beginning_of_week = :sunday
   end
 
   def schedule_params
-    params.require(:schedule).permit(:schedule_title,:schedule_content,:start_time)
+    params.require(:schedule).permit(:schedule_title, :schedule_content, :start_time)
   end
 end

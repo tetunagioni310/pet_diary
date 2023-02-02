@@ -3,12 +3,12 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 
 # ここから
 require 'rspec/rails'
-require'devise'
-require File.expand_path("spec/support/controller_macros.rb")
+require 'devise'
+require File.expand_path('spec/support/controller_macros.rb')
 # ここまで追加
 
 # Add additional requires below this line. Rails is not loaded until this point!

@@ -1,8 +1,8 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
-   # ゲストユーザーの更新・削除・退会を無効
-  before_action :ensure_normal_customer, only: [:destroy,:update,:withdrawal]
-  before_action :correct_customer, only: [:edit,:update,:introduction_edit,:introduction_update]
+  # ゲストユーザーの更新・削除・退会を無効
+  before_action :ensure_normal_customer, only: %i[destroy update withdrawal]
+  before_action :correct_customer, only: %i[edit update introduction_edit introduction_update]
 
   # 会員情報編集
   def edit
@@ -20,7 +20,7 @@ class Public::CustomersController < ApplicationController
 
   # 自己紹介コメント編集
   def introduction_edit
-     @customer = Customer.find_by(id: current_customer.id)
+    @customer = Customer.find_by(id: current_customer.id)
   end
 
   def introduction_update
@@ -35,14 +35,14 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     # POSTテーブルと結合して公開状態の投稿を取得
-    @like_posts = Post.joins(:likes,:customer).where(likes: { customer_id: @customer.id },customers: { status: 1 }).order(id: 'DESC').limit(5)
+    @like_posts = Post.joins(:likes, :customer).where(likes: { customer_id: @customer.id },
+                                                      customers: { status: 1 }).order(id: 'DESC').limit(5)
     @posts = Post.where(customer_id: @customer.id).order(id: 'DESC').limit(5)
-    @following_customer_posts = Post.joins(:customer).where(posts: {customer_id: [*@customer.following_ids]}, customers: { status: 1 }).order(id: 'DESC').limit(5)
+    @following_customer_posts = Post.joins(:customer).where(posts: { customer_id: [*@customer.following_ids] },
+                                                            customers: { status: 1 }).order(id: 'DESC').limit(5)
   end
 
-
-  def quit
-  end
+  def quit; end
 
   # 会員無効
   def withdrawal
@@ -53,8 +53,7 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
 
-  def search_page
-  end
+  def search_page; end
 
   # 会員検索
   def search
@@ -81,26 +80,26 @@ class Public::CustomersController < ApplicationController
     render 'post_index'
   end
 
-   # ゲストログイン中にはセッションを消去できない
+  # ゲストログイン中にはセッションを消去できない
   def ensure_normal_customer
-    if !admin_signed_in?
-      @customer = Customer.find(current_customer.id)
-      if @customer.email == 'guest@example.com'
-        redirect_to root_path, notice: 'ゲスト ユーザーは更新・削除できません'
-      end
-    end
+    return if admin_signed_in?
+
+    @customer = Customer.find(current_customer.id)
+    return unless @customer.email == 'guest@example.com'
+
+    redirect_to root_path, notice: 'ゲスト ユーザーは更新・削除できません'
   end
-  
+
   def correct_customer
     customer = Customer.find(params[:id])
-    if customer != current_customer
-      redirect_to root_path
-    end
+    return unless customer != current_customer
+
+    redirect_to root_path
   end
-  
+
   private
 
   def customer_params
-    params.require(:customer).permit(:email,:nick_name,:introduction,:customer_image,:status)
+    params.require(:customer).permit(:email, :nick_name, :introduction, :customer_image, :status)
   end
 end

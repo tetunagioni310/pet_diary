@@ -7,7 +7,7 @@ class Work < ApplicationRecord
   validates :pet_id, presence: true
   validates :work_name, presence: true
 
-  def self.pet_work_search(keyword, current_customer)
-    Work.joins(:pet).where("work_name LIKE ? OR pet_name LIKE ?", "%#{keyword}%", "%#{keyword}%")
+  def self.pet_work_search(keyword, _current_customer)
+    Work.joins(:pet).where('work_name LIKE ? OR pet_name LIKE ?', "%#{keyword}%", "%#{keyword}%")
   end
 end

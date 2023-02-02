@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-  root to: "public/homes#top"
+  root to: 'public/homes#top'
 
   namespace :public do
     get 'homes/top'
@@ -12,43 +11,42 @@ Rails.application.routes.draw do
         get 'post_all'
         get 'search_all'
       end
-      resources :likes, only: [:create,:destroy]
-      resources :comments, only: [:create,:destroy]
+      resources :likes, only: %i[create destroy]
+      resources :comments, only: %i[create destroy]
     end
 
     get 'schedules/schedule_list'
-    resources :schedules, only: [:index,:show,:create,:edit,:update,:destroy]
-
+    resources :schedules, only: %i[index show create edit update destroy]
 
     resources :pets do
       get 'work_index'
       get 'post_index'
     end
 
-    resources :items, only: [:index,:show,:create,:update,:destroy] do
+    resources :items, only: %i[index show create update destroy] do
       patch 'minimum_capacity'
     end
 
-    resources :use_items, only: [:index,:create,:update,:destroy] do
+    resources :use_items, only: %i[index create update destroy] do
       collection do
         delete 'destroy_all'
       end
     end
 
-    resources :works, only: [:index,:show,:new,:create,:destroy] do
+    resources :works, only: %i[index show new create destroy] do
       collection do
         get 'log'
         get 'search'
       end
     end
 
-    resources :favorite_items, only: [:index,:edit,:create,:update,:destroy]
+    resources :favorite_items, only: %i[index edit create update destroy]
 
     namespace :favorite_items do
       resources :use_items, only: [:create]
     end
 
-    resources :customers, only: [:show,:edit,:update] do
+    resources :customers, only: %i[show edit update] do
       collection do
         get 'search_page'
         get 'search'
@@ -58,7 +56,7 @@ Rails.application.routes.draw do
         patch 'withdrawal'
       end
 
-      resource :relationships, only: [:create, :destroy]
+      resource :relationships, only: %i[create destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
       get 'pet_index'
@@ -72,15 +70,15 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'homes/top'
 
-    resources :groups, only: [:index,:create,:edit,:update,:destroy]
-    resources :customers, only: [:index,:edit,:update] do
-      resources :posts, only: [:index,:show]
+    resources :groups, only: %i[index create edit update destroy]
+    resources :customers, only: %i[index edit update] do
+      resources :posts, only: %i[index show]
     end
   end
 
   # 顧客用
   # URL /customers/sign_in ...
-  devise_for :customers ,skip: [:password], controllers: {
+  devise_for :customers, skip: [:password], controllers: {
     registrations: 'public/registrations',
     sessions: 'public/sessions'
   }
@@ -91,8 +89,7 @@ Rails.application.routes.draw do
 
   # 管理者用
   # URL /admin/sign_in ...
-  devise_for :admin, skip: [:registrations, :password], controllers: {
+  devise_for :admin, skip: %i[registrations password], controllers: {
     sessions: 'admin/sessions'
   }
-
 end

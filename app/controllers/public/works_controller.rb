@@ -3,9 +3,9 @@ class Public::WorksController < ApplicationController
 
   def new
     @work = WorkForm.new
-    if current_customer.pets.blank? || current_customer.use_items.blank?
-      redirect_to public_use_items_path, notice: 'ペットが未登録です。'
-    end
+    return unless current_customer.pets.blank? || current_customer.use_items.blank?
+
+    redirect_to public_use_items_path, notice: 'ペットが未登録です。'
   end
 
   def index
@@ -25,20 +25,15 @@ class Public::WorksController < ApplicationController
       flash.now[:notice] = 'ワーク名もしくはペットを選択してください'
       render 'new'
     end
-
     # アイテムの使用量に対して在庫を確認
     @use_items.each do |use_item|
       item = Item.find_by(id: use_item.item_id)
       if @work.pet_ids.reject(&:blank?).count >= 2
         # ペットが複数の場合は(在庫)と(ペット数×使用量)を比較して在庫が少ない場合はアイテム不足フラグを作成
-        if item.total_capacity < use_item.amount_used * (@work.pet_ids.reject(&:blank?).count)
-          @missing_item_flag = 1
-        end
-      else
-        if item.total_capacity < use_item.amount_used
-          # ペットが単数の場合は(在庫)と(使用量)を比較して在庫が少ない場合はアイテム不足フラグを作成
-          @missing_item_flag = 1
-        end
+        @missing_item_flag = 1 if item.total_capacity < use_item.amount_used * @work.pet_ids.reject(&:blank?).count
+      elsif item.total_capacity < use_item.amount_used
+        @missing_item_flag = 1
+        # ペットが単数の場合は(在庫)と(使用量)を比較して在庫が少ない場合はアイテム不足フラグを作成
       end
     end
   end
@@ -60,7 +55,6 @@ class Public::WorksController < ApplicationController
         @work_detail.work_id = @work.id
         @work_detail.amount_used = use_item.amount_used
         @work_detail.save!
-
         # itemの在庫を変更
         @item = Item.find_by(id: @work_detail.item_id)
         @item.total_capacity -= @work_detail.amount_used

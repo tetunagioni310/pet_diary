@@ -4,22 +4,23 @@ class Admin::CustomersController < ApplicationController
   def index
     @customers = Customer.all.page(params[:page]).per(10)
   end
-  
+
   def edit
     @customer = Customer.find(params[:id])
   end
-  
+
   def update
     @customer = Customer.find(params[:id])
-    if @customer.is_deleted == false
+    case @customer.is_deleted
+    when false
       @customer.is_deleted = true
       @customer.save
-      redirect_to admin_customers_path, notice: '会員名『' + @customer.nick_name + '』を無効にしました'
-    elsif @customer.is_deleted == true
+      flash[:notice] = "会員名『#{@customer.nick_name}』を退会にしました"
+    when true
       @customer.is_deleted = false
       @customer.save
-      redirect_to admin_customers_path, notice: '会員名『' + @customer.nick_name + '』を有効にしました'
+      flash[:notice] = "会員名『#{@customer.nick_name}』を有効にしました"
     end
+    redirect_to admin_customers_path
   end
-
 end
