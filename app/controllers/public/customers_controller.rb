@@ -2,7 +2,7 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
   # ゲストユーザーの更新・削除・退会を無効
   before_action :ensure_normal_customer, only: %i[destroy update withdrawal]
-  before_action :correct_customer, only: %i[edit update introduction_edit introduction_update]
+  before_action :correct_customer, only: %i[edit update]
 
   # 会員情報編集
   def edit
