@@ -8,6 +8,13 @@ class Public::CommentsController < ApplicationController
     @post.create_notification_comment!(current_customer, @comment.id)
     redirect_back(fallback_location: root_path)
   end
+  
+  def destroy
+    @comment = Comment.find_by(id: params[:id])
+    @comment.destroy
+    flash[:notice] = "コメントを削除しました"
+    redirect_back(fallback_location: root_path)
+  end
 
   private
 

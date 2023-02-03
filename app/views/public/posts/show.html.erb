@@ -44,6 +44,13 @@
                 <%= link_to comment.customer.nick_name, public_customer_path(comment.customer.id), class: "other-link ml-2" %>
               </div>
               <p class="col"><%= comment.comment_content %></p>
+              
+              <% if comment.customer_id == current_customer.id %>
+              <div class="text-right">
+                <%= button_to "削除", public_post_comment_path(comment.post_id,comment.id), method: :delete, data: { confirm: "本当に削除しますか？" },class: "other-link btn-sm" %>
+              </div>
+              <% end %>
+              
               <div class="small text-muted text-right mt-2">
                 <%= comment.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
               </div>
