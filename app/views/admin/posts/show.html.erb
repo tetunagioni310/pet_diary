@@ -1,24 +1,19 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-lg-6">
+    <div class="col-lg-6 mb-5">
       <div class="col text-field">
+        <div class="col mx-auto my-4">
+          <%= image_tag @post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "1000x1000+0+0" ).processed, width: "100%", class: "border-radius" %>
+        </div>
         <div class="col mb-5">
-          <h4 class="col h4 my-3">タイトル：<%= @post.post_title %></h4>
+          <h4 class="col h4 my-3"><%= @post.post_title %></h4>
 
           <p class="col my-3">
-            コンテンツ：<br>
             <%= @post.post_content %>
           </p>
         </div>
-
-        <div class="col">
-          <div class="col m-auto">
-            <%= image_tag @post.post_image.variant( resize: "1000x1000", gravity: :center, crop: "800x800+0+0" ).processed, width: "100%", class: "border-radius" %>
-          </div>
-        </div>
       </div>
-
     </div>
 
 
@@ -27,17 +22,15 @@
         <h3 class="bold ml-3">コメント一覧</h3>
         <% if @comments.count >= 1 %>
           <% @comments.each do |comment| %>
-            <div class="col border-top pt-2">
-              <div class="col">
-                <div class="col bold">
-                  <%= comment.customer.nick_name %>
+            <div class="col border-top py-2">
+              <%= render 'public/shared/customer_info', comment: comment %>
+              <div class="small text-muted d-flex justify-content-between align-items-center mt-2">
+                <div class="small text-muted text-right">
+                  <%= comment.created_at.strftime("%Y/%m/%d") %>
                 </div>
-                <p class="col mt-2">
-                  <%= comment.comment_content %>
-                </p>
-              </div>
-              <div class="small text-muted text-right">
-                <%= comment.created_at.strftime("%Y/%m/%d") %>
+                <%= button_to public_post_comment_path(comment.post_id,comment.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                  <i class="fas fa-solid fa-trash"></i>
+                <% end %>
               </div>
             </div>
           <% end %>

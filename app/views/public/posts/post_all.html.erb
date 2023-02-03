@@ -13,7 +13,7 @@
           <h6 class="h6 bold col">全ての投稿(<%= @post_all.count %>件)</h6>
         <% end %>
         
-        <%= render 'public/shared/post_all_list', posts: @posts %>
+        <%= render 'public/shared/post_all_list', posts: @posts, page: "posts_page" %>
       </div>
     </div>
 
@@ -25,7 +25,7 @@
       <div class="col-md-10 mx-auto text-field customer-content">
         <% if @dog_post_all && @dog_posts %>
           <h6 class="h6 bold col">犬の投稿(<%= @dog_post_all.count %>件)</h6>
-          <%= render 'public/shared/post_all_list', posts: @dog_posts %>
+          <%= render 'public/shared/post_all_list', posts: @dog_posts, page: "dog_posts_page" %>
         <% else %>
           <p class="no-data h2">
             投稿はありません
@@ -44,7 +44,7 @@
       <div class="col-md-10 mx-auto text-field customer-content">
         <% if @cat_post_all && @cat_posts %>
           <h6 class="h6 bold col">猫の投稿(<%= @cat_post_all.count %>件)</h6>
-          <%= render 'public/shared/post_all_list', posts: @cat_posts %>
+          <%= render 'public/shared/post_all_list', posts: @cat_posts, page: "cat_posts_page" %>
         <% else %>
           <p class="no-data h2">
             投稿はありません
@@ -63,7 +63,7 @@
       <div class="col-md-10 mx-auto text-field customer-content">
         <% if @other_post_all && @other_posts %>
           <h6 class="h6 bold col">その他の投稿(<%= @other_post_all.count %>件)</h6>
-          <%= render 'public/shared/post_all_list', posts: @other_posts %>
+          <%= render 'public/shared/post_all_list', posts: @other_posts, page: "other_posts_page" %>
         <% else %>
           <p class="no-data h2">
             投稿はありません

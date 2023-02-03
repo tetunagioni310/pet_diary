@@ -38,25 +38,21 @@
         <div class="m-auto">
           <div class="col mx-0 px-0">
             <% @comments.each do |comment| %>
-            <div class="col my-2 border-top">
-              <div class="col row py-2 align-center">
-                <%= image_tag comment.customer.get_customer_image(30,30), class: "image-circle"%>
-                <%= link_to comment.customer.nick_name, public_customer_path(comment.customer.id), class: "other-link ml-2" %>
+              <div class="col border-top py-2">
+                  <%= render 'public/shared/customer_info', comment: comment %>
+                  <div class="small text-muted d-flex justify-content-between align-items-center mt-2">
+                    <div class="small text-muted text-right">
+                      <%= comment.created_at.strftime("%Y/%m/%d") %>
+                    </div>
+                    <% if comment.customer_id == current_customer.id %>
+                      <%= button_to public_post_comment_path(comment.post_id,comment.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                        <i class="fas fa-solid fa-trash"></i>
+                      <% end %>
+                    <% end %>
+                  </div>
               </div>
-              <p class="col"><%= comment.comment_content %></p>
-              
-              <% if comment.customer_id == current_customer.id %>
-              <div class="text-right">
-                <%= button_to "削除", public_post_comment_path(comment.post_id,comment.id), method: :delete, data: { confirm: "本当に削除しますか？" },class: "other-link btn-sm" %>
-              </div>
-              <% end %>
-              
-              <div class="small text-muted text-right mt-2">
-                <%= comment.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
-              </div>
-            </div>
-
             <% end %>
+            <%= paginate @comments %>
           </div>
         </div>
       </section>

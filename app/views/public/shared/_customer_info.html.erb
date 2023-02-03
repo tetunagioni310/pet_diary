@@ -1,0 +1,5 @@
+<div class="col row py-2 align-center">
+  <%= image_tag comment.customer.get_customer_image(30,30), class: "image-circle"%>
+  <%= link_to comment.customer.nick_name, public_customer_path(comment.customer.id), class: "other-link ml-2" %>
+</div>
+<p class="col px-0"><%= comment.comment_content %></p>

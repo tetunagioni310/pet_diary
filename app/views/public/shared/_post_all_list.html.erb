@@ -21,7 +21,7 @@
       </section>
     <% end %>
   </div>
-  <%= paginate posts %>
+  <%= paginate posts, :param_name => "#{page}" %>
 <% else %>
   <p class="no-data h2">
     投稿はありません

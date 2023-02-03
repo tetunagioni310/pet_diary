@@ -61,9 +61,29 @@ class Post < ApplicationRecord
   end
 
   def get_post_image(width, height)
+    # image添付されてされていない場合
     return unless post_image
-
+    
     post_image.variant(resize_to_limit: [width, height]).processed
+  end
+  
+  # 公開中の全ての投稿を取得
+  def self.released_post
+    Post.joins(:customer).where(customers: { status: 1 })
+  end
+
+  def self.released_post_group(group)
+    Post.joins(:customer, :pet).where(customers: { status: 1 }, pets: { group_id: group.id})
+  end
+  
+  def test_page(tab)
+    page = {
+      'tab1' => 'tab1_page',
+      'tab2' => 'tab2_page',
+      'tab3' => 'tab3_page',
+      'tab4' => 'tab4_page'
+    }
+    page[tab_type]
   end
 
   def self.my_post_search(keyword, current_customer)
