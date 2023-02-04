@@ -49,19 +49,19 @@ class Public::PostsController < ApplicationController
 
   def post_all
     @post_all = Post.released_post
-    @posts = Post.released_post.order(id: 'DESC').page(params[:posts_page]).per(12)
+    @posts = Post.released_post.order(id: 'DESC').page(params[:posts_page]).per(8)
     groups = Group.all
     groups.each do |group|
       case group.group_name
       when '犬'
         @dog_post_all = Post.released_post_group(group)
-        @dog_posts = Post.released_post_group(group).order(id: 'DESC').page(params[:dog_posts_page]).per(12)
+        @dog_posts = Post.released_post_group(group).order(id: 'DESC').page(params[:dog_posts_page]).per(8)
       when '猫'
         @cat_post_all = Post.released_post_group(group)
-        @cat_posts = Post.released_post_group(group).order(id: 'DESC').page(params[:cat_posts_page]).per(12)
+        @cat_posts = Post.released_post_group(group).order(id: 'DESC').page(params[:cat_posts_page]).per(8)
       when 'その他'
         @other_post_all = Post.released_post_group(group)
-        @other_posts = Post.released_post_group(group).order(id: 'DESC').page(params[:other_posts_page]).per(12)
+        @other_posts = Post.released_post_group(group).order(id: 'DESC').page(params[:other_posts_page]).per(8)
       end
     end
   end

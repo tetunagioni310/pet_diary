@@ -3,74 +3,21 @@
 
     <input type="radio" name="tab_name" id="tab1" checked>
     <label class="tab_class bold" for="tab1">全ての投稿</label>
-    <div class="content-class col">
-      <div class="col-md-10 mx-auto text-field customer-content">
-        <% if @keyword %>
-          <h6 class="h6 bold col">
-            "<%= @keyword %>"の検索結果（<%= @post_all.count %>件）
-          </h6>
-        <% else %>
-          <h6 class="h6 bold col">全ての投稿(<%= @post_all.count %>件)</h6>
-        <% end %>
-        
-        <%= render 'public/shared/post_all_list', posts: @posts, page: "posts_page" %>
-      </div>
-    </div>
+    <%= render 'public/shared/post_all_tab', posts: @posts, post_all: @post_all, group: "全て", keyword: @keyword, page: "posts_page" %>
 
     <!--犬の投稿タブ-->
     <input type="radio" name="tab_name" id="tab2">
     <label class="tab_class bold" for="tab2">犬の投稿</label>
-    <div class="content-class col">
-      
-      <div class="col-md-10 mx-auto text-field customer-content">
-        <% if @dog_post_all && @dog_posts %>
-          <h6 class="h6 bold col">犬の投稿(<%= @dog_post_all.count %>件)</h6>
-          <%= render 'public/shared/post_all_list', posts: @dog_posts, page: "dog_posts_page" %>
-        <% else %>
-          <p class="no-data h2">
-            投稿はありません
-          </p>
-        <% end %>
-      </div>
-      
-    </div>
-
+    <%= render 'public/shared/post_all_tab', posts: @dog_posts, post_all: @dog_post_all, group: "犬", keyword: @keyword, page: "dog_posts_page" %>
 
     <!--猫の投稿タブ-->
     <input type="radio" name="tab_name" id="tab3" >
     <label class="tab_class bold" for="tab3">猫の投稿</label>
-    <div class="content-class col">
-      
-      <div class="col-md-10 mx-auto text-field customer-content">
-        <% if @cat_post_all && @cat_posts %>
-          <h6 class="h6 bold col">猫の投稿(<%= @cat_post_all.count %>件)</h6>
-          <%= render 'public/shared/post_all_list', posts: @cat_posts, page: "cat_posts_page" %>
-        <% else %>
-          <p class="no-data h2">
-            投稿はありません
-          </p>
-        <% end %>
-      </div>
-      
-    </div>
-
+    <%= render 'public/shared/post_all_tab', posts: @cat_posts, post_all: @cat_post_all, group: "猫", keyword: @keyword, page: "cat_posts_page" %>
 
     <!--その他投稿タブ-->
     <input type="radio" name="tab_name" id="tab4" >
     <label class="tab_class bold" for="tab4">その他投稿</label>
-    <div class="content-class col">
-      
-      <div class="col-md-10 mx-auto text-field customer-content">
-        <% if @other_post_all && @other_posts %>
-          <h6 class="h6 bold col">その他の投稿(<%= @other_post_all.count %>件)</h6>
-          <%= render 'public/shared/post_all_list', posts: @other_posts, page: "other_posts_page" %>
-        <% else %>
-          <p class="no-data h2">
-            投稿はありません
-          </p>
-        <% end %>
-      </div>
-      
-    </div>
-    
+    <%= render 'public/shared/post_all_tab', posts: @other_posts, post_all: @other_post_all, group: "その他", keyword: @keyword, page: "other_posts_page" %>
+
 </div>

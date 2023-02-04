@@ -26,7 +26,7 @@ class Public::CustomersController < ApplicationController
   def introduction_update
     @customer = Customer.find_by(id: current_customer.id)
     if @customer.update(customer_params)
-      redirect_to public_customer_path(@customer.id), notice: 'コメントを更新しました。'
+      redirect_to public_customer_path(@customer.id), notice: '紹介文を更新しました。'
     else
       render 'introduction_edit'
     end
