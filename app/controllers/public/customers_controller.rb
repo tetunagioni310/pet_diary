@@ -53,7 +53,8 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
 
-  def search_page; end
+  def search_page
+  end
 
   # 会員検索
   def search

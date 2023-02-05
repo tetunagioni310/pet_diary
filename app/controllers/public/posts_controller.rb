@@ -69,6 +69,7 @@ class Public::PostsController < ApplicationController
   def post_all
     @post_all = Post.released_post
     @posts = Post.released_post.order(id: 'DESC').page(params[:posts_page]).per(8)
+    # groupのid取得
     groups = Group.all
     groups.each do |group|
       case group.group_name
@@ -92,6 +93,18 @@ class Public::PostsController < ApplicationController
     @post_all = Post.all_post_search(params[:keyword])
     @posts = Post.all_post_search(params[:keyword]).order(id: 'DESC').page(params[:page]).per(12)
     @keyword = params[:keyword]
+    # groupのid取得
+    groups = Group.all
+    groups.each do |group|
+      case group.group_name
+      when '犬'
+        @dog_group = group
+      when '猫'
+        @cat_group = group
+      when 'その他'
+        @other_group = group 
+      end
+    end
     render 'post_all'
   end
 

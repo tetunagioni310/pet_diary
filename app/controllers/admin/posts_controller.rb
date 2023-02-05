@@ -11,4 +11,12 @@ class Admin::PostsController < ApplicationController
     @customer = Customer.find_by(id: params[:customer_id])
     @comments = @post.comments.order(id: 'DESC').page(params[:page]).per(5)
   end
+  
+  def destroy
+    post = Post.find(params[:id])
+    @customer = post.customer
+    @posts = Post.where(customer_id: @customer.id)
+    post.destroy
+    redirect_to admin_customer_posts_path(@customer.id), notice: "投稿を削除しました"
+  end
 end

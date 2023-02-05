@@ -72,10 +72,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'homes/top'
-
+    
     resources :groups, only: %i[index create edit update destroy]
     resources :customers, only: %i[index edit update] do
-      resources :posts, only: %i[index show]
+      resources :posts, only: %i[index show destroy] 
+    end
+    namespace :customers do
+      namespace :posts do
+        resources :comments, only: %i[destroy]
+      end
     end
   end
 
