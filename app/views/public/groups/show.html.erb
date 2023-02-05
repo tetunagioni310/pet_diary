@@ -1,25 +1,25 @@
 <div class="container">
     <div class="tab-area">
     <input type="radio" name="tab_name" id="tab1">
-    <label class="tab_class bold other-link" for="tab1"><%= link_to "全ての投稿", post_all_public_posts_path, class: "other-link" %></label>
+    <label class="tab_class bold other-link" for="tab1">・<%= link_to "全ての投稿", post_all_public_posts_path, class: "other-link" %></label>
     
     <!--犬の投稿タブ-->
     <input type="radio" name="tab_name" id="tab2" <%= @group.group_name == "犬" ? "checked" : nil %> >
-    <label class="tab_class bold" for="tab2">あ<%= link_to "犬の投稿", public_group_path(@dog_group.id), class: "other-link" %></label>
+    <label class="tab_class bold" for="tab2">・<%= link_to "犬の投稿", public_group_path(@dog_group.id), class: "other-link" %></label>
     <% if @group.group_name == "犬" %>
       <%= render 'public/shared/post_all_tab', posts: @dog_posts, post_all: @dog_post_all, group: "犬", keyword: @keyword, page: "dog" %>
     <% end %>
 
     <!--猫の投稿タブ-->
     <input type="radio" name="tab_name" id="tab3" <%= @group.group_name == "猫" ? "checked" : nil %>>
-    <label class="tab_class bold other-link" for="tab3">あ<%= link_to "猫の投稿", public_group_path(@cat_group.id), class: "other-link" %></label>
+    <label class="tab_class bold other-link" for="tab3">・<%= link_to "猫の投稿", public_group_path(@cat_group.id), class: "other-link" %></label>
     <% if @group.group_name == "猫" %>
       <%= render 'public/shared/post_all_tab', posts: @cat_posts, post_all: @cat_post_all, group: "猫", keyword: @keyword, page: "cat" %>
     <% end %>
 
     <!--その他投稿タブ-->
     <input type="radio" name="tab_name" id="tab4" <%= @group.group_name == "その他" ? "checked" : nil %>>
-    <label class="tab_class bold other-link" for="tab4">あ<%= link_to "その他投稿", public_group_path(@other_group.id), class: "other-link" %></label>
+    <label class="tab_class bold other-link" for="tab4">・<%= link_to "その他投稿", public_group_path(@other_group.id), class: "other-link" %></label>
     <% if @group.group_name == "その他" %>
       <%= render 'public/shared/post_all_tab', posts: @other_posts, post_all: @other_post_all, group: "その他", keyword: @keyword, page: "other" %>
     <% end %>
