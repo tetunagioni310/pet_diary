@@ -5,6 +5,7 @@ RSpec.describe Public::SessionsController, type: :controller do
   # customerをcreateし、let内に格納
 
   describe '会員がログインした時' do
+    # 会員としてログインする
     before do
       login_customer customer
       # controller_macros.rb内のlogin_customerメソッドを呼び出し
@@ -13,6 +14,8 @@ RSpec.describe Public::SessionsController, type: :controller do
     it '会員がログインした時、会員詳細画面が表示される' do
     end
   end
+  
+  
 end
 
 RSpec.describe Admin::SessionsController, type: :controller do

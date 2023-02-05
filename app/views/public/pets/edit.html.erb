@@ -15,7 +15,7 @@
 
             <div class="form-group row">
               <%= f.label :group_id, class: "col-md-3 col-form-label bold px-0" %>
-              <%= f.select :group_id, options_from_collection_for_select(Group.all, :id, :group_name), { prompt: '選択してください'}, { class: 'col-md-7 form-control' , required: true } %>
+              <%= f.select :group_id, options_from_collection_for_select(Group.all, :id, :group_name, @pet.group.id), { class: 'col-md-7 form-control' , required: true } %>
             </div>
 
             <div class="form-group row">
@@ -25,7 +25,7 @@
 
             <div class="form-group row">
               <%= f.label :gender, class: "col-md-3 col-form-label bold px-0" %>
-              <%= f.select :gender, options_for_select(Pet.genders.map { |key, value| [key.humanize, key] }), {prompt: "選択してください"}, class: "col-md-7 form-control" %>
+              <%= f.select :gender, options_for_select(Pet.genders.map { |key, value| [key.humanize, key] }, selected: @pet.gender), class: "col-md-7 form-control" %>
             </div>
 
             <div class="form-group row">

@@ -6,7 +6,7 @@
 
       <div class="form-group row col mx-0">
         <%= f.label :pet_id, "ペット名", class: "col-form-label col-md-4 px-0" %>
-        <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name), {prompt: "ペット選択"}, class: "col-md-8" %>
+        <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name, @post.pet.id), class: "col-md-8" %>
       </div>
 
       <div class="form-group row col mx-0">
