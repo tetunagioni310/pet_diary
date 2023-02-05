@@ -1,20 +1,20 @@
 <div class="container">
   <div class="tab-area">
     <input type="radio" name="tab_name" id="tab1" checked>
-    <label class="tab_class bold" for="tab1">・全ての投稿</label>
+    <label class="tab_class bold" for="tab1">全ての投稿</label>
     <%= render 'public/shared/post_all_tab', posts: @posts, post_all: @post_all, group: "全て", keyword: @keyword, page: nil %>
 
     <!--犬の投稿タブ-->
-    <input type="radio" name="tab_name" id="tab2" <%= params[:tab_name] == "dog" ? "checked" : nil %>>
-    <label class="tab_class bold" for="tab2">・<%= link_to "犬の投稿", public_group_path(@dog_group.id), class: "other-link" %></label>
+    <input type="radio" name="tab_name" id="tab2">
+    <label class="tab_class bold" for="tab2"><%= link_to "犬の投稿", public_group_path(@dog_group.id), class: "other-link d-block" %></label>
 
     <!--猫の投稿タブ-->
-    <input type="radio" name="tab_name" id="tab3" <%= params[:tab_name] == "dog" ? "checked" : nil %>>
-    <label class="tab_class bold" for="tab3">・<%= link_to "猫の投稿", public_group_path(@cat_group.id), class: "other-link" %></label>
+    <input type="radio" name="tab_name" id="tab3">
+    <label class="tab_class bold" for="tab3"><%= link_to "猫の投稿", public_group_path(@cat_group.id), class: "other-link d-block" %></label>
 
     <!--その他投稿タブ-->
-    <input type="radio" name="tab_name" id="tab4" <%= params[:tab_name] == "other" ? "checked" : nil %>>
-    <label class="tab_class bold" for="tab4">・<%= link_to "その他投稿", public_group_path(@other_group.id), class: "other-link" %></label>
+    <input type="radio" name="tab_name" id="tab4">
+    <label class="tab_class bold" for="tab4"><%= link_to "その他投稿", public_group_path(@other_group.id), class: "other-link d-block" %></label>
 
   </div>
 </div>

@@ -181,6 +181,9 @@ div.content-class {
 
   input:checked + .tab_class {
     color: blue;
+    a {
+      color: blue;
+    }
   }
 
   input:checked + .tab_class + .content-class {
