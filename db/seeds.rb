@@ -44,24 +44,38 @@ Customer.all.each do |customer|
     gender: rand(1..2),
     birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
   )
-
-  Pet.create!(
-    customer_id: customer.id,
-    group_id: 2,
-    pet_kind: Faker::Creature::Cat.breed,
-    pet_name: Faker::Creature::Cat.name,
-    gender: rand(1..2),
-    birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
-  )
-
-  Pet.create!(
-    customer_id: customer.id,
-    group_id: 3,
-    pet_kind: Faker::Creature::Animal.name,
-    pet_name: Faker::Creature::Dog.name,
-    gender: rand(1..2),
-    birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
-  )
+  
+  Group.all.each do |group|
+    case group.group_name
+    when '犬'
+      Pet.create!(
+        customer_id: customer.id,
+        group_id: group.id,
+        pet_kind: Faker::Creature::Animal.name,
+        pet_name: Faker::Creature::Dog.name,
+        gender: rand(1..2),
+        birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
+      )
+    when '猫'
+      Pet.create!(
+        customer_id: customer.id,
+        group_id: group.id,
+        pet_kind: Faker::Creature::Cat.breed,
+        pet_name: Faker::Creature::Cat.name,
+        gender: rand(1..2),
+        birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
+      )
+    when 'その他'
+      Pet.create!(
+        customer_id: customer.id,
+        group_id: group.id,
+        pet_kind: Faker::Creature::Animal.name,
+        pet_name: Faker::Creature::Dog.name,
+        gender: rand(1..2),
+        birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
+      )
+    end
+  end
 
   customer.pets.each do |pet|
     Post.create!(
@@ -76,11 +90,26 @@ Customer.all.each do |customer|
   end
 end
 
+customers = Customer.all
+customer  = customers.first
+# フォローされている
+following = customers[2..50]
+# フォローしている
+followers = customers[3..40]
+following.each { |followed| customer.follow(followed.id) }
+followers.each { |follower| follower.follow(customer.id) }
+
 # customers = Customer.all
 # customer  = customers.first
-# # フォローされている
+
 # following = customers[2..50]
-# # フォローしている
 # followers = customers[3..40]
-# following.each { |followed| customer.follow(followed) }
-# followers.each { |follower| follower.follow(customer) }
+
+# following.each do |followed|
+#   customer.follow(followed.id)
+# end
+
+# followers.each do |follower|
+#   customer.follow(follower.id)
+# end
+

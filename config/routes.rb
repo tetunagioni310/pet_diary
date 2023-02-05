@@ -8,11 +8,12 @@ Rails.application.routes.draw do
     resources :posts do
       collection do
         get 'search'
+        # get 'post_all_prototype'
         get 'post_all'
         get 'search_all'
       end
       resources :likes, only: %i[create destroy]
-      resources :comments, only: %i[create destroy]
+      resources :comments, only: %i[create edit update destroy]
     end
 
     get 'schedules/schedule_list'
@@ -45,6 +46,8 @@ Rails.application.routes.draw do
     namespace :favorite_items do
       resources :use_items, only: [:create]
     end
+    
+    resources :groups, only: %i[show]
 
     resources :customers, only: %i[show edit update] do
       collection do

@@ -81,9 +81,7 @@
       <% end %>
 
 
-        <div class="col text-center">
-          <%= paginate @works %>
-        </div>
+      <%= render 'public/shared/paginate', lists: @works %>
     </div>
   </div>
 </div>

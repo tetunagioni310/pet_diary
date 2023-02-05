@@ -46,6 +46,6 @@
         <% end %>
       </div>
       <div class="paging">
-      <%= paginate posts, :param_name => "#{page}" %>
+      <%= paginate posts, param_name: (page ? "#{page}_posts_page" : "posts_page"), params: { tab_name: page } %>
       </div>
     </div>

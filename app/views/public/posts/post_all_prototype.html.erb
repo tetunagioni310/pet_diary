@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="tab-area">
+    <input type="radio" name="tab_name" id="tab1" <%= !params.has_key?(:tab_name) ? "checked" : nil %>>
+    <label class="tab_class bold" for="tab1">全ての投稿</label>
+    <%= render 'public/shared/post_all_tab', posts: @posts, post_all: @post_all, group: "全て", keyword: @keyword, page: nil %>
+
+    <!--犬の投稿タブ-->
+    <input type="radio" name="tab_name" id="tab2" <%= params[:tab_name] == "dog" ? "checked" : nil %> >
+    <label class="tab_class bold" for="tab2">犬の投稿</label>
+    <%= render 'public/shared/post_all_tab', posts: @dog_posts, post_all: @dog_post_all, group: "犬", keyword: @keyword, page: "dog" %>
+
+    <!--猫の投稿タブ-->
+    <input type="radio" name="tab_name" id="tab3" <%= params[:tab_name] == "cat" ? "checked" : nil %>>
+    <label class="tab_class bold" for="tab3">猫の投稿</label>
+    <%= render 'public/shared/post_all_tab', posts: @cat_posts, post_all: @cat_post_all, group: "猫", keyword: @keyword, page: "cat" %>
+
+    <!--その他投稿タブ-->
+    <input type="radio" name="tab_name" id="tab4" <%= params[:tab_name] == "other" ? "checked" : nil %>>
+    <label class="tab_class bold" for="tab4">その他投稿</label>
+    <%= render 'public/shared/post_all_tab', posts: @other_posts, post_all: @other_post_all, group: "その他", keyword: @keyword, page: "other" %>
+
+  </div>
+</div>

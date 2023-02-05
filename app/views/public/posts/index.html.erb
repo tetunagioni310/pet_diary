@@ -54,7 +54,7 @@
                           <%= button_to edit_public_post_path(post.id), method: :get do %>
                             <i class="fas fa-solid fa-pen"></i>
                           <% end %>
-                          &emsp;
+                          &nbsp;
                           <%= button_to public_post_path(post.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
                             <i class="fas fa-solid fa-trash"></i>
                           <% end %>
@@ -72,10 +72,8 @@
               <% end %>
             </tbody>
         </table>
-        <div class="col text-center">
-          <%= paginate @posts %>
-        </div>
       </div>
+      <%= render 'public/shared/paginate', lists: @posts %>
     </div>
   </div>
 </div>

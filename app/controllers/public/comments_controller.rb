@@ -9,6 +9,19 @@ class Public::CommentsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   
+  def edit
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find(params[:id])
+    @customer = Customer.find_by(id: @post.customer_id)
+  end
+  
+  def update
+    @comment = Comment.find_by(id: params[:id])
+    @post = @comment.post
+    @comment.update(comment_params)
+    redirect_to public_post_path(@post.id)
+  end
+  
   def destroy
     @comment = Comment.find_by(id: params[:id])
     @comment.destroy

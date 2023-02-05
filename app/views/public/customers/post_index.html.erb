@@ -68,10 +68,8 @@
               <% end %>
             </tbody>
         </table>
-        <div class="col text-center">
-          <%= paginate @posts %>
-        </div>
       </div>
+      <%= render 'public/shared/paginate', lists: @posts %>
     </div>
   </div>
 

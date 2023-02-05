@@ -1,15 +1,13 @@
-
 <div class="container">
   <div class="row">
     <div class="col-sm-8 m-auto">
 
-      <div class="mb-5 h2 bold">紹介文編集</div>
-      <%= form_with model: @customer, url: introduction_update_public_customers_path(@customer.id), method: :patch do |f| %>
-      <%= render "public/shared/error_messages", resource: @customer %>
+      <div class="mb-5 h2 bold">コメント編集</div>
+      <%= form_with model: [@post,@comment], url: public_post_comment_path(@post.id), method: :patch do |f| %>
 
         <table class="col">
           <tr>
-            <td><%= f.text_area :introduction, class: "form-control", rows: "8" %></td>
+            <td><%= f.text_area :comment_content, class: "form-control", rows: "8" %></td>
           </tr>
           <tr>
             <td>
@@ -22,7 +20,7 @@
     </div>
   </div>
   <div class="col-sm-8 mx-auto my-5">
-    <%= link_to  public_customer_path(@customer.id), class: "default-color other-link" do %>
+    <%= link_to  public_post_path(@post.id), class: "default-color other-link" do %>
       <i class="fas fa-solid fa-reply mr-2"></i>戻る
     <% end %>
   </div>
