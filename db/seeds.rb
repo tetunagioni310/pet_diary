@@ -33,7 +33,7 @@ Customer.create!(
 # その他の会員を10回作成
 10.times do
   Customer.create!(
-    nick_name: Faker::Internet.user_name(number: 15),
+    nick_name: Faker::Lorem.characters(number: 15),
     email: Faker::Internet.unique.email,
     password: 'passwordpassword'
   )
@@ -48,7 +48,7 @@ Customer.all.each do |customer|
         customer_id: customer.id,
         group_id: group.id,
         pet_kind: Faker::Creature::Animal.name,
-        pet_name: Faker::Creature::Dog.name(number: 8),
+        pet_name: Faker::Lorem.characters(number: 8),
         gender: rand(1..2),
         birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
       )
@@ -57,7 +57,7 @@ Customer.all.each do |customer|
         customer_id: customer.id,
         group_id: group.id,
         pet_kind: Faker::Creature::Cat.breed,
-        pet_name: Faker::Creature::Cat.name(number: 8),
+        pet_name: Faker::Lorem.characters(number: 8),
         gender: rand(1..2),
         birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
       )
@@ -66,7 +66,7 @@ Customer.all.each do |customer|
         customer_id: customer.id,
         group_id: group.id,
         pet_kind: Faker::Creature::Animal.name,
-        pet_name: Faker::Creature::Dog.name(number: 8),
+        pet_name: Faker::Lorem.characters(number: 8),
         gender: rand(1..2),
         birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
       )
