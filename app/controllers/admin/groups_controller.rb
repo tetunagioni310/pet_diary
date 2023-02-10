@@ -1,6 +1,7 @@
 class Admin::GroupsController < ApplicationController
   before_action :authenticate_admin!
 
+  # seedでデフォルト値を作成されるため、使用しない
   def index
     @groups = Group.all
     @group = Group.new

@@ -63,37 +63,31 @@ class Post < ApplicationRecord
   def get_post_image(width, height)
     # image添付されてされていない場合
     return unless post_image
-    
+
     post_image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   # 公開中の全ての投稿を取得
   def self.released_post
     Post.joins(:customer).where(customers: { status: 1 })
   end
-
+  
+  # 公開中のグループ別投稿を取得
   def self.released_post_group(group)
-    Post.joins(:customer, :pet).where(customers: { status: 1 }, pets: { group_id: group.id})
+    Post.joins(:customer, :pet).where(customers: { status: 1 }, pets: { group_id: group.id })
   end
   
-  def test_page(tab)
-    page = {
-      'tab1' => 'tab1_page',
-      'tab2' => 'tab2_page',
-      'tab3' => 'tab3_page',
-      'tab4' => 'tab4_page'
-    }
-    page[tab_type]
-  end
-
+  # ログイン中の会員の投稿からペット名で検索する
   def self.my_post_search(keyword, current_customer)
     Post.joins(:pet).where('pet_name LIKE ? ', "%#{keyword}%").where(customer_id: current_customer.id)
   end
 
+  # 会員別の投稿をペット名で検索するメソッド
   def self.other_post_search(keyword, customer)
     Post.joins(:pet).where('pet_name LIKE ? ', "%#{keyword}%").where(customer_id: customer.id)
   end
-
+  
+  # 公開中の全ての投稿から投稿名、投稿内容、ペット名、ペットの種類から検索
   def self.all_post_search(keyword)
     Post.joins(:pet, :customer).where(customers: { status: 1 }).where(
       'post_title LIKE ? OR post_content LIKE ? OR pet_name LIKE ? OR pet_kind LIKE ?', "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"

@@ -28,13 +28,14 @@ class Customer < ApplicationRecord
   has_one_attached :customer_image
 
   validates :email, presence: true
-  validates :nick_name, presence: true, length: { maximum: 15 }
+  validates :nick_name, unique: true, presence: true, length: { maximum: 15 }
   validates :introduction, presence: true
 
   enum status: { nonreleased: 0, released: 1 }
 
   # フォロー通知情報作成・保存メソッド
   def create_notification_follow!(current_user)
+    # ログイン中の会員が指定の会員をフォローしたデータを取り出し、それが存在するならば戻り値を返す
     temp = Notification.where(['visitor_id = ? and visited_id = ? and action = ? ', current_user.id, id, 'follow'])
     return unless temp.blank?
 
@@ -46,13 +47,15 @@ class Customer < ApplicationRecord
   end
 
   def get_customer_image(width, height)
+    # 画像が添付されていない時
     unless customer_image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')
       customer_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpg')
     end
     customer_image.variant(resize_to_limit: [width, height]).processed
   end
-
+  
+  # ゲスト会員が存在する場合は取得し、存在する場合は作成する
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64
@@ -93,7 +96,8 @@ class Customer < ApplicationRecord
       '退会'
     end
   end
-
+  
+  # 公開状態の会員を名前で検索する
   def self.customer_search(keyword)
     Customer.where(status: 1).where('nick_name LIKE ? ', keyword.to_s)
   end

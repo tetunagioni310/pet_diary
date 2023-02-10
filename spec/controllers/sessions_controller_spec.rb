@@ -14,8 +14,6 @@ RSpec.describe Public::SessionsController, type: :controller do
     it '会員がログインした時、会員詳細画面が表示される' do
     end
   end
-  
-  
 end
 
 RSpec.describe Admin::SessionsController, type: :controller do

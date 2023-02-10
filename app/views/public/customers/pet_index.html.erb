@@ -19,7 +19,7 @@
           <% if @pets.count >= 1 %>
             <% @pets.each do |pet| %>
             <div class="pet-link col-md-4 text-center mb-5">
-              <div class="col-10 mx-auto m-2">
+              <div class="col-10 mx-auto">
                 <%= image_tag pet.get_pet_image(500,500), width: "100%", height: "100%" %><br>
               </div>
               <%= link_to  pet.pet_name, public_pet_path(pet.id), class: "d-inline-block btn-revers" %>

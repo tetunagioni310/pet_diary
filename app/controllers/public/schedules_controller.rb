@@ -40,7 +40,8 @@ class Public::SchedulesController < ApplicationController
     @schedule.destroy
     redirect_to public_schedules_path, notice: 'スケジュールを削除しました。'
   end
-
+  
+  # スケジュールが3つ以上作成された時リストとして表示される
   def schedule_list
     # 送信されてきた日付を[in_time_zone]でアプリケーション側の時間に変換したのち
     start_time = params[:date].in_time_zone

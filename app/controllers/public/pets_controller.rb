@@ -6,12 +6,14 @@ class Public::PetsController < ApplicationController
     @customer = Customer.find_by(id: current_customer.id)
     @pets = Pet.where(customer_id: @customer.id)
   end
-
+  
+  # ペット用のワーク一覧
   def work_index
     @pet = Pet.find(params[:pet_id])
     @works = Work.where(pet_id: @pet.id).page(params[:page]).per(10).order(id: 'DESC')
   end
-
+  
+  # ペット用の投稿一覧
   def post_index
     @pet = Pet.find(params[:pet_id])
     @customer = Customer.find_by(id: @pet.customer.id)
@@ -55,7 +57,8 @@ class Public::PetsController < ApplicationController
     @pet.destroy
     redirect_to public_pets_path, notice: '登録ペットを削除しました。'
   end
-
+  
+  # ペットの会員idがログイン中の会員idと一致しない時にルートページへ遷移
   def correct_customer
     pet = Pet.find(params[:id])
     customer = Customer.find_by(id: pet.customer_id)

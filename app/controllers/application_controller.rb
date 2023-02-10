@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  # ゲストでサインインする
   def guest_sign_in
     customer = Customer.guest
     sign_in customer

@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     namespace :favorite_items do
       resources :use_items, only: [:create]
     end
-    
+
     resources :groups, only: %i[show]
 
     resources :customers, only: %i[show edit update] do
@@ -72,10 +72,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'homes/top'
-    
+
     resources :groups, only: %i[index create edit update destroy]
     resources :customers, only: %i[index edit update] do
-      resources :posts, only: %i[index show destroy] 
+      resources :posts, only: %i[index show destroy]
     end
     namespace :customers do
       namespace :posts do

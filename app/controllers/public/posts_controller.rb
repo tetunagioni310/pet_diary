@@ -65,7 +65,7 @@ class Public::PostsController < ApplicationController
   #     end
   #   end
   # end
-  
+
   def post_all
     @post_all = Post.released_post
     @posts = Post.released_post.order(id: 'DESC').page(params[:posts_page]).per(8)
@@ -78,11 +78,12 @@ class Public::PostsController < ApplicationController
       when '猫'
         @cat_group = group
       when 'その他'
-        @other_group = group 
+        @other_group = group
       end
     end
   end
-
+  
+  # 自分の投稿の中からペット名で検索する
   def search
     @posts = Post.my_post_search(params[:keyword], current_customer).order(id: 'DESC').page(params[:page]).per(12)
     @keyword = params[:keyword]
@@ -102,7 +103,7 @@ class Public::PostsController < ApplicationController
       when '猫'
         @cat_group = group
       when 'その他'
-        @other_group = group 
+        @other_group = group
       end
     end
     render 'post_all'

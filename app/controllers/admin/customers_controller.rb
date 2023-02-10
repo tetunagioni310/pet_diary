@@ -9,6 +9,7 @@ class Admin::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
   end
 
+  # 会員の状態を「有効」または「退会」状態に変更する
   def update
     @customer = Customer.find(params[:id])
     case @customer.is_deleted

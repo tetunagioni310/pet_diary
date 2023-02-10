@@ -3,6 +3,7 @@ class Public::WorksController < ApplicationController
 
   def new
     @work = WorkForm.new
+    # ログイン中の会員がペットを空白又は使用アイテムが空白の場合
     return unless current_customer.pets.blank? || current_customer.use_items.blank?
 
     redirect_to public_use_items_path, notice: 'ペットが未登録です。'
@@ -20,7 +21,7 @@ class Public::WorksController < ApplicationController
     @work = WorkForm.new(work_params)
     @work.customer_id = current_customer.id
     @use_items = current_customer.use_items
-    # 空白("")がカウントされてしまうので2以上でなければ戻るにしなければならない
+    # 空白("")がカウントされてしまうので[reject(&:blank?)]で除外している
     if @work.pet_ids.reject(&:blank?).count <= 0 || @work.work_name.blank?
       flash.now[:notice] = 'ワーク名もしくはペットを選択してください'
       render 'new'
@@ -28,6 +29,7 @@ class Public::WorksController < ApplicationController
     # アイテムの使用量に対して在庫を確認
     @use_items.each do |use_item|
       item = Item.find_by(id: use_item.item_id)
+      # ペットが2匹以上いる場合
       if @work.pet_ids.reject(&:blank?).count >= 2
         # ペットが複数の場合は(在庫)と(ペット数×使用量)を比較して在庫が少ない場合はアイテム不足フラグを作成
         @missing_item_flag = 1 if item.total_capacity < use_item.amount_used * @work.pet_ids.reject(&:blank?).count
@@ -44,7 +46,6 @@ class Public::WorksController < ApplicationController
       @work = WorkForm.new(work_params)
       @work.pet_id = pet_id
       @work.customer_id = current_customer.id
-      @use_items = current_customer.use_items
       # formオブジェクトから@workに代入してあげないと生成されたidが取得できない
       @work = @work.save!
       use_items = current_customer.use_items

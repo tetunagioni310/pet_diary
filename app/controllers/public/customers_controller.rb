@@ -9,6 +9,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
   end
 
+  # 会員情報を更新
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
@@ -18,11 +19,12 @@ class Public::CustomersController < ApplicationController
     end
   end
 
-  # 自己紹介コメント編集
+  # 自己紹介文編集
   def introduction_edit
     @customer = Customer.find_by(id: current_customer.id)
   end
 
+  # 自己紹介文更新
   def introduction_update
     @customer = Customer.find_by(id: current_customer.id)
     if @customer.update(customer_params)
@@ -32,6 +34,7 @@ class Public::CustomersController < ApplicationController
     end
   end
 
+  # 会員ページ表示
   def show
     @customer = Customer.find(params[:id])
     # POSTテーブルと結合して公開状態の投稿を取得
@@ -42,6 +45,7 @@ class Public::CustomersController < ApplicationController
                                                             customers: { status: 1 }).order(id: 'DESC').limit(5)
   end
 
+  # 退会確認画面
   def quit; end
 
   # 会員無効
@@ -53,8 +57,7 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
 
-  def search_page
-  end
+  def search_page; end
 
   # 会員検索
   def search
@@ -63,11 +66,13 @@ class Public::CustomersController < ApplicationController
     render 'search_page'
   end
 
+  # 会員別のペット一覧
   def pet_index
     @customer = Customer.find(params[:customer_id])
     @pets = Pet.where(customer_id: @customer.id)
   end
 
+  # 会員別の投稿一覧
   def post_index
     @customer = Customer.find(params[:customer_id])
     @posts = Post.where(customer_id: @customer.id).order(id: 'DESC').page(params[:page]).per(10)
@@ -81,7 +86,7 @@ class Public::CustomersController < ApplicationController
     render 'post_index'
   end
 
-  # ゲストログイン中にはセッションを消去できない
+  # ゲストログイン中に更新・削除ができない
   def ensure_normal_customer
     return if admin_signed_in?
 
@@ -91,6 +96,7 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path, notice: 'ゲスト ユーザーは更新・削除できません'
   end
 
+  # 正しい会員じゃない場合、ルートパスへ遷移する
   def correct_customer
     customer = Customer.find(params[:id])
     return unless customer != current_customer

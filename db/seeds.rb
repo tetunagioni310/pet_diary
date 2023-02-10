@@ -7,11 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # 管理者側
+# 管理者を作成
 Admin.create!(
   email: 'example@test.com',
   password: 'passwordpassword'
 )
 
+# ペット用のグループを作成
 Group.create!(
   [
     { group_name: '犬' },
@@ -21,20 +23,23 @@ Group.create!(
 )
 
 # 会員側
+# メインの会員作成
 Customer.create!(
   nick_name: 'test',
   email: 'test@test.com',
   password: 'testtesttest1105'
 )
 
-10.times do |_n|
+# その他の会員を10回作成
+10.times do
   Customer.create!(
-    nick_name: Faker::Internet.user_name(number:15),
+    nick_name: Faker::Internet.user_name(number: 15),
     email: Faker::Internet.unique.email,
     password: 'passwordpassword'
   )
 end
 
+# 会員それぞれが犬、猫、その他のペットを1匹ずつ作成
 Customer.all.each do |customer|
   Group.all.each do |group|
     case group.group_name
@@ -43,7 +48,7 @@ Customer.all.each do |customer|
         customer_id: customer.id,
         group_id: group.id,
         pet_kind: Faker::Creature::Animal.name,
-        pet_name: Faker::Creature::Dog.name(number:8),
+        pet_name: Faker::Creature::Dog.name(number: 8),
         gender: rand(1..2),
         birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
       )
@@ -52,7 +57,7 @@ Customer.all.each do |customer|
         customer_id: customer.id,
         group_id: group.id,
         pet_kind: Faker::Creature::Cat.breed,
-        pet_name: Faker::Creature::Cat.name(number:8),
+        pet_name: Faker::Creature::Cat.name(number: 8),
         gender: rand(1..2),
         birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
       )
@@ -61,13 +66,14 @@ Customer.all.each do |customer|
         customer_id: customer.id,
         group_id: group.id,
         pet_kind: Faker::Creature::Animal.name,
-        pet_name: Faker::Creature::Dog.name(number:8),
+        pet_name: Faker::Creature::Dog.name(number: 8),
         gender: rand(1..2),
         birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
       )
     end
   end
 
+  # 会員のペットの投稿をそれぞれ一件づつ作成
   customer.pets.each do |pet|
     Post.create!(
       customer_id: customer.id,
@@ -81,26 +87,16 @@ Customer.all.each do |customer|
   end
 end
 
+# フォロー作成
 customers = Customer.all
+
 customer  = customers.first
-# フォローされている
+# フォローされている会員
 following = customers[2..50]
-# フォローしている
+# フォローしている会員
 followers = customers[3..40]
+
+# 1番目の会員が[2..50]をフォローする
 following.each { |followed| customer.follow(followed.id) }
+# [3..50]の会員が一番目の会員をフォローする
 followers.each { |follower| follower.follow(customer.id) }
-
-# customers = Customer.all
-# customer  = customers.first
-
-# following = customers[2..50]
-# followers = customers[3..40]
-
-# following.each do |followed|
-#   customer.follow(followed.id)
-# end
-
-# followers.each do |follower|
-#   customer.follow(follower.id)
-# end
-

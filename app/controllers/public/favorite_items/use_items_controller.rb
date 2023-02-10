@@ -1,4 +1,5 @@
 class Public::FavoriteItems::UseItemsController < ApplicationController
+  # お気に入りに登録されているアイテムidを使用アイテムに追加する
   def create
     # 使用アイテムがある時、destroy_allメソッドを実行する
     # [&.]は対象のものがない場合はそのメソッドを実行しない

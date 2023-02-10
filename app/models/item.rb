@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   validates :item_name, presence: true
   validates :amount, presence: true
   validates :capacity, presence: true
+  validates :unit, presence: true
   validates :total_capacity, presence: true
 
   enum unit: { grams: 0, sheets: 1, pieces: 2 }

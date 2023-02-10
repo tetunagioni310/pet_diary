@@ -14,12 +14,14 @@ class Public::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.customer_id = current_customer.id
+    # アイテム名と容量が同じ時、既存のアイテムに個数が追加される
     if current_customer.items.find_by(item_name: @item.item_name, capacity: @item.capacity)
       item = current_customer.items.find_by(item_name: @item.item_name, capacity: @item.capacity)
       item.amount += @item.amount
       item.total_capacity += (@item.amount * @item.capacity)
       item.save
       redirect_to public_items_path, notice: '在庫を追加しました。'
+      # アイテムの名前・容量・個数のいずれかが空白の場合
     elsif @item.item_name.blank? || @item.capacity.blank? || @item.amount.blank?
       @items = Item.where(customer_id: current_customer.id)
       flash.now[:notice] = '商品名、個数、内容量のいずれかが空欄です。'
@@ -49,7 +51,8 @@ class Public::ItemsController < ApplicationController
                      end
     redirect_to public_items_path
   end
-
+  
+  # アラート設定
   def minimum_capacity
     @item = Item.find(params[:item_id])
     @item.update(item_params)
