@@ -28,7 +28,7 @@ class Customer < ApplicationRecord
   has_one_attached :customer_image
 
   validates :email, presence: true
-  validates :nick_name, unique: true, presence: true, length: { maximum: 15 }
+  validates :nick_name, presence: true, length: { maximum: 15 }
   validates :introduction, presence: true
 
   enum status: { nonreleased: 0, released: 1 }
