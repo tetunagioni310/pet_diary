@@ -7,12 +7,16 @@ FactoryBot.define do
     capacity              { 600 }
     association :customer
     
-    # trait "中" do
-    #   unit { :sheets }
-    # end
+    trait :sheet do
+      item_name { 'ペットシーツ 100枚入り' }
+      unit      { :sheets }
+      capacity  { 100 }
+    end
     
-    # trait "pieces" do
-    #   unit { :pieces }
-    # end
+    trait :piece do
+      item_name { 'VegeDrop' }
+      unit      { :pieces }
+      capacity  { 30 }
+    end
   end
 end

@@ -51,8 +51,13 @@ class Public::ItemsController < ApplicationController
   # アラート設定
   def minimum_capacity
     @item = Item.find(params[:item_id])
-    @item.update(item_params)
-    redirect_to public_item_path(@item.id), notice: '通知を設定しました。'
+    item = Item.new(item_params)
+    if @item.minimum_capacity != item.minimum_capacity
+      @item.update(item_params)
+      redirect_to public_item_path(@item.id), notice: '通知を設定しました。'
+    else
+      redirect_to public_item_path(@item.id), notice: 'alert設定に新たな数値を入力してください。'
+    end
   end
 
   def destroy

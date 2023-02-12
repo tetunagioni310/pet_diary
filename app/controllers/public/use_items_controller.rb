@@ -14,12 +14,24 @@ class Public::UseItemsController < ApplicationController
     if current_customer.use_items.find_by(item_id: params[:use_item][:item_id])
       # 使用アイテムから追加するアイテムidの使用アイテムを取り出し、追加する個数を加算する
       use_item = current_customer.use_items.find_by(item_id: params[:use_item][:item_id])
-      use_item.amount_used += params[:use_item][:amount_used].to_i
-      use_item.save
-      redirect_to public_use_items_path, notice: '使用量を追加しました。'
+      if @use_item.amount_used.present?
+        use_item.amount_used += params[:use_item][:amount_used].to_i
+        use_item.save
+        redirect_to public_use_items_path, notice: '使用量を追加しました。'
+      else
+        @item = Item.find_by(id: params[:use_item][:item_id])
+        flash[:notice] = '使用量を入力してください。'
+        render template: 'public/items/show'
+      end
     else
-      @use_item.save
-      redirect_to public_use_items_path, notice: '使用アイテムを追加しました。'
+      if @use_item.amount_used.present?
+        @use_item.save
+        redirect_to public_use_items_path, notice: '使用アイテムを追加しました。'
+      else
+        @item = Item.find_by(id: params[:use_item][:item_id])
+        flash[:notice] = '使用量を入力してください。'
+        render template: 'public/items/show'
+      end
     end
   end
 

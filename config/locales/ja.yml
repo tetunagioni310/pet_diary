@@ -80,6 +80,8 @@ ja:
         unit: "単位"
         capacity: "容量"
         total_capacity: "総容量"
+      use_item:
+        amount_used: "使用量"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

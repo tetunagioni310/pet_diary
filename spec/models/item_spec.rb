@@ -10,6 +10,16 @@ RSpec.describe Item, type: :model do
       expect(@item).to be_valid  # item.valid? が true になればパスする
     end
     
+    it 'unit(枚)を選択して場合、保存されるか' do
+      @sheet_item = create(:item, :sheet)
+      expect(@sheet_item).to be_valid
+    end
+    
+    it 'unit(個)を選択した場合、保存されるか' do
+      @piece_item = create(:item, :piece)
+      expect(@piece_item).to be_valid
+    end
+    
     it 'item_nameが空欄の場合、登録できない' do
       @item.item_name = nil
       @item.valid?
@@ -33,5 +43,7 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include('容量を入力してください')
     end
+    
   end
+  
 end
