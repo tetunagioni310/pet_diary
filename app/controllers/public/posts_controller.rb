@@ -113,8 +113,7 @@ class Public::PostsController < ApplicationController
     post = Post.find(params[:id])
     customer = Customer.find_by(id: post.customer_id)
     return unless customer.id != current_customer.id
-
-    redirect_to root_path
+    redirect_to root_path, notice: '管理者が違います。'
   end
 
   private

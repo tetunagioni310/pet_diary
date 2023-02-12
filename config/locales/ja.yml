@@ -72,6 +72,14 @@ ja:
         group_name: 'ジャンル名'
       work:
         work_name: "ワーク名"
+      comment:
+        comment_content: "コメント"
+      item:
+        item_name: "アイテム名"
+        amount: "個数"
+        unit: "単位"
+        capacity: "容量"
+        total_capacity: "総容量"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

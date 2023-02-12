@@ -1,13 +1,21 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :correct_customer, only: %i[edit update destroy]
 
   # コメント作成
   def create
     @comment = current_customer.comments.new(comment_params)
     @post = @comment.post
-    @comment.save
-    @post.create_notification_comment!(current_customer, @comment.id)
-    redirect_back(fallback_location: root_path)
+    if @comment.save
+      @post.create_notification_comment!(current_customer, @comment.id)
+      redirect_back(fallback_location: root_path)
+    else
+      flash.now[:notice] = 'コメントを入力してください。'
+      @comments = @post.comments.order(id: 'DESC').page(params[:page]).per(5)
+      @comment = current_customer.comments.new
+      @like = Like.new
+      render template: "public/posts/show"
+    end
   end
 
   # コメントの編集
@@ -22,7 +30,7 @@ class Public::CommentsController < ApplicationController
     @comment = Comment.find_by(id: params[:id])
     @post = @comment.post
     @comment.update(comment_params)
-    redirect_to public_post_path(@post.id)
+    redirect_to public_post_path(@post.id), notice: 'コメントを更新しました。'
   end
 
   # コメントの削除
@@ -31,6 +39,13 @@ class Public::CommentsController < ApplicationController
     @comment.destroy
     flash[:notice] = 'コメントを削除しました'
     redirect_back(fallback_location: root_path)
+  end
+  
+  def correct_customer
+    @comment = Comment.find(params[:id])
+    @customer = @comment.customer
+    return unless @customer.id != current_customer.id
+    redirect_to public_post_path(@comment.post.id), notice: '管理者が違います。'
   end
 
   private

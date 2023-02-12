@@ -29,7 +29,7 @@ class Customer < ApplicationRecord
 
   validates :email, presence: true
   validates :nick_name, uniqueness: true, presence: true, length: { maximum: 15 }
-  validates :introduction, presence: true
+  validates :introduction, presence: true, length: { maximum: 300 }
 
   enum status: { nonreleased: 0, released: 1 }
 

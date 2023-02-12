@@ -100,8 +100,7 @@ class Public::CustomersController < ApplicationController
   def correct_customer
     customer = Customer.find(params[:id])
     return unless customer != current_customer
-
-    redirect_to root_path
+    redirect_to root_path, notice: '管理者が違います。'
   end
 
   private

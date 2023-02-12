@@ -21,13 +21,9 @@ class Public::ItemsController < ApplicationController
       item.total_capacity += (@item.amount * @item.capacity)
       item.save
       redirect_to public_items_path, notice: '在庫を追加しました。'
-      # アイテムの名前・容量・個数のいずれかが空白の場合
-    elsif @item.item_name.blank? || @item.capacity.blank? || @item.amount.blank?
-      @items = Item.where(customer_id: current_customer.id)
-      flash.now[:notice] = '商品名、個数、内容量のいずれかが空欄です。'
-      render 'index'
     else
-      @item.total_capacity = @item.capacity * @item.amount
+      # アイテムの容量または個数が空欄の場合、総容量が計算されない
+      @item.total_capacity = @item.capacity * @item.amount if @item.capacity.present? && @item.amount.present?
       if @item.save
         redirect_to public_items_path, notice: 'アイテムを追加しました。'
       else

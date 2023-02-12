@@ -66,4 +66,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.include FactoryBot::Syntax::Methods
+  # RSpec.configure do |config|
+  #   config.include LoginModule  #  自分で作成したmoduleを読み込む(こちらはファイルの1番下に追加する )
+  # end
 end

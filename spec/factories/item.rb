@@ -6,5 +6,13 @@ FactoryBot.define do
     unit                  { :grams }
     capacity              { 600 }
     association :customer
+    
+    # trait "中" do
+    #   unit { :sheets }
+    # end
+    
+    # trait "pieces" do
+    #   unit { :pieces }
+    # end
   end
 end

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Customers' do
   let! (:customer)  { create(:customer) }
   let! (:customer2) { create(:customer) }
