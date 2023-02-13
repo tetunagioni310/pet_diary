@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LoginModule
   def login_as(customer)
     visit new_customer_session_path

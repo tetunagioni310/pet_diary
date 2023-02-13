@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class Public::PostsController < ApplicationController
   before_action :authenticate_customer!
   before_action :correct_customer, only: %i[edit update destroy]
 
   def index
-    @posts = Post.where(customer_id: current_customer.id).order(id: 'DESC').page(params[:page]).per(10)
+    @posts = Post.where(customer_id: current_customer.id).order(id: "DESC").page(params[:page]).per(10)
   end
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.order(id: 'DESC').page(params[:page]).per(5)
+    @comments = @post.comments.order(id: "DESC").page(params[:page]).per(5)
     @comment = current_customer.comments.new
     @like = Like.new
   end
@@ -22,9 +24,9 @@ class Public::PostsController < ApplicationController
     @post.customer_id = current_customer.id
     @pet = Pet.find_by(id: @post.pet_id)
     if @post.save
-      redirect_to public_post_path(@post.id), notice: '投稿を作成しました。'
+      redirect_to public_post_path(@post.id), notice: "投稿を作成しました。"
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -35,16 +37,16 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to public_post_path(@post.id), notice: '投稿を更新しました。'
+      redirect_to public_post_path(@post.id), notice: "投稿を更新しました。"
     else
-      render 'edit'
+      render "edit"
     end
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to public_posts_path, notice: '投稿を削除しました。'
+    redirect_to public_posts_path, notice: "投稿を削除しました。"
   end
 
   # def post_all_prototype
@@ -68,57 +70,56 @@ class Public::PostsController < ApplicationController
 
   def post_all
     @post_all = Post.released_post
-    @posts = Post.released_post.order(id: 'DESC').page(params[:posts_page]).per(8)
+    @posts = Post.released_post.order(id: "DESC").page(params[:posts_page]).per(8)
     # groupのid取得
     groups = Group.all
     groups.each do |group|
       case group.group_name
-      when '犬'
+      when "犬"
         @dog_group = group
-      when '猫'
+      when "猫"
         @cat_group = group
-      when 'その他'
+      when "その他"
         @other_group = group
       end
     end
   end
-  
+
   # 自分の投稿の中からペット名で検索する
   def search
-    @posts = Post.my_post_search(params[:keyword], current_customer).order(id: 'DESC').page(params[:page]).per(12)
+    @posts = Post.my_post_search(params[:keyword], current_customer).order(id: "DESC").page(params[:page]).per(12)
     @keyword = params[:keyword]
-    render 'index'
+    render "index"
   end
 
   def search_all
     @post_all = Post.all_post_search(params[:keyword])
-    @posts = Post.all_post_search(params[:keyword]).order(id: 'DESC').page(params[:page]).per(12)
+    @posts = Post.all_post_search(params[:keyword]).order(id: "DESC").page(params[:page]).per(12)
     @keyword = params[:keyword]
     # groupのid取得
     groups = Group.all
     groups.each do |group|
       case group.group_name
-      when '犬'
+      when "犬"
         @dog_group = group
-      when '猫'
+      when "猫"
         @cat_group = group
-      when 'その他'
+      when "その他"
         @other_group = group
       end
     end
-    render 'post_all'
+    render "post_all"
   end
 
   def correct_customer
     post = Post.find(params[:id])
     customer = Customer.find_by(id: post.customer_id)
     return unless customer.id != current_customer.id
-    redirect_to root_path, notice: '管理者が違います。'
+    redirect_to root_path, notice: "管理者が違います。"
   end
 
   private
-
-  def post_params
-    params.require(:post).permit(:pet_id, :post_title, :post_content, :post_image)
-  end
+    def post_params
+      params.require(:post).permit(:pet_id, :post_title, :post_content, :post_image)
+    end
 end

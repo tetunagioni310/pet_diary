@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::WorksController < ApplicationController
   before_action :authenticate_customer!
 
@@ -6,11 +8,11 @@ class Public::WorksController < ApplicationController
     # ログイン中の会員がペットを空白又は使用アイテムが空白の場合
     return unless current_customer.pets.blank? || current_customer.use_items.blank?
 
-    redirect_to public_use_items_path, notice: 'ペットが未登録です。'
+    redirect_to public_use_items_path, notice: "ペットが未登録です。"
   end
 
   def index
-    @works = Work.where(customer_id: current_customer.id).page(params[:page]).per(10).order(id: 'DESC')
+    @works = Work.where(customer_id: current_customer.id).page(params[:page]).per(10).order(id: "DESC")
   end
 
   def show
@@ -23,8 +25,8 @@ class Public::WorksController < ApplicationController
     @use_items = current_customer.use_items
     # 空白("")がカウントされてしまうので[reject(&:blank?)]で除外している
     if @work.pet_ids.reject(&:blank?).count <= 0 || @work.work_name.blank?
-      flash.now[:notice] = 'ワーク名もしくはペットを選択してください'
-      render 'new'
+      flash.now[:notice] = "ワーク名もしくはペットを選択してください"
+      render "new"
     end
     # アイテムの使用量に対して在庫を確認
     @use_items.each do |use_item|
@@ -63,7 +65,7 @@ class Public::WorksController < ApplicationController
         @item.save!
       end
     end
-    redirect_to public_works_path, notice: 'ワークを作成しました。'
+    redirect_to public_works_path, notice: "ワークを作成しました。"
   end
 
   def destroy
@@ -79,19 +81,18 @@ class Public::WorksController < ApplicationController
       item.save
     end
     @work.destroy
-    redirect_to public_works_path, notice: 'ワークを削除しました。'
+    redirect_to public_works_path, notice: "ワークを削除しました。"
   end
 
   def search
-    @works = Work.pet_work_search(params[:keyword], current_customer).order(id: 'DESC').page(params[:page]).per(12)
+    @works = Work.pet_work_search(params[:keyword], current_customer).order(id: "DESC").page(params[:page]).per(12)
     @keyword = params[:keyword]
-    render 'index'
+    render "index"
   end
 
   private
-
-  # pet_ids は配列なので以下の書き方
-  def work_params
-    params.require(:work_form).permit(:work_name, pet_ids: [])
-  end
+    # pet_ids は配列なので以下の書き方
+    def work_params
+      params.require(:work_form).permit(:work_name, pet_ids: [])
+    end
 end

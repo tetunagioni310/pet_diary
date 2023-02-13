@@ -1,7 +1,9 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class Public::FavoriteWorksControllerTest < ActionDispatch::IntegrationTest
-  test 'should get index' do
+  test "should get index" do
     get public_favorite_works_index_url
     assert_response :success
   end

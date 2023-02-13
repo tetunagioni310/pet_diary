@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   # テストデータ準備
   factory :use_item do
@@ -9,7 +11,7 @@ FactoryBot.define do
       amount_used { 1 }
       item_id     { create(:item, :sheet).id }
     end
-    
+
     trait :use_piece_item do
       amount_used { 1 }
       item_id     { create(:item, :piece).id }

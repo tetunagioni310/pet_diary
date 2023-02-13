@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::CommentsController < ApplicationController
   before_action :authenticate_customer!
   before_action :correct_customer, only: %i[edit update destroy]
@@ -10,8 +12,8 @@ class Public::CommentsController < ApplicationController
       @post.create_notification_comment!(current_customer, @comment.id)
       redirect_back(fallback_location: root_path)
     else
-      flash.now[:notice] = 'コメントを入力してください。'
-      @comments = @post.comments.order(id: 'DESC').page(params[:page]).per(5)
+      flash.now[:notice] = "コメントを入力してください。"
+      @comments = @post.comments.order(id: "DESC").page(params[:page]).per(5)
       @comment = current_customer.comments.new
       @like = Like.new
       render template: "public/posts/show"
@@ -30,27 +32,26 @@ class Public::CommentsController < ApplicationController
     @comment = Comment.find_by(id: params[:id])
     @post = @comment.post
     @comment.update(comment_params)
-    redirect_to public_post_path(@post.id), notice: 'コメントを更新しました。'
+    redirect_to public_post_path(@post.id), notice: "コメントを更新しました。"
   end
 
   # コメントの削除
   def destroy
     @comment = Comment.find_by(id: params[:id])
     @comment.destroy
-    flash[:notice] = 'コメントを削除しました'
+    flash[:notice] = "コメントを削除しました"
     redirect_back(fallback_location: root_path)
   end
-  
+
   def correct_customer
     @comment = Comment.find(params[:id])
     @customer = @comment.customer
     return unless @customer.id != current_customer.id
-    redirect_to public_post_path(@comment.post.id), notice: '管理者が違います。'
+    redirect_to public_post_path(@comment.post.id), notice: "管理者が違います。"
   end
 
   private
-
-  def comment_params
-    params.require(:comment).permit(:comment_content, :post_id)
-  end
+    def comment_params
+      params.require(:comment).permit(:comment_content, :post_id)
+    end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::GroupsController < ApplicationController
   before_action :authenticate_admin!
 
@@ -22,7 +24,7 @@ class Admin::GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to admin_groups_path
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -33,8 +35,7 @@ class Admin::GroupsController < ApplicationController
   end
 
   private
-
-  def group_params
-    params.require(:group).permit(:group_name)
-  end
+    def group_params
+      params.require(:group).permit(:group_name)
+    end
 end

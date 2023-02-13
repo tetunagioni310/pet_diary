@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::Customers::PetsController < ApplicationController
   # 会員別のペット一覧
   def show

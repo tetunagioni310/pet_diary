@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Item < ApplicationRecord
   belongs_to :customer
   has_many :use_items, dependent: :destroy

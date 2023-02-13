@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -9,25 +11,25 @@
 # 管理者側
 # 管理者を作成
 Admin.create!(
-  email: 'example@test.com',
-  password: 'passwordpassword'
+  email: "example@test.com",
+  password: "passwordpassword"
 )
 
 # ペット用のグループを作成
 Group.create!(
   [
-    { group_name: '犬' },
-    { group_name: '猫' },
-    { group_name: 'その他' }
+    { group_name: "犬" },
+    { group_name: "猫" },
+    { group_name: "その他" }
   ]
 )
 
 # 会員側
 # メインの会員作成
 Customer.create!(
-  nick_name: 'test',
-  email: 'test@test.com',
-  password: 'testtesttest1105'
+  nick_name: "test",
+  email: "test@test.com",
+  password: "testtesttest1105"
 )
 
 # その他の会員を10回作成
@@ -35,7 +37,7 @@ Customer.create!(
   Customer.create!(
     nick_name: Faker::Lorem.characters(number: 15),
     email: Faker::Internet.unique.email,
-    password: 'passwordpassword'
+    password: "passwordpassword"
   )
 end
 
@@ -43,32 +45,32 @@ end
 Customer.all.each do |customer|
   Group.all.each do |group|
     case group.group_name
-    when '犬'
+    when "犬"
       Pet.create!(
         customer_id: customer.id,
         group_id: group.id,
         pet_kind: Faker::Creature::Animal.name,
         pet_name: Faker::Lorem.characters(number: 8),
         gender: rand(1..2),
-        birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
+        birthday: Faker::Date.between_except(from: "2014-09-23", to: "2020-09-25", excepted: "2015-01-24")
       )
-    when '猫'
+    when "猫"
       Pet.create!(
         customer_id: customer.id,
         group_id: group.id,
         pet_kind: Faker::Creature::Cat.breed,
         pet_name: Faker::Lorem.characters(number: 8),
         gender: rand(1..2),
-        birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
+        birthday: Faker::Date.between_except(from: "2014-09-23", to: "2020-09-25", excepted: "2015-01-24")
       )
-    when 'その他'
+    when "その他"
       Pet.create!(
         customer_id: customer.id,
         group_id: group.id,
         pet_kind: Faker::Creature::Animal.name,
         pet_name: Faker::Lorem.characters(number: 8),
         gender: rand(1..2),
-        birthday: Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24')
+        birthday: Faker::Date.between_except(from: "2014-09-23", to: "2020-09-25", excepted: "2015-01-24")
       )
     end
   end
@@ -81,7 +83,7 @@ Customer.all.each do |customer|
       post_title: Faker::Lorem.sentence,
       post_content: Faker::Lorem.sentence,
       post_image: ActiveStorage::Blob.create_and_upload!(
-        io: File.open(Rails.root.join('app/assets/images/sample-image.jpg')), filename: 'sample-image.jpg'
+        io: File.open(Rails.root.join("app/assets/images/sample-image.jpg")), filename: "sample-image.jpg"
       )
     )
   end

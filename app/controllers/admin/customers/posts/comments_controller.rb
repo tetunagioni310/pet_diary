@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Customers::Posts::CommentsController < ApplicationController
   before_action :authenticate_admin!
 
@@ -7,6 +9,6 @@ class Admin::Customers::Posts::CommentsController < ApplicationController
     post = comment.post
     @customer = Customer.find_by(id: post.customer_id)
     comment.destroy
-    redirect_to admin_customer_post_path(@customer.id, post.id), notice: 'コメントを削除しました'
+    redirect_to admin_customer_post_path(@customer.id, post.id), notice: "コメントを削除しました"
   end
 end

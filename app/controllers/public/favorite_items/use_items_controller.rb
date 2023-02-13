@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::FavoriteItems::UseItemsController < ApplicationController
   # お気に入りに登録されているアイテムidを使用アイテムに追加する
   def create
@@ -12,7 +14,7 @@ class Public::FavoriteItems::UseItemsController < ApplicationController
         amount_used: favorite_item_detail.amount_used
       )
     end
-    flash[:notice] = 'お気に入りアイテムを呼び出しました'
+    flash[:notice] = "お気に入りアイテムを呼び出しました"
     redirect_to public_use_items_path
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::UseItemsController < ApplicationController
   before_action :authenticate_customer!
 
@@ -17,20 +19,20 @@ class Public::UseItemsController < ApplicationController
       if @use_item.amount_used.present?
         use_item.amount_used += params[:use_item][:amount_used].to_i
         use_item.save
-        redirect_to public_use_items_path, notice: '使用量を追加しました。'
+        redirect_to public_use_items_path, notice: "使用量を追加しました。"
       else
         @item = Item.find_by(id: params[:use_item][:item_id])
-        flash[:notice] = '使用量を入力してください。'
-        render template: 'public/items/show'
+        flash[:notice] = "使用量を入力してください。"
+        render template: "public/items/show"
       end
     else
       if @use_item.amount_used.present?
         @use_item.save
-        redirect_to public_use_items_path, notice: '使用アイテムを追加しました。'
+        redirect_to public_use_items_path, notice: "使用アイテムを追加しました。"
       else
         @item = Item.find_by(id: params[:use_item][:item_id])
-        flash[:notice] = '使用量を入力してください。'
-        render template: 'public/items/show'
+        flash[:notice] = "使用量を入力してください。"
+        render template: "public/items/show"
       end
     end
   end
@@ -38,25 +40,24 @@ class Public::UseItemsController < ApplicationController
   def update
     @use_item = UseItem.find(params[:id])
     @use_item.update(use_item_params)
-    redirect_to public_use_items_path, notice: '使用量を変更しました。'
+    redirect_to public_use_items_path, notice: "使用量を変更しました。"
   end
-  
+
   # 一つの使用アイテムを削除
   def destroy
     @use_item = UseItem.find(params[:id])
     @use_item.destroy
-    redirect_to public_use_items_path, notice: '使用アイテムを削除しました。'
+    redirect_to public_use_items_path, notice: "使用アイテムを削除しました。"
   end
-  
+
   # 全ての使用アイテムを削除
   def destroy_all
     current_customer.use_items.destroy_all
-    redirect_to public_use_items_path, notice: '使用アイテムを全て削除しました。'
+    redirect_to public_use_items_path, notice: "使用アイテムを全て削除しました。"
   end
 
   private
-
-  def use_item_params
-    params.require(:use_item).permit(:item_id, :amount_used)
-  end
+    def use_item_params
+      params.require(:use_item).permit(:item_id, :amount_used)
+    end
 end

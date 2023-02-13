@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   # テストデータ準備
   factory :notification do
-    visitor_id    { customer_id }
-    visited_id    { customer_id }
-    gender      { :♂ }
-    birthday    { Faker::Date.between_except(from: '2014-09-23', to: '2020-09-25', excepted: '2015-01-24') }
+    visitor_id    { create(:customer).id }
+    visited_id    { create(:customer).id }
+    action        { 'follow' }
     
-    association :customer
-    
-    trait "cat_group" do
-      association :group, :cat_group
+    trait :comment do
+      action { 'comment' }
+      association :post
+      association :comment
     end
-    
-    trait "other_group" do
-      association :group, :other_group
+
+    trait :like do
+      action { 'like' }
+      association :post
     end
   end
 end

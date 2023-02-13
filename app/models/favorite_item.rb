@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FavoriteItem < ApplicationRecord
   belongs_to :customer
   has_many :favorite_item_details, dependent: :destroy
