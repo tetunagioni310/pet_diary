@@ -17,7 +17,7 @@ class Public::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.customer_id = current_customer.id
     # アイテム名と容量が同じ時、既存のアイテムに個数が追加される
-    if current_customer.items.find_by(item_name: @item.item_name, capacity: @item.capacity)
+    if current_customer.items.find_by(item_name: @item.item_name, capacity: @item.capacity, unit: @item.unit)
       item = current_customer.items.find_by(item_name: @item.item_name, capacity: @item.capacity)
       item.amount += @item.amount
       item.total_capacity += (@item.amount * @item.capacity)

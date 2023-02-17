@@ -155,7 +155,7 @@ div.content-class {
     div.customer-info {
       align-items: center;
       a {
-        font-size: 15px;
+        font-size: 10px;
         margin-left: 10px;
         font-weight: bold;
         text-decoration: none;
@@ -471,6 +471,10 @@ div.follow-field {
   table {
     tr {
       td {
+        div {
+          font-size: 8px;
+        }
+        
         img {
           border-radius: 100%;
           display: inline-block;
@@ -478,6 +482,7 @@ div.follow-field {
       }
     }
   }
+  
 }
 
 // top-page
