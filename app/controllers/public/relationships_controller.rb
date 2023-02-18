@@ -22,6 +22,8 @@ class Public::RelationshipsController < ApplicationController
   # フォロー一覧用
   def followings
     @customer = Customer.find(params[:customer_id])
+    # フォローページかどうか
+    @followings = true
     @customers = @customer.followings
   end
 

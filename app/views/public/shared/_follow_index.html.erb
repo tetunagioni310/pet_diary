@@ -6,7 +6,11 @@
           <% if customers.count >= 1 %>
             <tr>
               <th colspan="2">
-                フォロワー
+                <% if followings %>
+                  フォロー
+                <% else %>
+                  フォロワー
+                <% end %>
               </th>
             </tr>
 
