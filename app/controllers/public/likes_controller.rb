@@ -13,14 +13,12 @@ class Public::LikesController < ApplicationController
       @post.create_notification_like!(current_customer)
     end
     render 'public/likes/like.js.erb', post: @post
-    # redirect_back(fallback_location: root_path)
   end
 
   def destroy
     @like = Like.find_by(post_id: params[:post_id], customer_id: current_customer.id)
     @like.destroy
     render 'public/likes/like.js.erb', post: @post
-    # redirect_back(fallback_location: root_path)
   end
 
 

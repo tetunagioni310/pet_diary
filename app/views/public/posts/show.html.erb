@@ -20,52 +20,23 @@
         </time>
 
         <div class="col d-flex small text-muted text-left border-top">
+          
           <%= link_to @post.pet.pet_name, public_pet_path(@post.pet_id), class: "other-link" %><%= @post.pet.gender == "♂" ? "くん" : "ちゃん" %>の投稿
+          
           <div id="like-box">
             <%= render "public/shared/like", post: @post %>
           </div>
         </div>
-
-
-        <div class="col px-0 border-top">
-          <%= form_with model: [@post,@comment], url: public_post_comments_path(@post.id), method: :post do |f| %>
-          <%= render "public/shared/error_messages", resource: @comment %>
-            <div class="col">
-              <%= f.text_area :comment_content, rows: "2", class: "form-control mx-auto mt-3" %>
-              <%= f.hidden_field :post_id, value: @post.id %>
-              <%= f.submit "コメントをする", class: "btn btn-success btn-sm my-3" %>
-            </div>
-          <% end %>
+        
+        <div>
+          <%= render 'public/comments/comment_form', post: @post, comment: @comment %>
         </div>
-
-        <div class="m-auto">
-          <div class="col mx-0 px-0">
-            <% @comments.each do |comment| %>
-              <div class="col border-top m-0 p-0">
-                <div class="col">
-                  <%= render 'public/shared/customer_info', comment: comment %>
-                  <div class="col small text-muted d-flex justify-content-between align-items-center px-0 py-3">
-                    <div class="small text-muted text-right">
-                      <%= comment.created_at.strftime("%Y/%m/%d") %>
-                    </div>
-                    <% if comment.customer_id == current_customer.id %>
-                      <div class="d-flex">
-                      <%= button_to edit_public_post_comment_path(comment.post_id,comment.id), method: :get do %>
-                        <i class="fas fa-solid fa-pen"></i>
-                      <% end %>
-                      &nbsp;
-                      <%= button_to public_post_comment_path(comment.post_id,comment.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
-                        <i class="fas fa-solid fa-trash"></i>
-                      <% end %>
-                    </div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-            <%= render 'public/shared/paginate', lists: @comments %>
-          </div>
+        
+        
+        <div id="comment-box">
+          <%= render 'public/comments/post_comments', post: @post, comments: @comments %>
         </div>
+        
       </section>
     </div>
   </div>
@@ -75,6 +46,7 @@
         <i class="fas fa-solid fa-reply mr-2"></i><%= @post.customer.nick_name %>さんの投稿一覧
       <% end %>
   </div>
+  
   <div class="col-md-6 mx-auto my-4">
     <%= link_to :back, class: "default-color other-link" do %>
       <i class="fas fa-solid fa-reply mr-2"></i>戻る
