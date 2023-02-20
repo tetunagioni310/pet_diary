@@ -19,14 +19,16 @@
           <%= @post.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %>
         </time>
 
-        <div class="col small text-muted text-left border-top">
+        <div class="col d-flex small text-muted text-left border-top">
           <%= link_to @post.pet.pet_name, public_pet_path(@post.pet_id), class: "other-link" %><%= @post.pet.gender == "♂" ? "くん" : "ちゃん" %>の投稿
-          <%= render "public/shared/like", post: @post %>
+          <div id="like-box">
+            <%= render "public/shared/like", post: @post %>
+          </div>
         </div>
 
 
         <div class="col px-0 border-top">
-          <%= form_with model: [@post,@comment],url: public_post_comments_path(@post.id), method: :post do |f| %>
+          <%= form_with model: [@post,@comment], url: public_post_comments_path(@post.id), method: :post do |f| %>
           <%= render "public/shared/error_messages", resource: @comment %>
             <div class="col">
               <%= f.text_area :comment_content, rows: "2", class: "form-control mx-auto mt-3" %>

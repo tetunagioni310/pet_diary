@@ -84,6 +84,10 @@ class Public::PostsController < ApplicationController
       end
     end
   end
+  
+  def post_all_tab
+    
+  end
 
   # 自分の投稿の中からペット名で検索する
   def search
