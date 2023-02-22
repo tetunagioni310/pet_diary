@@ -10,7 +10,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.order(id: "DESC").page(params[:page]).per(5)
+    @comments = @post.comments.order(id: :desc).page(params[:page]).per(5)
     @comment = current_customer.comments.new
     @like = Like.new
   end
@@ -115,14 +115,15 @@ class Public::PostsController < ApplicationController
     render "post_all"
   end
 
-  def correct_customer
-    post = Post.find(params[:id])
-    customer = Customer.find_by(id: post.customer_id)
-    return unless customer.id != current_customer.id
-    redirect_to root_path, notice: "管理者が違います。"
-  end
-
   private
+  
+    def correct_customer
+      post = Post.find(params[:id])
+      customer = Customer.find_by(id: post.customer_id)
+      return unless customer.id != current_customer.id
+      redirect_to root_path, notice: "管理者が違います。"
+    end
+  
     def post_params
       params.require(:post).permit(:pet_id, :post_title, :post_content, :post_image)
     end

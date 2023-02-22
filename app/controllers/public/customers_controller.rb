@@ -98,14 +98,15 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path, notice: "ゲスト ユーザーは更新・削除できません"
   end
 
-  # 正しい会員じゃない場合、ルートパスへ遷移する
-  def correct_customer
-    customer = Customer.find(params[:id])
-    return unless customer != current_customer
-    redirect_to root_path, notice: "管理者が違います。"
-  end
-
   private
+  
+    # 正しい会員じゃない場合、ルートパスへ遷移する
+    def correct_customer
+      customer = Customer.find(params[:id])
+      return unless customer != current_customer
+      redirect_to root_path, notice: "管理者が違います。"
+    end
+  
     def customer_params
       params.require(:customer).permit(:email, :nick_name, :introduction, :customer_image, :status)
     end

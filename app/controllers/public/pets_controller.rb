@@ -60,15 +60,16 @@ class Public::PetsController < ApplicationController
     redirect_to public_pets_path, notice: "登録ペットを削除しました。"
   end
 
-  # ペットの会員idがログイン中の会員idと一致しない時にルートページへ遷移
-  def correct_customer
-    pet = Pet.find(params[:id])
-    customer = Customer.find_by(id: pet.customer_id)
-    return unless customer.id != current_customer.id
-    redirect_to root_path, notice: "管理者が違います。"
-  end
-
   private
+  
+    # ペットの会員idがログイン中の会員idと一致しない時にルートページへ遷移
+    def correct_customer
+      pet = Pet.find(params[:id])
+      customer = Customer.find_by(id: pet.customer_id)
+      return unless customer.id != current_customer.id
+      redirect_to root_path, notice: "管理者が違います。"
+    end
+  
     def pet_params
       params.require(:pet).permit(:pet_name, :pet_introduction, :gender, :pet_image, :group_id, :pet_kind, :birthday)
     end

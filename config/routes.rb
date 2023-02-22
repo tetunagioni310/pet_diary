@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         get "search"
         # get 'post_all_prototype'
         get "post_all"
-        get "post_all_tab"
+        # get "post_all_tab"
         get "search_all"
       end
       resource :likes, only: %i[create destroy]

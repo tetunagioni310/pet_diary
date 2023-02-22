@@ -10,6 +10,7 @@ class Public::CommentsController < ApplicationController
     @post = @comment.post
     if @comment.save
       @post.create_notification_comment!(current_customer, @comment.id)
+      flash[:notice] = "コメントを作成しました。"
       redirect_back(fallback_location: root_path)
     else
       flash.now[:notice] = "コメントを入力してください。"
@@ -43,14 +44,17 @@ class Public::CommentsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def correct_customer
-    @comment = Comment.find(params[:id])
-    @customer = @comment.customer
-    return unless @customer.id != current_customer.id
-    redirect_to public_post_path(@comment.post.id), notice: "管理者が違います。"
-  end
+  
 
   private
+    
+    def correct_customer
+      @comment = Comment.find(params[:id])
+      @customer = @comment.customer
+      return unless @customer.id != current_customer.id
+      redirect_to public_post_path(@comment.post.id), notice: "管理者が違います。"
+    end
+  
     def comment_params
       params.require(:comment).permit(:comment_content, :post_id)
     end
