@@ -1,3 +1,3 @@
 <!--document.getElementById("like-box").innerHTML = '<%#= j(render "public/shared/like",  post: @post ) %>'-->
-<!--上記でも同じ結果が得られる-->
+<!--上記でも同じ結果が得られる。like-boxの中身をcreate処理をして更新し、renderする-->
 $("#like-box").html("<%= j(render 'public/shared/like', post: @post) %>");

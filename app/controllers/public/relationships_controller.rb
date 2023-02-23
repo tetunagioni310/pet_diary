@@ -10,11 +10,13 @@ class Public::RelationshipsController < ApplicationController
       current_customer.follow(params[:customer_id])
       @customer.create_notification_follow!(current_customer)
     end
+    # ralationships/create.js.erbに飛ぶ
   end
 
   # フォロー外すとき
   def destroy
     current_customer.unfollow(@customer.id)
+    # ralationships/destroy.js.erbに飛ぶ
   end
 
   # フォロー一覧用
@@ -30,7 +32,7 @@ class Public::RelationshipsController < ApplicationController
   end
   
   private
-  
+  # customer_idから会員を探す
   def set_customer
     @customer = Customer.find(params[:customer_id])
   end

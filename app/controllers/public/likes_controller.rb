@@ -12,15 +12,18 @@ class Public::LikesController < ApplicationController
       # 通知レコードを作成
       @post.create_notification_like!(current_customer)
     end
+    # likes/create.js.erbに遷移する
   end
 
   def destroy
     @like = Like.find_by(post_id: params[:post_id], customer_id: current_customer.id)
     @like.destroy
+    # likes/destroy.js.erbに遷移する
   end
 
 
   private
+    # いいねする投稿を取得する
     def set_post
       @post = Post.find_by(id: params[:post_id])
     end
