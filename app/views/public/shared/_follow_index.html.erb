@@ -22,13 +22,11 @@
                       <%= image_tag customer.get_customer_image(30,30)%>
                       <%= link_to customer.nick_name, public_customer_path(customer.id), class: "bold other-link ml-2" %>
                     </div>
-                    <div class="ml-3 ">
-                      <% if current_customer.following?(customer) %>
-                        <%= link_to "フォロー中", public_customer_relationships_path(customer.id), class: "btn btn-outline-danger btn-sm bold", method: :delete %>
-                      <% else %>
-                        <%= link_to "+フォロー", public_customer_relationships_path(customer.id), class: "btn btn-outline-success btn-sm bold", method: :post %>
-                      <% end %>
+                    
+                    <div id="relationship-box" class="ml-3 ">
+                      <%= render 'public/shared/relationships', customer: customer %>
                     </div>
+                    
                   </div>
                 <% end %>
               </td>
