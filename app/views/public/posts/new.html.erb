@@ -11,7 +11,7 @@
           <div class="col-md-10 my-3 mx-md-3">
             <div class="form-group row">
               <%= f.label :pet_id, class: "col-md-3 col-form-label px-0 bold" %>
-              <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name), class: "form-control col-md-9" %>
+              <%= f.select :pet_id, options_from_collection_for_select(current_customer.pets, :id, :pet_name), {prompt: "選択してください"}, class: "form-control col-md-9" %>
             </div>
 
             <div class="form-group row">
