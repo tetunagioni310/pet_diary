@@ -34,7 +34,13 @@
           <% else %>
             <tr>
               <td class="col">
-                <p class="no-data">フォロワーはいません</p>
+                <p>
+                  <% if followings %>
+                    フォローしていません
+                  <% else %>
+                    フォロワーはいません
+                  <% end %>
+                </p>
               </td>
             </tr>
           <% end %>
