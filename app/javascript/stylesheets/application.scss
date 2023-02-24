@@ -152,7 +152,7 @@ div.content-class {
     border: 1px solid #EA6B66;
     background-color: #fff;
 
-    div.customer-info {
+    div.tab-customer-info {
       align-items: center;
       a {
         font-size: 10px;
@@ -491,11 +491,10 @@ div.top-content {
   border: 1px solid #EA6B66;
   margin: 30px auto 0;
 
-    div.user-info {
+    div.top-customer-info {
         align-items: center;
         img {
         border-radius: 100%;
-        border: 1px solid #EA6B66;
       }
     }
   }

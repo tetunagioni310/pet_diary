@@ -8,25 +8,35 @@
   <% visited = notification.visited %>
   
   <div class="row col mx-0 px-0">
-    <div class="d-flex align-items-center small">
-      <%= image_tag visitor.get_customer_image(30,30), class: "image-circle mx-2 px-0" %>
+    <div>
       <p class="small">
-        <%= link_to visitor.nick_name, public_customer_path(visitor.id), class: "other-link bold" %>さんが
-        
+      <%= link_to  public_customer_path(visitor.id), class: "other-link bold" do %>
+        <%= (image_tag visitor.get_customer_image(20,20), class: "image-circle") + (visitor.nick_name) %>
+      <% end %>
+      さんが
         <% case notification.action %>
         <% when 'follow' then %>
-            あなたをフォローしました
+          あなたをフォローしました。
         <% when 'like' then %>
-            <%= link_to 'あなたの投稿', public_post_path(notification.post.id), class: "other-link small" %>にいいねしました
+          <%= link_to 'あなたの投稿', public_post_path(notification.post.id), class: "other-link small" %>にいいねしました。
         <% when 'comment' then %>
-        <% comment = Comment.find_by(id: notification.comment_id) %>
           <% if notification.post.customer_id == visited.id %>
-            <%= link_to "あなたの投稿", public_post_path(notification.post.id), class: "d-flex other-link align-items-center" %>にコメントしました
+            <%= link_to "あなたの投稿", public_post_path(notification.post.id), class: "d-flex other-link align-items-center" %>にコメントしました。
           <% else %>
-            <strong>『<%= link_to notification.post.post_title, public_post_path(notification.post.id), class: "other-link" %>』</strong>にコメントしました。
+            <span>
+              <%= link_to public_post_path(notification.post), class: "other-link" do %>
+                <strong><%= (image_tag notification.post.customer.get_customer_image(20,20), class: "image-circle") + notification.post.customer.nick_name + 'さんの投稿' %></strong>
+              <% end %>
+              にコメントしました。
+            </span>
           <% end %>
+          </p>
+          
+          <p class="text-muted small">
+            "<%= Comment.find_by(id: notification.comment_id)&.comment_content %>"
+          </p>
+          
         <% end %>
-        
       </p>
     </div>
   </div>
