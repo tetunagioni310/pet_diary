@@ -22,7 +22,6 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
-    @pet = Pet.find_by(id: @post.pet_id)
     if @post.save
       redirect_to public_post_path(@post.id), notice: "投稿を作成しました。"
     else
