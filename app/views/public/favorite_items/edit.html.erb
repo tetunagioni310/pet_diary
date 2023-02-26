@@ -8,8 +8,8 @@
         <%= render "public/shared/error_messages", resource: @favorite_item %>
           <div class="text-field row col mx-0 my-3 py-3">
             <%= f.label :favorite_item_name, class: "col-sm-3 bold col-form-label" %>
-            <div class="col-sm-9">
-              <%= f.text_field :favorite_item_name, class: "form-cocntrol col-8" %>
+            <div class="form-group col-sm-9">
+              <%= f.text_field :favorite_item_name, placeholder: "入力してください", class: "form-cocntrol col-8" %>
               <%= f.submit "変更", class: "btn btn-success col-3" %>
             </div>
           </div>

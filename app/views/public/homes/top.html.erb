@@ -8,7 +8,7 @@
           <h2 class="col mx-auto h2 bold text-center border-bottom">新着投稿</h2>
           <% if @posts.count >= 1 %>
             <% @posts.each do |post| %>
-              <div class="col-md-8 text-field top-content">
+              <div class="col-md-8 text-field top-content mb-5">
                 <div class="col p-2 d-flex px-0 top-customer-info">
                   <%= image_tag post.customer.get_customer_image(30,30) %>
                   <%= link_to post.customer.nick_name, public_customer_path(post.customer.id), class: "other-link small mx-2" %>
