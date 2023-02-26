@@ -12,22 +12,27 @@
             <span class="inline-text small bold"><%= visitor.nick_name %></span>
         <% end %>
         <span class="inline-text small">さんが</span>
+        
         <% case notification.action %>
         <% when 'follow' then %>
           <span class="inline-text small">あなたをフォローしました。</span>
+          
         <% when 'like' then %>
-          <%= link_to 'あなたの投稿', public_post_path(notification.post.id), class: "other-link small" %>にいいねしました。
+          <%= link_to 'あなたの投稿', public_post_path(notification.post.id), class: "d-inline-flex inline-text other-link small align-center" %>
+          <span class="inline-text small">にいいねしました。</span>
+          
         <% when 'comment' then %>
           <% if notification.post.customer_id == visited.id %>
-            <%= link_to "あなたの投稿", public_post_path(notification.post.id), class: "d-flex other-link small align-items-center" %>にコメントしました。
+            <%= link_to "あなたの投稿", public_post_path(notification.post.id), class: "d-inline-flex inline-text other-link small align-center" %>
+            <span class="inline-text small">にコメントしました。</span>
           <% else %>
               <%= link_to public_post_path(notification.post), class: "other-link d-inline-flex align-center small" do %>
                 <%= image_tag notification.post.customer.get_customer_image(20,20), class: "image-circle mr-1" %>
                 <span class="inline-text"><strong><%= notification.post.customer.nick_name %></strong></span>
               <% end %>
-              <span class="inline-text small">さんの投稿に</span>
-              <span class="inline-text small">コメントしました。</span>
+              <span class="inline-text small">さんの投稿にコメントしました。</span>
           <% end %>
+          
         <% end %>
       </div>
       
