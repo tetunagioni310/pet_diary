@@ -22,8 +22,12 @@
       </tr>
 
       <tr>
-        <td class="text-center bold"><%= link_to "#{customer.followings.count}フォロー", public_customer_followings_path(customer.id), class: "follow-link" %></td>
-        <td class="text-center bold"><%= link_to "#{customer.followers.count}フォロワー", public_customer_followers_path(customer.id), class: "follow-link" %></td>
+        <td id="relationship-link" class="text-center bold">
+          <%= render "public/shared/relationship_link", customer: customer, followings: true %>
+        </td>
+        <td id="relationship_link" class="text-center bold">
+          <%= render "public/shared/relationship_link", customer: customer, followings: false %>
+        </td>
       </tr>
       
       <% if customer.id == current_customer.id %>
