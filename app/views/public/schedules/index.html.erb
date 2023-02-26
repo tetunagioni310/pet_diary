@@ -47,7 +47,7 @@
       <% if schedules.length < 3 %>
         <% schedules.each do |schedule| %>
           <div class="col p-0">
-            <%= link_to schedule.schedule_title.truncate(5), public_schedule_path(schedule.id) %>
+            <%= link_to schedule.schedule_title.truncate(5), public_schedule_path(schedule.id), class: "default-color other-link" %>
           </div>
         <% end %>
       <% else %>
