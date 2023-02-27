@@ -1,5 +1,4 @@
 <!--relationship-boxの中身をcreate処理をして更新し、renderする-->
 $("#relationship-box").html("<%= j(render 'public/shared/relationships', customer: @customer) %>");
 
-$("#relationship-link").html("<%= j(render 'public/shared/relationship_link', customer: @customer, followings: true) %>");
 $("#relationship-link").html("<%= j(render 'public/shared/relationship_link', customer: @customer, followings: false) %>");

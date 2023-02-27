@@ -39,6 +39,7 @@ class Public::CustomersController < ApplicationController
   # 会員ページ表示
   def show
     @customer = Customer.find(params[:id])
+    @current_customer = current_customer
     # POSTテーブルと結合して公開状態の投稿を取得
     @like_posts = Post.joins(:likes, :customer).where(likes: { customer_id: @customer.id },
                                                       customers: { status: 1 }).order(id: "DESC").limit(5)
