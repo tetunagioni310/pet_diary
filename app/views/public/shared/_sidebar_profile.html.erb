@@ -16,7 +16,7 @@
       <tr>
         <td class="text-center bold"><%= customer.nick_name %></td>
         
-        <td id="relationship-box" class="text-center">
+        <td id="relationship-box-<%= customer.id %>" class="text-center">
           <%= render 'public/shared/relationships', customer: customer %>
         </td>
       </tr>

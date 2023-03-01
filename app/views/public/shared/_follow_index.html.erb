@@ -22,8 +22,7 @@
                       <%= image_tag customer.get_customer_image(30,30)%>
                       <%= link_to customer.nick_name, public_customer_path(customer.id), class: "bold other-link ml-2" %>
                     </div>
-                    
-                    <div id="relationship-box" class="ml-3 ">
+                    <div id="relationship-box-<%= (customer.id).to_s %>" class="ml-3 ">
                       <%= render 'public/shared/relationships', customer: customer %>
                     </div>
                     
