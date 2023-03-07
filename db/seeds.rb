@@ -29,7 +29,7 @@ Group.create!(
 Customer.create!(
   nick_name: "test",
   email: "test@test.com",
-  password: "testtesttest1105"
+  password: "test1105"
 )
 
 # その他の会員を10回作成
