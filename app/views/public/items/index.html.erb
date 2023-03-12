@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row mt-sm-5">
     <div class="col-lg-6 mb-3">
-      <div class="h4 bold">アイテム在庫一覧</div>
+      <h3>アイテム在庫一覧</h3>
       <div class="items-list text-field p-3">
         <% if @items.count >= 1 %>
           <table class="col">
@@ -41,7 +41,7 @@
     </div>
 
     <div class="col-lg-6">
-      <div class="h4 bold">アイテム登録</div>
+      <h3>アイテム登録</h3>
       <div class="my-3 mx-0">
         <%= form_with model: @item, url: public_items_path, method: :post do |f| %>
         <%= render "public/shared/error_messages", resource: @item %>

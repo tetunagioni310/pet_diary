@@ -3,7 +3,7 @@
     <div class="col">
 
         <div class="text-field col-md-10 mx-auto">
-          <h5 class="h5 my-4 text-center">
+          <h4 class="my-4 text-center">
             <% if @missing_item_flag %>
             <!--アイテム不足フラグがある時-->
               在庫が不足しています。ワークを作成できません
@@ -11,7 +11,7 @@
             <!--アイテム不足フラグがない時-->
               <span class="bold">[<%= @work.pet_names.join("] [") %>]</span>の『<%= @work.work_name %>』を実行します
             <% end %>
-          </h5>
+          </h4>
 
           <table class="col p-0 m-0">
 

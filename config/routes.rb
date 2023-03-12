@@ -37,7 +37,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :works, only: %i[index show new create destroy] do
+    resources :works, only: %i[index new create destroy] do
       collection do
         get "log"
         get "search"

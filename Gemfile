@@ -55,7 +55,6 @@ group :development do
   gem "rubocop-minitest", require: false
   gem "rubocop-packaging", require: false
   gem "rubocop-rspec"
-  gem "pry-rails"
 end
 
 group :test do

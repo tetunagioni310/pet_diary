@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-8 m-auto">
 
-      <div class="mb-5 h2 bold">コメント編集</div>
+      <h2 class="mb-5 text-left">コメント編集</h2>
       <%= form_with model: [@post,@comment], url: public_post_comment_path(@post.id), method: :patch do |f| %>
 
         <table class="col">

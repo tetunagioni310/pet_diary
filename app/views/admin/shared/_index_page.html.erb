@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col">
+      <h1 class="pb-5">会員一覧</h1>
+      <div class="col-md-6 m-auto text-field admin-customers custom-table p-3">
+        <table class="col text-center border-top">
+
+          <% if customers.count >= 1 %>
+            <% customers.each do |customer| %>
+              <tr class="border-bottom">
+                <td class="h5 bold text-left"><%= customer.nick_name %></td>
+              </tr>
+  
+              <tr>
+                <td class="col d-flex justify-content-between">
+                  <%= customer.email %>
+                </td>
+              </tr>
+              
+              <tr>
+                <td class="text-right pb-3 border-bottom">
+                  <%= link_to "投稿一覧", admin_customer_posts_path(customer.id), class: "btn btn-success btn-sm" %>
+                  <%= link_to customer.deleted?, edit_admin_customer_path(customer.id), class: "other-link ml-2" %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td>
+                <p class="no-date">
+                  登録されていません
+                </p>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+        <div class="col text-center">
+          <%= paginate customers %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

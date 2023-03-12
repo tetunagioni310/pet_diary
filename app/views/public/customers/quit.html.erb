@@ -2,7 +2,7 @@
      <div class="row">
 
       <div class="col text-center m-md-5">
-        <div class="h2 bold m-md-5">退会しますか？</div>
+        <h2 class="m-md-5">退会しますか？</h2>
         <div class="col-md-6 mx-auto my-5">
           <%= link_to "退会をやめる", root_path, class: "btn btn-success btn-sm" %>
           <%= link_to "退会する", withdrawal_public_customers_path, method: :patch, class: "btn btn-danger ml-5 btn-sm", data: { confirm: '本当に退会しますか？'} %>

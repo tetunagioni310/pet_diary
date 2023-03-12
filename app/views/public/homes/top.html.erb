@@ -5,7 +5,7 @@
         <%= image_tag '24971705_m.jpg', class: "col my-3" %>
 
         <div class="col mx-0 mt-5">
-          <h2 class="col mx-auto h2 bold text-center border-bottom">新着投稿</h2>
+          <h1 class="col border-bottom">新着投稿</h2>
           <% if @posts.count >= 1 %>
             <% @posts.each do |post| %>
               <div class="col-md-8 text-field top-content mb-5">
@@ -35,7 +35,7 @@
 
     <div class="col-md-4">
         <div class="col my-md-0 text-field">
-          <h4 class="col-lg-8 mx-auto text-center h4 bold mb-3 border-bottom">投稿画像</h4>
+          <h2 class="col-lg-8 mb-3 border-bottom">投稿画像</h2>
           <div class="row">
             <% if @order_posts.count >= 1 %>
               <% @order_posts.each do |order_post| %>

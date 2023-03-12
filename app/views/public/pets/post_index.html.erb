@@ -1,13 +1,13 @@
 <div class="container">
 
-  <div class="row h5 bold mb-5 px-0 mx-auto col-md-8">
-      <%= @pet.pet_name %><%= @pet.pet_gender %>の投稿一覧
-      <% if @pet.customer.id == current_customer.id %>
-        <%= link_to new_public_post_path, class: "new-link ml-3" do %>
-          <i class="fas fa-x fa-solid fa-plus"></i>
-        <% end %>
+  <h4 class="d-flex mb-5 mx-auto col-md-8">
+    <%= @pet.pet_name %><%= @pet.pet_gender %>の投稿一覧
+    <% if @pet.customer.id == current_customer.id %>
+      <%= link_to new_public_post_path, class: "new-link ml-3" do %>
+        <i class="fas fa-x fa-solid fa-plus"></i>
       <% end %>
-  </div>
+    <% end %>
+  </h4>
 
   <div class="row">
     <div class="col">

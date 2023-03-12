@@ -11,12 +11,12 @@
 
 <div class="container">
   <div class="row col-md-6 mx-auto px-0 pb-5">
-    <div class="bold h4">
+    <h2 class="m-0">
       使用アイテム
       <%= link_to public_items_path, class: "new-link p-0" do %>
         <i class="fas fa-solid fa-plus"></i>
       <% end %>
-    </div>
+    </h2>
   </div>
 
   <% if current_customer.favorite_items.count >= 1 %>
@@ -40,9 +40,9 @@
           <% @use_items.each do |use_item| %>
             <% item = Item.find_by(id: use_item.item_id)%>
             <section class="my-3 mx-auto border-bottom">
-              <h2 class="d-flex mx-md-3 my-3 bold p-0 align-center">
+              <h4 class="d-flex mx-md-3 my-3 align-center">
                 <%= use_item.item.item_name %>
-              </h2>
+              </h4>
               
                 <p class="mx-md-3 my-3 p-0">
                 ＊<%= item.total_capacity / use_item.amount_used %>　回分の在庫があります

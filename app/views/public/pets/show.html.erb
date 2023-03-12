@@ -1,11 +1,11 @@
 <div class="container">
   
-  <p class="h5 bold">
+  <h4 class="mb-3">
     <%= @pet.pet_name + @pet.pet_gender %>の詳細ページ
     <%= link_to public_customer_path(@pet.customer_id), class: "btn btn-sm p-0 mx-2 text-warning" do %>
       <i class="fas fa-2x fa-solid fa-user mb-1"></i>
     <% end %>
-  </p>
+  </h4>
   
   <div class="col">
     <div class="text-field row p-0">
